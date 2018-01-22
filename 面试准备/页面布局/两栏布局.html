@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>两栏布局</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .layout {
+      margin-top: 20px;
+    }
+    .layout .wrap>div {
+      min-height: 100px;
+    }
+    .layout .wrap .left {
+      background-color: red;
+    }
+    .layout .wrap .right {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <!--
+    float+margin-left
+    -->
+  <section class="layout float">
+    <style>
+      .layout.float .wrap:after {
+        display: block;
+        content: '';
+        clear: both;
+      }
+      .layout.float .wrap .left {
+        width: 300px;
+        float: left;
+      }
+      .layout.float .wrap .right {
+        margin-left: 320px;
+      }
+    </style>
+    <article class="wrap">
+      <div class="left">
+        左边固定宽度，高度不固定</br>高度有可能会很小，也可能很大。
+      </div>
+      <div class="right">
+        这里的内容可能比左侧高，也可能比左侧低。宽度需要自适应。</br>
+        </br></br></br></br>
+        基本的样式是，两个div相距20px, 左侧div宽 300px
+      </div>
+    </article>
+  </section>
+  <!--
+    inline-box
+  -->
+  <section class="layout flex">
+    <style>
+      .layout.flex .wrap {
+        font-size: 0;
+      }
+      .layout.flex .wrap>div{
+        display: inline-block;
+        vertical-align: top;
+        font-size: 16px;
+      }
+      .layout.flex .wrap .left {
+        width: 300px;
+      }
+      .layout.flex .wrap .right {
+        width: calc(100% - 320px)
+      }
+    </style>
+    <article class="wrap">
+      <div class="left">
+        左边固定宽度，高度不固定</br>高度有可能会很小，也可能很大。
+      </div>
+      <div class="right">
+        这里的内容可能比左侧高，也可能比左侧低。宽度需要自适应。</br>
+        </br></br></br></br>
+        基本的样式是，两个div相距20px, 左侧div宽 300px
+      </div>
+    </article>
+  </section>
+</body>
+</html>
