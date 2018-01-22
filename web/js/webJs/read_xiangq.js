@@ -1,0 +1,1 @@
+$(function(){$(".tiku_mdt_fenxi_read").mouseenter(function(){$(this).parent().find("div").show();$(this).parent().find("img").show();$(this).parent().find("div").mouseleave(function(){$(this).hide();$(this).parent().find("img").hide()})});$(".ti_xq_show_answer_read").click(function(){$(this).css("background"," #02a7f4");$(".tiku_mdt_daan_read span").show()})});

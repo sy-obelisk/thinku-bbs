@@ -1,0 +1,1 @@
+$(function(){$("#szjs_skms_big .szjs_skms_b_left ul li .szjs_skms_b_l_right input").click(function(){if($(this).val()=="+关注"){$(this).val("✔已关注")}else{$(this).val("+关注")}})});

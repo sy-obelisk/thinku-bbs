@@ -1,1 +1,0 @@
-# thinku-bbs

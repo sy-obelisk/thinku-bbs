@@ -1,4 +1,5 @@
 /.idea
-.DS_Store
-/node_modules/
-npm-debug.log
+/web/Upload
+/runtime
+/web/u.php
+/web/ueditor/php/upload
