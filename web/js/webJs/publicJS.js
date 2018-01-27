@@ -1,10 +1,10 @@
 $(function () {
 
     //固定部分控制背景颜色
-    $(".fixed_div_img").hover(function(){
-        $(this).css("background","#00a1e8");
-    },function(){
-        $(this).css("background","#b2b2b2");
+    $(".fixed_div_img").hover(function () {
+        $(this).css("background", "#00a1e8");
+    }, function () {
+        $(this).css("background", "#b2b2b2");
     });
     //头部选中效果
     var url = window.location.search;
@@ -121,14 +121,16 @@ $(function () {
         $("#login_register").show();
         $("#reg_register02").hide();
     });
-    jQuery(".twoRegHd").slide({trigger:"click"});
+    jQuery(".twoRegHd").slide({trigger: "click"});
     //广告窗关闭按钮
-    $(".jiqir_close02").click(function(){$(this).parent().hide()});
+    $(".jiqir_close02").click(function () {
+        $(this).parent().hide()
+    });
 });
 
 function clickDX(e) {
     //var _that = $(".reg_free_yzm_div");
-    var _that =  $(e);
+    var _that = $(e);
     var timeNum = 60;
     $(e).removeAttr("onclick");
     _that.unbind("click").val(timeNum + "秒后重新发送");
@@ -152,7 +154,7 @@ function getWidth() {
     return isStrictMode() ? Math.max(document.documentElement.scrollWidth, document.documentElement.clientWidth) : Math.max(document.body.scrollWidth, document.body.clientWidth)
 }
 //遮罩层
-$(window).load(function(){
+$(window).load(function () {
     var wenzW = getWidth();
     var wenzH = getHeight();
     $(".log_reg_zzc").css({"width": wenzW + "px", "height": wenzH + "px"});
@@ -218,17 +220,16 @@ function webYZ(self, reg, lengthNum) {
     });
 }
 //头部搜索
-function seaEnter(event){
-    if(event.keyCode==13){
+function seaEnter(event) {
+    if (event.keyCode == 13) {
         searchEnter($("#keywords").next("div"));
     }
 }
 
-function searchEnter(e){
-    var k=$(e).prev("input#keywords").val();
-    if(typeof(k)!='undefined')
-    {
-        var url="index.php?web/exam/timu_list&keywords="+encodeURIComponent(k);
-        window.location.href=url;
+function searchEnter(e) {
+    var k = $(e).prev("input#keywords").val();
+    if (typeof(k) != 'undefined') {
+        var url = "index.php?web/exam/timu_list&keywords=" + encodeURIComponent(k);
+        window.location.href = url;
     }
 }

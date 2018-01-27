@@ -90,7 +90,7 @@ use app\libs\Method;
             <th width="80">PID</th>
             <!--<th width="80">缩略图</th>-->
             <th>内容名称</th>
-            <th>内容标题</th>
+            <th>内容摘要</th>
             <th>缩略图</th>
             <th>分类</th>
             <?php
@@ -115,7 +115,7 @@ use app\libs\Method;
                 <td class="notSLH"><?php echo $v['pid']?></td>
                 <!--<td><img src="{x2;if:v:extend['thumb']}{x2;v:extend['thumb']}{x2;else}app/core/styles/images/noupload.gif{x2;endif}" alt="" style="width:24px;"/></td>-->
                 <td><span><?php echo $v['name']?></span></td>
-                <td><span><?php echo $v['title']?></span></td>
+                <td><span><?php echo $v['abstract']?></span></td>
                 <td><span><?php echo $v['image']?></span></td>
                 <td><span><?php echo $v['caName']?></span></td>
                 <?php

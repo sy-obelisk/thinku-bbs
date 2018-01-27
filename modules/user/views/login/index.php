@@ -11,7 +11,7 @@
 <div class="wrapper">
     <div class="container">
         <h1>留学论坛后台</h1>
-        <form class="form" method="post" action="<?php echo baseUrl."/user/login/check"?>">
+        <form class="form" method="post" action="/user/login/check"">
             <input type="text" name="userName" placeholder="用户名">
             <input type="password" name="userPass" placeholder="密码">
             <button type="submit" id="login-button">登录</button>

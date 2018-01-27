@@ -18,7 +18,8 @@ use app\modules\content\models\CategoryExtend;
 use app\modules\content\models\ExtendInvoke;
 
 
-class ExtendController extends AppControl {
+class ExtendController extends AppControl
+{
     public $enableCsrfValidation = false;
 
     /**
@@ -36,75 +37,75 @@ class ExtendController extends AppControl {
      * @return string
      * @Obelisk
      */
-    public function actionAdd(){
-        if($_POST){
+    public function actionAdd()
+    {
+        if ($_POST) {
             $model = new CategoryExtend();
             $data = Yii::$app->request->post('extend');
-            $type = Yii::$app->request->post('type','');
-            $id = Yii::$app->request->post('id','');
+            $type = Yii::$app->request->post('type', '');
+            $id = Yii::$app->request->post('id', '');
             $back = Yii::$app->request->post('back');
-            $canDelete = Yii::$app->request->post('canDelete',0);
+            $canDelete = Yii::$app->request->post('canDelete', 0);
             //判断是修改
-            if($id){
-                if($type){
+            if ($id) {
+                if ($type) {
                     $sign = ContentExtend::find()->where("id != $id AND contentId = {$data['contentId']} AND code='{$data['code']}'")->one();
-                    if($sign){
+                    if ($sign) {
                         die('<script>alert("调用码，重复");history.go(-1);</script>');
                     }
-                }else{
+                } else {
                     $sign = CategoryExtend::find()->where("id != $id AND catId = {$data['catId']} AND code='{$data['code']}' AND belong='{$data['belong']}'")->one();
-                    if($sign){
+                    if ($sign) {
                         die('<script>alert("调用码，重复");history.go(-1);</script>');
                     }
                 }
-                $sign = $this->extendUpdate($id,$data,$type,$canDelete);//使用另外方法进行属性的修改，避免方法过长
-                if($sign){
-                    if($type){
-                        $this->redirect('/content/content/extend?id='.$data['contentId']);
-                    }else{
-                        $this->redirect('/content/category/'.$data["belong"].'?id='.$data['catId']);
+                $sign = $this->extendUpdate($id, $data, $type, $canDelete);//使用另外方法进行属性的修改，避免方法过长
+                if ($sign) {
+                    if ($type) {
+                        $this->redirect('/content/content/extend?id=' . $data['contentId']);
+                    } else {
+                        $this->redirect('/content/category/' . $data["belong"] . '?id=' . $data['catId']);
                     }
-                }else{
+                } else {
                     echo '<script>alert("失败，请重试");history.go(-1);</script>';
                     die;
                 }
-            }
-            //判断是添加
-            else{
-                if($type){
+            } //判断是添加
+            else {
+                if ($type) {
                     $sign = ContentExtend::find()->where("contentId = {$data['contentId']} AND code='{$data['code']}'")->one();
-                    if($sign){
+                    if ($sign) {
                         die('<script>alert("调用码，重复");history.go(-1);</script>');
                     }
-                }else{
+                } else {
                     $sign = CategoryExtend::find()->where("catId = {$data['catId']} AND code='{$data['code']}' AND belong='{$data['belong']}'")->one();
-                    if($sign){
+                    if ($sign) {
                         die('<script>alert("调用码，重复");history.go(-1);</script>');
                     }
                 }
                 $data['createTime'] = date("Y-m-d H:i:s");
                 $data['userId'] = Yii::$app->session->get('adminId');
-                $url = Yii::$app->request->post('url','');
-                if($type){ //添加内容属性
+                $url = Yii::$app->request->post('url', '');
+                if ($type) { //添加内容属性
                     $data['value'] = "";
                     $data['catExtendId'] = "";
-                    $re = Yii::$app->db->createCommand()->insert('{{%content_extend}}',$data)->execute();
-                    if($re){
-                        if($back == 1){
-                            $this->redirect('/content/content/update?id='.$data['contentId']."&url=".$url);
-                        }else{
-                            $this->redirect('/content/content/extend?id='.$data['contentId']);
+                    $re = Yii::$app->db->createCommand()->insert('{{%content_extend}}', $data)->execute();
+                    if ($re) {
+                        if ($back == 1) {
+                            $this->redirect('/content/content/update?id=' . $data['contentId'] . "&url=" . $url);
+                        } else {
+                            $this->redirect('/content/content/extend?id=' . $data['contentId']);
                         }
-                    }else{
+                    } else {
                         echo '<script>alert("失败，请重试");history.go(-1);</script>';
                         die;
                     }
-                }else{
+                } else {
                     //添加分类属性
-                    $status = Yii::$app->request->post('status','');
-                    if(!empty($status) && $canDelete == 1){
+                    $status = Yii::$app->request->post('status', '');
+                    if (!empty($status) && $canDelete == 1) {
                         $deleteType = 1;
-                    }else{
+                    } else {
                         $deleteType = 0;
                     }
                     $model->pid = 1;
@@ -120,26 +121,26 @@ class ExtendController extends AppControl {
                     $model->code = $data['code'];
                     $model->deleteType = $deleteType;
                     $model->typeValue = $data['typeValue'];
-                    $model->required = isset($data['required'])?$data['required']:2;
+                    $model->required = isset($data['required']) ? $data['required'] : 2;
                     $model->requiredValue = $data['requiredValue'];
-                    $model->used = isset($data['used'])?$data['used']:1;
+                    $model->used = isset($data['used']) ? $data['used'] : 1;
                     $re = $model->save();
-                    if($status == '1'){
-                        $this->addChildExtend($data,$canDelete,$model->primaryKey);//子类添加属性
-                    }elseif($status == '2'){
-                        $this->addRecursionExtend($data,$canDelete,$model->primaryKey);//递归添加属性
+                    if ($status == '1') {
+                        $this->addChildExtend($data, $canDelete, $model->primaryKey);//子类添加属性
+                    } elseif ($status == '2') {
+                        $this->addRecursionExtend($data, $canDelete, $model->primaryKey);//递归添加属性
                     }
-                    if($data['belong'] = 'content'){
-                        $this->shiftExtend($data['catId'],$model->primaryKey);//为其中内容添加属性
+                    if ($data['belong'] = 'content') {
+                        $this->shiftExtend($data['catId'], $model->primaryKey);//为其中内容添加属性
                     }
-                    if($re){
-                        if($back == 1){
-                            $this->redirect('/content/category/update?id='.$data['catId']);
-                        }else{
-                            $this->redirect('/content/category/'.$data["belong"].'?id='.$data['catId']);
+                    if ($re) {
+                        if ($back == 1) {
+                            $this->redirect('/content/category/update?id=' . $data['catId']);
+                        } else {
+                            $this->redirect('/content/category/' . $data["belong"] . '?id=' . $data['catId']);
                         }
 
-                    }else{
+                    } else {
                         echo '<script>alert("失败，请重试");history.go(-1);</script>';
                         die;
                     }
@@ -148,16 +149,16 @@ class ExtendController extends AppControl {
         }
         //初次添加加载数据
         $id = Yii::$app->request->get('id');
-        $type = Yii::$app->request->get('type','');
+        $type = Yii::$app->request->get('type', '');
         $back = Yii::$app->request->get('back');
-        $url = Yii::$app->request->get('url','');
+        $url = Yii::$app->request->get('url', '');
         $extendInvoke = ExtendInvoke::find()->all();
-        if($type){
-            return $this->render('add',['url'=>$url,'extendInvoke' => $extendInvoke,'back' => $back,'type' => $type,'catId' => $id]);
-        }else{
-            $belong = Yii::$app->request->get('belong','');
+        if ($type) {
+            return $this->render('add', ['url' => $url, 'extendInvoke' => $extendInvoke, 'back' => $back, 'type' => $type, 'catId' => $id]);
+        } else {
+            $belong = Yii::$app->request->get('belong', '');
             $cateArr = Category::findOne($id);
-            return $this->render('add',array('url'=>$url,'extendInvoke' => $extendInvoke,'back'=> $back,'catId' => $id,'belong' => $belong,'catName' => $cateArr->name));
+            return $this->render('add', array('url' => $url, 'extendInvoke' => $extendInvoke, 'back' => $back, 'catId' => $id, 'belong' => $belong, 'catName' => $cateArr->name));
         }
     }
 
@@ -167,31 +168,32 @@ class ExtendController extends AppControl {
      * @Obelisk
      */
 
-    public function actionDelete(){
+    public function actionDelete()
+    {
         $id = Yii::$app->request->get('id');
-        $type = Yii::$app->request->get('type','');
-        if($type){
+        $type = Yii::$app->request->get('type', '');
+        if ($type) {
             $data = ContentExtend::findOne($id);
             $re = ContentExtend::deleteAll("id=$id");
-            if($re){
-                $this->redirect('/content/content/extend?id='.$data['contentId']);
-            }else{
+            if ($re) {
+                $this->redirect('/content/content/extend?id=' . $data['contentId']);
+            } else {
                 echo '<script>alert("失败，请重试");history.go(-1);</script>';
                 die;
             }
-        }else{
-            $status = $type = Yii::$app->request->get('status',1);
+        } else {
+            $status = $type = Yii::$app->request->get('status', 1);
             $data = CategoryExtend::findOne($id);
-            if($data['inheritId']){
-                $this->deleteExtend($data['inheritId'],$status,$data['catId']);
-            }else{
-                $this->deleteExtend($id,$status,$data['catId']);
+            if ($data['inheritId']) {
+                $this->deleteExtend($data['inheritId'], $status, $data['catId']);
+            } else {
+                $this->deleteExtend($id, $status, $data['catId']);
             }
-            ContentExtend::updateAll(['canDelete' => 0],"canDelete=1 AND catExtendId = $id");
+            ContentExtend::updateAll(['canDelete' => 0], "canDelete=1 AND catExtendId = $id");
             $re = CategoryExtend::deleteAll("id=$id");
-            if($re){
-                $this->redirect('/content/category/'.$data["belong"].'?id='.$data['catId']);
-            }else{
+            if ($re) {
+                $this->redirect('/content/category/' . $data["belong"] . '?id=' . $data['catId']);
+            } else {
                 echo '<script>alert("失败，请重试");history.go(-1);</script>';
                 die;
             }
@@ -204,27 +206,28 @@ class ExtendController extends AppControl {
      * @Obelisk
      */
 
-    public function actionUpdate(){
+    public function actionUpdate()
+    {
         $id = Yii::$app->request->get('id');
-        $type = Yii::$app->request->get('type','');
+        $type = Yii::$app->request->get('type', '');
         $extendInvoke = ExtendInvoke::find()->all();
-        if($type){
+        if ($type) {
             $model = new ContentExtend();
-        }else{
+        } else {
             $model = new CategoryExtend();
         }
         $data = $model->findOne($id);
-        if($type){
-            return $this->render('add',['extendInvoke' => $extendInvoke,'data' => $data,'id' => $id,'catId' => $data->contentId,'type' => $type]);
-        }else{
+        if ($type) {
+            return $this->render('add', ['extendInvoke' => $extendInvoke, 'data' => $data, 'id' => $id, 'catId' => $data->contentId, 'type' => $type]);
+        } else {
             $catId = Category::findOne($data->catId);
 //            $pName = $model->find()->where("id=$data->pid")->one();
-            if(!$data['inheritId']){
+            if (!$data['inheritId']) {
                 $inherit = 1;
-            }else{
+            } else {
                 $inherit = 0;
             }
-            return $this->render('add',['extendInvoke' => $extendInvoke,'data' => $data,'belong' => $data->belong,'catName' => $catId->name,'inheritId' => $inherit,'catId' => $data->catId,'id' => $id]);
+            return $this->render('add', ['extendInvoke' => $extendInvoke, 'data' => $data, 'belong' => $data->belong, 'catName' => $catId->name, 'inheritId' => $inherit, 'catId' => $data->catId, 'id' => $id]);
         }
 
     }
@@ -236,24 +239,25 @@ class ExtendController extends AppControl {
      * @param $type 属性来源
      * @Obelisk
      */
-    public function extendUpdate($id,$data,$type,$canDelete){
-        if($type){
+    public function extendUpdate($id, $data, $type, $canDelete)
+    {
+        if ($type) {
             $model = new ContentExtend();
-            $re = $model->updateAll($data,"id=$id");
-        }else{
-            $status = Yii::$app->request->post('status','');
+            $re = $model->updateAll($data, "id=$id");
+        } else {
+            $status = Yii::$app->request->post('status', '');
             $model = new CategoryExtend();
             $inheritId = CategoryExtend::findOne($id);
-            if(!$inheritId['inheritId'] && $canDelete==1 && $status == 2){
+            if (!$inheritId['inheritId'] && $canDelete == 1 && $status == 2) {
                 $data['deleteType'] = 1;
             }
-            if(!$inheritId['inheritId'] && $canDelete==0 && $status == 2){
+            if (!$inheritId['inheritId'] && $canDelete == 0 && $status == 2) {
                 $data['deleteType'] = 0;
             }
-            $model->updateAll($data,"id=$id");
+            $model->updateAll($data, "id=$id");
             $re = 1;
             unset($data['deleteType']);
-            if(!empty($status)) {
+            if (!empty($status)) {
                 if ($status == 1) {
                     $child = Category::find()->where('pid = ' . $data['catId'])->all();
                 } elseif ($status == 2) {
@@ -283,19 +287,20 @@ class ExtendController extends AppControl {
      * @throws yii\db\Exception
      * @Obelisk
      */
-    public function addChildExtend($data,$catDelete,$inheritId){
-        $child = Category::find()->where('pid = '.$data['catId'])->all();
-        foreach($child as $v){
+    public function addChildExtend($data, $catDelete, $inheritId)
+    {
+        $child = Category::find()->where('pid = ' . $data['catId'])->all();
+        foreach ($child as $v) {
             $data['catId'] = $v['id'];
             $data['pid'] = 1;
             $data['inheritId'] = $inheritId;
             $data['canDelete'] = $catDelete;
-            if($data['belong'] == 'content'){
+            if ($data['belong'] == 'content') {
                 $content = Content::find()->asArray()->where("catId = {$v['id']}")->all();
                 $cateExtend = Yii::$app->db->createCommand("select * from {{%category_extend}} WHERE id=$inheritId")->queryOne();
-                foreach($content as $val){
+                foreach ($content as $val) {
                     $sign = ContentExtend::find()->where("code='{$cateExtend['code']}' AND contentId={$val['id']}")->one();
-                    if(!$sign){
+                    if (!$sign) {
                         $contExtendModel = new ContentExtend();
                         $contExtendModel->catExtendId = $cateExtend['id'];
                         $contExtendModel->contentId = $val['id'];
@@ -317,7 +322,7 @@ class ExtendController extends AppControl {
                     }
                 }
             }
-            Yii::$app->db->createCommand()->insert('{{%category_extend}}',$data)->execute();
+            Yii::$app->db->createCommand()->insert('{{%category_extend}}', $data)->execute();
         }
     }
 
@@ -329,15 +334,16 @@ class ExtendController extends AppControl {
      * @throws yii\db\Exception
      * @Obelisk
      */
-    public function addRecursionExtend($data,$catDelete,$inheritId){
+    public function addRecursionExtend($data, $catDelete, $inheritId)
+    {
         $model = new Category();
         $recursion = $model->getChildAll($data['catId']);
-        foreach($recursion as $v){
+        foreach ($recursion as $v) {
             $data['catId'] = $v['id'];
             $data['pid'] = 1;
             $data['inheritId'] = $inheritId;
             $data['canDelete'] = $catDelete;
-            Yii::$app->db->createCommand()->insert('{{%category_extend}}',$data)->execute();
+            Yii::$app->db->createCommand()->insert('{{%category_extend}}', $data)->execute();
         }
     }
 
@@ -346,21 +352,22 @@ class ExtendController extends AppControl {
      * @param $status
      * @Obelisk
      */
-    public function deleteExtend($id,$status,$catId){
+    public function deleteExtend($id, $status, $catId)
+    {
         $model = new Category();
-        if($status == 1){
+        if ($status == 1) {
             return true;
-        }elseif($status == 2){
-            $child = Category::find()->where('pid = '.$catId)->all();
-        }else{
+        } elseif ($status == 2) {
+            $child = Category::find()->where('pid = ' . $catId)->all();
+        } else {
             $child = $model->getChildAll($catId);
         }
-        foreach($child as $v){
-            $extendId = CategoryExtend::find()->where('catId='.$v['id'].' AND inheritId='.$id)->one();
-            if($extendId){
-                ContentExtend::updateAll(['canDelete' => 0],"canDelete=1 AND catExtendId = $extendId->id");
+        foreach ($child as $v) {
+            $extendId = CategoryExtend::find()->where('catId=' . $v['id'] . ' AND inheritId=' . $id)->one();
+            if ($extendId) {
+                ContentExtend::updateAll(['canDelete' => 0], "canDelete=1 AND catExtendId = $extendId->id");
             }
-            CategoryExtend::deleteAll('catId='.$v['id'].' AND inheritId='.$id);
+            CategoryExtend::deleteAll('catId=' . $v['id'] . ' AND inheritId=' . $id);
         }
     }
 
@@ -370,16 +377,17 @@ class ExtendController extends AppControl {
      * @param $catId 分类ID
      * @Obelisk
      */
-    public function shiftExtend($catId,$extendId){
+    public function shiftExtend($catId, $extendId)
+    {
         $cateExtend = Yii::$app->db->createCommand("select * from {{%category_extend}} WHERE id=$extendId")->queryOne();
-        if($cateExtend['used'] == 1){
+        if ($cateExtend['used'] == 1) {
             $content = Content::find()->asArray()->where("catId = $catId")->all();
-        }else{
+        } else {
             $content = Content::find()->asArray()->where("catId = $catId AND pid = 0")->all();
         }
-        foreach($content as $v){
+        foreach ($content as $v) {
             $sign = ContentExtend::find()->where("code='{$cateExtend['code']}' AND contentId={$v['id']}")->one();
-            if(!$sign){
+            if (!$sign) {
                 $contExtendModel = new ContentExtend();
                 $contExtendModel->catExtendId = $cateExtend['id'];
                 $contExtendModel->contentId = $v['id'];

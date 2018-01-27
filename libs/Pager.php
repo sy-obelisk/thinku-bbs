@@ -11,7 +11,9 @@
        echo $pageStr;   
  */
 namespace app\libs;
+
 use Yii;
+
 class Pager
 {
     private $pageSize = 10;
@@ -23,7 +25,7 @@ class Pager
     private $pageUrl;
     private static $_instance;
 
-    public function __construct($url,$p_totalNum, $p_pageIndex, $p_pageSize = 10, $p_initNum = 3, $p_initMaxNum = 5)
+    public function __construct($url, $p_totalNum, $p_pageIndex, $p_pageSize = 10, $p_initNum = 3, $p_initMaxNum = 5)
     {
         if (!isset ($p_totalNum) || !isset($p_pageIndex)) {
             die ("pager initial error");
@@ -62,7 +64,7 @@ class Pager
         $str = "<div class=\"Pagination\">";
         //首页 上一页
         if ($this->pageIndex == 1) {
-           $str .= "<li><a href='javascript:;'>首页</a></li>";
+            $str .= "<li><a href='javascript:;'>首页</a></li>";
             $str .= '<li><a href="javascript:;">上一页</a></li>';
         } else {
             $str .= "<a href='{$this->pageUrl}=1' class='tips' title='首页'>首页</a> " . "\n";
@@ -178,11 +180,12 @@ class Pager
         $str .= "</div>";
         return $str;
     }
+
     public function GetPager()
     {
-        $str='<div class="s-page" aria-label="Page navigation">';
-        $str.='<ul class="pagination">';
-        $str.="<li><a  href='{$this->pageUrl}=1'>&laquo;</a> </li>";
+        $str = '<div class="s-page" aria-label="Page navigation">';
+        $str .= '<ul class="pagination">';
+        $str .= "<li><a  href='{$this->pageUrl}=1'>&laquo;</a> </li>";
 //        if ($this->pageIndex == '1'||$this->pageIndex <1) {
 //            $str.="<li><a href='{$this->pageUrl}=1' aria-label='Previous'>";
 //        } else {
@@ -194,48 +197,47 @@ class Pager
 //        $str.=' <li>&lt;</li>';
 //中间页码
         if ($this->totalPagesCount <= 10) {
-            for($i=1;$i<= $this->totalPagesCount;$i++){
+            for ($i = 1; $i <= $this->totalPagesCount; $i++) {
 //                $page = Yii::$app->request->get('p', 1);
-                if($i==$this->pageIndex){
-                    $str.="<li class='active'>";
-                }else{
-                    $str.="<li>";
+                if ($i == $this->pageIndex) {
+                    $str .= "<li class='active'>";
+                } else {
+                    $str .= "<li>";
                 }
-                $str.="<a href='{$this->pageUrl}=" .$i."'>$i</a>";
-                $str.='</li>';
+                $str .= "<a href='{$this->pageUrl}=" . $i . "'>$i</a>";
+                $str .= '</li>';
             }
-        }
-        else{
-            if($this->pageIndex-4<=0){
-                for($i=1;$i<= 10;$i++){
-                    if($i==$this->pageIndex){
-                        $str.="<li class='active'>";
-                    }else{
-                        $str.="<li>";
+        } else {
+            if ($this->pageIndex - 4 <= 0) {
+                for ($i = 1; $i <= 10; $i++) {
+                    if ($i == $this->pageIndex) {
+                        $str .= "<li class='active'>";
+                    } else {
+                        $str .= "<li>";
                     }
-                    $str.="<a href='{$this->pageUrl}=" .$i."'>$i</a>";
-                    $str.='</li>';
+                    $str .= "<a href='{$this->pageUrl}=" . $i . "'>$i</a>";
+                    $str .= '</li>';
                 }
-            }elseif($this->pageIndex>4 && $this->pageIndex<$this->totalPagesCount-5){
-                for($i=$this->pageIndex-4;$i<= $this->pageIndex+5;$i++){
+            } elseif ($this->pageIndex > 4 && $this->pageIndex < $this->totalPagesCount - 5) {
+                for ($i = $this->pageIndex - 4; $i <= $this->pageIndex + 5; $i++) {
                     $page = Yii::$app->request->get('p', 1);
-                    if($i==$page){
-                        $str.="<li class='active'>";
-                    }else{
-                        $str.="<li>";
+                    if ($i == $page) {
+                        $str .= "<li class='active'>";
+                    } else {
+                        $str .= "<li>";
                     }
-                    $str.="<a href='{$this->pageUrl}=" .$i."'>$i</a>";
-                    $str.='</li>';
+                    $str .= "<a href='{$this->pageUrl}=" . $i . "'>$i</a>";
+                    $str .= '</li>';
                 }
-            }elseif($this->pageIndex>=$this->totalPagesCount-5){
-                for($i=$this->totalPagesCount-9;$i<= $this->totalPagesCount;$i++){
-                    if($i==$this->pageIndex){
-                        $str.="<li class='active'>";
-                    }else{
-                        $str.="<li>";
+            } elseif ($this->pageIndex >= $this->totalPagesCount - 5) {
+                for ($i = $this->totalPagesCount - 9; $i <= $this->totalPagesCount; $i++) {
+                    if ($i == $this->pageIndex) {
+                        $str .= "<li class='active'>";
+                    } else {
+                        $str .= "<li>";
                     }
-                    $str.="<a href='{$this->pageUrl}=" .$i."'>$i</a>";
-                    $str.='</li>';
+                    $str .= "<a href='{$this->pageUrl}=" . $i . "'>$i</a>";
+                    $str .= '</li>';
                 }
             }
 
@@ -261,7 +263,7 @@ class Pager
 ////        $str .= "<span>&gt;</span></a></li>";
 ////
 //        $str .= "<span aria-hidden='true'>&gt;</span></a></li>";
-        $str .= "<li><a href='{$this->pageUrl}=" . ($this->totalPagesCount ) . "'>&raquo;</a></li>";
+        $str .= "<li><a href='{$this->pageUrl}=" . ($this->totalPagesCount) . "'>&raquo;</a></li>";
         $str .= "</div>";
 //        var_dump($this->totalPagesCount,$this->pageIndex,$this->totalNum,$this->pageSize);die;
         return $str;

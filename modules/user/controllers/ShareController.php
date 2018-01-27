@@ -16,7 +16,8 @@ use app\libs\AppControl;
 use app\libs\Method;
 
 
-class ShareController extends AppControl {
+class ShareController extends AppControl
+{
     public $enableCsrfValidation = false;
 
     /**
@@ -26,51 +27,51 @@ class ShareController extends AppControl {
      */
     public function actionIndex()
     {
-        $page = Yii::$app->request->get('page',1);
-        $questionId = Yii::$app->request->get('questionId','');
-        $userId = Yii::$app->request->get('userId','');
-        $belong = Yii::$app->request->get('belong','');
-        $teacher = Yii::$app->request->get('teacher','');
-        $beginTime = strtotime(Yii::$app->request->get('beginTime',''));
-        $endTime = strtotime(Yii::$app->request->get('endTime',''));
-        $id  = Yii::$app->request->get('id','');
-        $where="ua.share=1";
-        if($id){
+        $page = Yii::$app->request->get('page', 1);
+        $questionId = Yii::$app->request->get('questionId', '');
+        $userId = Yii::$app->request->get('userId', '');
+        $belong = Yii::$app->request->get('belong', '');
+        $teacher = Yii::$app->request->get('teacher', '');
+        $beginTime = strtotime(Yii::$app->request->get('beginTime', ''));
+        $endTime = strtotime(Yii::$app->request->get('endTime', ''));
+        $id = Yii::$app->request->get('id', '');
+        $where = "ua.share=1";
+        if ($id) {
             $where .= " AND ua.id = $id";
         }
-        if($beginTime){
+        if ($beginTime) {
             $where .= " AND ua.shareTime>=$beginTime";
         }
-        if($endTime){
+        if ($endTime) {
             $where .= " AND ua.shareTime<=$endTime";
         }
-        if($questionId){
+        if ($questionId) {
             $where .= " AND ua.contentId = $questionId";
         }
-        if($userId){
+        if ($userId) {
             $where .= " AND ua.userId = $userId";
         }
-        if($belong){
-            if($belong == 1){
+        if ($belong) {
+            if ($belong == 1) {
                 $where .= " AND (ua.belong='writingIndependent' or ua.belong='writingTpo')";
             }
-            if($belong == 2){
+            if ($belong == 2) {
                 $where .= " AND ua.belong='spoken'";
             }
         }
-        if($teacher){
-            if($teacher == 1){
+        if ($teacher) {
+            if ($teacher == 1) {
                 $where .= " AND ua.teacher = $teacher";
             }
-            if($teacher == 2){
+            if ($teacher == 2) {
                 $where .= " AND ua.teacher = 0";
             }
         }
         $model = new Content();
 //        $data = $model->getAllShare($where,20,$page);
-        $data=array();
+        $data = array();
 //        $page = Method::getPagedRows(['count'=>$data['count'],'pageSize'=>20, 'rows'=>'models']);
-        return $this->render('share',['data'=>$data,'block' => $this->block]);
+        return $this->render('share', ['data' => $data, 'block' => $this->block]);
     }
 
     /**
@@ -78,8 +79,9 @@ class ShareController extends AppControl {
      * @return string
      * @Obelisk
      */
-    public function actionReply(){
-        $userId = Yii::$app->request->get('userId','');
+    public function actionReply()
+    {
+        $userId = Yii::$app->request->get('userId', '');
         $this->redirect("/user/news/add?userId=$userId");
     }
 

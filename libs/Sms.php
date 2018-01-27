@@ -1,6 +1,8 @@
 <?php
 namespace app\libs;
+
 use yii;
+
 /**
  * 申友 短信接口 公用类库
  * ============================================================================
@@ -12,16 +14,19 @@ use yii;
  * ============================================================================
  * $Author: obelisk (刘志勇)
  */
-class Sms {
+class Sms
+{
     private $SN;
     private $PWD;
     private $SIG;
 
-    function __construct() {
+    function __construct()
+    {
         $this->SN = Yii::$app->params['SMS_SN'];
         $this->PWD = Yii::$app->params['SMS_PWD'];
         $this->SIG = Yii::$app->params['SMS_SIG'];
     }
+
     /**
      * send 发送短信
      * 函数的含义说明
@@ -36,12 +41,13 @@ class Sms {
      * @ Aaron(刘志勇)
      * @return array
      */
-    public function send($mobile, $content, $ext = '', $stime = '', $rrid = '') {
+    public function send($mobile, $content, $ext = '', $stime = '', $rrid = '')
+    {
         $flag = 0;
-        $argv = array('sn' => $this -> SN, 'pwd' => strtoupper(md5($this -> SN . $this -> PWD)), 'mobile' => $mobile, 'content' => iconv("UTF-8", "gb2312//IGNORE", $content . '【' . $this -> SIG . '】'), 'ext' => $ext, 'stime' => $stime, //定时时间 格式为2011-6-29 11:09:21
+        $argv = array('sn' => $this->SN, 'pwd' => strtoupper(md5($this->SN . $this->PWD)), 'mobile' => $mobile, 'content' => iconv("UTF-8", "gb2312//IGNORE", $content . '【' . $this->SIG . '】'), 'ext' => $ext, 'stime' => $stime, //定时时间 格式为2011-6-29 11:09:21
             'rrid' => $rrid);
         //构造要post的字符串
-        $params ='';
+        $params = '';
         foreach ($argv as $key => $value) {
             if ($flag != 0) {
                 $params .= "&";
@@ -86,7 +92,7 @@ class Sms {
             $remark = '发送成功 返回值为:' . $line;
         }
         //记录日志
-        $this -> addlog($this -> SN, "发送", $mobile, $content, $line, $remark);
+        $this->addlog($this->SN, "发送", $mobile, $content, $line, $remark);
         return $r;
     }
 
@@ -102,7 +108,8 @@ class Sms {
      * @ Aaron(刘志勇)
      * @return array
      */
-    public function addlog($value = '') {
+    public function addlog($value = '')
+    {
         return true;
     }
 

@@ -5,7 +5,8 @@ namespace app\libs\upload;
  * @author:yxt
  * @time:2013年10月17日9:34:39
  */
-class Image {
+class Image
+{
 
     /**
      * 取得图像信息
@@ -14,7 +15,8 @@ class Image {
      * @return mixed
      */
 
-    static function getImageInfo($str_image) {
+    static function getImageInfo($str_image)
+    {
         $arr_image_info = getimagesize($str_image);
         if ($arr_image_info !== false) {
             $str_image_type = strtolower(substr(image_type_to_extension($arr_image_info[2]), 1));
@@ -35,15 +37,16 @@ class Image {
     /**
      * 生成缩略图
      * @author yxt
-     * @param string $str_image  原图
+     * @param string $str_image 原图
      * @param string $str_thumb_name 缩略图文件名
      * @param string $str_type 图像格式
-     * @param string $str_max_width  宽度
-     * @param string $str_max_height  高度
+     * @param string $str_max_width 宽度
+     * @param string $str_max_height 高度
      * @param boolean $bool_interlace 启用隔行扫描
      * @return void
      */
-    static function thumb($str_image, $str_thumb_name, $str_type='', $str_max_width=200, $str_max_height=50, $bool_interlace=true) {
+    static function thumb($str_image, $str_thumb_name, $str_type = '', $str_max_width = 200, $str_max_height = 50, $bool_interlace = true)
+    {
         // 获取原图信息
         $info = Image::getImageInfo($str_image);
         if ($info !== false) {
@@ -60,13 +63,13 @@ class Image {
                 $height = $str_src_height;
             } else {
                 // 缩略图尺寸
-                $width = (int) ($str_src_width * $scale);
-                $height = (int) ($str_src_height * $scale);
+                $width = (int)($str_src_width * $scale);
+                $height = (int)($str_src_height * $scale);
             }
 
             // 载入原图
             $create_fun = 'ImageCreateFrom' . ($str_type == 'jpg' ? 'jpeg' : $str_type);
-            if(!function_exists($create_fun)) {
+            if (!function_exists($create_fun)) {
                 return false;
             }
             $res_src_img = $create_fun($str_image);
@@ -76,19 +79,19 @@ class Image {
                 $res_thumb_img = imagecreatetruecolor($width, $height);
             else
                 $res_thumb_img = imagecreate($width, $height);
-              //png和gif的透明处理 by luofei614
-            if('png'==$str_type){
+            //png和gif的透明处理 by luofei614
+            if ('png' == $str_type) {
                 imagealphablending($res_thumb_img, false);//取消默认的混色模式（为解决阴影为绿色的问题）
-                imagesavealpha($res_thumb_img,true);//设定保存完整的 alpha 通道信息（为解决阴影为绿色的问题）
-            }elseif('gif'==$str_type){
+                imagesavealpha($res_thumb_img, true);//设定保存完整的 alpha 通道信息（为解决阴影为绿色的问题）
+            } elseif ('gif' == $str_type) {
                 $trnprt_indx = imagecolortransparent($res_src_img);
-                 if ($trnprt_indx >= 0) {
-                        //its transparent
-                       $trnprt_color = imagecolorsforindex($res_src_img , $trnprt_indx);
-                       $trnprt_indx = imagecolorallocate($res_thumb_img, $trnprt_color['red'], $trnprt_color['green'], $trnprt_color['blue']);
-                       imagefill($res_thumb_img, 0, 0, $trnprt_indx);
-                       imagecolortransparent($res_thumb_img, $trnprt_indx);
-              }
+                if ($trnprt_indx >= 0) {
+                    //its transparent
+                    $trnprt_color = imagecolorsforindex($res_src_img, $trnprt_indx);
+                    $trnprt_indx = imagecolorallocate($res_thumb_img, $trnprt_color['red'], $trnprt_color['green'], $trnprt_color['blue']);
+                    imagefill($res_thumb_img, 0, 0, $trnprt_indx);
+                    imagecolortransparent($res_thumb_img, $trnprt_indx);
+                }
             }
             // 复制图片
             if (function_exists("ImageCopyResampled"))

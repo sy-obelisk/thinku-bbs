@@ -13,7 +13,9 @@ use app\modules\user\models\User;
 use yii;
 use app\libs\AppControl;
 use app\libs\Method;
-class ReportController extends  AppControl{
+
+class ReportController extends AppControl
+{
     public $enableCsrfValidation = false;
 //    function init (){
 //        parent::init();
@@ -28,32 +30,32 @@ class ReportController extends  AppControl{
     public function actionIndex()
     {
         $model = new Report();
-        $page = Yii::$app->request->get('page',1);
-        $beginTime = strtotime(Yii::$app->request->get('beginTime',''));
-        $endTime = strtotime(Yii::$app->request->get('endTime',''));
-        $id  = Yii::$app->request->get('id','');
-        $userId  = Yii::$app->request->get('userId','');
-        $reportType  = Yii::$app->request->get('reportType','');
-        $reportCat  = Yii::$app->request->get('reportCat','');
+        $page = Yii::$app->request->get('page', 1);
+        $beginTime = strtotime(Yii::$app->request->get('beginTime', ''));
+        $endTime = strtotime(Yii::$app->request->get('endTime', ''));
+        $id = Yii::$app->request->get('id', '');
+        $userId = Yii::$app->request->get('userId', '');
+        $reportType = Yii::$app->request->get('reportType', '');
+        $reportCat = Yii::$app->request->get('reportCat', '');
         $where = "1=1";
-        if($beginTime){
+        if ($beginTime) {
             $where .= " AND r.createTime>$beginTime";
         }
-        if($endTime){
+        if ($endTime) {
             $where .= " AND r.createTime<$endTime";
         }
-        if($id){
+        if ($id) {
             $where .= " AND r.id = $id";
         }
-        if($userId){
+        if ($userId) {
             $where .= " AND r.userId = $userId";
         }
-        if($reportType){
+        if ($reportType) {
             $where .= " AND r.reportType = $reportType";
         }
-        $reportData = $model->getAllReport($where,20,$page);
-        $page = Method::getPagedRows(['count'=>$reportData['count'],'pageSize'=>20, 'rows'=>'models']);
-        return $this->render('index',['data' => $reportData['data'],'page' => $page,'block' => $this->block]);
+        $reportData = $model->getAllReport($where, 20, $page);
+        $page = Method::getPagedRows(['count' => $reportData['count'], 'pageSize' => 20, 'rows' => 'models']);
+        return $this->render('index', ['data' => $reportData['data'], 'page' => $page, 'block' => $this->block]);
     }
 
     /**
@@ -61,22 +63,23 @@ class ReportController extends  AppControl{
      * @return string
      * @Obelisk
      */
-    public function actionPublish(){
-        $idArr  = Yii::$app->request->post('pushId');
+    public function actionPublish()
+    {
+        $idArr = Yii::$app->request->post('pushId');
         $url = Yii::$app->request->post('url');
         $status = 1;
-        $idStr = implode(",",$idArr);
-        if($idArr == null){
-            die( '<script>alert("请选择讨论");history.go(-1);</script>');
+        $idStr = implode(",", $idArr);
+        if ($idArr == null) {
+            die('<script>alert("请选择讨论");history.go(-1);</script>');
         }
-        foreach($idArr as $k=>$v){
+        foreach ($idArr as $k => $v) {
             $sign = UserDiscuss::findOne($v);
-            if($sign->status != 1 && $sign->type == 1){
+            if ($sign->status != 1 && $sign->type == 1) {
                 $sign = User::findOne($sign->userId);
-                uc_user_edit_integral($sign->userName,'解析被采纳',1,2);
+                uc_user_edit_integral($sign->userName, '解析被采纳', 1, 2);
             }
         }
-        UserDiscuss::updateAll(['status' => $status],"id in($idStr) AND status != $status");
+        UserDiscuss::updateAll(['status' => $status], "id in($idStr) AND status != $status");
         $this->redirect($url);
 
     }
@@ -86,15 +89,16 @@ class ReportController extends  AppControl{
      * @return string
      * @Obelisk
      */
-    public function actionNoPublish(){
-        $idArr  = Yii::$app->request->post('pushId');
+    public function actionNoPublish()
+    {
+        $idArr = Yii::$app->request->post('pushId');
         $url = Yii::$app->request->post('url');
         $status = 0;
-        $idStr = implode(",",$idArr);
-        if($idArr == null){
-            die( '<script>alert("请选择讨论");history.go(-1);</script>');
+        $idStr = implode(",", $idArr);
+        if ($idArr == null) {
+            die('<script>alert("请选择讨论");history.go(-1);</script>');
         }
-        UserDiscuss::updateAll(['status' => $status],"id in($idStr) AND status != $status");
+        UserDiscuss::updateAll(['status' => $status], "id in($idStr) AND status != $status");
         $this->redirect($url);
 
     }
@@ -104,18 +108,19 @@ class ReportController extends  AppControl{
      * @return string
      * @Obelisk
      */
-    public function actionUpdate(){
-        if($_POST){
+    public function actionUpdate()
+    {
+        if ($_POST) {
             $id = Yii::$app->request->post('id');
             $content = Yii::$app->request->post('content');
             $url = Yii::$app->request->post('url');
-            UserDiscuss::updateAll(['discussContent' => $content],"id = $id");
+            UserDiscuss::updateAll(['discussContent' => $content], "id = $id");
             $this->redirect($url);
-        }else{
+        } else {
             $id = Yii::$app->request->get('id');
             $url = $_GET['url'];
             $data = UserDiscuss::findOne($id);
-            return $this->render('update',['data' => $data,'url' => $url]);
+            return $this->render('update', ['data' => $data, 'url' => $url]);
         }
     }
 
@@ -124,14 +129,14 @@ class ReportController extends  AppControl{
      * @return string
      * @Obelisk
      */
-    public function actionDelete(){
+    public function actionDelete()
+    {
         $id = Yii::$app->request->get('id');
         $url = $_GET['url'];
         UserDiscuss::findOne($id)->delete();
         $this->redirect($url);
 
     }
-
 
 
 }

@@ -13,6 +13,7 @@ use yii;
 use yii\web\Controller;
 use app\libs\ApiControl;
 
-class ApiController extends ApiControl {
+class ApiController extends ApiControl
+{
 
 }

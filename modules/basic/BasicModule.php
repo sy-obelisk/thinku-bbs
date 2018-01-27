@@ -4,6 +4,7 @@ namespace app\modules\basic;
 
 
 use yii\base\Module;
+
 class BasicModule extends Module
 {
     public $controllerNamespace = 'app\modules\basic\controllers';

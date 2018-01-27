@@ -1,5 +1,5 @@
 $(function () {
-    var nums=$(".infoLhd ul li.on").index();
+    var nums = $(".infoLhd ul li.on").index();
     $(".fenPage").eq(nums).find("ul li").eq(0).addClass("on");
     getCookie();
 });
@@ -226,7 +226,7 @@ function logout() {
                     location.reload(href);
                     window.location.replace(location.href);
                     location.reload();
-                },500)
+                }, 500)
             } else {
                 alert("内部错误请联系管理员！");
             }
@@ -250,7 +250,7 @@ function get_Phonecode(e) {
             dataType: 'json',
             success: function (data) {
                 if (data.code == 1) {
-                    clickDX(e,60,1);
+                    clickDX(e, 60, 1);
                 } else {
                     $(".phone_div.miss_login").html(data.message).show();
                 }
@@ -266,17 +266,17 @@ function get_Phonecode(e) {
     }
 }
 //发送邮件函数
-function sendEmail(self,inputVal){
+function sendEmail(self, inputVal) {
     var email = $(inputVal).val();
-    if(email){
+    if (email) {
         $(self).val("邮件发送中");
     }
-    $.post("index.php?web/information/mail",{emails:email},function(msg){
-        if(msg==1){
-            clickDX(self,120,2);
-            $("#result").html("发送成功，请注意查收您的邮件！").css({color:'orange',fontSize:'12px'});
-        }else{
-            $("#result").html(msg).css({color:'orange',fontSize:'12px'});
+    $.post("index.php?web/information/mail", {emails: email}, function (msg) {
+        if (msg == 1) {
+            clickDX(self, 120, 2);
+            $("#result").html("发送成功，请注意查收您的邮件！").css({color: 'orange', fontSize: '12px'});
+        } else {
+            $("#result").html(msg).css({color: 'orange', fontSize: '12px'});
         }
     });
 }
@@ -356,7 +356,7 @@ function qstlist(self, pageNumber, pageSize) {
  * @returns {string}
  */
 function getLocalTime(nS) {
-    return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+    return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
 }
 /**
  *  资讯分页
@@ -367,8 +367,8 @@ function getLocalTime(nS) {
  */
 function newslist(self, pageNumber, pageSize) {
     $('#' + $(self).attr('t')).val($(self).attr('v'));
-    var num=$(".infoLhd ul li.on").index();
-    $(".fenPage ul li").eq(pageNumber-1).addClass("on").siblings().removeClass("on");
+    var num = $(".infoLhd ul li.on").index();
+    $(".fenPage ul li").eq(pageNumber - 1).addClass("on").siblings().removeClass("on");
     $.ajax({
         url: 'index.php?web/index/newspage', // 跳转到 action
         data: {
@@ -399,20 +399,20 @@ function newslist(self, pageNumber, pageSize) {
                     //    str = str + '<a href="index.php?web/index/news_xq&contentid='+row.contentid+'" class="readAll">阅读全文 <i class="fa fa-angle-double-right"></i></a>';
                     //    str = str + '</li>';
                     //}else{
-                        str = str + '<li>';
-                        str = str + '<div class="infoLbd_right bdright_maleft02">';
-                        str = str + '<h3>'+row.contenttitle+'</h3>';
-                        str = str + '<span>'+time+'</span>';
-                        str = str + '<p>'+row.abstract+'</p>';
-                        str = str + '</div>';
-                        str = str + '<div style="clear: both"></div>';
-                        str = str + '<a href="index.php?web/index/news_xq&contentid='+row.contentid+'" class="readAll">阅读全文 <i class="fa fa-angle-double-right"></i></a>';
-                        str = str + '</li>';
+                    str = str + '<li>';
+                    str = str + '<div class="infoLbd_right bdright_maleft02">';
+                    str = str + '<h3>' + row.contenttitle + '</h3>';
+                    str = str + '<span>' + time + '</span>';
+                    str = str + '<p>' + row.abstract + '</p>';
+                    str = str + '</div>';
+                    str = str + '<div style="clear: both"></div>';
+                    str = str + '<a href="index.php?web/index/news_xq&contentid=' + row.contentid + '" class="readAll">阅读全文 <i class="fa fa-angle-double-right"></i></a>';
+                    str = str + '</li>';
                     //}
                 });
                 $(".infoLbd ul div.page").eq(num).html(str);
                 //$("#new_page").html(data.pages);
-            }else {
+            } else {
                 alert("内部错误请联系管理员！");
             }
         },
@@ -534,21 +534,21 @@ function getuserdqst(self, pageNumber, pageSize) {
                     } else {
                         hyclass = 'hy_lx_yf_titleTh';
                     }
-                    var str1='';
-                    if(row.questionanswer==row.qanswer.qanswer){
-                        str1= '<span class="trueColor">'+row.questionanswer+'</span>';
+                    var str1 = '';
+                    if (row.questionanswer == row.qanswer.qanswer) {
+                        str1 = '<span class="trueColor">' + row.questionanswer + '</span>';
                     } else {
-                        str1= '<span class="falseColor">' +row.qanswer.qanswer+
-                        '</span><span class="trueColor">/' +row.questionanswer+
-                        '</span>';
+                        str1 = '<span class="falseColor">' + row.qanswer.qanswer +
+                            '</span><span class="trueColor">/' + row.questionanswer +
+                            '</span>';
                     }
                     str += '<li>' +
                         '<a href="index.php?web/exam/tiku_meidaoti&questionid=' + row.questionid + '&originid=' + row.twoobjecttype + '&sectionid=' + row.sectiontype + '">' +
                         '<span class="' + hyclass + '">[' + row.sections + ']-' + row.questionid + '-' + row.twoname + '</span>' +
                         '</a>' +
-                    '<span class="showAnswerbac" onclick="showAnswer(this)">显示答案</span>'+
-                    '<b class="banswer">' +str1+
-                    '</b>'+
+                        '<span class="showAnswerbac" onclick="showAnswer(this)">显示答案</span>' +
+                        '<b class="banswer">' + str1 +
+                        '</b>' +
                         '<div class="hy_lx_p" style="width: 731px">' + row.question + ' <p class="hy_lx_bo_p">' + '<span>平均用时：' + row.meantime + '&nbsp;&nbsp;&nbsp;&nbsp;'
                         + row.totaluser + '人已做</span>' + '&nbsp;&nbsp;&nbsp;&nbsp;' + row.qanswer.answertime +
                         '</p>' + '</div>' +
@@ -624,21 +624,21 @@ function getuserxqst(self, pageNumber, pageSize) {
                     } else {
                         hyclass = 'hy_lx_yf_titleT';
                     }
-                    var str2='';
-                    if(row.questionanswer==row.qanswer.qanswer){
-                        str2= '<span class="trueColor">'+row.questionanswer+'</span>';
-                    }else{
-                        str2= '<span class="falseColor">' +row.qanswer.qanswer+
-                        '</span><span class="trueColor">/' +row.questionanswer+
-                        '</span>';
+                    var str2 = '';
+                    if (row.questionanswer == row.qanswer.qanswer) {
+                        str2 = '<span class="trueColor">' + row.questionanswer + '</span>';
+                    } else {
+                        str2 = '<span class="falseColor">' + row.qanswer.qanswer +
+                            '</span><span class="trueColor">/' + row.questionanswer +
+                            '</span>';
                     }
                     str += '<li>' +
                         '<a href="index.php?web/exam/tiku_meidaoti&questionid=' + row.questionid + '&originid=' + row.twoobjecttype + '&sectionid=' + row.sectiontype + '">' +
                         '<span class="' + hyclass + '">[' + row.sections + ']-' + row.questionid + '-' + row.twoname + '</span>' +
                         '</a>' +
-                    '<span class="showAnswerbac" onclick="showAnswer(this)">显示答案</span>'+
-                    '<b class="banswer">' +str2+
-                    '</b>'+
+                        '<span class="showAnswerbac" onclick="showAnswer(this)">显示答案</span>' +
+                        '<b class="banswer">' + str2 +
+                        '</b>' +
                         '<div class="hy_lx_p" style="width: 731px">' + row.question + '<p class="hy_lx_bo_p">' + '<span>耗时' + row.meantime + '&nbsp;&nbsp;</span>正确率' + row.correct + '&nbsp;&nbsp;<span>' + '&nbsp;&nbsp;&nbsp;&nbsp;' + row.totaluser + '人已做</span>' +
                         '&nbsp;&nbsp;&nbsp;&nbsp;' + row.qanswer.answertime +
                         '</p>' + '</div>' +
@@ -741,8 +741,8 @@ function loginw(_self) {
     $(".log_reg_zzc").show();
     $("#login_register").show();
 }
-function Highlight(searchTerm){
-    var obj=$('#timu_list_ul .hy_lx_p');
+function Highlight(searchTerm) {
+    var obj = $('#timu_list_ul .hy_lx_p');
     obj.removeHighlight();
     if (searchTerm) {
         obj.highlight(searchTerm);

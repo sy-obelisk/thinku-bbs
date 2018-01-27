@@ -1,0 +1,37 @@
+<?php
+namespace app\modules\cn\models;
+
+use yii;
+use yii\db\ActiveRecord;
+
+class User extends ActiveRecord
+{
+    public static function tableName()
+    {
+        return '{{%user}}';
+    }
+
+    /*
+     * 获取积分
+     * */
+    public function integral($num, $msg)
+    {
+        $userId = Yii::$app->session->get('userId');
+        $userId =1;
+        $data = Yii::$app->db->createCommand("SELECT id,integral from {{%user}} where id=$userId")->queryOne();
+        $re = User::updateAll(['integral' => $data['integral'] + $num], "id=$userId");
+        if ($re) {
+            Yii::$app->session->set('integral', $data['integral'] + $num);
+            $detailsData['userId'] = $userId;
+            $detailsData['score'] = $num;
+            $detailsData['message'] = $msg;
+            $re = Yii::$app->db->createCommand()->insert("{{%integral_details}}", $detailsData)->execute();
+        }
+        if ($re) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+}

@@ -9,6 +9,7 @@
                 <h5>
                     开发者信息
                 </h5>
+
                 <p>
                     QQ:278768688 官方站：<a href="http://www.gmatonline.cn">http://www.gmatonline.cn</a>
                 </p>
@@ -19,9 +20,11 @@
                 <h5>
                     使用帮助
                 </h5>
+
                 <p>
                     帮助论坛：<a href="http://www.gmatonline.cn/bbs/">http://www.gmatonline.cn/bbs/</a>
                 </p>
+
                 <p>
                     微信公众号：THINKUGMAT
                 </p>
