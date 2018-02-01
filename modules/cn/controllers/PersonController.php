@@ -11,7 +11,7 @@ use yii;
 use yii\web\Controller;
 use app\modules\cn\models\Content;
 
-class IndexController extends Controller
+class PersonController extends Controller
 {
     public $layout = 'cn.php';
     public $enableCsrfValidation = false;
