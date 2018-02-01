@@ -17,7 +17,7 @@ class TestController extends Controller
 //        if(!$userId){
 //            $this->redirect('/user/login/index');
 //        }else{
-            return $this->renderPartial('index');
+        return $this->renderPartial('index');
 //        }
     }
 

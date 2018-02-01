@@ -17,7 +17,7 @@ class DetailsController extends Controller
   public $enableCsrfValidation = false;
   public function actionDetails()
   {
-    return $this->render('details');
+    return $this->render('index');
   }
 
 }

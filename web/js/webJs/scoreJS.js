@@ -8,7 +8,7 @@ $(function () {
     var th_q = $("#th_q").html().split("/");
     var chNumTh = th_q[0] / 225 * 100;
     $(".score_beizi02 div.heightDiff03").css("height", chNumTh + "%");
-    var a=$("#scoreInput").val();
-    var b=Math.round(a/10)*10;
+    var a = $("#scoreInput").val();
+    var b = Math.round(a / 10) * 10;
     $("#scoreAll").html(b);
 });

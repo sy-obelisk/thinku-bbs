@@ -15,7 +15,9 @@ use app\modules\content\models\CategoryExtend;
 use app\modules\content\models\CategoryTag;
 use app\libs\AppControl;
 use app\libs\Method;
-class CategoryController extends AppControl {
+
+class CategoryController extends AppControl
+{
     public $enableCsrfValidation = false;
 
     /**
@@ -33,55 +35,54 @@ class CategoryController extends AppControl {
      * @return string
      * @Obelisk
      */
-    public function actionAdd(){
-        if($_POST){
+    public function actionAdd()
+    {
+        if ($_POST) {
             $model = new Category();
             $categoryData = Yii::$app->request->post('category');
             $id = Yii::$app->request->post('id');
-            if(empty($categoryData['name'])){
+            if (empty($categoryData['name'])) {
                 die('<script>alert("请添加分类名称");history.go(-1);</script>');
             }
-            if(empty($categoryData['pid'])){
+            if (empty($categoryData['pid'])) {
                 die('<script>alert("请选择父级分类");history.go(-1);</script>');
             }
-            if($id){
-                $extendId = Yii::$app->request->post('key',array());
-                $extendValue = Yii::$app->request->post('value',array());
-                $re = $model->updateAll($categoryData,'id = :id',[':id' => $id]);
-                foreach($extendId as $k => $v){
+            if ($id) {
+                $extendId = Yii::$app->request->post('key', array());
+                $extendValue = Yii::$app->request->post('value', array());
+                $re = $model->updateAll($categoryData, 'id = :id', [':id' => $id]);
+                foreach ($extendId as $k => $v) {
                     $required = CategoryExtend::findOne($v);
-                    if($required->required == 1){
-                        if(empty($extendValue[$k])){
+                    if ($required->required == 1) {
+                        if (empty($extendValue[$k])) {
                             die('<script>alert("属性值必填");history.go(-1);</script>');
                         }
-                        if(!empty($required->requiredValue)){
-                            if (!preg_match("$required->requiredValue",$extendValue[$k]) )
-                            {
+                        if (!empty($required->requiredValue)) {
+                            if (!preg_match("$required->requiredValue", $extendValue[$k])) {
                                 die('<script>alert("请输入合法值");history.go(-1);</script>');
                             }
                         }
                     }
-                    $skip = CategoryExtend::updateAll(['value' => $extendValue[$k]],'id = :id',[':id' => $v]);
-                    if($skip){
+                    $skip = CategoryExtend::updateAll(['value' => $extendValue[$k]], 'id = :id', [':id' => $v]);
+                    if ($skip) {
                         $re = 1;
                     }
                 }
-            }else{
+            } else {
                 $categoryData['createTime'] = date("Y-m-d H:i:s");
                 $categoryData['userId'] = Yii::$app->session->get('adminId');
-                $re = Yii::$app->db->createCommand()->insert("{{%category}}",$categoryData)->execute();
+                $re = Yii::$app->db->createCommand()->insert("{{%category}}", $categoryData)->execute();
             }
-            if($re){
+            if ($re) {
                 echo '<script>alert("成功")</script>';
                 $this->redirect('/content/category/index');
-            }else{
+            } else {
                 echo '<script>alert("失败，请重试");history.go(-1);</script>';
                 die;
             }
-        }
-        else{
+        } else {
             $pid = Yii::$app->request->get('pid');
-            return $this->render('add',['pid' => $pid]);
+            return $this->render('add', ['pid' => $pid]);
         }
     }
 
@@ -91,12 +92,13 @@ class CategoryController extends AppControl {
      * @Obelisk
      */
 
-    public function actionDelete(){
+    public function actionDelete()
+    {
         $id = Yii::$app->request->get('id');
         $model = new Category();
-        if($model->findOne($id)->delete()){
+        if ($model->findOne($id)->delete()) {
             $this->redirect('/content/category/index');
-        }else{
+        } else {
             echo '<script>alert("失败，请重试");history.go(-1);</script>';
             die;
         }
@@ -108,14 +110,15 @@ class CategoryController extends AppControl {
      * @Obelisk
      */
 
-    public function actionUpdate(){
+    public function actionUpdate()
+    {
         $id = Yii::$app->request->get('id');
         $model = new Category();
         $extendModel = new CategoryExtend();
         $data = $model->findOne($id);
         $pName = $model->find()->where("id=$data->pid")->one();
-        $extend = $extendModel->find()->where('catId='.$id.' AND belong="category"')->all();
-        return $this->render('add',array('data'=> $data,'pName' => $pName->name,'extend' => $extend,'id' => $id));
+        $extend = $extendModel->find()->where('catId=' . $id . ' AND belong="category"')->all();
+        return $this->render('add', array('data' => $data, 'pName' => $pName->name, 'extend' => $extend, 'id' => $id));
     }
 
     /**
@@ -126,14 +129,14 @@ class CategoryController extends AppControl {
     public function actionCategory()
     {
         $id = Yii::$app->request->get('id');
-        $data = Yii::$app->db->createCommand("select a.*,b.name as catName,c.name as codeName from {{%category_extend}} a LEFT JOIN {{%category}} b ON a.catId=b.id LEFT JOIN {{%extend_invoke}} c ON a.code=c.code WHERE a.belong='category' AND a.catId=".$id)->queryAll();
-        foreach($data as $k => $v){
-            if($v['inheritId']){
-                $pr = Yii::$app->db->createCommand("select b.id,a.name,b.name as catName from {{%category_extend}} a LEFT JOIN {{%category}} b ON a.catId=b.id  WHERE a.belong='category' AND a.id=".$v['inheritId'])->queryOne();
-                $data[$k]['pr'] = $pr['catName'].'('.$pr['id'].')'.';'.$pr['name'].'('.$v['inheritId'].')';
+        $data = Yii::$app->db->createCommand("select a.*,b.name as catName,c.name as codeName from {{%category_extend}} a LEFT JOIN {{%category}} b ON a.catId=b.id LEFT JOIN {{%extend_invoke}} c ON a.code=c.code WHERE a.belong='category' AND a.catId=" . $id)->queryAll();
+        foreach ($data as $k => $v) {
+            if ($v['inheritId']) {
+                $pr = Yii::$app->db->createCommand("select b.id,a.name,b.name as catName from {{%category_extend}} a LEFT JOIN {{%category}} b ON a.catId=b.id  WHERE a.belong='category' AND a.id=" . $v['inheritId'])->queryOne();
+                $data[$k]['pr'] = $pr['catName'] . '(' . $pr['id'] . ')' . ';' . $pr['name'] . '(' . $v['inheritId'] . ')';
             }
         }
-        return $this->render('extend',array('extend'=>$data,'id' => $id));
+        return $this->render('extend', array('extend' => $data, 'id' => $id));
     }
 
     /**
@@ -144,16 +147,17 @@ class CategoryController extends AppControl {
     public function actionContent()
     {
         $id = Yii::$app->request->get('id');
-        $data = Yii::$app->db->createCommand("select a.*,b.name as catName,c.name as codeName from {{%category_extend}} a LEFT JOIN {{%category}} b ON a.catId=b.id LEFT JOIN {{%extend_invoke}} c ON a.code=c.code  WHERE a.belong='content' AND a.catId=".$id)->queryAll();
-        foreach($data as $k=>$v){
-            if($v['inheritId']){
-                $pr = Yii::$app->db->createCommand("select b.id,a.name,b.name as catName from {{%category_extend}} a LEFT JOIN {{%category}} b ON a.catId=b.id  WHERE a.belong='content' AND a.id=".$v['inheritId'])->queryOne();
-                $data[$k]['pr'] = $pr['catName'].'('.$pr['id'].')'.';'.$pr['name'].'('.$v['inheritId'].')';
+        $data = Yii::$app->db->createCommand("select a.*,b.name as catName,c.name as codeName from {{%category_extend}} a LEFT JOIN {{%category}} b ON a.catId=b.id LEFT JOIN {{%extend_invoke}} c ON a.code=c.code  WHERE a.belong='content' AND a.catId=" . $id)->queryAll();
+        foreach ($data as $k => $v) {
+            if ($v['inheritId']) {
+                $pr = Yii::$app->db->createCommand("select b.id,a.name,b.name as catName from {{%category_extend}} a LEFT JOIN {{%category}} b ON a.catId=b.id  WHERE a.belong='content' AND a.id=" . $v['inheritId'])->queryOne();
+                $data[$k]['pr'] = $pr['catName'] . '(' . $pr['id'] . ')' . ';' . $pr['name'] . '(' . $v['inheritId'] . ')';
             }
         }
 //        var_dump($data);die;
-        return $this->render('content',array('extend'=>$data,'id' => $id));
+        return $this->render('content', array('extend' => $data, 'id' => $id));
     }
+
     /**
      * 标签组
      * @return string
@@ -163,8 +167,9 @@ class CategoryController extends AppControl {
     {
         $catId = Yii::$app->request->get('id');
         $data = CategoryTag::getCatTag($catId);
-        return $this->render('tag',['data' => $data,'catId' => $catId,'block' => $this->block]);
+        return $this->render('tag', ['data' => $data, 'catId' => $catId, 'block' => $this->block]);
     }
+
     /**
      * 内容管理
      * @Obelisk
@@ -172,7 +177,7 @@ class CategoryController extends AppControl {
     public function actionContentIndex()
     {
         $catId = Yii::$app->request->get('catId');
-        $this->redirect('/content/content/index?catId='.$catId);
+        $this->redirect('/content/content/index?catId=' . $catId);
 
     }
 }

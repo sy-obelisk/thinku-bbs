@@ -6,7 +6,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="/cn/css/iconfont/iconfont.css">
   <link rel="stylesheet" href="/cn/css/common.css">
-  <link rel="stylesheet" href="/cn/css/index.css">
+  <link rel="stylesheet" href="/cn/css/details.css">
 </head>
 <body>
 <header class="header">
@@ -52,149 +52,58 @@
   </div>
 </nav>
 <!--内容区-->
-<div class="home p-container">
-  <section class="posts clearfix">
-    <div class="box">
-      <div class="box-tab">
-        <div class="hd">
-          <ul class="clearfix">
-            <li class="on">
-              <div class="img"></div>
-              <p>全部</p>
-            </li>
-            <li>
-              <div class="img"></div>
-              <p>留学</p>
-            </li>
-            <li>
-              <div class="img"></div>
-              <p>考试</p>
-            </li>
-            <li>
-              <div class="img"></div>
-              <p>职业</p>
-            </li>
-            <li>
-              <div class="img"></div>
-              <p>生活</p>
-            </li>
-          </ul>
+<div class="details p-container">
+  <section class="de-wrap p-posts clearfix">
+    <div class="wrap">
+      <ul class="bread-crumb">
+        <li><a href="">首页</a><span>&gt;</span><a href="">留学</a><span>&gt;</span><a href="">美国</a><span>&gt;</span><a href="">签证</a></li>
+      </ul>
+      <!--帖子内容-->
+      <div class="article">
+        <div class="title">
+          <div class="img">
+            <img src="" alt="">
+          </div>
+          <div class="font">
+            <h2>【标题】托福TPO10阅读名师精评版名师精评（3）</h2>
+            <ul>
+              <li>发表时间：2018.01.18</li>
+              <li>阅读量：111111</li>
+              <li>回复量：222222</li>
+            </ul>
+          </div>
         </div>
-        <div class="bd">
-          <!--全部-->
-          <ul class="clearfix">
-            <li><a href="">全部<i class="iconfont icon-hot"></a></i></li>
-            <li><a href="">精华</a></li>
-          </ul>
-          <!--留学-->
-          <ul class="clearfix">
-            <li><a href="">美国</a></li>
-            <li><a href="">英国</a></li>
-            <li><a href="">澳洲</a></li>
-            <li><a href="">加拿大</a></li>
-            <li><a href="">香港</a></li>
-            <li><a href="">新加坡</a></li>
-            <li><a href="">法国</a></li>
-            <li><a href="">其他</a></li>
-            <li><a href="">签证</a></li>
-            <li><a href="">答疑</a></li>
-            <li><a href="">院校项目</a></li>
-            <li><a href="">实习就业</a></li>
-            <li><a href="">面试</a></li>
-          </ul>
-          <!--考试-->
-          <ul class="clearfix">
-            <li><a href="">GMAT</a></li>
-            <li><a href="">TOEFL</a></li>
-            <li><a href="">IELTS</a></li>
-            <li><a href="">GRE</a></li>
-            <li><a href="">SAT</a></li>
-            <li><a href="">ACT</a></li>
-            <li><a href="">AP</a></li>
-            <li><a href="">A Level</a></li>
-            <li><a href="">答疑</a></li>
-            <li><a href="">备考经验</a></li>
-            <li><a href="">资料下载</a></li>
-            <li><a href="">机经下载</a></li>
-          </ul>
-          <!--职业-->
-          <ul class="clearfix">
-            <li><a href="">金融</a></li>
-            <li><a href="">大商科</a></li>
-            <li><a href="">会计</a></li>
-            <li><a href="">理工科</a></li>
-            <li><a href="">文科艺术类</a></li>
-          </ul>
-          <!--生活-->
-          <ul class="clearfix">
-            <li><a href="">美国</a></li>
-            <li><a href="">英国</a></li>
-            <li><a href="">澳洲</a></li>
-            <li><a href="">加拿大</a></li>
-            <li><a href="">香港</a></li>
-            <li><a href="">新加坡</a></li>
-            <li><a href="">法国</a></li>
-            <li><a href="">其他</a></li>
-          </ul>
+        <div class="cnt">
+          其次，要分析自己的优势和劣势，各个击破。我在上课的过程中，紧跟老师的节奏，在课上听讲的基
+          础上课下及时练习。先完成的是delta，制定好学习其次，要分析自己的优势和劣势，各个击破。我在
+          上课的过程中，紧跟老师的节奏，在课上听讲的基础上课下及时练习。先完成的是delta，制定好学习
+          其次，要分析自己的优势和劣势，各个击破。我在上课的过程中，紧跟老师的节奏，在课上听讲的基
+          础上课下及时练习。先完成的是delta，制定好学习其次，要分析自己的优势和劣势，各个击破。我在
+          上课的过程中，紧跟老师的节奏，在课上听讲的基础上课下及时练习。
+          其次，要分析自己的优势和劣势，各个击破。我在上课的过程中，紧跟老师的节奏，在课上听讲的基
+          础上课下及时练习。先完成的是delta，制定好学习其次，要分析自己的优势和劣势，各个击破。我在
+          上课的过程中，紧跟老师的节奏，在课上听讲的基础上课下及时练习。先完成的是delta，制定好学习
+          其次，要分析自己的优势和劣势，各个击破。我在上课的过程中，紧跟老师的节奏，在课上听讲的基
+          础上课下及时练习。先完成的是delta，制定好学习其次，要分析自己的优势和劣势，各个击破。我在
+          上课的过程中，紧跟老师的节奏，在课上听讲的基础上课下及时练习。
+          其次，要分析自己的优势和劣势，各个击破。我在上课的过程中，紧跟老师的节奏，在课上听讲的基
+          础上课下及时练习。先完成的是delta，制定好学习其次，要分析自己的优势和劣势，各个击破。我在
+          上课的过程中，紧跟老师的节奏，在课上听讲的基础上课下及时练习。先完成的是delta，制定好学习
+          其次，要分析自己的优势和劣势，各个击破。我在上课的过程中，紧跟老师的节奏，在课上听讲的基
+          础上课下及时练习。先完成的是delta，制定好学习其次，要分析自己的优势和劣势，各个击破。我在
+          上课的过程中，紧跟老师的节奏，在课上听讲的基础上课下及时练习。
+          <div class="bottom">本主题有申友留学推荐于2018-01-10 16:30 分类</div>
         </div>
-      </div>
-      <div class="box-cnt">
-        <ul>
-          <li class="item">
-            <div class="img">
-              <img src="" alt="">
-            </div>
-            <div class="right">
-              <h3><a href="">12.30换库后CR逻辑鸡精—Zora<i class="iconfont icon-hot"></a></i></h3>
-              <div class="info-list clearfix">
-                <div class="first-div"><span>小托君</span> <span>发布于2017-12-22</span></div>
-                <div class="last-div">
-                  <p><span>Nicholas </span><span>最后回复于2018-01-12</span></p>
-                  <p><span>查看：778  </span>|<span>回复：66</span></p></div>
-              </div>
-              <div class="abstract">
-                各位在一线备战托福的朋友们，主讲老师Zora，课程视频和课件在此下载学习；斩获更多托福
-                信息，获取更多托福资讯，请添加微信公众号小托君。
-              </div>
-            </div>
-          </li>
-          <li class="item">
-            <div class="img">
-              <img src="" alt="">
-            </div>
-            <div class="right">
-              <h3><a href="">12.30换库后CR逻辑鸡精—Zora<i class="iconfont icon-hot"></a></i></h3>
-              <div class="info-list clearfix">
-                <div class="first-div"><span>小托君</span> <span>发布于2017-12-22</span></div>
-                <div class="last-div">
-                  <p><span>Nicholas </span><span>最后回复于2018-01-12</span></p>
-                  <p><span>查看：778  </span>|<span>回复：66</span></p></div>
-              </div>
-              <div class="abstract">
-                各位在一线备战托福的朋友们，主讲老师Zora，课程视频和课件在此下载学习；斩获更多托福
-                信息，获取更多托福资讯，请添加微信公众号小托君。
-              </div>
-            </div>
-          </li>
-          <li class="item">
-            <div class="img">
-              <img src="" alt="">
-            </div>
-            <div class="right">
-              <h3><a href="">12.30换库后CR逻辑鸡精—Zora<i class="iconfont icon-hot"></a></i></h3>
-              <div class="info-list clearfix">
-                <div class="first-div"><span>小托君</span> <span>发布于2017-12-22</span></div>
-                <div class="last-div">
-                  <p><span>Nicholas </span><span>最后回复于2018-01-12</span></p>
-                  <p><span>查看：778  </span>|<span>回复：66</span></p></div>
-              </div>
-              <div class="abstract">
-                各位在一线备战托福的朋友们，主讲老师Zora，课程视频和课件在此下载学习；斩获更多托福
-                信息，获取更多托福资讯，请添加微信公众号小托君。
-              </div>
-            </div>
-          </li>
-        </ul>
+        <!--分享-->
+        <div class="share">
+
+        </div>
+        <!--收藏-->
+        <div class="collect"></div>
+        <!--回复区-->
+        <div class="reply">
+
+        </div>
       </div>
     </div>
     <!--侧边栏-->
@@ -357,4 +266,10 @@
 <script src="https://use.fontawesome.com/0e249ab73d.js"></script>
 <script src="/cn/js/jquery.SuperSlide.2.1.js"></script>
 <script src="/cn/js/common.js"></script>
+<script>
+  //  我要规划
+  jQuery(".project").slide({});
+  //  热帖排行榜
+  jQuery(".ranking").slide({});
+</script>
 </html>

@@ -292,16 +292,16 @@ body{
 /*
   侧边栏
 */
-.posts .aside {
+.p-posts .aside {
   width: 390px;
   margin-left: 810px;
 }
 /*发帖、提问*/
-.posts .aside>.posted {
+.p-posts .aside>.posted {
   margin-bottom: 10px;
   font-size: 0;
 }
-.posts .aside>.posted>li {
+.p-posts .aside>.posted>li {
   display: inline-block;
   width: 49%;
   -webkit-border-radius: 5px;
@@ -309,25 +309,25 @@ body{
   border-radius: 5px;
   text-align: center;
 }
-.posts .aside>.posted>li a {
+.p-posts .aside>.posted>li a {
   display: block;
   line-height: 60px;
   font-size: 20px;
   color: #fff;
 }
-.posts .aside>.posted>li i {
+.p-posts .aside>.posted>li i {
   padding-right: 10px;
   font-size: 20px;
 }
-.posts .aside>.posted>li:first-of-type {
+.p-posts .aside>.posted>li:first-of-type {
   margin-right: 2%;
   background-color: #3da1db;
 }
-.posts .aside>.posted>li:last-of-type {
+.p-posts .aside>.posted>li:last-of-type {
   background-color: #e1a66a;
 }
 /*签到*/
-.posts .aside .sign-in{
+.p-posts .aside .sign-in{
   width: 100%;
   height: 85px;
   margin-bottom: 15px;
@@ -337,22 +337,22 @@ body{
   background-color: #7d1f88;
   font-size: 0;
 }
-.posts .aside .sign-in>div {
+.p-posts .aside .sign-in>div {
   display: inline-block;
   width: 50%;
   vertical-align: middle;
   text-align: center;
 }
-.posts .aside .sign-in .icon {
+.p-posts .aside .sign-in .icon {
   line-height: 85px;
   font-size: 24px;
   color: #fff;
 }
-.posts .aside .sign-in .icon i {
+.p-posts .aside .sign-in .icon i {
   padding-right: 10px;
   font-size: 24px;
 }
-.posts .aside .sign-in .num {
+.p-posts .aside .sign-in .num {
   width: 48%;
   height: 90%;
   -webkit-border-radius: 5px;
@@ -361,20 +361,20 @@ body{
   background-color: #fff;
   font-size: 14px;
 }
-.posts .aside .sign-in .num>p {
+.p-posts .aside .sign-in .num>p {
   height: 25px;
   line-height: 25px;
 }
-.posts .aside .sign-in .num>p:last-of-type {
+.p-posts .aside .sign-in .num>p:last-of-type {
   color: #7d1f88;
 }
 /*论坛公告*/
-.posts .aside .announce>.title{
+.p-posts .aside .announce>.title{
   width: 100%;
   height: 60px;
   background: url("/cn/images/aside-luntan.png") 0 0/100% 100% no-repeat;
 }
-.posts .aside .announce>.cnt {
+.p-posts .aside .announce>.cnt {
   line-height: 24px;
   padding: 10px 15px;
   margin-bottom: 20px;

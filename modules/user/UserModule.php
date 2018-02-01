@@ -3,6 +3,7 @@
 namespace app\modules\user;
 
 use yii\base\Module;
+
 class UserModule extends Module
 {
     public $controllerNamespace = 'app\modules\user\controllers';

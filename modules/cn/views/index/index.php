@@ -282,7 +282,7 @@
         </ul>
       </div>
     </section>
-    <section class="posts clearfix">
+    <section class="posts p-posts clearfix">
       <div class="box">
         <div class="box-tab">
           <div class="hd">

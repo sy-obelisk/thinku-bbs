@@ -1,0 +1,74 @@
+
+/*
+  文章内容
+*/
+.details .de-wrap .wrap{
+  width: 770px;
+  float: left;
+}
+/*
+  路径导航
+*/
+.bread-crumb li a {
+  font-size: 14px;
+  color: #363636;
+}
+.bread-crumb li a:hover,
+.bread-crumb li a:last-of-type {
+  color: #7d1f88;
+}
+.bread-crumb li>span {
+  padding: 0 5px;
+  font: 200 12px/26px simsun
+}
+/*内容区*/
+.de-wrap .article>.title {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: 150px;
+  margin: 10px 0 30px 0;
+  padding: 15px 70px 15px 15px;
+  background-color: #f2f2f2;
+}
+.de-wrap .article>.title .img {
+  float: left;
+  width: 140px;
+  height: 120px;
+  background-color: #fff;
+}
+.de-wrap .article>.title .img>img {
+  width: 100%;
+}
+.de-wrap .article>.title .font {
+  margin-left: 155px;
+}
+
+.de-wrap .article .font>h2 {
+  padding: 15px 0 30px 0;
+  font-size: 24px;
+}
+.de-wrap .article .font>ul {
+  font-size: 0;
+}
+.de-wrap .article .font>ul>li {
+  display: inline-block;
+  width: 33%;
+  text-align: center;
+  font-size: 14px;
+  color: #a5a5a5;
+}
+.de-wrap .article .cnt {
+  line-height: 24px;
+  font-size: 16px;
+  color: #292929;
+}
+.de-wrap .article .cnt>.bottom {
+  margin-top: 60px;
+  text-align: center;
+}
+/*回复区*/
+.de-wrap .reply {
+  border-top: 1px dashed #d8d8d8;
+}

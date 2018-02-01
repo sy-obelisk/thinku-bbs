@@ -3,9 +3,11 @@ namespace app\models;
 
 use yii\db\ActiveRecord;
 
-class Excl extends ActiveRecord{
+class Excl extends ActiveRecord
+{
 
-    public static function tableName(){
+    public static function tableName()
+    {
         return '{{%excl}}';
     }
 }

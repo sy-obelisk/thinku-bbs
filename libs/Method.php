@@ -1,7 +1,9 @@
 <?php
 namespace app\libs;
+
 use yii;
 use yii\data\Pagination;
+
 class Method
 {
     /**
@@ -10,15 +12,15 @@ class Method
      * @return array 分页
      * @Obelisk
      */
-    public static function getPagedRows($config=[])
+    public static function getPagedRows($config = [])
     {
-        $pages=new Pagination(['totalCount' => $config['count']]);
-        if(isset($config['pageSize']))
-        {
-            $pages->setPageSize($config['pageSize'],true);
+        $pages = new Pagination(['totalCount' => $config['count']]);
+        if (isset($config['pageSize'])) {
+            $pages->setPageSize($config['pageSize'], true);
         }
         return $pages;
     }
+
     /**
      * 生成32位字符串
      * @return string
@@ -39,7 +41,7 @@ class Method
      */
     public static function orderNumber()
     {
-        $orderNumber = 'toefl'.time().rand(0,9);
+        $orderNumber = 'toefl' . time() . rand(0, 9);
         return $orderNumber;
     }
 
@@ -63,13 +65,14 @@ class Method
      * 词典翻译
      * @Obelisk
      */
-    public static function getTranslate($words){
-        $url = "http://fanyi.youdao.com/openapi.do?keyfrom=5asdfasdf6&key=925644231&type=data&only=dict&doctype=json&version=1.1&q=".$words;
+    public static function getTranslate($words)
+    {
+        $url = "http://fanyi.youdao.com/openapi.do?keyfrom=5asdfasdf6&key=925644231&type=data&only=dict&doctype=json&version=1.1&q=" . $words;
         $list = file_get_contents($url);
-        $js_de = json_decode($list,true);
-        if($js_de['errorCode'] != 0){
+        $js_de = json_decode($list, true);
+        if ($js_de['errorCode'] != 0) {
             $data = 0;
-        }else{
+        } else {
             $js_de['basic']['us'] = $js_de['basic']['us-phonetic'];
             $js_de['basic']['uk'] = $js_de['basic']['uk-phonetic'];
             $data = $js_de['basic'];
@@ -85,23 +88,24 @@ class Method
      * @return mixed
      * @Obelisk
      */
-    public static  function post($url, $post_data = '', $timeout = 5){//curl
+    public static function post($url, $post_data = '', $timeout = 5)
+    {//curl
 
         $ch = curl_init();
 
-        curl_setopt ($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_URL, $url);
 
-        curl_setopt ($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
 
-        if($post_data != ''){
+        if ($post_data != '') {
 
             curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post_data));
 
         }
 
-        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-        curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
 
         curl_setopt($ch, CURLOPT_HEADER, false);
 
