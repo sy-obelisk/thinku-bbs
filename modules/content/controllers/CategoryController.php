@@ -159,18 +159,6 @@ class CategoryController extends AppControl
     }
 
     /**
-     * 标签组
-     * @return string
-     * @Obelisk
-     */
-    public function actionTag()
-    {
-        $catId = Yii::$app->request->get('id');
-        $data = CategoryTag::getCatTag($catId);
-        return $this->render('tag', ['data' => $data, 'catId' => $catId, 'block' => $this->block]);
-    }
-
-    /**
      * 内容管理
      * @Obelisk
      */

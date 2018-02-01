@@ -5,7 +5,7 @@
 <script type="text/javascript" charset="utf-8" src="/ueditor/kityformula-plugin/addKityFormulaDialog.js"></script>
 <script type="text/javascript" charset="utf-8" src="/ueditor/kityformula-plugin/getKfContent.js"></script>
 <script type="text/javascript" charset="utf-8" src="/ueditor/kityformula-plugin/defaultFilterFix.js"></script>
-<script type="text/javascript" src="/My97DatePicker/WdatePicker.js"></script>
+<!--<script type="text/javascript" src="/My97DatePicker/WdatePicker.js"></script>-->
 <!-- 树形菜单选择 -->
 <link rel="stylesheet" type="text/css" href="/easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="/easyui/themes/icon.css">
@@ -80,9 +80,9 @@
             </div>
 
             <div class="control-group">
-                <label for="modulename" class="control-label">内容标题</label>
+                <label for="modulename" class="control-label">文章摘要</label>
                 <div class="controls">
-                    <input type="text" id="input1" name="content[title]" value="<?php echo isset($data['title'])?$data['title']:''?>" datatype="userName" needle="needle" msg="您必须输入中英文字符的分类名称">
+                    <input type="text" id="input1" name="content[abstract]" value="<?php echo isset($data['abstract'])?$data['abstract']:''?>" datatype="userName" needle="needle" msg="您必须输入中英文字符的分类名称">
                 </div>
             </div>
 
@@ -114,7 +114,7 @@
             <div class="control-group">
                 <label for="modulename" class="control-label">点赞人数</label>
                 <div class="controls">
-                    <input type="text" id="input1" name="content[like]" value="<?php echo isset($data['like'])?$data['like']:'0'?>"  needle="needle" msg="您必须输入中英文字符的分类名称">
+                    <input type="text" id="input1" name="content[liked]" value="<?php echo isset($data['liked'])?$data['liked']:'0'?>"  needle="needle" msg="您必须输入中英文字符的分类名称">
                 </div>
             </div>
 

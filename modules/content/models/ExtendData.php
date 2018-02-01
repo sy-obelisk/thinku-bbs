@@ -10,6 +10,4 @@ class ExtendData extends ActiveRecord
     {
         return '{{%extend_data}}';
     }
-
-
 }
