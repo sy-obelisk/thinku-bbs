@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="/cn/css/iconfont/iconfont.css">
   <link rel="stylesheet" href="/cn/css/common.css">
   <link rel="stylesheet" href="/cn/css/new-article.css">
+  <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.js"> </script>
+  <script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
 </head>
 <body>
 <header class="header">
@@ -69,7 +72,8 @@
     </select>
   </div>
   <div class="new-title">
-    <input type="text">
+    <textarea id="editor" type="text/plain">
+    </textarea>
   </div>
 <!--这里放编辑器-->
 </div>
@@ -113,7 +117,11 @@
   </div>
 </footer>
 </body>
-<script src="https://use.fontawesome.com/0e249ab73d.js"></script>
+<!--<script src="https://use.fontawesome.com/0e249ab73d.js"></script>-->
 <!--<script src="/cn/js/jquery.SuperSlide.2.1.js"></script>-->
 <script src="/cn/js/common.js"></script>
+<script>
+  var ue = UE.getEditor('editor');
+</script>
+
 </html>

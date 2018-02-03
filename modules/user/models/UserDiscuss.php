@@ -28,5 +28,4 @@ class UserDiscuss extends ActiveRecord
         $count = count(\Yii::$app->db->createCommand("SELECT d.* from " . tablePrefix . "user_discuss d left join " . tablePrefix . "user u on d.userId = u.id where " . $where . "  order by d.createTime DESC ")->queryAll());
         return ['data' => $data, 'count' => $count];
     }
-
 }

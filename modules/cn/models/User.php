@@ -25,6 +25,7 @@ class User extends ActiveRecord
             $detailsData['userId'] = $userId;
             $detailsData['score'] = $num;
             $detailsData['message'] = $msg;
+            $detailsData['createTime'] = date("Y-m-d H:i:s");
             $re = Yii::$app->db->createCommand()->insert("{{%integral_details}}", $detailsData)->execute();
         }
         if ($re) {

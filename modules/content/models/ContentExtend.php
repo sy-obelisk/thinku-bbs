@@ -1,6 +1,7 @@
 <?php
 namespace app\modules\content\models;
 
+use yii;
 use yii\db\ActiveRecord;
 
 class ContentExtend extends ActiveRecord

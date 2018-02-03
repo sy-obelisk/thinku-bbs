@@ -173,13 +173,10 @@ class ContentController extends AppControl
         if ($_POST) {
             $model = new content();
             $contentData = Yii::$app->request->post('content');
-            var_dump($contentData);die;
             $id = Yii::$app->request->post('id');
             $url = Yii::$app->request->post('url');
             $extendId = Yii::$app->request->post('key', []);
             $extendValue = Yii::$app->request->post('value');
-            $tagValue = Yii::$app->request->post('tagValue');
-            $tagKey = Yii::$app->request->post('tagKey', []);
             $category = explode(",", Yii::$app->request->post('category'));
             $content = explode(",", Yii::$app->request->post('con'));
             if (empty($contentData['name'])) {
@@ -232,14 +229,6 @@ class ContentController extends AppControl
                 $model->viewCount = $contentData['viewCount'];
                 $re = $model->save();
                 Content::updateAll(['sort' => $model->primaryKey], "id=$model->primaryKey");
-                if (implode(',', $content)) {
-                    foreach ($content as $v) {
-                        $relModel = new RelatedContent;
-                        $relModel->contentId = $model->primaryKey;
-                        $relModel->relatedContentId = $v;
-                        $relModel->save();
-                    }
-                }
                 //将分类的内容属性，转移到内容本身的扩展属性中
                 $this->shiftExtend($model->primaryKey, $contentData['catId'], $extendValue, $contentData['pid']);
                 //将分类的内容的副分类存储

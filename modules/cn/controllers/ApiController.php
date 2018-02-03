@@ -19,6 +19,7 @@ use app\modules\cn\models\Content;
 use app\modules\cn\models\Collect;
 use app\modules\cn\models\Category;
 use app\modules\cn\models\DailyTask;
+use app\modules\cn\models\UserExtend;
 use app\modules\cn\models\UserDiscuss;
 use app\modules\content\models\ExtendData;
 use app\modules\content\models\ContentExtend;
@@ -61,7 +62,6 @@ class ApiController extends Controller
         $session = Yii::$app->session;
         $emailCode = mt_rand(100000, 999999);
         $email = Yii::$app->request->post('email');
-        $email = 'yanyao_feng@163.com';
         $session->set($email . 'phoneCode', $emailCode);
         $session->set('phoneTime', time());
         $mail = Yii::$app->mailer->compose();
@@ -176,9 +176,7 @@ class ApiController extends Controller
         $logins = new User();
         if ($apps->isPost) {
             $userName = $apps->post('userName');
-            $userName = 15021666895;
             $userPass = md5(md5($apps->post('userPass')) . 'LXLT');
-            $userPass = md5(md5('xqd509633') . 'LXLT');
             $where = "where (phone='" . $userName . "' or email='" . $userName . "') and userPass='" . $userPass . "'";
             $loginsdata = Yii::$app->db->createCommand('select id,nickname,userName,phone,email,image,integral,level from {{%user}}' . $where)->queryOne();
             if (!empty($loginsdata['id'])) {
@@ -424,7 +422,7 @@ class ApiController extends Controller
             $re = $content->like($post['contentId'], $post['status']);
         } else {
             $u = new UserDiscuss();
-            $re = $u->like($post['contentId'],$post['status']);
+            $re = $u->like($post['contentId'], $post['status']);
         }
         die(json_encode($re));
     }
@@ -436,12 +434,12 @@ class ApiController extends Controller
     {
         $id = Yii::$app->request->post('id');// 帖子内容的id,评论的id
         // 如果为留学的话，取分类的方式不同
-        $pid= Yii::$app->db->createCommand("select id,pid From {{%category}} where id=$id ")->queryAll();
-        $cate=new Category();
-        $data=$cate->getSonCate($id);
-        if($data==false){
-            $re['code']=1;
-            $re['message']='请求参数错误';
+        $pid = Yii::$app->db->createCommand("select id,pid From {{%category}} where id=$id ")->queryAll();
+        $cate = new Category();
+        $data = $cate->getSonCate($id);
+        if ($data == false) {
+            $re['code'] = 1;
+            $re['message'] = '请求参数错误';
         }
         die(json_encode($data));
     }
@@ -449,118 +447,226 @@ class ApiController extends Controller
     /**
      * 发帖
      */
-    public function actionPost()
+    public function actionNewArticle()
     {
-//        if ($_POST) {
+        if ($_POST) {
             $model = new content();
-            $contentData = Yii::$app->request->post('content');
-            $id = Yii::$app->request->post('id');
-            $url = Yii::$app->request->post('url');
-            $extendId = Yii::$app->request->post('key', []);
-            $extendValue = Yii::$app->request->post('value');
-            $tagValue = Yii::$app->request->post('tagValue');
-//            $tagKey = Yii::$app->request->post('tagKey', []);
-            $category = explode(",", Yii::$app->request->post('category'));
-            $content = explode(",", Yii::$app->request->post('con'));
-            if (empty($contentData['name'])) {
-                die('<script>alert("请输入内容名称");history.go(-1);</script>');
-            }
-            if (!in_array($contentData['catId'], $category)) {
-                die('<script>alert("主分类必须在副分类中");history.go(-1);</script>');
-            }
-            if ($id) {
-                $re = $model->updateAll($contentData, 'id = :id', [':id' => $id]);
-                foreach ($extendId as $k => $v) {
-                    $required = ContentExtend::findOne($v);
-                    if ($required->required == 1) {
-                        if (empty($extendValue[$k])) {
-                            die('<script>alert("属性值必填");history.go(-1);</script>');
-                        }
-                        if (!empty($required->requiredValue)) {
-                            if (!preg_match("$required->requiredValue", $extendValue[$k])) {
-                                die('<script>alert("请输入合法值");history.go(-1);</script>');
-                            }
-                        }
-                    }
-                    if (!isset($extendValue[$k]{255})) {
-                        ContentExtend::updateAll(['value' => $extendValue[$k]], 'id = :id', [':id' => $v]);
-                        ExtendData::updateAll(['value' => ""], "extendId = $v");
-                    } else {
-                        ContentExtend::updateAll(['value' => ""], 'id = :id', [':id' => $v]);
-                        $sign = ExtendData::find()->where("extendId = $v")->one();
-                        if ($sign) {
-                            ExtendData::updateAll(['value' => $extendValue[$k]], "extendId = $v");
-                        } else {
-                            $dataModel = new ExtendData();
-                            $dataModel->extendId = $v;
-                            $dataModel->value = $extendValue[$k];
-                            $dataModel->save();
-                        }
-                    }
-                }
-                CategoryContent::deleteAll('contentId = :contentId', array(':contentId' => $id));
-                $categoryContent=new CategoryContent();
-                $categoryContent->secondClass($id, $category);
-            } else {
-                $addtime = date("Y-m-d H:i:s");
-                $model->createTime = $addtime;
-                $model->userId = Yii::$app->session->get('adminId');
-                $model->name = $contentData['name'];
-                $model->title = $contentData['title'];
-                $model->pid = $contentData['pid'];
-                $model->image = $contentData['image'];
-                $model->catId = $contentData['catId'];
-                $model->viewCount = $contentData['viewCount'];
-                $re = $model->save();
-                Content::updateAll(['sort' => $model->primaryKey], "id=$model->primaryKey");
-
-                //将分类的内容属性，转移到内容本身的扩展属性中
-                $contentDate=new ContentExtend();
-                $contentDate->shiftExtend($model->primaryKey, $contentData['catId'], $extendValue, $contentData['pid']);
-                //将分类的内容的副分类存储
-                $categoryContent=new CategoryContent();
-                $categoryContent->secondClass($model->primaryKey, $category);
-            }
+            $contentData = Yii::$app->request->post('content');// 内容，pid catId,abstract，name
+//            $contentData['pid'] = 0;// 内容，pid catId,abstract，name
+//            $contentData['name'] = '222222';// 内容，pid catId,abstract，name
+//            $contentData['catId'] = 2;// 内容，留学等主分类
+//            $contentData['abstract'] = '1111';// 内容，pid catId,abstract，name
+//            $extendId = Yii::$app->request->post('key', []);
+            $extendValue = Yii::$app->request->post('value');// 拓展的数据
+//            $extendValue = array('1222222222233');// ？？？？？
+            $category = explode(",", Yii::$app->request->post('category'));//这个是副分类
+//            $category = explode(",",'2,6,16');//这个是副分类
+            $addtime = date("Y-m-d H:i:s");
+            $model->createTime = $addtime;
+            $model->userId = Yii::$app->session->get('userId');
+            $model->userId = 1;
+            $model->name = $contentData['name'];
+            $model->abstract = $contentData['abstract'];
+            $model->pid = $contentData['pid'];
+            $model->image = '';
+            $model->catId = $contentData['catId'];
+            $model->viewCount = 0;
+            $re = $model->save();
+            Content::updateAll(['sort' => $model->primaryKey], "id=$model->primaryKey");
+            //将分类的内容属性，转移到内容本身的扩展属性中
+            $contentExtend = new ContentExtend();
+            $contentExtend->shiftExtend($model->primaryKey, $contentData['catId'], $extendValue, $contentData['pid']);
+            //将分类的内容的副分类存储
+            $categoryContent = new CategoryContent();
+            $categoryContent->secondClass($model->primaryKey, $category);
             if ($re = 1) {
                 $key = $model->primaryKey;
-                echo '<script>alert("成功")</script>';
-                $this->redirect($url);
+                $data['code'] = 0;
+                $data['message'] = '发表成功';
+                die(json_encode($data));
             } else {
-                echo '<script>alert("失败，请重试");history.go(-1);</script>';
-                die;
+                $data['code'] = 1;
+                $data['message'] = '发表失败，请重试';
+                die(json_encode($data));
             }
-//        } else {
-//            $catId = Yii::$app->request->get('id', '');//判断是否选择了主分类
-//            $pid = Yii::$app->request->get('pid', 0);
-//            $url = Yii::$app->request->get('url', '');
-//            $showId = Yii::$app->request->get('showId', '');
-//            if (!empty($url) && !empty($showId)) {
-//                $url .= "&showId=$showId";
-//            }
-//            if ($pid != 0) {
-//                $p = Content::findOne($pid);
-//                $can = Category::findOne($p->catId);
-//                if ($can->can == 2) {
-//                    $catId = $p->catId;
-//                }
-//            }
-//            if ($catId) {
-//                $model = new CategoryExtend();
-//                $cateModel = new Category();
-//                $cateName = $cateModel->findOne($catId);
-//                if ($pid != 0) {
-//                    $where = "AND used = 1";
-//                } else {
-//                    $where = "";
-//                }
-//                $catContent = $model->find()->where("catId=$catId AND belong='content' $where")->orderBy('id ASC')->all();
-//                $relatedCentent = $cateModel->find()->where(['id' => $cateName['Relatedcatid']])->all();
-//                return $this->render('add', ['relCentent' => $relatedCentent, 'url' => $url, 'pid' => $pid, 'catId' => $catId, 'catContent' => $catContent, 'catName' => $cateName->name]);
-//            } else {
-//                return $this->render('add', ['url' => $url]);
-//            }
-//        }
-
+        } else {
+            $data['code'] = 1;
+            $data['message'] = '请求错误';
+            die(json_encode($data));
+        }
     }
 
+    /**
+     * 积分
+     */
+    public function actionIntegral()
+    {
+        $userId = Yii::$app->request->get('userId');
+        $data = Yii::$app->db->createCommand("select id,score,message,createTime From {{%integral_details}} where userId=$userId order by id desc limit 10")->queryAll();
+        die(json_encode($data));
+    }
+
+    /**
+     * 找回密码
+     */
+    public function actionFindPass()
+    {
+        $login = new Login();
+        $registerStr = Yii::$app->request->post('registerStr');
+        $pass = Yii::$app->request->post('pass');
+        $code = Yii::$app->request->post('code');
+        $type = Yii::$app->request->post('type');
+        $checkTime = $login->checkTime();
+        if ($checkTime) {
+            $checkCode = $login->checkCode($registerStr, $code);
+            if (!$checkCode) {
+                $res['code'] = 0;
+                $res['message'] = '验证码错误';
+                die(json_encode($res));
+            }
+        } else {
+            $res['code'] = 0;
+            $res['message'] = '验证码过期';
+            die(json_encode($res));
+        }
+        $user = $login->find()->where("phone='$registerStr' or email='$registerStr'")->one();
+        if (!$user) {
+            if ($type == 1) {
+                $res['code'] = 2;
+                $res['message'] = '此电话还没有注册！';
+                die(json_encode($res));
+            } else {
+                $res['code'] = 2;
+                $res['message'] = '此邮箱还没有注册！';
+                die(json_encode($res));
+            }
+        }
+        if ($type == 1) {
+            $re = $login->updateAll(['userPass' => md5(md5($pass) . 'LXLT')], "phone='$registerStr'");
+        } else {
+            $re = $login->updateAll(['userPass' => md5(md5($pass) . 'LXLT')], "email='$registerStr'");
+        }
+        if ($re) {
+            $res['code'] = 1;
+            $res['message'] = '密码找回成功';
+            die(json_encode($res));
+        } else {
+            $res['code'] = 0;
+            $res['message'] = '找回失败，请重试';
+            die(json_encode($res));
+        }
+    }
+
+    /**
+     * 修改密码
+     */
+    public function actionChangePass()
+    {
+        $login = new Login();
+        $registerStr = Yii::$app->request->post('registerStr');
+        $pass = Yii::$app->request->post('pass');
+        $new = Yii::$app->request->post('newPass');
+        $user = $login->find()->where("(phone='$registerStr' or email='$registerStr') and userPass='" . md5(md5($pass) . 'LXLT') . "''")->one();
+        if (!$user) {
+            $res['code'] = 2;
+            $res['message'] = '用户名或密码不正确';
+            die(json_encode($res));
+        }
+        $re = $login->updateAll(['userPass' => md5(md5($new) . 'LXLT')], "id='" . $user['id'] . "'");
+        if ($re) {
+            $res['code'] = 0;
+            $res['message'] = '密码修改成功';
+            die(json_encode($res));
+        } else {
+            $res['code'] = 1;
+            $res['message'] = '密码修改失败，请重试';
+            die(json_encode($res));
+        }
+    }
+
+    /**
+     * 上传头像
+     */
+    public function actionUpImage()
+    {
+        $session = Yii::$app->session;
+        $userId = $session->get('userId');
+        $userData = $session->get('userData');
+        $image = Yii::$app->request->post('image');
+        $sign = Login::updateAll(['image' => $image], "id=$userId");
+        $user = Yii::$app->db->createCommand("select id,nickname,userName,phone,email,image,integral,level from {{%user}} where id=$userId")->queryOne();
+        if ($sign) {
+            $userData['image'] = $image;
+            $session->set('userData', $user);
+            $res['code'] = 1;
+            $res['message'] = '更换成功';
+        } else {
+            $res['code'] = 0;
+            $res['message'] = '更换失败，请重试';
+        }
+        die(json_encode($res));
+    }
+
+    /**
+     * 修改个人资料
+     */
+    public function actionChangeUserInfo()
+    {
+        $model = new Login();
+        $session = Yii::$app->session;
+        $userId = $session->get('userId');
+        $userName = Yii::$app->request->post('userName', '');
+        $bathday = Yii::$app->request->post('bathday', '');
+        $email = Yii::$app->request->post('email', '');
+        $phone = Yii::$app->request->post('phone', '');
+        $nickname = Yii::$app->request->post('nickName', '');
+        $school = Yii::$app->request->post('school');
+        $education = Yii::$app->request->post('education');
+        $userInfo = [];
+        if ($nickname) {
+            $userInfo['nickname'] = $nickname;
+        }
+        if ($phone) {
+            $userInfo['phone'] = $phone;
+        }
+        if ($email) {
+            $userInfo['email'] = $email;
+        }
+
+        if ($phone) {
+            $signPhone = Login::find()->where("id=$userId AND phone='$phone'")->one();
+            if (!$signPhone) {
+                $phone = Login::find()->where(" phone='$phone'")->one();
+                if ($phone) {
+                    die(json_encode(['code' => 1, 'message' => '该手机已被其他用户绑定']));
+                }
+            }
+        }
+        $model->updateAll($userInfo, "id=$userId");
+        $userData = $model->findOne($userId);
+        Yii::$app->session->set('userData', $userData);
+        if($bathday|| $school||$education){
+            $extend['bathday']=$bathday;
+            $extend['school']=$school;
+            $extend['education']=$education;
+            $extend['userId']=$userId;
+            $re = Yii::$app->db->createCommand()->insert("{{%user_extend}}", $extend)->execute();
+        }
+        $res['code'] = 1;
+        $res['message'] = '保存成功';
+        die(json_encode($res));
+    }
+
+    /**
+     * 回帖只看该作者
+     */
+    public function actionOnlyAuthor()
+    {
+        $authorId = Yii::$app->request->post('authorId ', '');
+        $contentId = Yii::$app->request->post('contentid', '');
+       // 获取评论的数据，是回复文章的数据还是回复文章和其他人的数据
+        $discuss=new UserDiscuss();
+        $data=$discuss->getAuthorDiscuss($authorId, $contentId, $pageSize = 10, $page = 1);// 这里是查看全部的回复，只看回复文章的话加pid=0
+        die(json_encode($data));
+    }
 }
