@@ -1,0 +1,15 @@
+.new-classify>select {
+  outline: none;
+  width: 130px;
+  padding-left: 15px;
+  text-align: center;
+  padding-right: 25px;
+  border: 1px solid #e5e5e5;
+  height: 30px;
+  font-size: 14px;
+  margin-left: 10px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  /*background: url(../images/tran_1.png) no-repeat 107px center;*/
+}

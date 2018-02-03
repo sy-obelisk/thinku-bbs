@@ -1,25 +1,9 @@
-
 /*
   文章内容
 */
 .details .de-wrap .wrap{
   width: 768px;
   float: left;
-}
-/*
-  路径导航
-*/
-.bread-crumb li a {
-  font-size: 14px;
-  color: #363636;
-}
-.bread-crumb li a:hover,
-.bread-crumb li a:last-of-type {
-  color: #7d1f88;
-}
-.bread-crumb li>span {
-  padding: 0 5px;
-  font: 200 12px/26px simsun
 }
 /*内容区*/
 .de-wrap .article>.title {

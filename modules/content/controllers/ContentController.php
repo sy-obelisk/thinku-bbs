@@ -173,6 +173,7 @@ class ContentController extends AppControl
         if ($_POST) {
             $model = new content();
             $contentData = Yii::$app->request->post('content');
+            var_dump($contentData);die;
             $id = Yii::$app->request->post('id');
             $url = Yii::$app->request->post('url');
             $extendId = Yii::$app->request->post('key', []);
