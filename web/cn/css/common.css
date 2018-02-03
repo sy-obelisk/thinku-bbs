@@ -17,7 +17,10 @@ input{outline: none;}
 input[type=radio]{-webkit-appearance: radio;} input[type=checkbox]{-webkit-appearance: checkbox;}
 a{text-decoration: none;color: #444;}
 ul,ol{list-style-type: none;margin: 0;padding: 0;}
-.clearfix:after{content:"";display:block;clear:both;overflow:hidden;visibility:visible;width:0;height:0;}
+
+.clearfix:after{
+  content:"";display:block;clear:both;overflow:hidden;visibility:hidden;width:0;height:0;
+}
 .fl{float: left;}
 .fr{float: right;}
 .tm{text-align: center;}

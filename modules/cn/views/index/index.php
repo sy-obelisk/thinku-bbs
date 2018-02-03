@@ -472,7 +472,7 @@
         <!--我要考试-->
         <div class="test">
           <div class="title"></div>
-          <ul class="clearfix">
+          <ul>
             <li><a href="">GMAT</a></li>
             <li><a href="">GRE</a></li>
             <li><a href="">托福</a></li>

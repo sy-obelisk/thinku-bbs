@@ -22,7 +22,7 @@ class IndexController extends Controller
         $data=$model->getList(2);
         $pageStr=$data['pageStr'];
         unset($data['pageStr']);
-        var_dump($data);die;
+//        var_dump($data);die;
         return $this->render('index',['data'=>$data,'pageStr'=>$pageStr]);
     }
 

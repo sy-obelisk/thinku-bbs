@@ -97,12 +97,88 @@
         <!--分享-->
         <div class="share">
 
+          <div class="bshare-custom">分享到：<a title="分享到微信" class="bshare-weixin">微信</a><a title="分享到QQ空间" class="bshare-qzone">QQ空间</a><a title="分享到QQ好友" class="bshare-qqim">QQ</a><a title="分享到新浪微博" class="bshare-sinaminiblog">微博</a><a title="分享到豆瓣" class="bshare-douban">豆瓣</a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/button.js#style=-1&amp;uuid=&amp;pophcol=3&amp;lang=zh"></script><a class="bshareDiv" onclick="javascript:return false;"></a><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
         </div>
         <!--收藏-->
         <div class="collect"></div>
         <!--回复区-->
         <div class="reply">
-
+          <!--用户回复列表-->
+          <div class="reply-list">
+            <ul>
+              <li class="reply-item">
+                <div class="reply-wrap clearfix">
+                  <!--头像-->
+                  <div class="reply-img">
+                    <div>
+                      <img src="" alt="">
+                    </div>
+                    <p>这是名字</p>
+                  </div>
+                  <div class="reply-cnt">
+                    <p>这是发表的评论内容</p>
+                    <div class="revert">
+                      <div class="show-wrap">
+                        <span>回复</span>
+                      </div>
+                      <div class="revert-wrap">
+                        <ul class="revert-list">
+                          <li>
+                            <span class="revert-name">凤凰火:</span>
+                            <em class="revert-text">这是回复的内容</em>
+                            <div class="revert-time">2018-1-23</div>
+                          </li>
+                        </ul>
+                        <div class="revert-input clearfix">
+                          <textarea placeholder="我也来说两句...."></textarea>
+                          <button>评论</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="reply-item">
+                <div class="reply-wrap clearfix">
+                  <!--头像-->
+                  <div class="reply-img">
+                    <div>
+                      <img src="" alt="">
+                    </div>
+                    <p>这是名字</p>
+                  </div>
+                  <div class="reply-cnt">
+                    <p>这是发表的评论内容</p>
+                    <div class="revert">
+                      <div class="show-wrap">
+                        <span>回复</span>
+                      </div>
+                      <div class="revert-wrap">
+                        <ul class="revert-list">
+                          <li>
+                            <span class="revert-name">凤凰火:</span>
+                            <em class="revert-text">这是回复的内容</em>
+                            <div class="revert-time">2018-1-23</div>
+                          </li>
+                        </ul>
+                        <div class="revert-input clearfix">
+                          <textarea placeholder="我也来说两句...."></textarea>
+                          <button>评论</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!---分页-->
+          <div class=""></div>
+          <!---回复输入-->
+          <div class="reply-input">
+            <textarea id=""></textarea>
+            <button>发表</button>
+          </div>
         </div>
       </div>
     </div>
@@ -153,7 +229,7 @@
       <!--我要考试-->
       <div class="test">
         <div class="title"></div>
-        <ul class="clearfix">
+        <ul>
           <li><a href="">GMAT</a></li>
           <li><a href="">GRE</a></li>
           <li><a href="">托福</a></li>

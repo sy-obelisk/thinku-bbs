@@ -6,6 +6,7 @@ var _common = {
 
 };
 $(function () {
+  // 导航头部个人中心
   $('.header-person>div').mouseover(function () {
     $('.header-person>ul').show();
   }).mouseleave(function () {
@@ -16,4 +17,5 @@ $(function () {
   }).mouseleave(function () {
     $('.header-person>ul').hide();
   });
+
 });
