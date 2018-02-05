@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/cn/css/iconfont/iconfont.css">
   <link rel="stylesheet" href="/cn/css/common.css">
   <link rel="stylesheet" href="/cn/css/new-article.css">
+
   <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
   <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.js"> </script>
   <script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
@@ -62,22 +63,53 @@
   </ul>
   <div class="new-classify">
     <select name="" id="">
-      <option value="">留学</option>
-      <option value="">留学</option>
-      <option value="">留学</option>
-      <option value="">留学</option>
+      <option value="">美国留学</option>
+      <option value="">英国</option>
+      <option value="">澳洲</option>
+      <option value="">加拿大</option>
+      <option value="">香港</option>
+      <option value="">新加坡</option>
+      <option value="">法国</option>
+      <option value="">其他</option>
     </select>
     <select name="" id="">
-      <option value=""></option>
+      <option value="">GMAT考试</option>
+      <option value="">GRE</option>
+      <option value="">托福</option>
+      <option value="">雅思</option>
+      <option value="">SAT</option>
+    </select>
+    <select name="" id="">
+      <option value="">金融职业</option>
+      <option value="">大商科</option>
+      <option value="">会计</option>
+      <option value="">理工科</option>
+      <option value="">文科艺术类</option>
+    </select>
+    <select name="" id="">
+      <option value="">美国生活</option>
+      <option value="">英国</option>
+      <option value="">澳洲</option>
+      <option value="">加拿大</option>
+      <option value="">香港</option>
+      <option value="">新加坡</option>
+      <option value="">法国</option>
+      <option value="">其他</option>
     </select>
   </div>
   <div class="new-title">
-    <textarea id="editor" type="text/plain">
-    </textarea>
+    <input type="text" placeholder="请输入标题">
   </div>
-<!--这里放编辑器-->
-</div>
+  <div class="new-cnt">
+    <script id="myEditor" >
 
+    </script>
+  </div>
+  <div class="sub-btn">
+    <button class="put-in">发表</button>
+    <button class="save-draft">保存草稿</button>
+  </div>
+</div>
 <footer class="footer">
   <div class="p-container clearfix">
     <div class="footer-nav clearfix">
@@ -117,11 +149,11 @@
   </div>
 </footer>
 </body>
-<!--<script src="https://use.fontawesome.com/0e249ab73d.js"></script>-->
+<script src="https://use.fontawesome.com/0e249ab73d.js"></script>
 <!--<script src="/cn/js/jquery.SuperSlide.2.1.js"></script>-->
 <script src="/cn/js/common.js"></script>
 <script>
-  var ue = UE.getEditor('editor');
+  var ue = UE.getEditor('myEditor');
 </script>
 
 </html>

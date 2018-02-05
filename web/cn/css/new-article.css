@@ -1,15 +1,61 @@
+/*帖子分类*/
 .new-classify>select {
   outline: none;
-  width: 130px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 180px;
   padding-left: 15px;
   text-align: center;
   padding-right: 25px;
   border: 1px solid #e5e5e5;
-  height: 30px;
+  height: 40px;
   font-size: 14px;
-  margin-left: 10px;
+  /*margin-left: 10px;*/
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  /*background: url(../images/tran_1.png) no-repeat 107px center;*/
+  background-color: #fff;
+}
+/*帖子标题*/
+.new-title {
+  margin: 20px 0 20px 0;
+  overflow: hidden;
+}
+.new-title input {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+/*帖子编辑区*/
+#myEditor {
+  /*margin-left: 10px;*/
+}
+.sub-btn {
+  margin: 15px;
+  text-align: right;
+}
+.sub-btn button {
+  outline: none;
+  padding: 5px 15px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color: #fff;
+}
+.sub-btn button.put-in {
+  background-color: #7d1f88;
+}
+.sub-btn button.save-draft {
+  background-color: #e7e7e7;
+  color: #777;
 }
