@@ -270,7 +270,7 @@ class ApiController extends Controller
         $reData['reportType'] = Yii::$app->request->post('reportType');
         $reData['description'] = htmlspecialchars($reData['description']);
         $reData['createTime'] = time();
-        $reData['isSolve'] = 0;
+        $reData['status'] = 0;
         $session = Yii::$app->session;
         $reData['userId'] = $session->get('userId');
         if (!$reData['userId']) {
@@ -451,15 +451,12 @@ class ApiController extends Controller
     {
         if ($_POST) {
             $model = new content();
-            $contentData = Yii::$app->request->post('content');// 内容，pid catId,abstract，name
-//            $contentData['pid'] = 0;// 内容，pid catId,abstract，name
-//            $contentData['name'] = '222222';// 内容，pid catId,abstract，name
-//            $contentData['catId'] = 2;// 内容，留学等主分类
-//            $contentData['abstract'] = '1111';// 内容，pid catId,abstract，name
-//            $extendId = Yii::$app->request->post('key', []);
-            $extendValue = Yii::$app->request->post('value');// 拓展的数据
-//            $extendValue = array('1222222222233');// ？？？？？
-            $category = explode(",", Yii::$app->request->post('category'));//这个是副分类
+            $contentData['name'] = Yii::$app->request->post('name');// 标题
+            $contentData['abstract'] = Yii::$app->request->post('abstract');// 摘要
+            $contentData['pid'] = Yii::$app->request->post('pid', 0);// 父id，一般为0
+            $contentData['pid'] = Yii::$app->request->post('catId');// 主id
+            $extendValue[0] = Yii::$app->request->post('article');// 文章
+            $category = explode(",", Yii::$app->request->post('category'));//这个是副分类格式'45,54'
 //            $category = explode(",",'2,6,16');//这个是副分类
             $addtime = date("Y-m-d H:i:s");
             $model->createTime = $addtime;
@@ -645,11 +642,11 @@ class ApiController extends Controller
         $model->updateAll($userInfo, "id=$userId");
         $userData = $model->findOne($userId);
         Yii::$app->session->set('userData', $userData);
-        if($bathday|| $school||$education){
-            $extend['bathday']=$bathday;
-            $extend['school']=$school;
-            $extend['education']=$education;
-            $extend['userId']=$userId;
+        if ($bathday || $school || $education) {
+            $extend['bathday'] = $bathday;
+            $extend['school'] = $school;
+            $extend['education'] = $education;
+            $extend['userId'] = $userId;
             $re = Yii::$app->db->createCommand()->insert("{{%user_extend}}", $extend)->execute();
         }
         $res['code'] = 1;
@@ -664,9 +661,10 @@ class ApiController extends Controller
     {
         $authorId = Yii::$app->request->post('authorId ', '');
         $contentId = Yii::$app->request->post('contentid', '');
-       // 获取评论的数据，是回复文章的数据还是回复文章和其他人的数据
-        $discuss=new UserDiscuss();
-        $data=$discuss->getAuthorDiscuss($authorId, $contentId, $pageSize = 10, $page = 1);// 这里是查看全部的回复，只看回复文章的话加pid=0
+        // 获取评论的数据，是回复文章的数据还是回复文章和其他人的数据
+        $discuss = new UserDiscuss();
+        $data = $discuss->getAuthorDiscuss($authorId, $contentId, $pageSize = 10, $page = 1);// 这里是查看全部的回复，只看回复文章的话加pid=0
         die(json_encode($data));
     }
+
 }
