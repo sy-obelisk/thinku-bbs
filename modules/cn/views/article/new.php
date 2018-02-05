@@ -62,40 +62,9 @@
     <li><a href="">首页</a><span>&gt;</span><a href="">发帖</a></li>
   </ul>
   <div class="new-classify">
-    <select name="" id="">
-      <option value="">美国留学</option>
-      <option value="">英国</option>
-      <option value="">澳洲</option>
-      <option value="">加拿大</option>
-      <option value="">香港</option>
-      <option value="">新加坡</option>
-      <option value="">法国</option>
-      <option value="">其他</option>
-    </select>
-    <select name="" id="">
-      <option value="">GMAT考试</option>
-      <option value="">GRE</option>
-      <option value="">托福</option>
-      <option value="">雅思</option>
-      <option value="">SAT</option>
-    </select>
-    <select name="" id="">
-      <option value="">金融职业</option>
-      <option value="">大商科</option>
-      <option value="">会计</option>
-      <option value="">理工科</option>
-      <option value="">文科艺术类</option>
-    </select>
-    <select name="" id="">
-      <option value="">美国生活</option>
-      <option value="">英国</option>
-      <option value="">澳洲</option>
-      <option value="">加拿大</option>
-      <option value="">香港</option>
-      <option value="">新加坡</option>
-      <option value="">法国</option>
-      <option value="">其他</option>
-    </select>
+    <select name="clsFirst" id="clsFirst"></select>
+    <select name="clsSecond" id="clsSecond"></select>
+    <select style="visibility: hidden" name="clsThird" id="clsThird"></select>
   </div>
   <div class="new-title">
     <input type="text" placeholder="请输入标题">
@@ -152,8 +121,10 @@
 <script src="https://use.fontawesome.com/0e249ab73d.js"></script>
 <!--<script src="/cn/js/jquery.SuperSlide.2.1.js"></script>-->
 <script src="/cn/js/common.js"></script>
+<script src="/cn/js/new-classify.js"></script>
 <script>
   var ue = UE.getEditor('myEditor');
+  _init_area();
 </script>
 
 </html>
