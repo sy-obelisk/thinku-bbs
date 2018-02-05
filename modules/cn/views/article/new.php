@@ -122,6 +122,7 @@
 <!--<script src="/cn/js/jquery.SuperSlide.2.1.js"></script>-->
 <script src="/cn/js/common.js"></script>
 <script src="/cn/js/new-classify.js"></script>
+<script src="/cn/js/new-article.js"></script>
 <script>
   var ue = UE.getEditor('myEditor');
   _init_area();
