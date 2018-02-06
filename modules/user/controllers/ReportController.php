@@ -31,18 +31,18 @@ class ReportController extends AppControl
     {
         $model = new Report();
         $page = Yii::$app->request->get('page', 1);
-        $beginTime = strtotime(Yii::$app->request->get('beginTime', ''));
-        $endTime = strtotime(Yii::$app->request->get('endTime', ''));
+        $beginTime = Yii::$app->request->get('beginTime', '');
+        $endTime = Yii::$app->request->get('endTime', '');
         $id = Yii::$app->request->get('id', '');
         $userId = Yii::$app->request->get('userId', '');
         $reportType = Yii::$app->request->get('reportType', '');
-        $reportCat = Yii::$app->request->get('reportCat', '');
+
         $where = "1=1";
         if ($beginTime) {
-            $where .= " AND r.createTime>$beginTime";
+            $where .= " AND r.createTime>'$beginTime'";
         }
         if ($endTime) {
-            $where .= " AND r.createTime<$endTime";
+            $where .= " AND r.createTime<'$endTime'";
         }
         if ($id) {
             $where .= " AND r.id = $id";

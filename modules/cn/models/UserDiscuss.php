@@ -61,9 +61,9 @@ class UserDiscuss extends ActiveRecord
      * @return array
      * 还得改
      */
-    public function getContentDiscuss($contentId,$page=1,$pageSize=10,$type='2'){
+    public function getContentDiscuss($contentId,$page=1,$pageSize=10){
         $limit = "limit ".($page-1)*$pageSize.",$pageSize";
-        $data = \Yii::$app->db->createCommand("SELECT u.image,u.nickname,u.userName,d.* from {{%user_discuss}} d left join {{%user}} u on d.userId = u.id where d.pid=0 AND d.status=1 AND type =$type AND d.contentId = $contentId order by d.id DESC ".$limit)->queryAll();
+        $data = \Yii::$app->db->createCommand("SELECT u.image,u.nickname,u.userName,d.* from {{%user_discuss}} d left join {{%user}} u on d.userId = u.id where d.pid=0 AND d.status=1 AND d.contentId = $contentId order by d.id DESC ".$limit)->queryAll();
         foreach($data as $k => $v){
             if(!$v['nickname']){
                 $data[$k]['nickname'] = $v['userName'];
@@ -85,15 +85,11 @@ class UserDiscuss extends ActiveRecord
             }
             $data[$k]['child'] = $child;
             //获取子评论
-//            $sonDiscuss = $this->getSonDiscuss($v['id'],$type);
-//            $data[$k]['sonNum'] = count($sonDiscuss);
-//            $data[$k]['son'] = $sonDiscuss;
+            $sonDiscuss = $this->getSonDiscuss($v['id']);
+            $data[$k]['sonNum'] = count($sonDiscuss);
+            $data[$k]['son'] = $sonDiscuss;
         }
-        $parse = \Yii::$app->db->createCommand("SELECT d.*,u.userName,u.nickname,u.image from {{%user_discuss}} d left join {{%user}} u on d.userId = u.id  where d.pid=0 AND d.status=1 AND d.type =1 AND d.contentId = $contentId order by d.id DESC")->queryAll();
-        $count = count(\Yii::$app->db->createCommand("SELECT d.* from {{%user_discuss}} d left join {{%user}} u on d.userId = u.id where d.pid=0 AND d.status=1 AND d.contentId = $contentId order by d.id DESC ")->queryAll());
-        $pageModel = new Pager($count,$page);
-        $pageStr = $pageModel->GetPagerContent();
-        return ['data' => $data,'pageStr' => $pageStr,'page' => $page,'parse' => $parse];
+        return ['data' => $data,'page' => $page];
     }
 
 
@@ -102,18 +98,18 @@ class UserDiscuss extends ActiveRecord
 //     * @return array
 //     * by fawn
 //     */
-//    public function getSonDiscuss($pid){
-//        $data = \Yii::$app->db->createCommand("SELECT u.image,u.nickname,u.userName,d.* from {{%user_discuss}} d left join {{%user}} u on d.userId = u.id where d.pid=$pid order by d.createTime DESC ")->queryAll();
-//        foreach($data as $k => $v){
-//            if(!$v['nickname']){
-//                $data[$k]['nickname'] = $v['userName'];
-//            }
-//            if(!$v['image']){
-//                $data[$k]['image'] = '/cn/images/details_defaultImg.png';
-//            }
-//        }
-//        return $data;
-//    }
+    public function getSonDiscuss($pid){
+        $data = \Yii::$app->db->createCommand("SELECT u.image,u.nickname,u.userName,d.* from {{%user_discuss}} d left join {{%user}} u on d.userId = u.id where d.pid=$pid order by d.createTime DESC ")->queryAll();
+        foreach($data as $k => $v){
+            if(!$v['nickname']){
+                $data[$k]['nickname'] = $v['userName'];
+            }
+            if(!$v['image']){
+                $data[$k]['image'] = '/cn/images/details_defaultImg.png';
+            }
+        }
+        return $data;
+    }
 
 //    public function getDiscussbyid($id,$type){
 //        $data = \Yii::$app->db->createCommand("SELECT u.image,u.nickname,u.userName,d.* from {{%user_discuss}} d left join {{%user}} u on d.userId = u.id where d.pid =0 AND d.contentId='".$id."' AND d.type=$type order by d.createTime DESC ")->queryAll();

@@ -65,33 +65,16 @@
             <img src="" alt="">
           </div>
           <div class="font">
-            <h2>【标题】托福TPO10阅读名师精评版名师精评（3）</h2>
+            <h2>【标题】<?php echo $data['name']?></h2>
             <ul>
-              <li>发表时间：2018.01.18</li>
-              <li>阅读量：111111</li>
-              <li>回复量：222222</li>
+              <li>发表时间：<?php echo $data['createTime']?></li>
+              <li>阅读量：<?php echo $data['viewCount']?></li>
+              <li>回复量：<?php echo $discuss['count']?></li>
             </ul>
           </div>
         </div>
         <div class="cnt">
-          其次，要分析自己的优势和劣势，各个击破。我在上课的过程中，紧跟老师的节奏，在课上听讲的基
-          础上课下及时练习。先完成的是delta，制定好学习其次，要分析自己的优势和劣势，各个击破。我在
-          上课的过程中，紧跟老师的节奏，在课上听讲的基础上课下及时练习。先完成的是delta，制定好学习
-          其次，要分析自己的优势和劣势，各个击破。我在上课的过程中，紧跟老师的节奏，在课上听讲的基
-          础上课下及时练习。先完成的是delta，制定好学习其次，要分析自己的优势和劣势，各个击破。我在
-          上课的过程中，紧跟老师的节奏，在课上听讲的基础上课下及时练习。
-          其次，要分析自己的优势和劣势，各个击破。我在上课的过程中，紧跟老师的节奏，在课上听讲的基
-          础上课下及时练习。先完成的是delta，制定好学习其次，要分析自己的优势和劣势，各个击破。我在
-          上课的过程中，紧跟老师的节奏，在课上听讲的基础上课下及时练习。先完成的是delta，制定好学习
-          其次，要分析自己的优势和劣势，各个击破。我在上课的过程中，紧跟老师的节奏，在课上听讲的基
-          础上课下及时练习。先完成的是delta，制定好学习其次，要分析自己的优势和劣势，各个击破。我在
-          上课的过程中，紧跟老师的节奏，在课上听讲的基础上课下及时练习。
-          其次，要分析自己的优势和劣势，各个击破。我在上课的过程中，紧跟老师的节奏，在课上听讲的基
-          础上课下及时练习。先完成的是delta，制定好学习其次，要分析自己的优势和劣势，各个击破。我在
-          上课的过程中，紧跟老师的节奏，在课上听讲的基础上课下及时练习。先完成的是delta，制定好学习
-          其次，要分析自己的优势和劣势，各个击破。我在上课的过程中，紧跟老师的节奏，在课上听讲的基
-          础上课下及时练习。先完成的是delta，制定好学习其次，要分析自己的优势和劣势，各个击破。我在
-          上课的过程中，紧跟老师的节奏，在课上听讲的基础上课下及时练习。
+         <?php echo $data['listeningFile']?>
           <div class="bottom">本主题有申友留学推荐于2018-01-10 16:30 分类</div>
         </div>
         <!--分享-->
@@ -112,16 +95,18 @@
           <!--用户回复列表-->
           <div class="reply-list">
             <ul>
+              <?php foreach ($discuss['data'] as $v){?>
               <li class="reply-item">
                 <div class="reply-wrap clearfix">
                   <!--头像-->
                   <div class="reply-img">
                     <div>
-                      <img src="" alt="">
+                      <img src="<?php echo $v['image']?>" alt="">
                     </div>
-                    <p>这是名字</p>
+                    <p><?php echo $v['nickname']==false?$v['userName']:$v['nickname']?></p>
                   </div>
                   <div class="reply-cnt">
+<<<<<<< Updated upstream
                     <p>这是发表的评论内容</p>
                     <div class="revert">
                       <div class="show-wrap">
@@ -163,6 +148,9 @@
                   </div>
                   <div class="reply-cnt">
                     <p>这是发表的评论内容</p>
+=======
+                    <p><?php echo $v['comment']?></p>
+>>>>>>> Stashed changes
                     <div class="revert">
                       <div class="show-wrap">
                         <span>回复</span>
@@ -192,6 +180,39 @@
                   </div>
                 </div>
               </li>
+              <?php }?>
+<!--              <li class="reply-item">-->
+<!--                <div class="reply-wrap clearfix">-->
+<!--                  <!--头像-->-->
+<!--                  <div class="reply-img">-->
+<!--                    <div>-->
+<!--                      <img src="" alt="">-->
+<!--                    </div>-->
+<!--                    <p>这是名字</p>-->
+<!--                  </div>-->
+<!--                  <div class="reply-cnt">-->
+<!--                    <p>这是发表的评论内容</p>-->
+<!--                    <div class="revert">-->
+<!--                      <div class="show-wrap">-->
+<!--                        <span>回复</span>-->
+<!--                      </div>-->
+<!--                      <div class="revert-wrap">-->
+<!--                        <ul class="revert-list">-->
+<!--                          <li>-->
+<!--                            <span class="revert-name">凤凰火:</span>-->
+<!--                            <em class="revert-text">这是回复的内容</em>-->
+<!--                            <div class="revert-time">2018-1-23</div>-->
+<!--                          </li>-->
+<!--                        </ul>-->
+<!--                        <div class="revert-input clearfix">-->
+<!--                          <textarea placeholder="我也来说两句...."></textarea>-->
+<!--                          <button>评论</button>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </li>-->
             </ul>
           </div>
           <!---分页-->

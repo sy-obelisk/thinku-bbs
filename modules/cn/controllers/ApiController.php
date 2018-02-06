@@ -270,7 +270,7 @@ class ApiController extends Controller
         $reData['reportType'] = Yii::$app->request->post('reportType');
         $reData['description'] = htmlspecialchars($reData['description']);
         $reData['createTime'] = time();
-        $reData['status'] = 0;
+        $reData['status'] = 0;// 0表示未处理，1表示属实，2表示不属实
         $session = Yii::$app->session;
         $reData['userId'] = $session->get('userId');
         if (!$reData['userId']) {
@@ -319,7 +319,7 @@ class ApiController extends Controller
         }
         if ($re) {
             $user = new User();
-            $user->integral(2, '论坛签到');
+            $user->integral($userId,2, '论坛签到');
             $re['code'] = 0;
             $re['message'] = '签到成功';
             die(json_encode($re));
@@ -352,7 +352,7 @@ class ApiController extends Controller
         $re = $collect->Collection($id);
         if ($re) {
             $user = new User();
-            $user->integral(1, '收藏文章');
+            $user->integral($userId,1, '收藏文章');
             $data['code'] = 0;
             $data['message'] = '收藏成功';
             die(json_encode($data));
@@ -382,7 +382,7 @@ class ApiController extends Controller
         $re = Yii::$app->db->createCommand()->insert("{{%user_discuss}}", $data)->execute();
         if ($re) {
             $user = new User();
-            $user->integral(3, '评论获取积分');
+            $user->integral($userId,3, '评论获取积分');
             $res['code'] = 0;
             $res['message'] = '点赞成功，积分+3';
             die(json_encode($res));
@@ -452,7 +452,7 @@ class ApiController extends Controller
         if ($_POST) {
             $model = new content();
             $contentData['name'] = Yii::$app->request->post('name');// 标题
-            $contentData['abstract'] = Yii::$app->request->post('abstract');// 摘要
+            $contentData['abstract'] = '';// 摘要
             $contentData['pid'] = Yii::$app->request->post('pid', 0);// 父id，一般为0
             $contentData['catId'] = Yii::$app->request->post('catId');// 主id
             $extendValue[0] = Yii::$app->request->post('article');// 文章
@@ -500,6 +500,11 @@ class ApiController extends Controller
     public function actionIntegral()
     {
         $userId = Yii::$app->request->get('userId');
+        if (!$userId) {
+            $data['code'] = 2;
+            $data['message'] = '未登录';
+            die(json_encode($data));
+        }
         $data = Yii::$app->db->createCommand("select id,score,message,createTime From {{%integral_details}} where userId=$userId order by id desc limit 10")->queryAll();
         die(json_encode($data));
     }

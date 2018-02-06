@@ -7,6 +7,7 @@ return [
     'SMS_SIG' => '申友国际教育',
     'SMS_PWD' => '057499',
     'timeLimit' => 600,
+    'defaultImg' => '',
     'emailTimeLimit' => 24 * 3600,
     'phone1' => '您正在通过手机免费注册申友论坛！',
 //    'phone2' => '您正在通过手机预约申友网留学顾问！',

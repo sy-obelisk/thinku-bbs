@@ -14,10 +14,10 @@ class User extends ActiveRecord
     /*
      * 获取积分
      * */
-    public function integral($num, $msg)
+    public function integral($userId,$num, $msg)
     {
-        $userId = Yii::$app->session->get('userId');
-        $userId =1;
+//        $userId = Yii::$app->session->get('userId');
+//        $userId =1;
         $data = Yii::$app->db->createCommand("SELECT id,integral from {{%user}} where id=$userId")->queryOne();
         $re = User::updateAll(['integral' => $data['integral'] + $num], "id=$userId");
         if ($re) {

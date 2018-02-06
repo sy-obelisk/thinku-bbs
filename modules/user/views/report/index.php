@@ -62,8 +62,9 @@
                 <th>用户Id</th>
                 <th>举报分类</th>
                 <th>描述</th>
-                <th>举报内容类型</th>
                 <th>发表时间</th>
+                <th>状态</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody>
@@ -74,17 +75,16 @@
                     <td><?php echo $v['id']?></td>
                     <td><span><?php echo $v['contentId']?></span></td>
                     <td><span><?php echo $v['userId']?></span></td>
-                    <td><span><?php echo Yii::$app->params['report'][$v['reportType']][$v['reportCat']]?></span></td>
+                    <td><span><?php echo Yii::$app->params['report'][$v['reportType']]?></span></td>
                     <td><span><?php echo $v['description']?></span></td>
-                    <?php
-                        switch($v['reportType']){
-                            case 1:$v['reportType']='解析';break;
-                            case 2:$v['reportType']='评论';break;
-                            case 3:$v['reportType']='题目';break;
-                        }
-                    ?>
-                    <td><span><?php echo $v['reportType']?></span></td>
-                    <td><span><?php echo date("Y-m-d H:i:s",$v['createTime'])?></span></td>
+                    <td><span><?php echo $v['createTime']?></span></td>
+                    <td>
+                        <?php if($v['status']==0){echo '未处理';}elseif($v['status']==1){echo '情况属实';}else{echo '情况不属实';}?>
+                    </td>
+                    <td>
+                        <a><span onclick="check('<?php echo $v['id']?>','1',<?php echo $v['contentId']?>,<?php echo $v['userId']?>)">已处理，情况属实</span></a>
+                        <a><span onclick="check('<?php echo $v['id']?>','2',<?php echo $v['contentId']?>,<?php echo $v['userId']?>)">已处理，情况不属实</span></a>
+                    </td>
                 </tr>
             <?php
             }
@@ -139,4 +139,10 @@
             $("#checkPush").submit();
         })
     })
+    function check(id,status,contentId,userId){
+        $.post('/user/api/check',{id:id,status:status,contentId:contentId,userId:userId},function(re){
+            alert(re.message);
+            window.location.href='/user/report/index';
+        },"json")
+    }
 </script>
