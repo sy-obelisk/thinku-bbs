@@ -2,10 +2,6 @@
  * Created by daicunya on 2018/2/5.
  */
 $(function () {
-  // $('.new-title input').blur(function () {
-  //
-  //   }
-  // });
   _new.init();
 });
 
@@ -15,20 +11,10 @@ var _new = {
   },
   bind : function () {
     var _this = this;
-
-    // document.querySelector('.new-title input').onblur = function () {
-    //   console.log('sss');
-    //   _this.checkInput(this);
-    // };
     // 发表
     $('.put-in').click(function () {
       _this.publishEvent();
     })
-  },
-  //
-  checkInput : function (obj) {
-    var _this = this;
-
   },
   // 检查分类是否有填写,发表
   publishEvent : function () {
@@ -45,7 +31,6 @@ var _new = {
       return false;
     }
     var category = $('#clsSecond').val()+','+$('#clsThird').val();
-    console.log(category);
     $.ajax({
       type: 'post',
       url : "/cn/api/new-article",

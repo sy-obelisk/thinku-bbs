@@ -100,7 +100,13 @@
           <div class="bshare-custom">分享到：<a title="分享到微信" class="bshare-weixin">微信</a><a title="分享到QQ空间" class="bshare-qzone">QQ空间</a><a title="分享到QQ好友" class="bshare-qqim">QQ</a><a title="分享到新浪微博" class="bshare-sinaminiblog">微博</a><a title="分享到豆瓣" class="bshare-douban">豆瓣</a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/button.js#style=-1&amp;uuid=&amp;pophcol=3&amp;lang=zh"></script><a class="bshareDiv" onclick="javascript:return false;"></a><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
         </div>
         <!--收藏-->
-        <div class="collect"></div>
+        <div class="collect">
+          <ul>
+            <li>收藏</li>
+            <li>顶</li>
+            <li>踩</li>
+          </ul>
+        </div>
         <!--回复区-->
         <div class="reply">
           <!--用户回复列表-->
@@ -131,10 +137,18 @@
                         </ul>
                         <div class="revert-input clearfix">
                           <textarea placeholder="我也来说两句...."></textarea>
-                          <button>评论</button>
+                          <button id="revertBtn">评论</button>
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+                <div class="reply-time clearfix">
+                  <p>发表于：2018-01-12</p>
+                  <div>
+                    <p>举报</p>
+                    <p>支持<span>100</span></p>
+                    <p>反对<span>20</span></p>
                   </div>
                 </div>
               </li>
@@ -163,21 +177,31 @@
                         </ul>
                         <div class="revert-input clearfix">
                           <textarea placeholder="我也来说两句...."></textarea>
-                          <button>评论</button>
+                          <button id="revertBtn">评论</button>
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+                <div class="reply-time clearfix">
+                  <p>发表于：2018-01-12</p>
+                  <div>
+                    <p>举报</p>
+                    <p>支持<span>100</span></p>
+                    <p>反对<span>20</span></p>
                   </div>
                 </div>
               </li>
             </ul>
           </div>
           <!---分页-->
-          <div class=""></div>
+          <div class="page-wrap">
+            <ul class="pagination" id="pagination1"></ul>
+          </div>
           <!---回复输入-->
           <div class="reply-input">
-            <textarea id=""></textarea>
-            <button>发表</button>
+            <textarea></textarea>
+            <button id="replyBtn">发表</button>
           </div>
         </div>
       </div>
@@ -341,7 +365,9 @@
 </body>
 <script src="https://use.fontawesome.com/0e249ab73d.js"></script>
 <script src="/cn/js/jquery.SuperSlide.2.1.js"></script>
+<script src="/cn/js/jqPaginator.min.js"></script>
 <script src="/cn/js/common.js"></script>
+<script src="/cn/js/details.js"></script>
 <script>
   //  我要规划
   jQuery(".project").slide({});
