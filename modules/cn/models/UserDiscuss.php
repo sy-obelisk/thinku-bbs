@@ -20,7 +20,7 @@ class UserDiscuss extends ActiveRecord
     public function like($id, $status)
     {
         $data = Yii::$app->db->createCommand("select id,liked,hate from {{%content}} where id=$id")->queryOne();
-        if ($status==1) {
+        if ($status == 1) {
             $re = UserDiscuss::updateAll(['liked' => $data['liked'] + 1], "id=" . $id);
             if ($re) {
                 $user = new User();
@@ -61,24 +61,26 @@ class UserDiscuss extends ActiveRecord
      * @return array
      * 还得改
      */
-    public function getContentDiscuss($contentId,$page=1,$pageSize=10){
-        $limit = "limit ".($page-1)*$pageSize.",$pageSize";
-        $data = \Yii::$app->db->createCommand("SELECT u.image,u.nickname,u.userName,d.* from {{%user_discuss}} d left join {{%user}} u on d.userId = u.id where d.pid=0 AND d.status=1 AND d.contentId = $contentId order by d.id DESC ".$limit)->queryAll();
-        foreach($data as $k => $v){
-            if(!$v['nickname']){
+    public function getContentDiscuss($contentId, $page = 1, $pageSize = 10)
+    {
+        $limit = "limit " . ($page - 1) * $pageSize . ",$pageSize";
+        $data = \Yii::$app->db->createCommand("SELECT u.image,u.nickname,u.userName,d.* from {{%user_discuss}} d left join {{%user}} u on d.userId = u.id where d.pid=0 AND d.status=1 AND d.contentId = $contentId order by d.id DESC " . $limit)->queryAll();
+        $count = count(\Yii::$app->db->createCommand("SELECT d.id from {{%user_discuss}} d left join {{%user}} u on d.userId = u.id where d.pid=0 AND d.status=1 AND d.contentId = $contentId order by d.id DESC ")->queryAll());
+        foreach ($data as $k => $v) {
+            if (!$v['nickname']) {
                 $data[$k]['nickname'] = $v['userName'];
             }
-            if(!$v['image']){
+            if (!$v['image']) {
                 $data[$k]['image'] = \Yii::$app->params['defaultImg'];
             }
 //            $data[$k]['countReply'] = count(\Yii::$app->db->createCommand("SELECT d.id from {{%user_discuss}} d left join {{%user}} u on d.userId = u.id where d.reply='{$v['id']}' order by d.createTime DESC ")->queryAll());
             $data[$k]['countReply'] = count(\Yii::$app->db->createCommand("SELECT d.id from {{%user_discuss}} d left join {{%user}} u on d.userId = u.id where d.pid='{$v['id']}' order by d.id DESC ")->queryAll());
             $child = \Yii::$app->db->createCommand("SELECT u.image,u.nickname,u.userName,d.* from {{%user_discuss}} d left join {{%user}} u on d.userId = u.id where d.pid={$v['id']} AND d.contentId=$contentId order by d.id ASC ")->queryAll();
-            foreach($child as $key => $val){
-                if(!$val['nickname']){
+            foreach ($child as $key => $val) {
+                if (!$val['nickname']) {
                     $child[$key]['nickname'] = $val['userName'];
                 }
-                if(!$v['image']){
+                if (!$v['image']) {
                     $child[$key]['image'] = \Yii::$app->params['defaultImg'];
                 }
                 $child[$key]['countReply'] = count(\Yii::$app->db->createCommand("SELECT d.id from {{%user_discuss}} d left join {{%user}} u on d.userId = u.id where d.pid='{$val['id']}' order by d.id DESC ")->queryAll());
@@ -89,7 +91,7 @@ class UserDiscuss extends ActiveRecord
             $data[$k]['sonNum'] = count($sonDiscuss);
             $data[$k]['son'] = $sonDiscuss;
         }
-        return ['data' => $data,'page' => $page];
+        return ['data' => $data, 'page' => $page, 'count' => $count];
     }
 
 
@@ -98,13 +100,14 @@ class UserDiscuss extends ActiveRecord
 //     * @return array
 //     * by fawn
 //     */
-    public function getSonDiscuss($pid){
+    public function getSonDiscuss($pid)
+    {
         $data = \Yii::$app->db->createCommand("SELECT u.image,u.nickname,u.userName,d.* from {{%user_discuss}} d left join {{%user}} u on d.userId = u.id where d.pid=$pid order by d.createTime DESC ")->queryAll();
-        foreach($data as $k => $v){
-            if(!$v['nickname']){
+        foreach ($data as $k => $v) {
+            if (!$v['nickname']) {
                 $data[$k]['nickname'] = $v['userName'];
             }
-            if(!$v['image']){
+            if (!$v['image']) {
                 $data[$k]['image'] = '/cn/images/details_defaultImg.png';
             }
         }
