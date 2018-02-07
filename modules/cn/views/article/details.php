@@ -113,11 +113,11 @@
                       </div>
                       <div class="revert-wrap">
                         <ul class="revert-list">
-                          <li>
-                            <span class="revert-name">凤凰火:</span>
-                            <em class="revert-text">这是回复的内容</em>
-                            <div class="revert-time">2018-1-23</div>
-                          </li>
+<!--                          <li>-->
+<!--                            <span class="revert-name">凤凰火:</span>-->
+<!--                            <em class="revert-text">这是回复的内容</em>-->
+<!--                            <div class="revert-time">2018-1-23</div>-->
+<!--                          </li>-->
                         </ul>
                         <div class="revert-input clearfix">
                           <textarea placeholder="我也来说两句...."></textarea>

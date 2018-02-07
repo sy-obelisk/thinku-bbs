@@ -39,45 +39,49 @@ var _details = {
     if (!replyCnt) {
       alert('请输入评论内容!');
     } else {
-      var lis = "<li class='reply-item'>";
-      lis+= "<div class='reply-wrap clearfix'>"+
-        "<div class='reply-img'>"+
-        "<div>"+
-        "<img src='' alt=''></div>"+
-        "<p>这是名字</p>"+
-        "</div>"+
-        "<div class='reply-cnt'>"+
-        "<p>这是发表的评论内容</p>"+
-        "<div class='revert'>"+
-        "<div class='show-wrap'>"+
-        "<span>回复</span>"+
-        "</div>"+
-        "<div class='revert-wrap'>"+
-        "<ul class='revert-list'>"+
-        "<li>"+
-        "<span class='revert-name'>凤凰火:</span>"+
-        "<em class='revert-text'>这是回复的内容</em>"+
-        "<div class='revert-time'>2018-1-23</div>"+
-        "</li>"+
-        "</ul>"+
-        "<div class='revert-input clearfix'>"+
-        "<textarea placeholder='我也来说两句....'></textarea>"+
-        "<button id='revertBtn'>评论</button>"+
-        "</div>"+
-        "</div>"+
-        "</div>"+
-        "</div>"+
-        "</div>"+
-        "<div class='reply-time clearfix'>"+
-        "<p>发表于：2018-01-12</p>"+
-        "<div>"+
-        "<p>举报</p>"+
-        "<p>支持<span>100</span></p>"+
-        "<p>反对<span>20</span></p>"+
-        "</div>"+
-        "</div>"+
-        "</li>";
-      $('.reply-list>ul').append(lis);
+      $.post('/cn/api/discuss',{
+        id: '23',
+        pid: 0,
+        comment: replyCnt
+      },function (res) {
+        console.log(res);
+        if (res.code == 1) {
+          var lis = "<li class='reply-item'>";
+          lis+= "<div class='reply-wrap clearfix'>"+
+            "<div class='reply-img'>"+
+            "<div>"+
+            "<img src='' alt=''></div>"+
+            "<p>这是名字</p>"+
+            "</div>"+
+            "<div class='reply-cnt'>"+
+            "<p>这是发表的评论内容</p>"+
+            "<div class='revert'>"+
+            "<div class='show-wrap'>"+
+            "<span>回复</span>"+
+            "</div>"+
+            "<div class='revert-wrap'>"+
+            "<ul class='revert-list'>"+
+            "</ul>"+
+            "<div class='revert-input clearfix'>"+
+            "<textarea placeholder='我也来说两句....'></textarea>"+
+            "<button id='revertBtn'>评论</button>"+
+            "</div>"+
+            "</div>"+
+            "</div>"+
+            "</div>"+
+            "</div>"+
+            "<div class='reply-time clearfix'>"+
+            "<p>发表于：2018-01-12</p>"+
+            "<div>"+
+            "<p>举报</p>"+
+            "<p>支持<span>100</span></p>"+
+            "<p>反对<span>20</span></p>"+
+            "</div>"+
+            "</div>"+
+            "</li>";
+          $('.reply-list>ul').append(lis);
+        }
+      },'json');
     }
   }
 };
