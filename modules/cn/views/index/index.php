@@ -377,7 +377,7 @@
               <div class="right">
                 <h3><a href="/details/<?php echo $v['id']?>.html"><?php echo $v['name']?><i class="iconfont icon-hot"></a></i></h3>
                 <div class="info-list clearfix">
-                  <div class="first-div"><span><?php echo $v['nickname']?$v['nickname']:$v['username']?></span> <span>发布于<?php echo substr($v['createTime'],0,10)?></span></div>
+                  <div class="first-div"><span><?php echo $v['nickname']?$v['nickname']:$v['userName']?></span> <span>发布于<?php echo substr($v['createTime'],0,10)?></span></div>
                   <div class="last-div">
                     <p><?php echo isset($v['last']['name'])&&$v['last']['name']!=false?"<span>".$v['last']['name']."</span> <span>最后回复于".$v['last']['time']."</span> ":''?></span></p>
                     <p><span>查看：<?php echo $v['viewCount']?> </span>|<span>回复：<?php echo $v['count']?></span></p></div>

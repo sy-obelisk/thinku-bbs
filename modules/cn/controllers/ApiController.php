@@ -116,7 +116,7 @@ class ApiController extends Controller
         $type = Yii::$app->request->post('type');
         $userName = Yii::$app->request->post('userName', '');
         if ($userName == '') {
-            $userName = 'SU' . time();
+            $userName = 'LX' . time();
         }
         $checkTime = $login->checkTime();
         if ($checkTime) {
@@ -138,7 +138,7 @@ class ApiController extends Controller
                 $re = $login->save();
                 if ($re) {
                     $model = new News();
-                    $model->news = '终于等到你，欢迎成为申友的一员';
+                    $model->news = '终于等到你，欢迎成为留学论坛的一员';
                     $model->userId = $login->primaryKey;
                     $model->status = 1;
                     $model->type = 1;
@@ -319,7 +319,7 @@ class ApiController extends Controller
         }
         if ($re) {
             $user = new User();
-            $user->integral($userId,2, '论坛签到');
+            $user->integral($userId, 2, '论坛签到');
             $re['code'] = 0;
             $re['message'] = '签到成功';
             die(json_encode($re));
@@ -352,7 +352,7 @@ class ApiController extends Controller
         $re = $collect->Collection($id);
         if ($re) {
             $user = new User();
-            $user->integral($userId,1, '收藏文章');
+            $user->integral($userId, 1, '收藏文章');
             $data['code'] = 0;
             $data['message'] = '收藏成功';
             die(json_encode($data));
@@ -382,7 +382,7 @@ class ApiController extends Controller
         $re = Yii::$app->db->createCommand()->insert("{{%user_discuss}}", $data)->execute();
         if ($re) {
             $user = new User();
-            $user->integral($userId,3, '评论获取积分');
+            $user->integral($userId, 3, '评论获取积分');
             $res['code'] = 0;
             $res['message'] = '点赞成功，积分+3';
             die(json_encode($res));
@@ -480,7 +480,7 @@ class ApiController extends Controller
                 $key = $model->primaryKey;
                 $data['code'] = 0;
                 $data['message'] = '发表成功';
-                $data['id']=$model->primaryKey;
+                $data['id'] = $model->primaryKey;
                 die(json_encode($data));
             } else {
                 $data['code'] = 1;

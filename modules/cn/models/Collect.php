@@ -47,15 +47,14 @@ class Collect extends ActiveRecord
     /*
     * 收藏记录
     * */
-    public function CollectionList()
+    public function CollectionList($page=1,$pageSize)
     {
         $userId = Yii::$app->session->get('userId');
-        $data = Yii::$app->db->createCommand("SELECT c.name,c.id,u.nickname from {{%user_collection}} uc left join {{%content}} c on uc.userId=c.userId left join {{%user}} u on uc.userId=u.id where userId=$userId")->queryAll();
-        if ($data) {
-            return true;
-        } else {
-            return false;
-        }
+        $data['data']= Yii::$app->db->createCommand("SELECT c.name,c.id,u.nickname,c.id,u.userName from {{%user_collection}} uc left join {{%content}} c on uc.userId=c.userId left join {{%user}} u on uc.userId=u.id where userId=$userId limit ($page-1)*$pageSize,$pageSize")->queryAll();
+        $data['count']=count(Yii::$app->db->createCommand("SELECT c.name,c.id,u.nickname,c.id,u.userName from {{%user_collection}} uc left join {{%content}} c on uc.userId=c.userId left join {{%user}} u on uc.userId=u.id where userId=$userId")->queryAll());
+        $data['page']=$page;
+        $data['pageCount']=ceil($data['count']/$pageSize);
+        return $data;
     }
 //    public function getCollect($userId,$type,$page=1,$pageSize=8){
 //        $limit = "limit ".($page-1)*$pageSize.",$pageSize";
