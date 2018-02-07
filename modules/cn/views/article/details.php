@@ -154,7 +154,7 @@
     <!--侧边栏-->
     <aside class="aside">
       <ul class="posted">
-        <li><a href=""><i class="iconfont icon-hot"></i>我要发帖</a></li>
+        <li><a href="./new-article.html"><i class="iconfont icon-hot"></i>我要发帖</a></li>
         <li><a href=""><i class="iconfont icon-hot"></i>我要提问</a></li>
       </ul>
       <!--签到-->
