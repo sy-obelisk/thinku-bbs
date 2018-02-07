@@ -56,7 +56,7 @@
   <section class="de-wrap p-posts clearfix">
     <div class="wrap">
       <ul class="bread-crumb">
-        <li><a href="">首页</a><span>&gt;</span><a href="">留学</a><span>&gt;</span><a href="">美国</a><span>&gt;</span><a href="">签证</a></li>
+        <li><a href="/">首页</a><span>&gt;</span><a href="">留学</a><span>&gt;</span><a href="">美国</a><span>&gt;</span><a href="">签证</a></li>
       </ul>
       <!--帖子内容-->
       <div class="article">
@@ -67,7 +67,7 @@
           <div class="font">
             <h2>【标题】<?php echo $data['name']?></h2>
             <ul>
-              <li>发表时间：<?php echo $data['createTime']?></li>
+              <li>发表时间：<?php echo substr($data['createTime'],1,10)?></li>
               <li>阅读量：<?php echo $data['viewCount']?></li>
               <li>回复量：<?php echo $discuss['count']?></li>
             </ul>
@@ -113,11 +113,13 @@
                       </div>
                       <div class="revert-wrap">
                         <ul class="revert-list">
-<!--                          <li>-->
-<!--                            <span class="revert-name">凤凰火:</span>-->
-<!--                            <em class="revert-text">这是回复的内容</em>-->
-<!--                            <div class="revert-time">2018-1-23</div>-->
-<!--                          </li>-->
+                          <?php if(is_array($v['son'])){ foreach($v['son'] as $key=>$val){?>
+                          <li>
+                            <span class="revert-name"><?php echo $val['nickname']==false?$val['userName']:$val['nickname']?>:</span>
+                            <em class="revert-text"><?php echo $val['comment']?></em>
+                            <div class="revert-time"><?php echo substr($val['createTime'],0,10)?></div>
+                          </li>
+                          <?php }}?>
                         </ul>
                         <div class="revert-input clearfix">
                           <textarea placeholder="我也来说两句...."></textarea>
@@ -128,11 +130,11 @@
                   </div>
                 </div>
                 <div class="reply-time clearfix">
-                  <p>发表于：2018-01-12</p>
+                  <p>发表于：<?php echo substr($v['createTime'],0,10)?></p>
                   <div>
                     <p>举报</p>
-                    <p>支持<span>100</span></p>
-                    <p>反对<span>20</span></p>
+                    <p>支持<span><?php echo $v['liked']?></span></p>
+                    <p>反对<span><?php echo $v['hate']?></span></p>
                   </div>
                 </div>
               </li>

@@ -13,8 +13,8 @@
     <div class="p-container clearfix">
       <div class="wrap fr">
         <ul class="header-login">
-          <li><a href="">登录</a></li>
-          <li><a href="">注册</a></li>
+          <li><a href="/login.html">登录</a></li>
+          <li><a href="/register">注册</a></li>
         </ul>
         <div class="header-person">
           <div>
@@ -22,7 +22,7 @@
             <p>这是名字</p>
           </div>
           <ul>
-            <li><a href="">个人中心</a></li>
+            <li><a href="/person.html">个人中心</a></li>
             <li><a href="">退出</a></li>
           </ul>
         </div>
@@ -369,60 +369,61 @@
         </div>
         <div class="box-cnt">
           <ul>
+            <?php foreach($data as $v){?>
             <li class="item">
               <div class="img">
                 <img src="" alt="">
               </div>
               <div class="right">
-                <h3><a href="">12.30换库后CR逻辑鸡精—Zora<i class="iconfont icon-hot"></a></i></h3>
+                <h3><a href="/details/<?php echo $v['id']?>.html"><?php echo $v['name']?><i class="iconfont icon-hot"></a></i></h3>
                 <div class="info-list clearfix">
-                  <div class="first-div"><span>小托君</span> <span>发布于2017-12-22</span></div>
+                  <div class="first-div"><span><?php echo $v['nickname']?$v['nickname']:$v['username']?></span> <span>发布于<?php echo substr($v['createTime'],0,10)?></span></div>
                   <div class="last-div">
-                    <p><span>Nicholas </span><span>最后回复于2018-01-12</span></p>
-                    <p><span>查看：778  </span>|<span>回复：66</span></p></div>
+                    <p><?php echo isset($v['last']['name'])&&$v['last']['name']!=false?"<span>".$v['last']['name']."</span> <span>最后回复于".$v['last']['time']."</span> ":''?></span></p>
+                    <p><span>查看：<?php echo $v['viewCount']?> </span>|<span>回复：<?php echo $v['count']?></span></p></div>
                 </div>
                 <div class="abstract">
-                  各位在一线备战托福的朋友们，主讲老师Zora，课程视频和课件在此下载学习；斩获更多托福
-                  信息，获取更多托福资讯，请添加微信公众号小托君。
+                  <?php echo $v['listeningFile']?>
                 </div>
               </div>
             </li>
-            <li class="item">
-              <div class="img">
-                <img src="" alt="">
-              </div>
-              <div class="right">
-                <h3><a href="">12.30换库后CR逻辑鸡精—Zora<i class="iconfont icon-hot"></a></i></h3>
-                <div class="info-list clearfix">
-                  <div class="first-div"><span>小托君</span> <span>发布于2017-12-22</span></div>
-                  <div class="last-div">
-                    <p><span>Nicholas </span><span>最后回复于2018-01-12</span></p>
-                    <p><span>查看：778  </span>|<span>回复：66</span></p></div>
-                </div>
-                <div class="abstract">
-                  各位在一线备战托福的朋友们，主讲老师Zora，课程视频和课件在此下载学习；斩获更多托福
-                  信息，获取更多托福资讯，请添加微信公众号小托君。
-                </div>
-              </div>
-            </li>
-            <li class="item">
-              <div class="img">
-                <img src="" alt="">
-              </div>
-              <div class="right">
-                <h3><a href="">12.30换库后CR逻辑鸡精—Zora<i class="iconfont icon-hot"></a></i></h3>
-                <div class="info-list clearfix">
-                  <div class="first-div"><span>小托君</span> <span>发布于2017-12-22</span></div>
-                  <div class="last-div">
-                    <p><span>Nicholas </span><span>最后回复于2018-01-12</span></p>
-                    <p><span>查看：778  </span>|<span>回复：66</span></p></div>
-                </div>
-                <div class="abstract">
-                  各位在一线备战托福的朋友们，主讲老师Zora，课程视频和课件在此下载学习；斩获更多托福
-                  信息，获取更多托福资讯，请添加微信公众号小托君。
-                </div>
-              </div>
-            </li>
+            <?php }?>
+<!--            <li class="item">-->
+<!--              <div class="img">-->
+<!--                <img src="" alt="">-->
+<!--              </div>-->
+<!--              <div class="right">-->
+<!--                <h3><a href="">12.30换库后CR逻辑鸡精—Zora<i class="iconfont icon-hot"></a></i></h3>-->
+<!--                <div class="info-list clearfix">-->
+<!--                  <div class="first-div"><span>小托君</span> <span>发布于2017-12-22</span></div>-->
+<!--                  <div class="last-div">-->
+<!--                    <p><span>Nicholas </span><span>最后回复于2018-01-12</span></p>-->
+<!--                    <p><span>查看：778  </span>|<span>回复：66</span></p></div>-->
+<!--                </div>-->
+<!--                <div class="abstract">-->
+<!--                  各位在一线备战托福的朋友们，主讲老师Zora，课程视频和课件在此下载学习；斩获更多托福-->
+<!--                  信息，获取更多托福资讯，请添加微信公众号小托君。-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </li>-->
+<!--            <li class="item">-->
+<!--              <div class="img">-->
+<!--                <img src="" alt="">-->
+<!--              </div>-->
+<!--              <div class="right">-->
+<!--                <h3><a href="">12.30换库后CR逻辑鸡精—Zora<i class="iconfont icon-hot"></a></i></h3>-->
+<!--                <div class="info-list clearfix">-->
+<!--                  <div class="first-div"><span>小托君</span> <span>发布于2017-12-22</span></div>-->
+<!--                  <div class="last-div">-->
+<!--                    <p><span>Nicholas </span><span>最后回复于2018-01-12</span></p>-->
+<!--                    <p><span>查看：778  </span>|<span>回复：66</span></p></div>-->
+<!--                </div>-->
+<!--                <div class="abstract">-->
+<!--                  各位在一线备战托福的朋友们，主讲老师Zora，课程视频和课件在此下载学习；斩获更多托福-->
+<!--                  信息，获取更多托福资讯，请添加微信公众号小托君。-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </li>-->
           </ul>
         </div>
       </div>

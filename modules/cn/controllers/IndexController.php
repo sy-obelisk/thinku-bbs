@@ -19,9 +19,11 @@ class IndexController extends Controller
     public function actionIndex()
     {
         $model=new Content();
-        $data=$model->getList(2);
+        $first='2,3,4,5';
+        $data=$model->getList($first);
         $pageStr=$data['pageStr'];
         unset($data['pageStr']);
+//        echo '<pre>';
 //        var_dump($data);die;
         return $this->render('index',['data'=>$data,'pageStr'=>$pageStr]);
     }
