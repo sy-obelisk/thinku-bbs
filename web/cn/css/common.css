@@ -176,7 +176,8 @@ body{
 }
 .nav .title {
   float: left;
-  line-height: 60px;
+  /*line-height: 60px;*/
+  margin-top: 20px;
   margin-left: 44px;
 }
 .nav>.search {
@@ -198,6 +199,9 @@ body{
 .nav>.search>ul>li a {
   font-size: 14px;
   color: #7d1f88;
+}
+.nav>.search>ul>li:hover a {
+  text-decoration: underline;
 }
 .nav>.search>form {
   position: relative;

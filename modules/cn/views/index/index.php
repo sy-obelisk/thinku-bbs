@@ -317,34 +317,145 @@
             </ul>
             <!--留学-->
             <ul class="clearfix">
-              <li><a href="">美国</a></li>
-              <li><a href="">英国</a></li>
-              <li><a href="">澳洲</a></li>
-              <li><a href="">加拿大</a></li>
-              <li><a href="">香港</a></li>
-              <li><a href="">新加坡</a></li>
-              <li><a href="">法国</a></li>
-              <li><a href="">其他</a></li>
-              <li><a href="">签证</a></li>
-              <li><a href="">答疑</a></li>
-              <li><a href="">院校项目</a></li>
-              <li><a href="">实习就业</a></li>
-              <li><a href="">面试</a></li>
+              <div class="abroad-wrap">
+                <div class="hd">
+                  <ul>
+                    <li>美国</li>
+                    <li>英国</li>
+                    <li>澳洲</li>
+                    <li>加拿大</li>
+                    <li>香港</li>
+                    <li>新加坡</li>
+                    <li>法国</li>
+                    <li>其他</li>
+                  </ul>
+                </div>
+                <div class="bd">
+                  <ul>
+                    <li><a href="">签证</a></li>
+                    <li><a href="">答疑</a></li>
+                    <li><a href="">院校项目</a></li>
+                    <li><a href="">实习就业</a></li>
+                    <li><a href="">面试</a></li>
+                  </ul>
+                  <ul>
+                    <li><a href="">签证</a></li>
+                    <li><a href="">答疑</a></li>
+                    <li><a href="">院校项目</a></li>
+                    <li><a href="">实习就业</a></li>
+                    <li><a href="">面试</a></li>
+                  </ul>
+                  <ul>
+                    <li><a href="">签证</a></li>
+                    <li><a href="">答疑</a></li>
+                    <li><a href="">院校项目</a></li>
+                    <li><a href="">实习就业</a></li>
+                    <li><a href="">面试</a></li>
+                  </ul>
+                  <ul>
+                    <li><a href="">签证</a></li>
+                    <li><a href="">答疑</a></li>
+                    <li><a href="">院校项目</a></li>
+                    <li><a href="">实习就业</a></li>
+                    <li><a href="">面试</a></li>
+                  </ul>
+                  <ul>
+                    <li><a href="">签证</a></li>
+                    <li><a href="">答疑</a></li>
+                    <li><a href="">院校项目</a></li>
+                    <li><a href="">实习就业</a></li>
+                    <li><a href="">面试</a></li>
+                  </ul>
+                  <ul>
+                    <li><a href="">签证</a></li>
+                    <li><a href="">答疑</a></li>
+                    <li><a href="">院校项目</a></li>
+                    <li><a href="">实习就业</a></li>
+                    <li><a href="">面试</a></li>
+                  </ul>
+                  <ul>
+                    <li><a href="">签证</a></li>
+                    <li><a href="">答疑</a></li>
+                    <li><a href="">院校项目</a></li>
+                    <li><a href="">实习就业</a></li>
+                    <li><a href="">面试</a></li>
+                  </ul>
+                  <ul>
+                    <li><a href="">签证</a></li>
+                    <li><a href="">答疑</a></li>
+                    <li><a href="">院校项目</a></li>
+                    <li><a href="">实习就业</a></li>
+                    <li><a href="">面试</a></li>
+                  </ul>
+                </div>
+              </div>
             </ul>
             <!--考试-->
             <ul class="clearfix">
-              <li><a href="">GMAT</a></li>
-              <li><a href="">TOEFL</a></li>
-              <li><a href="">IELTS</a></li>
-              <li><a href="">GRE</a></li>
-              <li><a href="">SAT</a></li>
-              <li><a href="">ACT</a></li>
-              <li><a href="">AP</a></li>
-              <li><a href="">A Level</a></li>
-              <li><a href="">答疑</a></li>
-              <li><a href="">备考经验</a></li>
-              <li><a href="">资料下载</a></li>
-              <li><a href="">机经下载</a></li>
+              <div class="exam-wrap">
+                <div class="hd">
+                  <ul>
+                    <li>GMAT</li>
+                    <li>TOEFL</li>
+                    <li>IELTS</li>
+                    <li>GRE</li>
+                    <li>SAT</li>
+                    <li>ACT</li>
+                    <li>AP</li>
+                    <li>A Level</li>
+                  </ul>
+                </div>
+                <div class="bd">
+                  <ul>
+                   <li><a href="">答疑</a></li>
+                   <li><a href="">备考经验</a></li>
+                   <li><a href="">资料下载</a></li>
+                   <li><a href="">机经下载</a></li>
+                 </ul>
+                  <ul>
+                    <li><a href="">答疑</a></li>
+                    <li><a href="">备考经验</a></li>
+                    <li><a href="">资料下载</a></li>
+                    <li><a href="">机经下载</a></li>
+                  </ul>
+                  <ul>
+                    <li><a href="">答疑</a></li>
+                    <li><a href="">备考经验</a></li>
+                    <li><a href="">资料下载</a></li>
+                    <li><a href="">机经下载</a></li>
+                  </ul>
+                  <ul>
+                    <li><a href="">答疑</a></li>
+                    <li><a href="">备考经验</a></li>
+                    <li><a href="">资料下载</a></li>
+                    <li><a href="">机经下载</a></li>
+                  </ul>
+                  <ul>
+                    <li><a href="">答疑</a></li>
+                    <li><a href="">备考经验</a></li>
+                    <li><a href="">资料下载</a></li>
+                    <li><a href="">机经下载</a></li>
+                  </ul>
+                  <ul>
+                    <li><a href="">答疑</a></li>
+                    <li><a href="">备考经验</a></li>
+                    <li><a href="">资料下载</a></li>
+                    <li><a href="">机经下载</a></li>
+                  </ul>
+                  <ul>
+                    <li><a href="">答疑</a></li>
+                    <li><a href="">备考经验</a></li>
+                    <li><a href="">资料下载</a></li>
+                    <li><a href="">机经下载</a></li>
+                  </ul>
+                  <ul>
+                    <li><a href="">答疑</a></li>
+                    <li><a href="">备考经验</a></li>
+                    <li><a href="">资料下载</a></li>
+                    <li><a href="">机经下载</a></li>
+                  </ul>
+                </div>
+              </div>
             </ul>
             <!--职业-->
             <ul class="clearfix">
@@ -605,7 +716,11 @@
 // 热门公开课
     jQuery(".hotpublic .public").slide({ mainCell:".box ul",effect:"leftLoop", autoPlay:false, delayTime:400});
 //  帖子导航
-    jQuery(".box-tab").slide({});
+    jQuery(".box-tab").slide({trigger:"click"});
+//    考试
+    jQuery(".exam-wrap").slide({});
+//    留学
+    jQuery(".abroad-wrap").slide({});
 //    分页
     $.jqPaginator('#pagination1', {
       totalPages: 20,

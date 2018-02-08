@@ -302,19 +302,19 @@
   width: 770px;
   float: left;
 }
-.posts .box-tab .hd ul {
+.posts .box-tab>.hd ul {
   border-bottom: 1px solid #7d1f88;
 }
-.posts .box-tab .hd ul>li {
+.posts .box-tab>.hd ul>li {
   position: relative;
   float: left;
   width: 20%;
   text-align: center;
 }
-.posts .box-tab .hd ul>li.on p {
+.posts .box-tab>.hd ul>li.on p {
   color: #7d1f88;
 }
-.posts .box-tab .hd ul>li.on:before {
+.posts .box-tab>.hd ul>li.on:before {
   position: absolute;
   display: block;
   content: '';
@@ -328,7 +328,7 @@
   border: 10px solid transparent;
   border-bottom-color: #7d1f88;
 }
-.posts .box-tab .hd ul>li.on:after {
+.posts .box-tab>.hd ul>li.on:after {
   position: absolute;
   display: block;
   content: '';
@@ -342,47 +342,60 @@
   border: 10px solid transparent;
   border-bottom-color: #fff;
 }
-.posts .box-tab .hd ul>li .img {
+.posts .box-tab>.hd ul>li .img {
   width: 90px;
   height: 90px;
   margin: 0 auto;
   background: url("/cn/images/index-icon02.png") 0 0 no-repeat;
 }
-.posts .box-tab .hd ul>li:nth-child(2) .img {
+.posts .box-tab>.hd ul>li:nth-child(2) .img {
   background-position-x: -90px;
 }
-.posts .box-tab .hd ul>li:nth-child(3) .img {
+.posts .box-tab>.hd ul>li:nth-child(3) .img {
   background-position-x: -180px;
 }
-.posts .box-tab .hd ul>li:nth-child(4) .img {
+.posts .box-tab>.hd ul>li:nth-child(4) .img {
   background-position-x: -270px;
 }
-.posts .box-tab .hd ul>li:nth-child(5) .img {
+.posts .box-tab>.hd ul>li:nth-child(5) .img {
   background-position-x: -360px;
 }
-.posts .box-tab .hd ul>li>p {
+.posts .box-tab>.hd ul>li>p {
   line-height: 40px;
   font-size: 16px;
 }
 
-.posts .box-tab .bd ul {
+.posts .box-tab>.bd>ul {
   min-height: 76px;
 }
-.posts .box-tab .bd ul>li {
+.posts .box-tab>.bd ul>li {
   float: left;
   padding: 10px 0;
   width: 12%;
   text-align: center;
 }
-.posts .box-tab .bd ul>li a {
+.posts .box-tab>.bd ul>li a {
   display: block;
   border-right: 1px solid #7d1f88;
   font-size: 16px;
 }
-.posts .box-tab .bd ul>li i{
+.posts .box-tab>.bd ul>li:last-child a {
+  border-right: 0;
+}
+.posts .box-tab>.bd ul>li i{
   color: red;
 }
-.posts .box-tab .bd ul>li a:hover {
+.posts .box-tab>.bd ul>li a:hover {
+  color: #7d1f88;
+  text-decoration: underline;
+}
+.posts .box-tab>.bd>ul>div .hd li.on {
+  color: #7d1f88;
+  text-decoration: underline;
+  font-weight: 600;
+}
+.posts .box-tab>.bd>ul>div .hd li:hover {
+  cursor: default;
   color: #7d1f88;
 }
 .posts .box-cnt>ul>.item {
