@@ -7,6 +7,7 @@
  */
 namespace app\modules\cn\controllers;
 
+use app\modules\cn\models\Login;
 use yii;
 use yii\web\Controller;
 use app\modules\cn\models\Content;
@@ -29,6 +30,17 @@ class LoginController extends Controller
     public function actionFindKey()
     {
         return $this->render('key');
+    }
+
+    public function actionVerifyCode()
+    {
+        $login=new Login();
+        $re=$login->verifyCode();
+        var_dump($re);die;
+//        session_start();
+//        getCode(4,60,20);
+
+
     }
 
 

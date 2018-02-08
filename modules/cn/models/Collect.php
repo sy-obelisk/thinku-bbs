@@ -50,8 +50,10 @@ class Collect extends ActiveRecord
     public function CollectionList($page=1,$pageSize)
     {
         $userId = Yii::$app->session->get('userId');
-        $data['data']= Yii::$app->db->createCommand("SELECT c.name,c.id,u.nickname,c.id,u.userName from {{%user_collection}} uc left join {{%content}} c on uc.userId=c.userId left join {{%user}} u on uc.userId=u.id where userId=$userId limit ($page-1)*$pageSize,$pageSize")->queryAll();
-        $data['count']=count(Yii::$app->db->createCommand("SELECT c.name,c.id,u.nickname,c.id,u.userName from {{%user_collection}} uc left join {{%content}} c on uc.userId=c.userId left join {{%user}} u on uc.userId=u.id where userId=$userId")->queryAll());
+        $userId = 1;
+        $offset = $pageSize * ($page - 1);
+        $data['data']= Yii::$app->db->createCommand("SELECT c.name,c.id,u.nickname,c.id,u.userName from {{%user_collection}} uc left join {{%content}} c on uc.userId=c.userId left join {{%user}} u on uc.userId=u.id where uc.userId=$userId limit $offset,$pageSize")->queryAll();
+        $data['count']=count(Yii::$app->db->createCommand("SELECT c.name,c.id,u.nickname,c.id,u.userName from {{%user_collection}} uc left join {{%content}} c on uc.userId=c.userId left join {{%user}} u on uc.userId=u.id where uc.userId=$userId")->queryAll());
         $data['page']=$page;
         $data['pageCount']=ceil($data['count']/$pageSize);
         return $data;
