@@ -89,7 +89,7 @@ $(function () {
   _details.init();
 //  分页
   $.jqPaginator('#pagination1', {
-    totalPages: 100,
+    totalPages: 20,
     visiblePages: 7,
     currentPage: 1,
     onPageChange: function (num, type) {

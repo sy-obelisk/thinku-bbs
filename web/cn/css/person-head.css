@@ -1,0 +1,33 @@
+.head-now {
+  padding-top: 20px;
+  margin-bottom: 30px;
+}
+.head-now>p,
+.head-up>p {
+  line-height: 30px;
+  font-size: 14px;
+}
+.head-now>div,
+.head-up>div {
+  width: 190px;
+  height: 165px;
+  margin-left: 50px;
+  background-color: #fff;
+  border: 1px solid #e2e2e2;
+  -webkit-box-shadow: 0 0 5px #e2e2e2;
+  -moz-box-shadow: 0 0 5px #e2e2e2;
+  box-shadow: 0 0 5px #e2e2e2;
+}
+.head-up>div p {
+  width: 80%;
+  height: 30px;
+  line-height: 30px;
+  margin: 60px auto 0;
+  font-size: 14px;
+  color: #7d1f88;
+  border: 1px solid #7d1f88;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  text-align: center;
+}

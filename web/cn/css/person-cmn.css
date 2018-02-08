@@ -1,0 +1,119 @@
+.person-aside {
+  width: 240px;
+  float: left;
+  background-color: #f9f9f9;
+}
+.person-aside .aside-head {
+  padding: 18px 25px;
+}
+.person-aside .aside-head>div {
+  width: 100%;
+  height: 165px;
+  overflow: hidden;
+  background-color: #fff;
+}
+.person-aside .aside-head>div img {
+  width: 100%;
+  height: 100%;
+}
+.person-aside .aside-head>p {
+  line-height: 26px;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+.person-aside .aside-head>p:first-of-type {
+  color: #7d1f88;
+}
+.person-aside .aside-list {
+
+}
+.person-aside .aside-list>li {
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  border-bottom: 1px solid #e2e2e2;
+}
+.person-aside .aside-list>li:first-of-type {
+  border-top: 1px solid #e2e2e2;
+}
+.person-aside .aside-list>li>a {
+  font-size: 14px;
+}
+.person-aside .aside-list>li>a:hover {
+  color: #7d1f88;
+}
+.person-aside .aside-list>li.on {
+  background-color: #7d1f88;
+}
+.person-aside .aside-list>li.on a {
+  color: #fff;
+}
+
+.person-cnt {
+  width: 910px;
+  padding: 15px;
+  margin-left: 260px;
+  overflow: hidden;
+  background-color: #f9f9f9;
+}
+
+/*帖子*/
+.person-box .person-list>.item {
+  min-height: 115px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+.person-box .person-list>.item .collect-img {
+  float: left;
+  width: 80px;
+  height: 80px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background-color: #ccc;
+}
+.person-box .person-list .collect-right {
+  overflow: hidden;
+  margin-left: 90px;
+}
+.person-box .person-list .collect-right>h3 a{
+  font-size: 16px;
+  font-weight: 400;
+}
+.person-box .person-list .collect-right>h3 a:hover {
+  color: #7d1f88;
+}
+.person-box .person-list .collect-right>h3 i{
+  padding-left: 10px;
+  color: red;
+}
+.person-box .person-list .collect-right>.info-list {
+  padding: 10px 0;
+  /*border-bottom: 1px dashed #ccc;*/
+}
+.person-box .person-list .collect-right>.info-list>div {
+  font-size: 14px;
+  color: #777;
+}
+.person-box .person-list .collect-right>.info-list>.first-div {
+  float: left;
+}
+.person-box .person-list .collect-right>.info-list>.last-div {
+  float: right;
+}
+.person-box .person-list .collect-right>.info-list>.last-div>p {
+  display: inline-block;
+  color: #777;
+}
+.person-box .person-list .collect-right>.abstract {
+  line-height: 26px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 14px;
+}

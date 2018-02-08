@@ -1,0 +1,70 @@
+.post-msg {
+  padding-right: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #ccc;
+  text-align: right;
+}
+.post-msg>a {
+  font-size: 16px;
+  color: #7d1f88;
+}
+.article-tab {
+  padding: 10px 0;
+  font-size: 0;
+}
+.article-tab>p {
+  display: inline-block;
+  font-size: 16px;
+}
+.article-tab>p:first-child {
+  width: 65%;
+}
+.article-tab>p:last-child {
+  width: 35%;
+}
+.article-list>li {
+  padding: 10px 0;
+  min-height: 90px;
+  border-bottom: 1px solid #ccc;
+}
+.article-list>li:last-child {
+  border-bottom: 0;
+}
+.article-list>li .article-img {
+  float: left;
+  width: 80px;
+  height: 80px;
+  background-color: #fff;
+}
+.article-list>li .article-info {
+  float: left;
+  width: 55%;
+  margin-left: 10px;
+}
+.article-list>li .article-info>h3 {
+  line-height: 40px;
+}
+.article-list>li .article-info>h3 a{
+  font-size: 16px;
+  font-weight: 400;
+}
+.article-list>li .article-info>h3 a:hover {
+  color: #7d1f88;
+}
+.article-list>li .article-info>div {
+  font-size: 0;
+}
+.article-list>li .article-info>div>p {
+  display: inline-block;
+  line-height: 30px;
+  font-size: 14px;
+}
+.article-list>li .article-info>div>p:first-child {
+  margin-right: 25px;
+}
+.article-list>li .article-info>div>p:last-child span {
+  padding: 0 10px;
+}
+.article-list>li .sort {
+  line-height: 80px;
+}

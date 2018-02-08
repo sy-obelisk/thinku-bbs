@@ -425,8 +425,13 @@
 <!--              </div>-->
 <!--            </li>-->
           </ul>
+          <!---分页-->
+          <div class="page-wrap">
+            <ul class="pagination" id="pagination1"></ul>
+          </div>
         </div>
       </div>
+      <!-- 侧边栏-->
       <aside class="aside">
         <ul class="posted">
           <li><a href="/new-article.html"><i class="iconfont icon-hot"></i>我要发帖</a></li>
@@ -585,10 +590,11 @@
 </body>
 <script src="https://use.fontawesome.com/0e249ab73d.js"></script>
 <script src="/cn/js/jquery.SuperSlide.2.1.js"></script>
+<script src="/cn/js/jqPaginator.min.js"></script>
 <script src="/cn/js/common.js"></script>
 <script>
   $(function () {
-    //  banner图
+//  banner图
     jQuery(".bnr-banner").slide({ mainCell:".box ul",effect:"leftLoop", autoPlay:false, delayTime:400});
 //  文章资讯
     jQuery(".bnr-info").slide({delayTime:0 });
@@ -598,12 +604,19 @@
     jQuery(".workcase .score").slide({mainCell:".bd ul",autoPlay:true,effect:"topMarquee",vis:3,interTime:50});
 // 热门公开课
     jQuery(".hotpublic .public").slide({ mainCell:".box ul",effect:"leftLoop", autoPlay:false, delayTime:400});
-  })
 //  帖子导航
-  jQuery(".box-tab").slide({});
-//  我要规划
-  jQuery(".project").slide({});
-//  热帖排行榜
-  jQuery(".ranking").slide({});
+    jQuery(".box-tab").slide({});
+//    分页
+    $.jqPaginator('#pagination1', {
+      totalPages: 20,
+      visiblePages: 7,
+      currentPage: 1,
+      onPageChange: function (num, type) {
+        console.log(num,type);
+        // $('#p1').text(type + '：' + num);
+      }
+    });
+  })
+
 </script>
 </html>

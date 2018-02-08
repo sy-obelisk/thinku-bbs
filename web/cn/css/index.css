@@ -386,6 +386,7 @@
   color: #7d1f88;
 }
 .posts .box-cnt>ul>.item {
+  min-height: 90px;
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
 }
@@ -415,7 +416,7 @@
 }
 .posts .box-cnt>ul .right>.info-list {
   padding: 10px 0;
-  border-bottom: 1px dashed #ccc;
+  /*border-bottom: 1px dashed #ccc;*/
 }
 .posts .box-cnt>ul .right>.info-list>div {
   font-size: 14px;

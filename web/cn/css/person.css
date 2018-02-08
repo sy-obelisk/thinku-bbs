@@ -1,54 +1,99 @@
-.person-aside {
-  width: 240px;
-  float: left;
-  background-color: #f9f9f9;
+
+.single-tab>ul {
+  border-bottom: 1px solid #e2e2e2;
+  font-size: 0;
 }
-.person-aside .aside-head {
-  padding: 18px 25px;
-}
-.person-aside .aside-head>div {
-  width: 100%;
-  height: 165px;
-  overflow: hidden;
-  background-color: #fff;
-}
-.person-aside .aside-head>div img {
-  width: 100%;
-  height: 100%;
-}
-.person-aside .aside-head>p {
-  line-height: 26px;
+.single-tab>ul>li {
+  display: inline-block;
+  line-height: 30px;
+  width: 24%;
   text-align: center;
+  border-right: 1px solid #e2e2e2;
+  font-size: 14px;
+  cursor: default;
+}
+.single-tab>ul>li:last-child {
+  border-right: none;
+}
+.single-tab>ul>li span {
+  display: inline-block;
+  cursor: default;
+}
+.single-tab>ul>li.on span {
+  border-bottom: 2px solid #7d1f88;
+  color: #7d1f88;
+}
+/*个人资料+修改密码*/
+.single-box .data>li,
+.single-box .pass>li {
+  line-height: 50px;
+}
+.single-box .data>li>label,
+.single-box .pass>li>label {
+  display: inline-block;
+  width: 80px;
+  font-size: 14px;
+}
+.single-box .data>li>input,
+.single-box .pass>li>input {
+  outline: none;
+  width: 240px;
+  padding: 5px 10px;
+  border: 1px solid #e2e2e2;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.single-box .data>input,
+.single-box .pass>input {
+  outline: none;
+  padding: 5px 20px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #7d1f88;
+  color: #fff;
+  font-size: 14px;
+}
+/*积分*/
+.single-box .score {
+  margin-top: 25px;
+}
+.single-box .score>h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: normal;
+  color: #7d1f88;
+}
+.single-box .score>h5 {
+  line-height: 28px;
+  font-size: 16px;
+  font-weight: normal;
+}
+.single-box .score>li {
+  padding-left: 30px;
+  line-height: 26px;
+  font-size: 0;
+}
+.single-box .score>li p {
+  display: inline-block;
+  font-size: 14px;
+}
+.single-box .score>li p:first-child {
+  width: 50%;
   overflow: hidden;
   white-space: nowrap;
   -ms-text-overflow: ellipsis;
   text-overflow: ellipsis;
-  font-size: 14px;
+  text-align: left;
 }
-.person-aside .aside-head>p:first-of-type {
-  color: #7d1f88;
+.single-box .score>li p:nth-child(2),
+.single-box .score>li p:nth-child(3){
+  width: 25%;
+  text-align: left;
 }
-.person-aside .aside-list {
-
-}
-.person-aside .aside-list>li {
-  height: 60px;
-  line-height: 60px;
-  text-align: center;
-  border-bottom: 1px solid #e2e2e2;
-}
-.person-aside .aside-list>li:first-of-type {
-  border-top: 1px solid #e2e2e2;
-}
-.person-aside .aside-list>li>a {
-  font-size: 14px;
-}
-.person-aside .aside-list>li>a:hover {
-  color: #7d1f88;
-}
-.person-aside .aside-list>li.active {
-  background-color: #7d1f88;
-}
-.person-aside .aside-list>li.active a {
-  color: #fff;
+/*用户权限*/
+.single-box .limit {
+  margin-top: 25px;
 }

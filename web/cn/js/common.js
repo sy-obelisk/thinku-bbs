@@ -17,5 +17,8 @@ $(function () {
   }).mouseleave(function () {
     $('.header-person>ul').hide();
   });
-
+//  侧边栏我要规划
+  jQuery(".project").slide({});
+//  侧边栏热帖排行榜
+  jQuery(".ranking").slide({});
 });

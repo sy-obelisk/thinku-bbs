@@ -6,6 +6,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="/cn/css/iconfont/iconfont.css">
   <link rel="stylesheet" href="/cn/css/common.css">
+  <link rel="stylesheet" href="/cn/css/person-cmn.css">
   <link rel="stylesheet" href="/cn/css/person.css">
 </head>
 <body>
@@ -62,20 +63,129 @@
       <p>积分：20</p>
     </div>
     <ul class="aside-list">
-      <li>
-        <a href="">设置头像</a>
-      </li>
-      <li class="active"><a href="">个人中心</a></li>
-      <li><a href="">我的收藏</a></li>
-      <li><a href="">我的分享</a></li>
-      <li><a href="">我的帖子</a></li>
-      <li><a href="">留言板</a></li>
-      <li><a href="">系统消息</a></li>
+      <li><a href="change-image.html">设置头像</a></li>
+      <li class="on"><a href="person.html">个人中心</a></li>
+      <li><a href="collection.html">我的收藏</a></li>
+      <li><a href="share.html">我的分享</a></li>
+      <li><a href="article.html">我的帖子</a></li>
+      <li><a href="message-board.html">留言板</a></li>
+      <li><a href="info.html">系统消息</a></li>
     </ul>
   </aside>
   <!--内容区-->
-  <section class="person-cnt">
-
+  <section class="person-cnt single-cnt">
+    <div class="single-tab hd">
+      <ul>
+        <li class="on"><span>个人资料</span></li>
+        <li><span>积分</span></li>
+        <li><span>用户安全</span></li>
+        <li><span>密码安全</span></li>
+      </ul>
+    </div>
+    <div class="single-box bd">
+      <!--个人资料-->
+      <ul class="data">
+        <li>
+          <label for="">用&nbsp;户&nbsp;名：</label><input type="text">
+        </li>
+        <li>
+          <label for="">真实姓名：</label><input type="text">
+        </li>
+        <li>
+          <label for="">生&nbsp;&nbsp;&nbsp; 日：</label><input type="text" placeholder="请选择日期" id="birthDate">
+        </li>
+        <li>
+          <label for="">现&nbsp;居&nbsp;地：</label><input type="text">
+        </li>
+        <li>
+          <label for="">联系电话：</label><input type="text">
+        </li>
+        <li>
+          <label for="">email&nbsp;&nbsp; ：</label><input type="text">
+        </li>
+        <li>
+          <label for="">毕业院校：</label><input type="text">
+        </li>
+        <li>
+          <label for="">学&nbsp;&nbsp;&nbsp; 历：</label><input type="text">
+        </li>
+        <input type="button" id="dataBtn" value="保存">
+      </ul>
+      <!--积分-->
+      <ul class="score">
+        <h2>积分：20</h2>
+        <h5>积分记录</h5>
+        <li>
+          <p>发布帖子</p>
+          <p>+2</p>
+          <p>2018-01-12</p>
+        </li>
+        <li>
+          <p>发布帖子</p>
+          <p>+2</p>
+          <p>2018-01-12</p>
+        </li>
+        <li>
+          <p>发布帖子</p>
+          <p>+2</p>
+          <p>2018-01-12</p>
+        </li>
+        <li>
+          <p>发布帖子</p>
+          <p>+2</p>
+          <p>2018-01-12</p>
+        </li>
+        <li>
+          <p>发布帖子</p>
+          <p>+2</p>
+          <p>2018-01-12</p>
+        </li>
+        <li>
+          <p>发布帖子</p>
+          <p>+2</p>
+          <p>2018-01-12</p>
+        </li>
+        <li>
+          <p>发布帖子</p>
+          <p>+2</p>
+          <p>2018-01-12</p>
+        </li>
+        <li>
+          <p>发布帖子</p>
+          <p>+2</p>
+          <p>2018-01-12</p>
+        </li>
+        <!---分页-->
+        <div class="page-wrap">
+          <ul class="pagination" id="pagination1"></ul>
+        </div>
+      </ul>
+      <!--用户权限-->
+      <ul class="limit">
+        <li>
+          <img src="/cn/images/person-limit.png" alt="">
+        </li>
+      </ul>
+      <!-- 修改密码-->
+      <ul class="pass">
+        <li>
+          <label for="">新&nbsp;密&nbsp;码：</label><input type="text">
+        </li>
+        <li>
+          <label for="">密码确认：</label><input type="text">
+        </li>
+        <li>
+          <label for="">email&nbsp;：</label><input type="text">
+        </li>
+        <li>
+          <label for="">手机号码：</label><input type="text">
+        </li>
+        <li>
+          <label for="">验&nbsp;证码&nbsp;：</label><input type="text">
+        </li>
+        <input type="button" value="提交" id="passBtn">
+      </ul>
+    </div>
   </section>
 </div>
 <footer class="footer">
@@ -120,12 +230,23 @@
 <script src="https://use.fontawesome.com/0e249ab73d.js"></script>
 <script src="/cn/js/jquery.SuperSlide.2.1.js"></script>
 <script src="/cn/js/jqPaginator.min.js"></script>
+<script src="/cn/laydate/laydate.js"></script>
 <script src="/cn/js/common.js"></script>
-<script src="/cn/js/details.js"></script>
 <script>
-  //  我要规划
-  jQuery(".project").slide({});
-  //  热帖排行榜
-  jQuery(".ranking").slide({});
+  jQuery(".single-cnt").slide({});
+  //  全部消息分页
+  $.jqPaginator('#pagination1', {
+    totalPages: 20,
+    visiblePages: 7,
+    currentPage: 1,
+    onPageChange: function (num, type) {
+      console.log(num,type);
+      // $('#p1').text(type + '：' + num);
+    }
+  });
+  //  日期选择
+  laydate.render({
+    elem: '#birthDate' //指定元素
+  });
 </script>
 </html>
