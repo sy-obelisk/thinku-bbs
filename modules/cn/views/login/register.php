@@ -110,7 +110,7 @@
 </body>
 <script src="https://use.fontawesome.com/0e249ab73d.js"></script>
 <script src="/cn/js/Validform_v5.3.2_min.js"></script>
-<!--<script src="/cn/js/common.js"></script>-->
-<script src="/cn/js/login.js"></script>
+<script src="/cn/js/common.js"></script>
+<!--<script src="/cn/js/login.js"></script>-->
 <script src="/cn/js/register.js"></script>
 </html>

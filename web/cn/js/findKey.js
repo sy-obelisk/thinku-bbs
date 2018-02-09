@@ -34,7 +34,7 @@ var _findKey = {
         return false;
       }
       $.post('/cn/api/find-pass',{type:1,registerStr:phone,code:code,pass:pass},function(res){
-        if(res.code == 1){
+        if(res.code == 0){
           alert(res.message);
           location.href='/cn/index';
         }else{
@@ -60,7 +60,7 @@ var _findKey = {
       return false;
     }
     $.post('/cn/api/find-pass',{type:2,registerStr:email,code:emailCode,pass:emailPass},function(res){
-      if(res.code == 1){
+      if(res.code == 0){
         alert(res.message);
         location.href='/cn/index';
       }else{
@@ -71,4 +71,14 @@ var _findKey = {
 };
 $(function () {
   _findKey.init();
+  $(".login-phone").Validform({
+    btnSubmit:"#btn_sub",
+    showAllError:true,
+    tiptype:3
+  });
+  $(".login-email").Validform({
+    btnSubmit:"#btn_phone",
+    showAllError:true,
+    tiptype:3
+  });
 })

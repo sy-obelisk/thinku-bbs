@@ -45,7 +45,7 @@ var _details = {
         comment: replyCnt
       },function (res) {
         console.log(res);
-        if (res.code == 1) {
+        if (res.code == 0) {
           var lis = "<li class='reply-item'>";
           lis+= "<div class='reply-wrap clearfix'>"+
             "<div class='reply-img'>"+

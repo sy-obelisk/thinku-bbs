@@ -34,7 +34,9 @@ var _register = {
     }
     $.post('/cn/api/register',{type:1,registerStr:phone,code:code,pass:phonePass},function(res){
       console.log(res);
-      if(res.code == 1){
+      if(res.code == 0){
+        alert(res.message);
+        location.href = './login.html';
         // $(".reg-success").show();
         // $(".shop-login").hide();
       }else{
@@ -58,7 +60,7 @@ var _register = {
     }
     $.post('/cn/api/register',{type:2,registerStr:email,code:code,pass:emailPass},function(res){
       console.log(res);
-      if(res.code == 1){
+      if(res.code == 0){
         // $(".reg-success").show();
         // $(".shop-login").hide();
       }else{
@@ -81,4 +83,14 @@ var _register = {
 };
 $(function () {
   _register.init();
+  $(".login-phone").Validform({
+    btnSubmit:"#btn_sub",
+    showAllError:true,
+    tiptype:3
+  });
+  $(".login-email").Validform({
+    btnSubmit:"#btn_phone",
+    showAllError:true,
+    tiptype:3
+  });
 })

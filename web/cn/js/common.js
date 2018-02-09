@@ -7,7 +7,9 @@ var _common = {
     this.bind();
   },
   bind : function () {
-    
+    $('.login-change').click(function () {
+      $(this).parent().css('display','none').siblings('.userMessage').show();
+    });
   },
   setCookie : function (name,value) {
     var Days = 30,
@@ -31,6 +33,9 @@ var _common = {
       document.cookie= name + "="+cval+";expires="+exp.toGMTString();
   }
 };
+
+
+
 $(function () {
   _common.init();
   // 导航头部个人中心
@@ -44,5 +49,67 @@ $(function () {
   }).mouseleave(function () {
     $('.header-person>ul').hide();
   });
-
 });
+
+// 短信、邮箱验证码
+function clickDX(e, timeN, str,emailType) {
+  var phoneReg   = /((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/;
+  var emailReg   = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$/;
+  var _that      = $(e);
+  var defalutVal = $(e).val();
+  var timeNum    = timeN; // 再次点击时间间隔
+  if(str == 1){
+    var phone = $('.phones').val();
+    if(phone == ""){
+      alert('请输入手机号！');
+      return false;
+    }
+    if(!phoneReg.test(phone)){
+      alert('手机号格式不正确(不能小于11位)!');
+      return false;
+    }
+    $.post('/cn/api/phone-code',{phoneNum:phone,type:emailType},function(res){
+      alert(res.message);
+      if(res.code == 0){
+        _that.attr("disabled", true);
+        _that.unbind("click").val(timeNum + "秒后重发");
+        var timer = setInterval(function () {
+          timeNum--;
+          _that.val(timeNum + "秒后重发");
+          if (timeNum < 0) {
+            clearInterval(timer);
+            $(e).removeAttr("disabled");
+            _that.val(defalutVal);
+          }
+        }, 1000);
+      }
+    },'json')
+  }else{
+    var mail = $('.email').val();
+    console.log(mail);
+    if(mail == ""){
+      alert("请输入您的邮箱!");
+      return false;
+    }
+    if(!emailReg.test(mail)){
+      alert('邮箱格式不正确!');
+      return false;
+    }
+    $.post('/cn/api/send-mail',{email:mail,type:emailType},function(res){
+      alert(res.message);
+      if(res.code == 0){
+        $(e).attr("disabled", true);
+        _that.unbind("click").val(timeNum + "秒后重发");
+        var timer = setInterval(function () {
+          _that.val(timeNum + "秒后重发");
+          timeNum--;
+          if (timeNum < 0) {
+            clearInterval(timer);
+            $(e).removeAttr("disabled");
+            _that.val(defalutVal);
+          }
+        }, 1000);
+      }
+    },'json')
+  }
+}
