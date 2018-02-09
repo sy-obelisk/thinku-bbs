@@ -314,4 +314,10 @@
 <script src="/cn/js/jqPaginator.min.js"></script>
 <script src="/cn/js/common.js"></script>
 <script src="/cn/js/details.js"></script>
+<script>
+  //  侧边栏我要规划
+  jQuery(".project").slide({});
+  //  侧边栏热帖排行榜
+  jQuery(".ranking").slide({});
+</script>
 </html>

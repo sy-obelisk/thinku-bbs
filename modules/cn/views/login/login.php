@@ -30,7 +30,7 @@
               <span></span>
             </div>
             <div class="rightInput">
-              <input class="userName" type="text" placeholder="邮箱/已验证手机"  datatype="*" errormsg="用户名不能为空!" value="" onkeypress="javascript:enterLogin(event);"/>
+              <input class="userName" type="text" placeholder="邮箱/已验证手机"  datatype="*" errormsg="用户名不能为空!" value="" onkeypress="javascript:_login.enterLogin(event);"/>
             </div>
           </li>
           <li>
@@ -38,17 +38,17 @@
               <span></span>
             </div>
             <div class="rightInput">
-              <input class="userPass" type="password" placeholder="密码" datatype="*6-16" errormsg="密码范围在6~16位之间！" value="" onkeypress="javascript:enterLogin(event);"/>
+              <input class="userPass" type="password" placeholder="密码" datatype="*6-16" errormsg="密码范围在6~16位之间！" value="" onkeypress="javascript:_login.enterLogin(event);"/>
             </div>
           </li>
         </ul>
       </div>
       <div class="dynamic">
         <div class="dynamic-left">
-          <input class="loginCode" type="text" placeholder="验证码" datatype="*" errormsg="动态密码不能为空！"  onkeypress="javascript:enterLogin(event);"/>
+          <input class="loginCode" type="text" placeholder="验证码" datatype="*" errormsg="动态密码不能为空！"  onkeypress="javascript:_login.enterLogin(event);"/>
         </div>
         <div class="dynamic-right">
-          <img src="/cn/api/verification-code" onclick="this.src='/cn/api/verification-code?'+Math.random();" alt="验证码"/>
+          <img src="image.html" onclick="this.src='image.html?'+Math.random();" alt="验证码"/>
         </div>
         <div style="clear: both"></div>
       </div>
@@ -58,7 +58,7 @@
         <a href="findKey.html">忘记密码?</a>
       </div>
       <div class="loginBtn">
-        <input onclick="subLogin()" type="button" value="登录" id="btn_sub"/>
+        <input type="button" value="登录" id="userLogin"/>
       </div>
       <p class="login-change">短信快捷登录</p>
     </div>
@@ -70,7 +70,7 @@
               <span></span>
             </div>
             <div class="rightInput">
-              <input  class="phones" type="text" placeholder="手机号"  datatype="m" errormsg="手机号格式不正确(不能小于11位)!" onkeypress="javascript:enterLogin(event);"/>
+              <input  class="phones" type="text" placeholder="手机号"  datatype="m" errormsg="手机号格式不正确(不能小于11位)!" onkeypress="javascript:_login.enterPhone(event);"/>
             </div>
           </li>
         </ul>
@@ -78,7 +78,7 @@
       <!--动态密码-->
       <div class="dynamic">
         <div class="dynamic-left">
-          <input class="code" type="text" placeholder="动态密码" datatype="*" errormsg="动态密码不能为空！" onkeypress="javascript:enterLogin(event);"/>
+          <input class="phone-code" type="text" placeholder="动态密码" datatype="*" errormsg="动态密码不能为空！" onkeypress="javascript:_login.enterPhone(event);"/>
         </div>
         <div class="dynamic-right">
           <input type="button" onclick="clickDX(this,60,1,9);" value="发送动态密码"/>
@@ -86,7 +86,7 @@
         <div style="clear: both"></div>
       </div>
       <div class="loginBtn">
-        <input onclick="subLogin()" type="button" value="登录" id="btn_sub"/>
+        <input type="button" value="登录" id="phoneLogin"/>
       </div>
       <p class="login-change">账号密码登录</p>
     </div>

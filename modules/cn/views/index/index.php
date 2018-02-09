@@ -721,6 +721,11 @@
     jQuery(".exam-wrap").slide({});
 //    留学
     jQuery(".abroad-wrap").slide({});
+
+//  侧边栏我要规划
+    jQuery(".project").slide({});
+//  侧边栏热帖排行榜
+    jQuery(".ranking").slide({});
 //    分页
     $.jqPaginator('#pagination1', {
       totalPages: 20,
