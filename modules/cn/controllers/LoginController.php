@@ -19,7 +19,7 @@ class LoginController extends Controller
 
     public function actionLogin()
     {
-        if(ltrim($_SERVER['REQUEST_URI'],'/')=='register.html'){
+        if(ltrim($_SERVER['REQUEST_URI'],'/')=='register.html' || $_SERVER['HTTP_REFERER']==false){
             Yii::$app->session->set('url','http://bbs.com');
         }else{
             Yii::$app->session->set('url',$_SERVER['HTTP_REFERER']);
