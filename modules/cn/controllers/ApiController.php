@@ -38,17 +38,16 @@ class ApiController extends Controller
         $session = Yii::$app->session;
         $sms = new Sms();
         $phoneNum = Yii::$app->request->post('phoneNum');
-        $phoneNum = 15021666895;
         if (!empty($phoneNum)) {
             $phoneCode = mt_rand(100000, 999999);
             $session->set($phoneNum . 'phoneCode', $phoneCode);
             $session->set('phoneTime', time());
             $content = '【申友论坛】验证码：' . $phoneCode . '（10分钟有效），您正在通过申友论坛网免费会员！';
             $sms->send($phoneNum, $content, $ext = '', $stime = '', $rrid = '');
-            $res['code'] = 1;
+            $res['code'] = 0;
             $res['message'] = '短信发送成功！';
         } else {
-            $res['code'] = 0;
+            $res['code'] = 1;
             $res['message'] = '发送失败!手机号码为空！';
         }
         die(json_encode($res));
@@ -95,10 +94,10 @@ class ApiController extends Controller
 
         );    //发布可以带html标签的文本
         if ($mail->send()) {
-            $res['code'] = 1;
+            $res['code'] = 0;
             $res['message'] = '邮件发送成功！';
         } else {
-            $res['code'] = 0;
+            $res['code'] = 1;
             $res['message'] = '邮件发送失败！';
         }
         die(json_encode($res));
@@ -145,20 +144,20 @@ class ApiController extends Controller
                     $model->createTime = time();
                     $model->sendId = 1;
                     $model->save();
-                    $res['code'] = 1;
+                    $res['code'] = 0;
                     $res['message'] = '注册成功';
                 } else {
-                    $res['code'] = 0;
+                    $res['code'] = 1;
                     $res['message'] = '注册失败，请重试';
                     $res['type'] = '3';
                 }
             } else {
-                $res['code'] = 0;
+                $res['code'] = 1;
                 $res['message'] = '验证码错误';
                 $res['type'] = '1';
             }
         } else {
-            $res['code'] = 0;
+            $res['code'] = 1;
             $res['message'] = '验证码过期';
             $res['type'] = '1';
         }
@@ -176,12 +175,20 @@ class ApiController extends Controller
         $logins = new User();
         if ($apps->isPost) {
             $userName = $apps->post('userName');
+            $verifyCode= $apps->post('verifyCode');
+            $code=$session->get['verifyCode'];
+            if($code!=strtolower($verifyCode)){
+                $res['code'] = 1;
+                $res['message'] = '验证码错误';
+                die(json_encode($res));
+            }
             $userPass = md5(md5($apps->post('userPass')) . 'LXLT');
             $where = "where (phone='" . $userName . "' or email='" . $userName . "') and userPass='" . $userPass . "'";
             $loginsdata = Yii::$app->db->createCommand('select id,nickname,userName,phone,email,image,integral,level from {{%user}}' . $where)->queryOne();
             if (!empty($loginsdata['id'])) {
                 $session->set('userId', $loginsdata['id']);
                 $session->set('userData', $loginsdata);
+                $session->set('integral', $loginsdata['integral']);
                 if ($loginsdata['image'] == null) {
                     $loginsdata['image'] = '';
                 }
@@ -207,7 +214,7 @@ class ApiController extends Controller
         $session = Yii::$app->session;
         $session->remove('userData');
         $session->remove('userId');
-        die(json_encode(['code' => 1]));
+        die(json_encode(['code' => 0]));
     }
 
     /**
@@ -224,7 +231,7 @@ class ApiController extends Controller
         $data = $model->getList($first, $second, $third, $pageSize, $page);
         $pageStr = $data['pageStr'];
         unset($data['pageStr']);
-        die(json_encode(['data' => $data, 'pageStr' => $pageStr, 'code' => 1]));
+        die(json_encode(['data' => $data, 'pageStr' => $pageStr, 'code' => 0]));
 
     }
 
@@ -280,10 +287,10 @@ class ApiController extends Controller
         }
         $re = Yii::$app->db->createCommand()->insert("{{%report}}", $reData)->execute();
         if ($re) {
-            $data['code'] = 1;
+            $data['code'] = 0;
             $data['message'] = '发表成功';
         } else {
-            $data['code'] = 0;
+            $data['code'] = 1;
             $data['message'] = '发表失败';
         }
         die(json_encode($data));
@@ -387,7 +394,7 @@ class ApiController extends Controller
             $res['message'] = '点赞成功，积分+3';
             die(json_encode($res));
         } else {
-            $res['code'] = 0;
+            $res['code'] = 1;
             $res['message'] = '点赞失败，请重试';
             die(json_encode($res));
         }
@@ -505,7 +512,8 @@ class ApiController extends Controller
             $data['message'] = '未登录';
             die(json_encode($data));
         }
-        $data = Yii::$app->db->createCommand("select id,score,message,createTime From {{%integral_details}} where userId=$userId order by id desc limit 10")->queryAll();
+        $data['details'] = Yii::$app->db->createCommand("select id,score,message,createTime From {{%integral_details}} where userId=$userId order by id desc limit 10")->queryAll();
+        $data['integral']= Yii::$app->db->createCommand("select integral From {{%user}} where id=$userId order by id desc limit 1")->queryOne()['integral'];
         die(json_encode($data));
     }
 
@@ -523,12 +531,12 @@ class ApiController extends Controller
         if ($checkTime) {
             $checkCode = $login->checkCode($registerStr, $code);
             if (!$checkCode) {
-                $res['code'] = 0;
+                $res['code'] = 1;
                 $res['message'] = '验证码错误';
                 die(json_encode($res));
             }
         } else {
-            $res['code'] = 0;
+            $res['code'] = 1;
             $res['message'] = '验证码过期';
             die(json_encode($res));
         }
@@ -550,11 +558,11 @@ class ApiController extends Controller
             $re = $login->updateAll(['userPass' => md5(md5($pass) . 'LXLT')], "email='$registerStr'");
         }
         if ($re) {
-            $res['code'] = 1;
+            $res['code'] = 0;
             $res['message'] = '密码找回成功';
             die(json_encode($res));
         } else {
-            $res['code'] = 0;
+            $res['code'] = 1;
             $res['message'] = '找回失败，请重试';
             die(json_encode($res));
         }
@@ -601,10 +609,10 @@ class ApiController extends Controller
         if ($sign) {
             $userData['image'] = $image;
             $session->set('userData', $user);
-            $res['code'] = 1;
+            $res['code'] = 0;
             $res['message'] = '更换成功';
         } else {
-            $res['code'] = 0;
+            $res['code'] = 1;
             $res['message'] = '更换失败，请重试';
         }
         die(json_encode($res));
@@ -655,7 +663,7 @@ class ApiController extends Controller
             $extend['userId'] = $userId;
             $re = Yii::$app->db->createCommand()->insert("{{%user_extend}}", $extend)->execute();
         }
-        $res['code'] = 1;
+        $res['code'] = 0;
         $res['message'] = '保存成功';
         die(json_encode($res));
     }
