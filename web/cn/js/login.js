@@ -32,17 +32,17 @@ var _login = {
 //            $('.userPass').next("p").css("visibility","visible").html("请输入密码");
       return false;
     }
-    $.post('/cn/api/login-in',{verifyCode:verifyCode,userPass:userPass,userName:userName},function(re){
-      if(re.code == 1){
-        setCookie('readName',userName);
+    $.post('/cn/api/login-in',{verifyCode:verifyCode,userPass:userPass,userName:userName},function(res){
+      if(res.code == 1){
+        _common.setCookie('readName',userName);
         if($('#auto').is(':checked')) {
-          setCookie('readSign',1);
-          setCookie('readPass',userPass);
+          _common.setCookie('readSign',1);
+          _common.setCookie('readPass',userPass);
         }else{
-          setCookie('readSign',0);
-          delCookie('readPass');
+          _common.setCookie('readSign',0);
+          _common.delCookie('readPass');
         }
-        if(re.check == 1){
+        if(res.check == 1){
           $('.loginMessage').html(re.success_content);
           setTimeout(function(){
             location.href=re.url;
@@ -120,7 +120,6 @@ function clickDX(e, timeN, str,emailType) {
   var timeNum    = timeN; // 再次点击时间间隔
   if(str == 1){
     var phone = $('.phones').val();
-    console.log(phone);
     if(phone == ""){
       alert('请输入手机号！');
       return false;

@@ -49,7 +49,7 @@
           <input class="phoneCode" type="text" placeholder="验证码" datatype="*" errormsg="动态密码不能为空！"  onkeypress="javascript:_register.enterPhone(event);"/>
         </div>
         <div class="dynamic-right">
-          <input type="button" onclick="clickDX(this,10,1,9);" value="获取短信验证码"/>
+          <input type="button" onclick="clickDX(this,60,1,9);" value="获取短信验证码"/>
         </div>
         <div style="clear: both"></div>
       </div>
