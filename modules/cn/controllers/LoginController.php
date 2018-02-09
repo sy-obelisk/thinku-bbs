@@ -19,6 +19,7 @@ class LoginController extends Controller
 
     public function actionLogin()
     {
+        Yii::$app->session->set('url',$_SERVER['HTTP_REFERER']);
         return $this->render('login');
     }
 

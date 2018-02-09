@@ -146,6 +146,7 @@ class ApiController extends Controller
                     $model->save();
                     $res['code'] = 0;
                     $res['message'] = '注册成功';
+                    unset($_SESSION[$registerStr . 'phoneCode']);
                 } else {
                     $res['code'] = 1;
                     $res['message'] = '注册失败，请重试';
@@ -193,6 +194,8 @@ class ApiController extends Controller
                     $loginsdata['image'] = '';
                 }
                 $res['code'] = 0;
+                $res['url'] = (Yii::$app->session->get('url'))?Yii::$app->session->get('url'):'/';
+                unset($_SESSION['url']);
                 $res['message'] = '登录成功';
             } else {
                 $res['code'] = 1;

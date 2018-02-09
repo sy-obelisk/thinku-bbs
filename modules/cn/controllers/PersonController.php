@@ -78,9 +78,7 @@ class PersonController extends Controller
             echo "<script>alert('未登录')</script>";
             die;
         }
-        $arr = Yii::$app->db->createCommand("select news,sendId,n.createTime,status from {{%news}} n left join {{%user}} u on n.sendId=u.id where userId=$userId order by status asc,n.id DESC limit $offset,$pageSize")->queryAll();
-//var_dump($arr);die;
-
+        $arr = Yii::$app->db->createCommand("select news,sendId,n.createTime,status,u.nickname,u.userName from {{%news}} n left join {{%user}} u on n.sendId=u.id where userId=$userId order by status asc,n.id DESC limit $offset,$pageSize")->queryAll();
         return $this->render('information', $arr);
     }
 
