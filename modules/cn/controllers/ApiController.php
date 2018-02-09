@@ -329,7 +329,6 @@ class ApiController extends Controller
             Header("Content-Disposition: attachment; filename=" . $fileName);
             ob_clean();
             flush();
-
             while (!feof($file)) {
                 echo fread($file, 50000);
             }
