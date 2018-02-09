@@ -36,11 +36,7 @@ class LoginController extends Controller
     {
         $login=new Login();
         $re=$login->verifyCode();
-        var_dump($re);die;
-//        session_start();
-//        getCode(4,60,20);
-
-
+        return $re;
     }
 
 

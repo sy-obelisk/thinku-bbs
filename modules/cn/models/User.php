@@ -28,6 +28,8 @@ class User extends ActiveRecord
             $detailsData['createTime'] = date("Y-m-d H:i:s");
             $re = Yii::$app->db->createCommand()->insert("{{%integral_details}}", $detailsData)->execute();
         }
+        $data = Yii::$app->db->createCommand("SELECT id,integral from {{%user}} where id=$userId")->queryOne();
+        Yii::$app->session->set('integral',$data['integral']);
         if ($re) {
             return true;
         } else {
