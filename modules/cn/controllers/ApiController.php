@@ -175,9 +175,9 @@ class ApiController extends Controller
         $logins = new User();
         if ($apps->isPost) {
             $userName = $apps->post('userName');
-            $verifyCode= $apps->post('verifyCode');
-            $code=$session->get['verifyCode'];
-            if($code!=strtolower($verifyCode)){
+            $verifyCode = $apps->post('verifyCode');
+            $code = $session->get('verifyCode');
+            if ($code != strtolower($verifyCode)) {
                 $res['code'] = 1;
                 $res['message'] = '验证码错误';
                 die(json_encode($res));
@@ -203,6 +203,68 @@ class ApiController extends Controller
             $res['message'] = '请填写登录信息';
         }
         die(json_encode($res));
+    }
+
+    /**
+     * 快速登录
+     */
+    public function actionMessageLogin()
+    {
+        header('Content-Type:text/html;charset=utf-8');
+        $apps = Yii::$app->request;
+        $session = Yii::$app->session;
+        $login = new Login();
+        if ($apps->isPost) {
+            $registerStr = $apps->post('registerStr');//电话或邮箱
+            $code = Yii::$app->request->post('code');
+            $type = 1;
+            $checkTime = $login->checkTime();
+            if ($checkTime) {
+                $checkCode = $login->checkCode($registerStr, $code);
+
+                if ($checkCode) {
+                    $loginsdata = Yii::$app->db->createCommand("select id,nickname,userName,phone,email,image,integral,level from {{%user}} where phone='$registerStr'")->queryOne();
+                    if (!$loginsdata) {
+                        $login->phone = $registerStr;
+                        $login->userPass = '';
+                        $login->createTime = time();
+                        $login->userName = 'LX' . time();
+                        $re = $login->save();
+                        if ($re) {
+                            $model = new News();
+                            $model->news = '终于等到你，欢迎成为留学论坛的一员';
+                            $model->userId = $login->primaryKey;
+                            $model->status = 1;
+                            $model->type = 1;
+                            $model->createTime = time();
+                            $model->sendId = 1;
+                            $model->save();
+                        } else {
+                            $res['code'] = 1;
+                            $res['message'] = '登录失败，请重试';
+                            die(json_encode($res));
+                        }
+                    }
+                    $session->set('userId', $loginsdata['id']);
+                    $session->set('userData', $loginsdata);
+                    $session->set('integral', $loginsdata['integral']);
+                    if ($loginsdata['image'] == null) {
+                        $loginsdata['image'] = '';
+                    }
+                    $res['code'] = 0;
+                    $res['message'] = '登录成功';
+                    die(json_encode($res));
+                } else {
+                    $res['code'] = 1;
+                    $res['message'] = '验证码错误';
+                    die(json_encode($res));
+                }
+            } else {
+                $res['code'] = 1;
+                $res['message'] = '验证码过期';
+                die(json_encode($res));
+            }
+        }
     }
 
     /**
@@ -243,6 +305,12 @@ class ApiController extends Controller
 
         //根据内容的id，查找文件的地址
         // 再判断下载
+
+        $integral = Yii::$app->session->get('integral', '');
+        if ($integral < 10) {
+            echo '<script>alert("您的等级太低，努力升级吧，少年！")</script>';
+            die;
+        }
         $id = Yii::$app->request->get('id', '');
         $model = new Content();
         $data = $model->getClass(['fields' => 'url', 'where' => "c.id=$id"]);
@@ -513,7 +581,7 @@ class ApiController extends Controller
             die(json_encode($data));
         }
         $data['details'] = Yii::$app->db->createCommand("select id,score,message,createTime From {{%integral_details}} where userId=$userId order by id desc limit 10")->queryAll();
-        $data['integral']= Yii::$app->db->createCommand("select integral From {{%user}} where id=$userId order by id desc limit 1")->queryOne()['integral'];
+        $data['integral'] = Yii::$app->db->createCommand("select integral From {{%user}} where id=$userId order by id desc limit 1")->queryOne()['integral'];
         die(json_encode($data));
     }
 
@@ -633,6 +701,7 @@ class ApiController extends Controller
         $nickname = Yii::$app->request->post('nickName', '');
         $school = Yii::$app->request->post('school');
         $education = Yii::$app->request->post('education');
+        $label = Yii::$app->request->post('label', '');
         $userInfo = [];
         if ($nickname) {
             $userInfo['nickname'] = $nickname;
@@ -661,6 +730,7 @@ class ApiController extends Controller
             $extend['school'] = $school;
             $extend['education'] = $education;
             $extend['userId'] = $userId;
+            $extend['label'] = $label;
             $re = Yii::$app->db->createCommand()->insert("{{%user_extend}}", $extend)->execute();
         }
         $res['code'] = 0;
@@ -681,4 +751,58 @@ class ApiController extends Controller
         die(json_encode($data));
     }
 
+    /*
+     * 发布悬赏
+     * */
+    public function actionReward()
+    {
+        $integral = Yii::$app->session->get('integral', '');
+        if ($integral < 10) {
+            echo '<script>alert("您的等级太低，努力升级吧，少年！")</script>';
+            die;
+        }
+        if ($_POST) {
+            $model = new content();
+            $contentData['name'] = Yii::$app->request->post('name');// 标题
+            $contentData['abstract'] = '';// 摘要
+            $contentData['pid'] = 0;// 父id，一般为0
+            $contentData['catId'] = Yii::$app->request->post('catId');// 主id
+            $extendValue[0] = Yii::$app->request->post('article', '');// 文章
+            $category = explode(",", Yii::$app->request->post('category'));//这个是副分类格式'45,54'
+//            $category = explode(",",'2,6,16');//这个是副分类
+            $addtime = date("Y-m-d H:i:s");
+            $model->createTime = $addtime;
+            $model->userId = Yii::$app->session->get('userId');
+            $model->userId = 1;
+            $model->name = $contentData['name'];
+            $model->abstract = $contentData['abstract'];
+            $model->pid = $contentData['pid'];
+            $model->image = '';
+            $model->catId = $contentData['catId'];
+            $model->viewCount = 0;
+            $re = $model->save();
+            Content::updateAll(['sort' => $model->primaryKey], "id=$model->primaryKey");
+            //将分类的内容属性，转移到内容本身的扩展属性中
+            $contentExtend = new ContentExtend();
+            $contentExtend->shiftExtend($model->primaryKey, $contentData['catId'], $extendValue, $contentData['pid']);
+            //将分类的内容的副分类存储
+            $categoryContent = new CategoryContent();
+            $categoryContent->secondClass($model->primaryKey, $category);
+            if ($re = 1) {
+                $key = $model->primaryKey;
+                $data['code'] = 0;
+                $data['message'] = '发表成功';
+                $data['id'] = $model->primaryKey;
+                die(json_encode($data));
+            } else {
+                $data['code'] = 1;
+                $data['message'] = '发表失败，请重试';
+                die(json_encode($data));
+            }
+        } else {
+            $data['code'] = 1;
+            $data['message'] = '请求错误';
+            die(json_encode($data));
+        }
+    }
 }
