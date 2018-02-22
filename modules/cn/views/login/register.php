@@ -96,17 +96,10 @@
     </div>
   </div>
 </div>
-<footer class="login-footer">
-  <ul>
-    <li>友情链接:</li>
-    <li><a href="">申友在线</a></li>
-    <li><a href="">雷哥网</a></li>
-    <li><a href="">留学社区</a></li>
-    <li><a href="">新浪微博</a></li>
-    <li><a href="">人人网</a></li>
-  </ul>
-  <div>Copyright © 2015 All Right Reserved 申友教育 版权所有 京ICP备16000003号 京公网安备 11010802018491 免责声明</div>
-</footer>
+<!--底部-->
+<?php use app\commands\front\FootWidget;?>
+<?php FootWidget::begin();?>
+<?php FootWidget::end();?>
 </body>
 <script src="https://use.fontawesome.com/0e249ab73d.js"></script>
 <script src="/cn/js/Validform_v5.3.2_min.js"></script>

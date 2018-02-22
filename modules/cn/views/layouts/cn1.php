@@ -2,26 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<?php
-//    $now_path=ltrim($_SERVER['REQUEST_URI'],'/');
-//    $st =stripos($now_path,'/');
-//    if($st!=false){
-//        $url=substr($now_path,0,($st));
-//    }else{
-//        $st =stripos($now_path,'.');
-//        $url=substr($now_path,0,($st));
-//    }
-//    if($url!='info_details'){
-//    $data = Yii::$app->db->createCommand("select * from {{%seo}} where url='$url'")->queryOne();
-////        var_dump($url);die;
-//    }else{
-//        $id = Yii::$app->request->get('id', '');
-//        $data = Yii::$app->db->createCommand("select id,title,summary,keywords from {{%info}} where id=" . $id)->queryOne();
-//        $data['description']=$data['summary'];
-//    }
-////var_dump($data);die;
-//
-//?>
+    <?php
+    //    $now_path=ltrim($_SERVER['REQUEST_URI'],'/');
+    //    $st =stripos($now_path,'/');
+    //    if($st!=false){
+    //        $url=substr($now_path,0,($st));
+    //    }else{
+    //        $st =stripos($now_path,'.');
+    //        $url=substr($now_path,0,($st));
+    //    }
+    //    if($url!='info_details'){
+    //    $data = Yii::$app->db->createCommand("select * from {{%seo}} where url='$url'")->queryOne();
+    ////        var_dump($url);die;
+    //    }else{
+    //        $id = Yii::$app->request->get('id', '');
+    //        $data = Yii::$app->db->createCommand("select id,title,summary,keywords from {{%info}} where id=" . $id)->queryOne();
+    //        $data['description']=$data['summary'];
+    //    }
+    ////var_dump($data);die;
+    //
+    //?>
     <title>
         【官方】雷哥网SAT培训_SAT课程_SAT考试培训_SAT官网_SAT模考_SAT培训班_SAT培训机构_雷哥SAT_ACT培训_美国本科留学
     </title>
@@ -32,9 +32,9 @@
     <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
     <meta http-equiv="expires" content="0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!--    让IE浏览器用最高级内核渲染页面 还有用 Chrome 框架的页面用webkit 内核-->
+    <!--    让IE浏览器用最高级内核渲染页面 还有用 Chrome 框架的页面用webkit 内核-->
     <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
-<!--    让360双核浏览器用webkit内核渲染页面-->
+    <!--    让360双核浏览器用webkit内核渲染页面-->
     <meta name="renderer" content="webkit">
     <script src="/cn/js/jquery-2.1.1.min.js"></script>
     <script src="https://use.fontawesome.com/0e249ab73d.js"></script>
@@ -47,13 +47,7 @@
 </head>
 <body>
 <!--导航-->
-<?php use app\commands\front\NavWidget;?>
-<?php NavWidget::begin();?>
-<?php NavWidget::end();?>
 <?= $content ?>
 <!--底部-->
-<?php use app\commands\front\FootWidget;?>
-<?php FootWidget::begin();?>
-<?php FootWidget::end();?>
 </body>
 </html>

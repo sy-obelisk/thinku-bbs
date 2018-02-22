@@ -7,22 +7,26 @@
  */
 namespace app\modules\cn\controllers;
 
-use app\modules\cn\models\Login;
 use yii;
 use yii\web\Controller;
+use app\modules\cn\models\Login;
 use app\modules\cn\models\Content;
 
 class LoginController extends Controller
 {
-    public $layout = 'cn.php';
+    public $layout = 'cn1.php';
     public $enableCsrfValidation = false;
 
     public function actionLogin()
     {
-        if(ltrim($_SERVER['REQUEST_URI'],'/')=='register.html' || $_SERVER['HTTP_REFERER']==false){
-            Yii::$app->session->set('url','http://bbs.com');
+        if(isset($_SERVER['HTTP_REFERER'])){
+            if(strpos($_SERVER['HTTP_REFERER'], 'register.html') !== false || $_SERVER['HTTP_REFERER']==false){
+                Yii::$app->session->set('url','/index.html');
+            }else{
+                Yii::$app->session->set('url',$_SERVER['HTTP_REFERER']);
+            }
         }else{
-            Yii::$app->session->set('url',$_SERVER['HTTP_REFERER']);
+            Yii::$app->session->set('url','http://bbs.com');
         }
         return $this->render('login');
     }

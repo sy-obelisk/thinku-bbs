@@ -8,7 +8,7 @@ use yii;
 
 ;
 
-class NavWidget extends Widget
+class PersonWidget extends Widget
 {
     public $session;
     public $userId;
@@ -30,7 +30,7 @@ class NavWidget extends Widget
      * */
     public function run()
     {
-        return $this->render('nav', ['user' => $this->user, 'path' => $this->now_path, 'userId' => $this->userId]);
+        return $this->render('person', ['user' => $this->user, 'path' => $this->now_path, 'userId' => $this->userId]);
     }
 
     public function udata()
