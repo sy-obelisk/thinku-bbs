@@ -59,7 +59,7 @@
         <img src="" alt="">
       </div>
       <p>用户名</p>
-      <p>积分：20</p>
+      <p><span class="iconfont icon-jifen"></span>积分：20</p>
     </div>
     <ul class="aside-list">
       <li><a href="change-image.html">设置头像</a></li>

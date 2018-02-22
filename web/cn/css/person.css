@@ -66,6 +66,9 @@
   font-weight: normal;
   color: #7d1f88;
 }
+.single-box .score>h2 .iconfont {
+  font-size: 20px;
+}
 .single-box .score>h5 {
   line-height: 28px;
   font-size: 16px;

@@ -20,6 +20,7 @@ var _details = {
       _this.replyEvent();
     });
   },
+  // 回复评论
   revertEvent : function (obj) {
     var revertCnt = $(obj).siblings('textarea').val();
     if (!revertCnt) {
@@ -34,6 +35,7 @@ var _details = {
       $(obj).parent().siblings('.revert-list').append(lis);
     }
   },
+  // 发表评论
   replyEvent : function () {
     var replyCnt = $('.reply-input textarea').val();
     if (!replyCnt) {

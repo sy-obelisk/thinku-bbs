@@ -11,12 +11,14 @@ var _common = {
       $(this).parent().css('display','none').siblings('.userMessage').show();
     });
   },
+  // 设置cookie
   setCookie : function (name,value) {
     var Days = 30,
         exp  = new Date();
     exp.setTime(exp.getTime() + Days*24*60*60*1000);
     document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
   },
+  // 获取cookie
   getCookie : function (name) {
     var arr,
         reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
@@ -25,6 +27,7 @@ var _common = {
     else
       return null;
   },
+  // 删除cookie
   delCookie : function (name) {
     var exp = new Date();
     exp.setTime(exp.getTime() - 1);

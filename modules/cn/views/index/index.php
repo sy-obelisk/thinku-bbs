@@ -46,7 +46,8 @@
       <form>
         <input type="text" placeholder="search">
         <span>
-          <i class="fa fa-search"></i>
+<!--          <i class="fa fa-search"></i>-->
+          <i class="iconfont icon-search"></i>
         </span>
       </form>
     </div>
