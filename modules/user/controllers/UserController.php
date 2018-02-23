@@ -187,15 +187,15 @@ class UserController extends AppControl
             }
             $sign = User::find()->where("phone='{$user['phone']}' AND id=$id")->one();
             if (!$sign) {
-                $status = uc_user_checkphone($user['phone']);
-                if ($status == -7) {
+                $sign = User::find()->where("phone='{$user['phone']}' ")->one();
+                if ($sign) {
                     die('<script>alert("该手机已被绑定");history.go(-1);</script>');
                 }
             }
             $sign = User::find()->where("email='{$user['email']}' AND id=$id")->one();
             if (!$sign) {
-                $sign = uc_user_checkemail($user['email']);
-                if ($sign == -6) {
+                $sign = User::find()->where("phone='{$user['email']}' ")->one();
+                if ($sign) {
                     die('<script>alert("该邮箱已被绑定");history.go(-1);</script>');
                 }
             }
@@ -204,9 +204,8 @@ class UserController extends AppControl
             $remark = Yii::$app->request->post('remark');
             $user['remark'] = $remark;
             if ($sign->userPass != $userPass) {
-                $user['userPass'] = md5($userPass);
+                $user['userPass'] = md5(md5($userPass) . 'LXLT');
             }
-            uc_user_edit($sign->userName, '', $user['userPass'], $user['email'], $user['phone'], 1);
             $sign = User::updateAll($user, "id=$id");
             $returnUrl = Yii::$app->session->get('returnUrl');
             if ($sign) {

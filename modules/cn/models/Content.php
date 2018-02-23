@@ -46,15 +46,15 @@ class Content extends ActiveRecord
      * 赞或者踩
      * @return array
      */
-    public function like($id, $status)
+    public function like($userId,$id, $status)
     {
         $data = Yii::$app->db->createCommand("select id,liked,hate from {{%content}} where id=$id")->queryOne();
         if ($status == 1) {
             $re = Content::updateAll(['liked' => $data['liked'] + 1], "id=" . $id);
             if ($re) {
+                Yii::$app->db->createCommand()->insert("{{%user_like}}", ['contentId'=>$id,'type'=>1,'status'=>1,'creatTime'=>time(),'userId'=>$userId])->execute();
                 $user = new User();
-                $userId = Yii::$app->request->get('userId', '');
-                $user->integral($userId, 1, '点赞获取积分');
+                $user->integral($userId, 1, '点赞获取积分',1);
                 $res['code'] = 0;
                 $res['message'] = '点赞成功，积分+1';
             } else {
@@ -64,7 +64,7 @@ class Content extends ActiveRecord
         } else {
             $re = Content::updateAll(['hate' => $data['hate'] + 1], "id=" . $id);
             if ($re) {
-
+                Yii::$app->db->createCommand()->insert("{{%user_like}}", ['contentId'=>$id,'type'=>1,'status'=>2,'creatTime'=>time(),'userId'=>$userId])->execute();
                 $res['code'] = 0;
                 $res['message'] = '操作成功';
             } else {

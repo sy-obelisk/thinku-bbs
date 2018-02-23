@@ -18,10 +18,6 @@ use app\libs\Method;
 class DiscussController extends AppControl
 {
     public $enableCsrfValidation = false;
-//    function init (){
-//        parent::init();
-//        include_once($_SERVER['DOCUMENT_ROOT'].'/../libs/ucenter/ucenter.php');
-//    }
 
     /**
      * 讨论列表
@@ -72,13 +68,13 @@ class DiscussController extends AppControl
         if ($idArr == null) {
             die('<script>alert("请选择讨论");history.go(-1);</script>');
         }
-        foreach ($idArr as $k => $v) {
-            $sign = UserDiscuss::findOne($v);
-            if ($sign->status != 1 && $sign->type == 1) {
-                $sign = User::findOne($sign->userId);
-                uc_user_edit_integral($sign->userName, '解析被采纳', 1, 2);
-            }
-        }
+//        foreach ($idArr as $k => $v) {
+//            $sign = UserDiscuss::findOne($v);
+//            if ($sign->status != 1 && $sign->type == 1) {
+//                $sign = User::findOne($sign->userId);
+////                uc_user_edit_integral($sign->userName, '解析被采纳', 1, 2);
+//            }
+//        }
         UserDiscuss::updateAll(['status' => $status], "id in($idStr) AND status != $status");
         $this->redirect($url);
 

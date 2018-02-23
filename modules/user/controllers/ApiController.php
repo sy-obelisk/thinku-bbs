@@ -28,8 +28,8 @@ class ApiController extends ApiControl
         $author = Yii::$app->db->createCommand("select userId From {{%content}} where id=$contentId ")->queryOne()['userId'];
         if($data['status']==1){
             $user = new User();
-            $user->integral($userId,5, '举报获取积分');
-            $user->integral($author,-5, '文章不合法扣除积分');
+            $user->integral($userId,5, '举报获取积分',1);
+            $user->integral($author,5, '文章不合法扣除积分',2);
         }
         $model = new Report();
         $re = $model->updateAll($data,'id=:id', array(':id'=> $data['id']));

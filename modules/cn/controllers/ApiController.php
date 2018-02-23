@@ -395,7 +395,7 @@ class ApiController extends Controller
         }
         if ($re) {
             $user = new User();
-            $user->integral($userId, 2, '论坛签到');
+            $user->integral($userId, 2, '论坛签到',1);
             $re['code'] = 0;
             $re['message'] = '签到成功';
             die(json_encode($re));
@@ -428,7 +428,7 @@ class ApiController extends Controller
         $re = $collect->Collection($id);
         if ($re) {
             $user = new User();
-            $user->integral($userId, 1, '收藏文章');
+            $user->integral($userId, 1, '收藏文章',1);
             $data['code'] = 0;
             $data['message'] = '收藏成功';
             die(json_encode($data));
@@ -458,7 +458,7 @@ class ApiController extends Controller
         $re = Yii::$app->db->createCommand()->insert("{{%user_discuss}}", $data)->execute();
         if ($re) {
             $user = new User();
-            $user->integral($userId, 3, '评论获取积分');
+            $user->integral($userId, 3, '评论获取积分',1);
             $res['code'] = 0;
             $res['message'] = '点赞成功，积分+3';
             die(json_encode($res));
@@ -495,10 +495,10 @@ class ApiController extends Controller
         Yii::$app->db->createCommand()->insert("{{%user_like}}", $post)->execute();
         if ($post['type'] == 1) {
             $content = new Content();
-            $re = $content->like($post['contentId'], $post['status']);
+            $re = $content->like($userId,$post['contentId'], $post['status']);
         } else {
             $u = new UserDiscuss();
-            $re = $u->like($post['contentId'], $post['status']);
+            $re = $u->like($userId,$post['contentId'], $post['status']);
         }
         die(json_encode($re));
     }
