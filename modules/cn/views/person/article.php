@@ -17,45 +17,21 @@
       <p>板块/群组</p>
     </div>
     <ul class="article-list">
+      <?php foreach($data['data'] as $v){?>
       <li class="clearfix">
         <div class="article-img">
-          <img src="" alt="">
+          <img src="<?php $v['image']?>" alt="">
         </div>
         <div class="article-info">
-          <h3><a href="">帖子的标题</a></h3>
+          <h3><a href=""><?php echo $v['name']?></a></h3>
           <div>
-            <p>发表于<span>2018-01-11</span></p>
+            <p>发表于<span><?php echo $v['createTime']?></span></p>
             <p><span>查看：111</span>|<span>回复：333</span></p>
           </div>
         </div>
         <div class="sort">美国留学</div>
       </li>
-      <li class="clearfix">
-        <div class="article-img">
-          <img src="" alt="">
-        </div>
-        <div class="article-info">
-          <h3><a href="">帖子的标题</a></h3>
-          <div>
-            <p>发表于<span>2018-01-11</span></p>
-            <p><span>查看：111</span>|<span>回复：333</span></p>
-          </div>
-        </div>
-        <div class="sort">美国留学</div>
-      </li>
-      <li class="clearfix">
-        <div class="article-img">
-          <img src="" alt="">
-        </div>
-        <div class="article-info">
-          <h3><a href="">帖子的标题</a></h3>
-          <div>
-            <p>发表于<span>2018-01-11</span></p>
-            <p><span>查看：111</span>|<span>回复：333</span></p>
-          </div>
-        </div>
-        <div class="sort">美国留学</div>
-      </li>
+      <?php }?>
       <!---分页-->
       <div class="page-wrap">
         <ul class="pagination" id="pagination1"></ul>

@@ -49,48 +49,16 @@
       </ul>
       <!--积分-->
       <ul class="score">
-        <h2><span class="iconfont icon-jifen"></span>积分：20</h2>
+        <h2><span class="iconfont icon-jifen"></span>积分：<?php echo $integral['integral']?></h2>
         <h5>积分记录</h5>
+        <?php
+        foreach($integral['details'] as $v){?>
         <li>
-          <p>发布帖子</p>
-          <p>+2</p>
-          <p>2018-01-12</p>
+          <p><?php echo $v['message']?></p>
+          <p><?php echo ($v['type'] == 1?'+':'-').$v['score']?></p>
+          <p><?php echo $v['createTime']?></p>
         </li>
-        <li>
-          <p>发布帖子</p>
-          <p>+2</p>
-          <p>2018-01-12</p>
-        </li>
-        <li>
-          <p>发布帖子</p>
-          <p>+2</p>
-          <p>2018-01-12</p>
-        </li>
-        <li>
-          <p>发布帖子</p>
-          <p>+2</p>
-          <p>2018-01-12</p>
-        </li>
-        <li>
-          <p>发布帖子</p>
-          <p>+2</p>
-          <p>2018-01-12</p>
-        </li>
-        <li>
-          <p>发布帖子</p>
-          <p>+2</p>
-          <p>2018-01-12</p>
-        </li>
-        <li>
-          <p>发布帖子</p>
-          <p>+2</p>
-          <p>2018-01-12</p>
-        </li>
-        <li>
-          <p>发布帖子</p>
-          <p>+2</p>
-          <p>2018-01-12</p>
-        </li>
+        <?php }?>
         <!---分页-->
         <div class="page-wrap">
           <ul class="pagination" id="pagination1"></ul>

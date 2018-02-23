@@ -4,7 +4,7 @@
             <img src="" alt="">
         </div>
         <p>用户名</p>
-        <p><span class="iconfont icon-jifen"></span>积分：20</p>
+        <p><span class="iconfont icon-jifen"></span>积分：<?php echo $integral?></p>
     </div>
     <ul class="aside-list">
         <li <?php if (strpos($path, 'change-image') !== false ) echo 'class="on"'; ?>><a href="change-image.html">设置头像</a></li>

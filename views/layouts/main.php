@@ -8,7 +8,7 @@
     <meta name="description" content="留学后台">
     <meta name="keywords" content="留学后台">
     <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <title>留学后台</title>
+    <title>留学论坛</title>
     <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
     <!-- Le styles -->
     <link href="/css/coreCss/bootstrap-combined.min.css" rel="stylesheet">

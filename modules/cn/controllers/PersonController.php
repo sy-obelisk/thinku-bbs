@@ -20,13 +20,15 @@ class PersonController extends Controller
     public function actionIndex()
     {
         $userId = Yii::$app->session->get('userId', '');
-        $userId = 1;
+//        $userId = 1;
         if (!$userId) {
             echo "<script>alert('未登录')</script>";
             die;
         }
         $data = Yii::$app->db->createCommand("select u.userName,u.nickname,u.phone,u.email,ue.bathday,ue.address,ue.education,ue.school,ue.id as eid From {{%user}} u left join {{%user_extend}} ue on u.id=ue.userId where u.id=$userId ")->queryOne();
-        return $this->render('index', $data);
+        $integral['details'] = Yii::$app->db->createCommand("select id,score,message,createTime From {{%integral_details}} where userId=$userId order by id desc limit 10")->queryAll();
+        $integral['integral'] = Yii::$app->db->createCommand("select integral From {{%user}} where id=$userId")->queryOne()['integral'];
+        return $this->render('index', ['data'=>$data,'integral'=>$integral]);
     }
 
     // 我的收藏
@@ -57,11 +59,13 @@ class PersonController extends Controller
             die;
         }
         $offset = $pageSize * ($page - 1);
-        $sql = "select id,name,abstract,viewCount,createTime,(SELECT CONCAT_WS(' ',ce.value,ed.value) From {{%content_extend}} ce left JOIN {{%extend_data}} ed ON ed.extendId=ce.id WHERE ce.contentId=c.id AND ce.code='99b3cc02b18ec45447bd9fd59f1cd655')  as listeningFile from {{%content}} c where userId=$userId order by id DESC,sort ASC";
+        $sql = "select id,name,abstract,viewCount,createTime,image,(SELECT CONCAT_WS(' ',ce.value,ed.value) From {{%content_extend}} ce left JOIN {{%extend_data}} ed ON ed.extendId=ce.id WHERE ce.contentId=c.id AND ce.code='99b3cc02b18ec45447bd9fd59f1cd655')  as listeningFile from {{%content}} c where userId=$userId order by id DESC,sort ASC";
         $data['count'] = count(Yii::$app->db->createCommand($sql)->queryAll());
         $data['data'] = Yii::$app->db->createCommand($sql . " limit $offset,$pageSize")->queryAll();
         $data['page'] = $page;
         $data['pageCount'] = ceil($data['count'] / $pageSize);
+//        echo '<pre>';
+//        var_dump($data);die;
         return $this->render('article', $data);
 
     }
@@ -137,7 +141,7 @@ class PersonController extends Controller
             die(json_encode($data));
         }
         $data = Yii::$app->db->createCommand("select integral From {{%user}} where id=$userId ")->queryOne();
-        $data['datails'] = Yii::$app->db->createCommand("select id,score,message,createTime From {{%integral_details}} where userId=$userId order by id desc limit 10")->queryAll();
+        $data['details'] = Yii::$app->db->createCommand("select id,score,message,createTime,type From {{%integral_details}} where userId=$userId order by id desc limit 10")->queryAll();
         return $this->render('score', $data);
     }
 

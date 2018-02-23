@@ -21,9 +21,9 @@ class Content extends ActiveRecord
      * 获取特定的内容列表
      * @return array
      */
-    public function getList($first, $second = '', $third = '', $pageSize = 15, $page = 1)
+    public function getList($first, $second = '', $third = '', $pageSize = 15, $page = 1, $where = '1=1 and ')
     {
-        $where = "c.catId in ('$first,$second,$third')";
+        $where = $where . "c.catId in ('$first,$second,$third')";
         $limit = " limit " . ($page - 1) * $pageSize . ",$pageSize";
         $sql = "select c.id,c.name,c.abstract,c.viewCount,c.createTime,u.userName,u.nickname,u.image,(SELECT CONCAT_WS(' ',ce.value,ed.value) From {{%content_extend}} ce left JOIN {{%extend_data}} ed ON ed.extendId=ce.id WHERE ce.contentId=c.id AND ce.code='99b3cc02b18ec45447bd9fd59f1cd655')  as listeningFile from {{%content}} c LEFT JOIN {{%user}} u ON u.id=c.userId WHERE $where order by c.id DESC,c.sort ASC";
         $count = count(Yii::$app->db->createCommand($sql)->queryAll());
@@ -36,9 +36,10 @@ class Content extends ActiveRecord
             $list[$k]['count'] = count(Yii::$app->db->createCommand("select id from {{%user_discuss}}  where contentId=" . $v['id'] . " and pid=0")->queryAll());
 
         }
-        $pageModel = new Pager($count, $page, $pageSize);
-        $list['pageStr'] = $pageModel->GetPagerContent();
-        return $list;
+        $p['count'] = $count;
+        $p['pagecount'] = ceil($count / $pageSize);
+        $p['page'] = $page;
+        return ['list'=>$list,'page'=>$p];
     }
 
     /**
@@ -52,8 +53,8 @@ class Content extends ActiveRecord
             $re = Content::updateAll(['liked' => $data['liked'] + 1], "id=" . $id);
             if ($re) {
                 $user = new User();
-                $userId=Yii::$app->request->get('userId','');
-                $user->integral($userId,1, '点赞获取积分');
+                $userId = Yii::$app->request->get('userId', '');
+                $user->integral($userId, 1, '点赞获取积分');
                 $res['code'] = 0;
                 $res['message'] = '点赞成功，积分+1';
             } else {

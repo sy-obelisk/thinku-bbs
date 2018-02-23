@@ -20,10 +20,6 @@ class UserController extends AppControl
 {
     public $enableCsrfValidation = false;
     //用户列表
-//    function init (){
-//        parent::init();
-//        include_once($_SERVER['DOCUMENT_ROOT'].'/../libs/ucenter/ucenter.php');
-//    }
     public function actionIndex()
     {
         $page = Yii::$app->request->get('page', 1);
@@ -234,9 +230,9 @@ class UserController extends AppControl
     public function actionIntegral()
     {
         $id = Yii::$app->request->get('id');
-        $user = User::findOne($id);
-        $integral = uc_user_integral($user->userName);
-        return $this->render('integral', ['integral' => $integral, 'id' => $id]);
+        $data = Yii::$app->db->createCommand("select integral From {{%user}} where id=$id ")->queryOne();
+        $data['details'] = Yii::$app->db->createCommand("select id,score,message,createTime,type From {{%integral_details}} where userId=$id order by id desc limit 10")->queryAll();
+        return $this->render('integral', ['integral' => $data, 'id' => $id]);
     }
 
     /**
@@ -250,13 +246,15 @@ class UserController extends AppControl
             $url = Yii::$app->request->post('url');
             $number = Yii::$app->request->post('number');
             $type = Yii::$app->request->post('type');
-            uc_user_edit_integral($userName, '管理员直接调整', $type, $number);
+            $id= Yii::$app->request->post('userId');
+            $user = new User();
+            $user->integral($id, $number, '管理员直接调整');
             $this->redirect($url);
         } else {
             $id = Yii::$app->request->get('id');
             $url = Yii::$app->request->get('url');
             $user = User::findOne($id);
-            return $this->render('integralEdit', ['userName' => $user->userName, 'url' => $url]);
+            return $this->render('integralEdit', ['userName' => $user->userName, 'url' => $url,'userId'=>$id]);
         }
     }
 }

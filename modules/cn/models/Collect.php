@@ -52,31 +52,12 @@ class Collect extends ActiveRecord
         $userId = Yii::$app->session->get('userId');
         $userId = 1;
         $offset = $pageSize * ($page - 1);
-        $data['data']= Yii::$app->db->createCommand("SELECT c.name,c.id,u.nickname,c.id,u.userName from {{%user_collection}} uc left join {{%content}} c on uc.userId=c.userId left join {{%user}} u on uc.userId=u.id where uc.userId=$userId limit $offset,$pageSize")->queryAll();
+//        $data['data']= Yii::$app->db->createCommand("SELECT c.name,c.id,u.nickname,c.id,u.userName from {{%user_collection}} uc left join {{%content}} c on uc.userId=c.userId left join {{%user}} u on uc.userId=u.id where uc.userId=$userId limit $offset,$pageSize")->queryAll();
+        $data['data']= Yii::$app->db->createCommand("select c.id,c.name,c.abstract,c.viewCount,c.createTime,u.userName,u.nickname,u.image,(SELECT CONCAT_WS(' ',ce.value,ed.value) From {{%content_extend}} ce left JOIN {{%extend_data}} ed ON ed.extendId=ce.id WHERE ce.contentId=c.id AND ce.code='99b3cc02b18ec45447bd9fd59f1cd655')  as listeningFile from  {{%user_collection}} uc left join {{%content}} c on uc.contentId=c.id LEFT JOIN {{%user}} u ON u.id=c.userId WHERE uc.userId=$userId order by c.id DESC limit $offset,$pageSize")->queryAll();
         $data['count']=count(Yii::$app->db->createCommand("SELECT c.name,c.id,u.nickname,c.id,u.userName from {{%user_collection}} uc left join {{%content}} c on uc.userId=c.userId left join {{%user}} u on uc.userId=u.id where uc.userId=$userId")->queryAll());
         $data['page']=$page;
         $data['pageCount']=ceil($data['count']/$pageSize);
         return $data;
     }
-//    public function getCollect($userId,$type,$page=1,$pageSize=8){
-//        $limit = "limit ".($page-1)*$pageSize.",$pageSize";
-//        $sql = "select tc.num, tc.id,tc.contentId,c.pid,tc.createTime from {{%tf_collect}} tc LEFT JOIN {{%content}} c ON tc.contentId=c.id WHERE tc.userId=$userId AND collectType=$type  ORDER BY tc.createTime DESC $limit";
-//        $count = "select tc.num, tc.id,tc.contentId,c.pid,tc.createTime from {{%tf_collect}} tc LEFT JOIN {{%content}} c ON tc.contentId=c.id WHERE tc.userId=$userId AND collectType=$type";
-//        $data = \Yii::$app->db->createCommand($sql)->queryAll();
-//        $count = count(\Yii::$app->db->createCommand($count)->queryAll());
-//        $pageModel = new Pager($count,$page,$pageSize);
-//        $pageStr = $pageModel->GetPagerContent();
-//        foreach($data as $k => $v){
-//            $sql = "select (SELECT CONCAT_WS(' ',ce.value,ed.value) From {{%content_extend}} ce left JOIN {{%extend_data}} ed ON ed.extendId=ce.id WHERE ce.contentId = c.id AND ce.code='6d67cf3eba969f1515df48f6f43e740d') as cnName,c.name,c.title,ca.name as catName from {{%content}} c LEFT JOIN {{%category}} ca ON c.catId=ca.id WHERE c.id={$v['pid']}";
-//            $contentData = \Yii::$app->db->createCommand($sql)->queryOne();
-//            if($contentData && substr($contentData['title'],0,1) == 'C'){
-//                $contentData['title'] = 'Conversation '.substr($contentData['title'],1,1);
-//            }else{
-//                $contentData['title'] = 'Lecture '.substr($contentData['title'],1,1);
-//            }
-//            $data[$k]['parent'] = $contentData;
-//        }
-//        return ['data' => $data,'pageStr' => $pageStr];
-//    }
 
 }
