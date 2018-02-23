@@ -385,8 +385,10 @@
 .posts .box-tab>.bd ul>li i{
   color: red;
 }
-.posts .box-tab>.bd ul>li a:hover {
+.posts .box-tab>.bd ul>li a.on{
   color: #7d1f88;
+}
+.posts .box-tab>.bd ul>li a:hover {
   text-decoration: underline;
 }
 .posts .box-tab>.bd>ul>div .hd li.on {
@@ -398,12 +400,12 @@
   cursor: default;
   color: #7d1f88;
 }
-.posts .box-cnt>ul>.item {
+.posts .box-post-list>ul>.item {
   min-height: 90px;
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
 }
-.posts .box-cnt>ul>.item .img {
+.posts .box-post-list>ul>.item .img {
   float: left;
   width: 80px;
   height: 80px;
@@ -412,40 +414,40 @@
   border-radius: 10px;
   background-color: #ccc;
 }
-.posts .box-cnt>ul .right {
+.posts .box-post-list>ul .right {
   overflow: hidden;
   margin-left: 90px;
 }
-.posts .box-cnt>ul .right>h3 a{
+.posts .box-post-list>ul .right>h3 a{
   font-size: 16px;
   font-weight: 400;
 }
-.posts .box-cnt>ul .right>h3 a:hover {
+.posts .box-post-list>ul .right>h3 a:hover {
   color: #7d1f88;
 }
-.posts .box-cnt>ul .right>h3 i{
+.posts .box-post-list>ul .right>h3 i{
   padding-left: 10px;
   color: red;
 }
-.posts .box-cnt>ul .right>.info-list {
+.posts .box-post-list>ul .right>.info-list {
   padding: 10px 0;
   /*border-bottom: 1px dashed #ccc;*/
 }
-.posts .box-cnt>ul .right>.info-list>div {
+.posts .box-post-list>ul .right>.info-list>div {
   font-size: 14px;
   color: #777;
 }
-.posts .box-cnt>ul .right>.info-list>.first-div {
+.posts .box-post-list>ul .right>.info-list>.first-div {
   float: left;
 }
-.posts .box-cnt>ul .right>.info-list>.last-div {
+.posts .box-post-list>ul .right>.info-list>.last-div {
   float: right;
 }
-.posts .box-cnt>ul .right>.info-list>.last-div>p {
+.posts .box-post-list>ul .right>.info-list>.last-div>p {
   display: inline-block;
   color: #777;
 }
-.posts .box-cnt>ul .right>.abstract {
+.posts .box-post-list>ul .right>.abstract {
   line-height: 26px;
   overflow: hidden;
   display: -webkit-box;
