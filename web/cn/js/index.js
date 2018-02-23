@@ -26,6 +26,7 @@ var _index = {
     third = third == undefined ? '' : third;
     _this.ajaxEvent(first,second,third,1);
   },
+  // 全部/精华
   allArticle : function(obj){
     var cate = $(obj).data('cate'),
         _this = this;
@@ -49,6 +50,10 @@ var _index = {
       success: function (res) {
         console.log(res);
         tp = res.page.pagecount;
+        if (!res.page.count){
+          // res.data = 0;
+          tp = 1;
+        }
         if (res.code == 0) {
           var ulItem = "<ul>";
           for(var i=0,data=res.data;i<data.length;i++) {
@@ -103,6 +108,10 @@ var _index = {
       success: function (res) {
         console.log(res);
         tp = res.page.pagecount;
+        if (!res.page.count){
+          // res.data = 0;
+          tp = 1;
+        }
         if (res.code == 0) {
           var ulItem = "<ul>";
           for(var i=0,data=res.data;i<data.length;i++) {
