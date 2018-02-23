@@ -21,14 +21,35 @@ class Content extends ActiveRecord
      * 获取特定的内容列表
      * @return array
      */
-    public function getList($first, $second = '', $third = '', $pageSize = 15, $page = 1, $where = '1=1 and ')
+    public function getList($first, $second = '', $third = '', $pageSize = 15, $page = 1, $where = '')
     {
-        $where = $where . "c.catId in ('$first,$second,$third')";
-        $limit = " limit " . ($page - 1) * $pageSize . ",$pageSize";
-        $sql = "select c.id,c.name,c.abstract,c.viewCount,c.createTime,u.userName,u.nickname,u.image,(SELECT CONCAT_WS(' ',ce.value,ed.value) From {{%content_extend}} ce left JOIN {{%extend_data}} ed ON ed.extendId=ce.id WHERE ce.contentId=c.id AND ce.code='99b3cc02b18ec45447bd9fd59f1cd655')  as listeningFile from {{%content}} c LEFT JOIN {{%user}} u ON u.id=c.userId WHERE $where order by c.id DESC,c.sort ASC";
-        $count = count(Yii::$app->db->createCommand($sql)->queryAll());
-        $sql .= " $limit";
-        $list = Yii::$app->db->createCommand($sql)->queryAll();
+
+//        $where = $where . "c.catId in ('$first,$second,$third')";
+        $model = new Content();
+        if($third){
+            $cate="$first,$second,$third";
+            $list= $model->getClass(['count'=>1,'fields' => 'listeningFile','category' =>$cate,'pageSize' => $pageSize,'page'=>$page]);
+            $count=$list['count'];
+            unset($list['count']);
+        }else{
+            if($second){
+                $cate="$first,$second";
+                $list= $model->getClass(['count'=>1,'fields' => 'listeningFile','category' =>$cate,'pageSize' => $pageSize,'page'=>$page]);
+                $count=$list['count'];
+                unset($list['count']);
+            }else{
+                $where = $where . "c.catId in ('$first')";
+                $sql = "select c.id,c.name,c.abstract,c.viewCount,c.createTime,u.userName,u.nickname,u.image,(SELECT CONCAT_WS(' ',ce.value,ed.value) From {{%content_extend}} ce left JOIN {{%extend_data}} ed ON ed.extendId=ce.id WHERE ce.contentId=c.id AND ce.code='99b3cc02b18ec45447bd9fd59f1cd655')  as listeningFile from {{%content}} c LEFT JOIN {{%user}} u ON u.id=c.userId WHERE $where order by c.id DESC,c.sort ASC";
+                $count = count(Yii::$app->db->createCommand($sql)->queryAll());
+                $limit = " limit " . ($page - 1) * $pageSize . ",$pageSize";
+                $sql .= " $limit";
+                $list = Yii::$app->db->createCommand($sql)->queryAll();
+            }
+        }
+//        var_dump($where );die;
+
+//var_dump($data);die;
+//
         foreach ($list as $k => $v) {
             $arr = Yii::$app->db->createCommand("select userName,nickname,ud.createTime from {{%user_discuss}} ud left join {{%user}} u on u.id=ud.userId where ud.contentId=" . $v['id'] . " and ud.pid=0 order by ud.id desc limit 1")->queryOne();
             $list[$k]['last']['name'] = $arr['nickname'] == false ? $arr['userName'] : $arr['nickname'];
@@ -485,9 +506,11 @@ class Content extends ActiveRecord
             $pageStr = $pageModel->GetPagerContent();
             $content['pageStr'] = $pageStr;
         }
+        $count = count(\Yii::$app->db->createCommand("select c.*,ca.name as catName$seField from {{%content}} c LEFT JOIN {{%category}} ca ON c.catId=ca.id where $where")->queryAll());
         if (isset($select['count'])) {
             $content['count'] = $count;
         }
+
         return $content;
     }
 //
