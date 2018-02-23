@@ -34,16 +34,16 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    讨论类型：
-                </td>
-                <td>
-                    <select name="type">
-                        <option value="" <?php echo isset($_GET['type'])&&$_GET['type']==""?"selected":''?>>全部</option>
-                        <option value="1" <?php echo isset($_GET['type'])&&$_GET['type']==1?"selected":''?>>解析</option>
-                        <option value="2" <?php echo isset($_GET['type'])&&$_GET['type']==2?"selected":''?>>评论</option>
-                    </select>
-                </td>
+<!--                <td>-->
+<!--                    讨论类型：-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <select name="type">-->
+<!--                        <option value="" --><?php //echo isset($_GET['type'])&&$_GET['type']==""?"selected":''?><!-->全部</option>-->
+<!--                        <option value="1" --><?php //echo isset($_GET['type'])&&$_GET['type']==1?"selected":''?><!-->解析</option>-->
+<!--                        <option value="2" --><?php //echo isset($_GET['type'])&&$_GET['type']==2?"selected":''?><!-->评论</option>-->
+<!--                    </select>-->
+<!--                </td>-->
             </tr>
             <tr>
                 <td>
@@ -60,7 +60,6 @@
                 <th width="80">ID</th>
                 <th>内容Id</th>
                 <th>用户Id</th>
-                <th>用户名称</th>
                 <th>讨论内容</th>
                 <th>讨论类型</th>
                 <th>发表时间</th>
@@ -75,12 +74,10 @@
                 <tr>
                     <td><input class="childCheck" type="checkbox" name="pushId[]" value="<?php echo $v['id']?>"/></td>
                     <td><?php echo $v['id']?></td>
-                    <!--<td><img src="{x2;if:v:extend['thumb']}{x2;v:extend['thumb']}{x2;else}app/core/styles/images/noupload.gif{x2;endif}" alt="" style="width:24px;"/></td>-->
                     <td><span><?php echo $v['contentId']?></span></td>
                     <td><span><?php echo $v['userId']?></span></td>
-                    <td><span><?php echo $v['userId']?></span></td>
-                    <td><span><?php echo $v['discussContent']?></span></td>
-                    <td><span><?php echo $v['type'] == 1?'解析':'评论'?></span></td>
+                    <td><span><?php echo $v['comment']?></span></td>
+                    <td><span><?php echo '评论'?></span></td>
                     <td><span><?php echo $v['createTime']?></span></td>
                     <td><?php echo $v['status']?'<em class="icon-ok">':'<em class="icon-remove">'?></em></td>
                     <td>

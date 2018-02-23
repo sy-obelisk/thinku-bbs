@@ -30,9 +30,9 @@
                     <td><?php echo $v['id']?></td>
                     <td><?php echo $id?></td>
 <!--                    <td><img height="30" width="30" src="--><?php //echo $v['image']?><!--"/></td>-->
-                    <td><?php echo $v['behavior']?></td>
-                    <td><?php echo ($v['type'] == 1?'+':'-').$v['integral']?></td>
-                    <td><?php echo date("Y-m-d H:i:s",$v['createTime'])?></td>
+                    <td><?php echo $v['message']?></td>
+                    <td><?php echo ($v['type'] == 1?'+':'-').$v['score']?></td>
+                    <td><?php echo $v['createTime']?></td>
                 </tr>
             <?php
             }

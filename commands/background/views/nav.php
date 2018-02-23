@@ -3,7 +3,7 @@
     <div class="navbar-inner">
         <div class="container-fluid">
             <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-            <a href="/" target="_blank" class="brand"><img src="/css/coreCss/img/favicon.png">托福后台</a>
+            <a href="/" target="_blank" class="brand"><img src="/css/coreCss/img/favicon.png">论坛后台</a>
             <div class="nav-collapse navbar-responsive-collapse collapse">
                 <ul class="nav">
                     <?php

@@ -42,6 +42,7 @@
             <div class="control-group">
                 <div class="controls submitRow">
                     <input name="userName" type="hidden" value="<?php echo isset($userName) ? $userName : '' ?>">
+                    <input name="userId" type="hidden" value="<?php echo isset($userId) ? $userId : '' ?>">
                     <input name="url" type="hidden" value="<?php echo isset($url) ? $url : '' ?>">
                     <input type="submit" class="btn btn-primary" value="提交">
                 </div>

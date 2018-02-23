@@ -15,6 +15,7 @@ class PersonWidget extends Widget
     public $user;
     public $now_path;
     public $url;
+    public $integral;
 
     /**
      * 定义函数
@@ -30,7 +31,7 @@ class PersonWidget extends Widget
      * */
     public function run()
     {
-        return $this->render('person', ['user' => $this->user, 'path' => $this->now_path, 'userId' => $this->userId]);
+        return $this->render('person', ['user' => $this->user, 'path' => $this->now_path, 'userId' => $this->userId,'integral'=>$this->integral]);
     }
 
     public function udata()
@@ -43,6 +44,8 @@ class PersonWidget extends Widget
     public function url()
     {
         $this->now_path = ltrim($_SERVER['REQUEST_URI'], '/');
+        $this->integral = Yii::$app->db->createCommand("select integral From {{%user}} where id=$this->userId ")->queryOne()['integral'];
+
     }
 
 }

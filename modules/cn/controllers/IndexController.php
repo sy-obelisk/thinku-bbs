@@ -21,11 +21,9 @@ class IndexController extends Controller
         $model=new Content();
         $first='2,3,4,5';
         $data=$model->getList($first);
-        $pageStr=$data['pageStr'];
-        unset($data['pageStr']);
-//        echo '<pre>';
-//        var_dump($data);die;
-        return $this->render('index',['data'=>$data,'pageStr'=>$pageStr]);
+        $page=$data['page'];
+        $data=$data['list'];
+        return $this->render('index',['data'=>$data,'page'=>$page]);
     }
 
 }

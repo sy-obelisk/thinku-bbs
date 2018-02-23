@@ -194,7 +194,7 @@ class ApiController extends Controller
                     $loginsdata['image'] = '';
                 }
                 $res['code'] = 0;
-                $res['url'] = (Yii::$app->session->get('url'))?Yii::$app->session->get('url'):'/';
+                $res['url'] = (Yii::$app->session->get('url'))?Yii::$app->session->get('url'):'/index.html';
                 unset($_SESSION['url']);
                 $res['message'] = '登录成功';
             } else {
@@ -224,7 +224,6 @@ class ApiController extends Controller
             $checkTime = $login->checkTime();
             if ($checkTime) {
                 $checkCode = $login->checkCode($registerStr, $code);
-
                 if ($checkCode) {
                     $loginsdata = Yii::$app->db->createCommand("select id,nickname,userName,phone,email,image,integral,level from {{%user}} where phone='$registerStr'")->queryOne();
                     if (!$loginsdata) {
@@ -255,6 +254,7 @@ class ApiController extends Controller
                         $loginsdata['image'] = '';
                     }
                     $res['code'] = 0;
+                    $res['url'] = (Yii::$app->session->get('url'))?Yii::$app->session->get('url'):'/index.html';
                     $res['message'] = '登录成功';
                     die(json_encode($res));
                 } else {
@@ -294,10 +294,9 @@ class ApiController extends Controller
         $pageSize = Yii::$app->request->post('pageSize', 15);
         $model = new Content();
         $data = $model->getList($first, $second, $third, $pageSize, $page);
-        $pageStr = $data['pageStr'];
-        unset($data['pageStr']);
-        die(json_encode(['data' => $data, 'pageStr' => $pageStr, 'code' => 0]));
-
+        $page=$data['page'];
+        $data=$data['list'];
+        die(json_encode(['data'=>$data,'page'=>$page, 'code' => 0]));
     }
 
     /**
@@ -807,4 +806,25 @@ class ApiController extends Controller
             die(json_encode($data));
         }
     }
+
+    /*
+     * 全部/精华
+     * */
+    public function actionAllArticle()
+    {
+        $cate= Yii::$app->request->post('cate', 'all');
+        $page= Yii::$app->request->post('page', 1);
+        $model=new Content();
+        $first='2,3,4,5';
+        if($cate=='all'){
+            $data=$model->getList($first);
+        }else{
+            $data=$model->getList($first,'','',15,$page,'goodArticle=1 and ');
+        }
+        $page=$data['page'];
+        $data=$data['list'];
+        die(json_encode(['data'=>$data,'page'=>$page]));
+    }
+
+
 }
