@@ -74,7 +74,7 @@ body{
 }
 /*未登录*/
 .header .wrap .header-login {
-  display: none;
+  /*display: none;*/
   margin-top: 5px;
   font-size: 0;
 }
@@ -99,7 +99,7 @@ body{
 /*登陆后*/
 .header .header-person {
   /*position: relative;*/
-  /*display: none;*/
+  display: none;
 }
 .header .header-person>div {
   padding: 0 15px;
