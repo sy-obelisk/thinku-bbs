@@ -15,7 +15,7 @@
           <div class="font">
             <h2>【标题】<?php echo $data['name']?></h2>
             <ul>
-              <li>发表时间：<?php echo substr($data['createTime'],1,10)?></li>
+              <li>发表时间：<?php echo substr($data['createTime'],0,10)?></li>
               <li>阅读量：<?php echo $data['viewCount']?></li>
               <li>回复量：<?php echo $discuss['count']?></li>
             </ul>
