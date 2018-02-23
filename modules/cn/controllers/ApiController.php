@@ -823,7 +823,7 @@ class ApiController extends Controller
         }
         $page=$data['page'];
         $data=$data['list'];
-        die(json_encode(['data'=>$data,'page'=>$page]));
+        die(json_encode(['code'=>0,'data'=>$data,'page'=>$page]));
     }
 
 

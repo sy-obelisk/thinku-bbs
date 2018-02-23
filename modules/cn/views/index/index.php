@@ -259,12 +259,12 @@
           </div>
           <div class="bd">
             <!--全部-->
-            <ul class="clearfix">
-              <li><a href="">全部<i class="iconfont icon-hot"></a></i></li>
-              <li><a href="">精华</a></li>
+            <ul class="clearfix all-article">
+              <li><a href="javascript:void(0)" data-cate="all">全部<i class="iconfont icon-hot"></a></i></li>
+              <li><a href="javascript:void(0)" data-cate="goodArticle">精华</a></li>
             </ul>
             <!--留学-->
-            <ul class="clearfix">
+            <ul class="clearfix get-list">
               <div class="abroad-wrap">
                 <div class="hd">
                   <ul class="clearfix">
@@ -339,7 +339,7 @@
               </div>
             </ul>
             <!--考试-->
-            <ul class="clearfix">
+            <ul class="clearfix get-list">
               <div class="exam-wrap">
                 <div class="hd">
                   <ul class="clearfix">
@@ -390,7 +390,7 @@
               </div>
             </ul>
             <!--职业-->
-            <ul class="clearfix">
+            <ul class="clearfix get-list">
               <li><a href="javascript:void(0)" data-first="4" data-second="76">金融</a></li>
               <li><a href="javascript:void(0)" data-first="4" data-second="77">大商科</a></li>
               <li><a href="javascript:void(0)" data-first="4" data-second="78">会计</a></li>
@@ -398,7 +398,7 @@
               <li><a href="javascript:void(0)" data-first="4" data-second="80">文科艺术类</a></li>
             </ul>
             <!--生活-->
-            <ul class="clearfix">
+            <ul class="clearfix get-list">
               <li><a href="javascript:void(0)" data-first="5" data-second="81">美国</a></li>
               <li><a href="javascript:void(0)" data-first="5" data-second="82">英国</a></li>
               <li><a href="javascript:void(0)" data-first="5" data-second="83">澳洲</a></li>
@@ -412,27 +412,27 @@
         </div>
         <div class="box-cnt">
           <div class="box-post-list">
-            <ul>
-              <?php foreach($data as $v){?>
-                <li class="item">
-                  <div class="img">
-                    <img src="" alt="">
-                  </div>
-                  <div class="right">
-                    <h3><a href="/details/<?php echo $v['id']?>.html"><?php echo $v['name']?><i class="iconfont icon-hot"></a></i></h3>
-                    <div class="info-list clearfix">
-                      <div class="first-div"><span><?php echo $v['nickname']?$v['nickname']:$v['userName']?></span> <span>发布于<?php echo substr($v['createTime'],0,10)?></span></div>
-                      <div class="last-div">
-                        <p><?php echo isset($v['last']['name'])&&$v['last']['name']!=false?"<span>".$v['last']['name']."</span> <span>最后回复于".$v['last']['time']."</span> ":''?></span></p>
-                        <p><span>查看：<?php echo $v['viewCount']?> </span>|<span>回复：<?php echo $v['count']?></span></p></div>
-                    </div>
-                    <div class="abstract">
-                      <?php echo $v['listeningFile']?>
-                    </div>
-                  </div>
-                </li>
-              <?php }?>
-            </ul>
+<!--            <ul>-->
+<!--              --><?php //foreach($data as $v){?>
+<!--                <li class="item">-->
+<!--                  <div class="img">-->
+<!--                    <img src="" alt="">-->
+<!--                  </div>-->
+<!--                  <div class="right">-->
+<!--                    <h3><a href="/details/--><?php //echo $v['id']?><!--.html">--><?php //echo $v['name']?><!--<i class="iconfont icon-hot"></a></i></h3>-->
+<!--                    <div class="info-list clearfix">-->
+<!--                      <div class="first-div"><span>--><?php //echo $v['nickname']?$v['nickname']:$v['userName']?><!--</span> <span>发布于--><?php //echo substr($v['createTime'],0,10)?><!--</span></div>-->
+<!--                      <div class="last-div">-->
+<!--                        <p>--><?php //echo isset($v['last']['name'])&&$v['last']['name']!=false?"<span>".$v['last']['name']."</span> <span>最后回复于".$v['last']['time']."</span> ":''?><!--</span></p>-->
+<!--                        <p><span>查看：--><?php //echo $v['viewCount']?><!-- </span>|<span>回复：--><?php //echo $v['count']?><!--</span></p></div>-->
+<!--                    </div>-->
+<!--                    <div class="abstract">-->
+<!--                      --><?php //echo $v['listeningFile']?>
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </li>-->
+<!--              --><?php //}?>
+<!--            </ul>-->
           </div>
 <!--            <li class="item">-->
 <!--              <div class="img">-->
