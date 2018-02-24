@@ -36,7 +36,8 @@
         </ul>
         <!---分页-->
         <div class="page-wrap">
-          <ul class="pagination" id="pagination1"></ul>
+<!--          <ul class="pagination" id="pagination1"></ul>-->
+          <?php echo $page;?>
         </div>
       </div>
     </div>
