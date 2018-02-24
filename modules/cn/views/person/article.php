@@ -26,7 +26,7 @@
           <h3><a href=""><?php echo $v['name']?></a></h3>
           <div>
             <p>发表于<span><?php echo $v['createTime']?></span></p>
-            <p><span>查看：111</span>|<span>回复：333</span></p>
+            <p><span>查看：<?php echo $v['viewCount']?></span>|<span>回复：<?php echo $v['count']?></span></p>
           </div>
         </div>
         <div class="sort">美国留学</div>

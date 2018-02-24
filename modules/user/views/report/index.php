@@ -58,7 +58,8 @@
             <thead>
             <tr>
                 <th width="80">ID</th>
-                <th>内容Id</th>
+                <th width="80">位置</th>
+                <th>举报Id</th>
                 <th>用户Id</th>
                 <th>举报分类</th>
                 <th>描述</th>
@@ -73,6 +74,7 @@
                 ?>
                 <tr>
                     <td><?php echo $v['id']?></td>
+                    <td><?php echo $v['cate']=1?'内容':'评论'?></td>
                     <td><span><?php echo $v['contentId']?></span></td>
                     <td><span><?php echo $v['userId']?></span></td>
                     <td><span><?php echo Yii::$app->params['report'][$v['reportType']]?></span></td>

@@ -115,7 +115,7 @@ class ApiController extends Controller
         $type = Yii::$app->request->post('type');
         $userName = Yii::$app->request->post('userName', '');
         if ($userName == '') {
-            $userName = 'LX' . time();
+            $userName = 'LX' . time().rand(10,99);
         }
         $checkTime = $login->checkTime();
         if ($checkTime) {
@@ -230,7 +230,7 @@ class ApiController extends Controller
                         $login->phone = $registerStr;
                         $login->userPass = '';
                         $login->createTime = time();
-                        $login->userName = 'LX' . time();
+                        $login->userName = 'LX' . time().rand(10,99);
                         $re = $login->save();
                         if ($re) {
                             $model = new News();
@@ -246,6 +246,7 @@ class ApiController extends Controller
                             $res['message'] = '登录失败，请重试';
                             die(json_encode($res));
                         }
+                        $loginsdata = Yii::$app->db->createCommand("select id,nickname,userName,phone,email,image,integral,level from {{%user}} where phone='$registerStr'")->queryOne();
                     }
                     $session->set('userId', $loginsdata['id']);
                     $session->set('userData', $loginsdata);
@@ -337,13 +338,14 @@ class ApiController extends Controller
     }
 
     /**
-     * 举报、留言，已验证
+     * 举报，已验证
      */
     public function actionReport()
     {
         $reData['contentId'] = Yii::$app->request->post('contentId');
         $reData['description'] = Yii::$app->request->post('description');
-        $reData['reportType'] = Yii::$app->request->post('reportType');
+        $reData['reportType'] = Yii::$app->request->post('reportType');// params里
+        $reData['cate'] = Yii::$app->request->post('cate');//1 为内容，2评论
         $reData['description'] = htmlspecialchars($reData['description']);
         $reData['createTime'] = time();
         $reData['status'] = 0;// 0表示未处理，1表示属实，2表示不属实
@@ -527,6 +529,7 @@ class ApiController extends Controller
     {
         if ($_POST) {
             $user=Yii::$app->session->get('userId');
+            $user=1;
             if(!$user){
                 $data['code'] = 2;
                 $data['message'] = '未登录';

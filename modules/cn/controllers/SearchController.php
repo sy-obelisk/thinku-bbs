@@ -19,7 +19,7 @@ class SearchController extends Controller
     {
         $keyword = Yii::$app->request->get('keyword', '');
         $integral = Yii::$app->session->get('integral', '');
-        $page = Yii::$app->session->get('page', '');
+        $page = Yii::$app->session->get('page', 1);
         if($integral<10){
             echo '<script>alert("您的等级太低，努力升级吧，少年！")</script>';die;
         }
@@ -27,7 +27,7 @@ class SearchController extends Controller
         $keyword  =strip_tags($keyword);
         $pagesize=15;
         $offset=$pagesize*($page-1);
-        $data = Yii::$app->db->createCommand("select id,title,summary from {{%info}} where title like '%$keyword%' limit $offset,$pagesize")->queryAll();
+        $data = Yii::$app->db->createCommand("select id,name,title,summary from {{%content}} where name like '%$keyword%' limit $offset,$pagesize")->queryAll();
         return $this->render('search',$data);
     }
 }

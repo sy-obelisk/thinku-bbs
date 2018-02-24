@@ -20,13 +20,19 @@ class PersonController extends Controller
     public function actionIndex()
     {
         $userId = Yii::$app->session->get('userId', '');
+        $page = Yii::$app->request->get('page', 1);
+        $pageSize = 15;
+        $offset = $pageSize*($page-1);
 //        $userId = 1;
         if (!$userId) {
             echo "<script>alert('未登录')</script>";
             die;
         }
         $data = Yii::$app->db->createCommand("select u.userName,u.nickname,u.phone,u.email,ue.bathday,ue.address,ue.education,ue.school,ue.id as eid From {{%user}} u left join {{%user_extend}} ue on u.id=ue.userId where u.id=$userId ")->queryOne();
-        $integral['details'] = Yii::$app->db->createCommand("select id,score,message,createTime From {{%integral_details}} where userId=$userId order by id desc limit 10")->queryAll();
+        $integral['details'] = Yii::$app->db->createCommand("select id,score,message,createTime,type From {{%integral_details}} where userId=$userId order by id desc limit $offset,$pageSize")->queryAll();
+        $integral['count'] = count(Yii::$app->db->createCommand("select id From {{%integral_details}} where userId=$userId")->queryAll());
+        $integral['page'] = $page;
+        $integral['countpage'] =ceil($integral['count']/$pageSize) ;
         $integral['integral'] = Yii::$app->db->createCommand("select integral From {{%user}} where id=$userId")->queryOne()['integral'];
         return $this->render('index', ['data'=>$data,'integral'=>$integral]);
     }
@@ -64,9 +70,10 @@ class PersonController extends Controller
         $data['data'] = Yii::$app->db->createCommand($sql . " limit $offset,$pageSize")->queryAll();
         $data['page'] = $page;
         $data['pageCount'] = ceil($data['count'] / $pageSize);
-//        echo '<pre>';
-//        var_dump($data);die;
-        return $this->render('article', $data);
+        foreach ($data['data'] as $k => $v) {
+            $data['data'][$k]['count'] = count(Yii::$app->db->createCommand("select id from {{%user_discuss}}  where contentId=" . $v['id'] . " and pid=0")->queryAll());
+        }
+        return $this->render('article', ['data'=>$data]);
 
     }
 
