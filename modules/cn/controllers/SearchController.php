@@ -36,9 +36,11 @@ class SearchController extends Controller
             $data[$k]['count'] = count(Yii::$app->db->createCommand("select id from {{%user_discuss}}  where contentId=" . $v['id'] . " and pid=0")->queryAll());
 
         }
-        $p['count'] = $count;
-        $p['pagecount'] = ceil($count / $pageSize);
-        $p['page'] = $page;
-        return $this->render('search',['data'=>$data,'page'=>$p]);
+//        $p['count'] = $count;
+//        $p['pagecount'] = ceil($count / $pageSize);
+//        $p['page'] = $page;
+        $pageModel = new Pager($count,$page,$pageSize);
+        $pageStr = $pageModel->GetPagerContent();
+        return $this->render('search',['data'=>$data,'page'=>$pageStr]);
     }
 }
