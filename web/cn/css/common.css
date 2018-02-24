@@ -99,7 +99,7 @@ body{
 /*登陆后*/
 .header .header-person {
   /*position: relative;*/
-  display: none;
+  /*display: none;*/
 }
 .header .header-person>div {
   padding: 0 15px;

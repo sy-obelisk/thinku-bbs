@@ -9,20 +9,43 @@ var _index = {
   },
   bind : function () {
     var _this = this;
-    $('.box-tab>.bd .get-list a').click(function () {
+    // 点击全部一级导航点击
+    $('.article-all').click(function () {
+      _this.allArticle(this);
+    });
+    // 其他一级导航点击
+    $('.article-other').click(function () {
       _this.getList(this);
     });
+    // 点击全部/精华二级导航
     $('.box-tab .all-article a').click(function () {
       _this.allArticle(this);
-    })
+    });
+    // 点击二三级导航（除全部/精华）
+    $('.box-tab>.bd .get-list>li').click(function () {
+      _this.getList(this);
+    });
+    // 留学二级导航点击
+    $('.abroad-wrap .inHd li').click(function () {
+      var i = $(this).index();
+      var obj = $('.abroad-wrap .inBd>ul').eq(i).children().eq(0);
+      _this.getList(obj);
+    });
+    // 考试二级导航点击
+    $('.exam-wrap .inHd li').click(function () {
+      var i = $(this).index();
+      var obj = $('.abroad-wrap .inBd>ul').eq(i).children().eq(0);
+      _this.getList(obj);
+    });
+
   },
   getList : function (obj) {
     var first  = $(obj).data('first'),
         second = $(obj).data('second'),
         third  = $(obj).data('third'),
         _this = this;
-    $('.box-tab>.bd a').removeClass('on');
-    $(obj).addClass('on');
+    console.log($(obj).parents().hasClass('get-list'));
+    $(obj).addClass('active').siblings().removeClass('active');
     third = third == undefined ? '' : third;
     _this.ajaxEvent(first,second,third,1);
   },
@@ -30,6 +53,7 @@ var _index = {
   allArticle : function(obj){
     var cate = $(obj).data('cate'),
         _this = this;
+    // $(obj).addClass('on').siblings().removeClass('on');
     _this.ajaxArticle(cate,1);
   },
   ajaxEvent : function (first,second,third,p) {
@@ -109,7 +133,6 @@ var _index = {
         console.log(res);
         tp = res.page.pagecount;
         if (!res.page.count){
-          // res.data = 0;
           tp = 1;
         }
         if (res.code == 0) {
@@ -119,9 +142,13 @@ var _index = {
               "<div class='img'>"+
               "<img src='' alt='头像'>"+
               "</div>"+
-              "<div class='right'>"+
-              "<h3><a href='/details/"+data[i].id+".html'>"+data[i].name+"<i class='iconfont icon-hot'></a></i></h3>"+
-              "<div class='info-list clearfix'>"+
+              "<div class='right'>";
+            if (i <= 3 && p == 1){
+              ulItem+="<h3><a href='/details/"+data[i].id+".html'>"+data[i].name+"<i class='iconfont icon-hot'></i></a></h3>";
+            } else {
+              ulItem+="<h3><a href='/details/"+data[i].id+".html'>"+data[i].name+"</a></h3>";
+            }
+            ulItem+="<div class='info-list clearfix'>"+
               "<div class='first-div'><span>"+data[i].userName+"</span> <span>发布于"+data[i].createTime+"</span></div>"+
               "<div class='last-div'>"+
               // "<p><span>"+data[i].last.name+" </span><span>最后回复于"+data[i].last.time+" </span></p>"+
@@ -163,28 +190,19 @@ $(function () {
     jQuery(".workcase .score").slide({mainCell:".bd ul",autoPlay:true,effect:"topMarquee",vis:3,interTime:50});
 // 热门公开课
     jQuery(".hotpublic .public").slide({ mainCell:".box ul",effect:"leftLoop", autoPlay:false, delayTime:400});
+
+//    考试
+    jQuery(".exam-wrap").slide({trigger:"click",effect:"left",titCell:".inHd li",mainCell:".inBd"});
+//    留学
+    jQuery(".abroad-wrap").slide({trigger:"click",effect:"left",titCell:".inHd li",mainCell:".inBd"});
 //  帖子导航
     jQuery(".box-tab").slide({trigger:"click"});
-//    考试
-    jQuery(".exam-wrap").slide({});
-//    留学
-    jQuery(".abroad-wrap").slide({});
+
 
 //  侧边栏我要规划
     jQuery(".project").slide({});
 //  侧边栏热帖排行榜
     jQuery(".ranking").slide({});
-//    分页
-//     $.jqPaginator('#pagination1', {
-//       totalPages: 20,
-//       visiblePages: 7,
-//       currentPage: 1,
-//       onPageChange: function (num, type) {
-//         console.log(num,type);
-//         if (type == 'change') {
-//           _index.ajaxArticle(cate, num);
-//         }
-//       }
-//     });
+
   })
 })

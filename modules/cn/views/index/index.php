@@ -235,23 +235,23 @@
         <div class="box-tab">
           <div class="hd">
             <ul class="clearfix">
-              <li class="on">
+              <li class="on article-all" data-cate="all">
                 <div class="img"></div>
                 <p>全部</p>
               </li>
-              <li>
+              <li class="article-other" data-first="2" data-second="6" data-third="16">
                 <div class="img"></div>
                 <p>留学</p>
               </li>
-              <li>
+              <li class="article-other" data-first="3" data-second="56" data-third="61">
                 <div class="img"></div>
                 <p>考试</p>
               </li>
-              <li>
+              <li class="article-other" data-first="4" data-second="76">
                 <div class="img"></div>
                 <p>职业</p>
               </li>
-              <li>
+              <li class="article-other" data-first="5" data-second="81">
                 <div class="img"></div>
                 <p>生活</p>
               </li>
@@ -266,7 +266,7 @@
             <!--留学-->
             <ul class="clearfix get-list">
               <div class="abroad-wrap">
-                <div class="hd">
+                <div class="inHd">
                   <ul class="clearfix">
                     <li>美国</li>
                     <li>英国</li>
@@ -278,62 +278,62 @@
                     <li>其他</li>
                   </ul>
                 </div>
-                <div class="bd">
+                <div class="inBd">
                   <ul>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="6" data-third="16">签证</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="6" data-third="17">答疑</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="6" data-third="18">院校项目</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="6" data-third="19">实习就业</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="6" data-third="20">面试</a></li>
+                    <li class="active" data-first="2" data-second="6" data-third="16"><a href="javascript:void(0)">签证</a></li>
+                    <li data-first="2" data-second="6" data-third="17"><a href="javascript:void(0)">答疑</a></li>
+                    <li data-first="2" data-second="6" data-third="18"><a href="javascript:void(0)">院校项目</a></li>
+                    <li data-first="2" data-second="6" data-third="19"><a href="javascript:void(0)">实习就业</a></li>
+                    <li data-first="2" data-second="6" data-third="20"><a href="javascript:void(0)">面试</a></li>
                   </ul>
                   <ul>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="7" data-third="21">签证</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="7" data-third="22">答疑</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="7" data-third="23">院校项目</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="7" data-third="24">实习就业</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="7" data-third="25">面试</a></li>
+                    <li class="active"  data-first="2" data-second="7" data-third="21"><a href="javascript:void(0)">签证</a></li>
+                    <li data-first="2" data-second="7" data-third="22"><a href="javascript:void(0)">答疑</a></li>
+                    <li data-first="2" data-second="7" data-third="23"><a href="javascript:void(0)">院校项目</a></li>
+                    <li data-first="2" data-second="7" data-third="24"><a href="javascript:void(0)">实习就业</a></li>
+                    <li data-first="2" data-second="7" data-third="25"><a href="javascript:void(0)">面试</a></li>
                   </ul>
                   <ul>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="8" data-third="26">签证</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="8" data-third="27">答疑</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="8" data-third="28">院校项目</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="8" data-third="29">实习就业</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="8" data-third="30">面试</a></li>
+                    <li class="active" data-first="2" data-second="8" data-third="26"><a href="javascript:void(0)">签证</a></li>
+                    <li data-first="2" data-second="8" data-third="27"><a href="javascript:void(0)">答疑</a></li>
+                    <li data-first="2" data-second="8" data-third="28"><a href="javascript:void(0)">院校项目</a></li>
+                    <li data-first="2" data-second="8" data-third="29"><a href="javascript:void(0)">实习就业</a></li>
+                    <li data-first="2" data-second="8" data-third="30"><a href="javascript:void(0)">面试</a></li>
                   </ul>
                   <ul>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="9" data-third="31">签证</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="9" data-third="32">答疑</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="9" data-third="33">院校项目</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="9" data-third="34">实习就业</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="9" data-third="35">面试</a></li>
+                    <li class="active" data-first="2" data-second="9" data-third="31"><a href="javascript:void(0)">签证</a></li>
+                    <li data-first="2" data-second="9" data-third="32"><a href="javascript:void(0)">答疑</a></li>
+                    <li data-first="2" data-second="9" data-third="33"><a href="javascript:void(0)">院校项目</a></li>
+                    <li data-first="2" data-second="9" data-third="34"><a href="javascript:void(0)">实习就业</a></li>
+                    <li data-first="2" data-second="9" data-third="35"><a href="javascript:void(0)">面试</a></li>
                   </ul>
                   <ul>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="10" data-third="36">签证</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="10" data-third="37">答疑</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="10" data-third="38">院校项目</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="10" data-third="39">实习就业</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="10" data-third="40">面试</a></li>
+                    <li class="active"  data-first="2" data-second="10" data-third="36"><a href="javascript:void(0)">签证</a></li>
+                    <li data-first="2" data-second="10" data-third="37"><a href="javascript:void(0)">答疑</a></li>
+                    <li data-first="2" data-second="10" data-third="38"><a href="javascript:void(0)">院校项目</a></li>
+                    <li data-first="2" data-second="10" data-third="39"><a href="javascript:void(0)">实习就业</a></li>
+                    <li data-first="2" data-second="10" data-third="40"><a href="javascript:void(0)">面试</a></li>
                   </ul>
                   <ul>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="11" data-third="41">签证</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="11" data-third="42">答疑</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="11" data-third="43">院校项目</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="11" data-third="44">实习就业</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="11" data-third="45">面试</a></li>
+                    <li class="active"  data-first="2" data-second="11" data-third="41"><a href="javascript:void(0)">签证</a></li>
+                    <li data-first="2" data-second="11" data-third="42"><a href="javascript:void(0)">答疑</a></li>
+                    <li data-first="2" data-second="11" data-third="43"><a href="javascript:void(0)">院校项目</a></li>
+                    <li data-first="2" data-second="11" data-third="44"><a href="javascript:void(0)">实习就业</a></li>
+                    <li data-first="2" data-second="11" data-third="45"><a href="javascript:void(0)">面试</a></li>
                   </ul>
                   <ul>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="12" data-third="46">签证</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="12" data-third="47">答疑</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="12" data-third="48">院校项目</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="12" data-third="49">实习就业</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="12" data-third="50">面试</a></li>
+                    <li class="active" data-first="2" data-second="12" data-third="46"><a href="javascript:void(0)">签证</a></li>
+                    <li data-first="2" data-second="12" data-third="47"><a href="javascript:void(0)">答疑</a></li>
+                    <li data-first="2" data-second="12" data-third="48"><a href="javascript:void(0)">院校项目</a></li>
+                    <li data-first="2" data-second="12" data-third="49"><a href="javascript:void(0)">实习就业</a></li>
+                    <li data-first="2" data-second="12" data-third="50"><a href="javascript:void(0)">面试</a></li>
                   </ul>
                   <ul>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="13" data-third="51">签证</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="13" data-third="52">答疑</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="13" data-third="53">院校项目</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="13" data-third="54">实习就业</a></li>
-                    <li><a href="javascript:void(0)" data-first="2" data-second="13" data-third="55">面试</a></li>
+                    <li class="active" data-first="2" data-second="13" data-third="51"><a href="javascript:void(0)">签证</a></li>
+                    <li data-first="2" data-second="13" data-third="52"><a href="javascript:void(0)">答疑</a></li>
+                    <li data-first="2" data-second="13" data-third="53"><a href="javascript:void(0)">院校项目</a></li>
+                    <li data-first="2" data-second="13" data-third="54"><a href="javascript:void(0)">实习就业</a></li>
+                    <li data-first="2" data-second="13" data-third="55"><a href="javascript:void(0)">面试</a></li>
                   </ul>
                 </div>
               </div>
@@ -341,7 +341,7 @@
             <!--考试-->
             <ul class="clearfix get-list">
               <div class="exam-wrap">
-                <div class="hd">
+                <div class="inHd">
                   <ul class="clearfix">
                     <li>GMAT</li>
                     <li>TOEFL</li>
@@ -350,63 +350,63 @@
                     <li>SAT</li>
                   </ul>
                 </div>
-                <div class="bd">
+                <div class="inBd">
                   <!--GMAT-->
                   <ul>
-                   <li><a href="javascript:void(0)" data-first="3" data-second="56" data-third="61">答疑</a></li>
-                   <li><a href="javascript:void(0)" data-first="3" data-second="56" data-third="62">备考经验</a></li>
-                   <li><a href="javascript:void(0)" data-first="3" data-second="56" data-third="63">资料下载</a></li>
-                   <li><a href="javascript:void(0)" data-first="3" data-second="56" data-third="113">机经下载</a></li>
+                   <li class="active" data-first="3" data-second="56" data-third="61"><a class="on" href="javascript:void(0)">答疑</a></li>
+                   <li data-first="3" data-second="56" data-third="62"><a href="javascript:void(0)">备考经验</a></li>
+                   <li data-first="3" data-second="56" data-third="63"><a href="javascript:void(0)">资料下载</a></li>
+                   <li data-first="3" data-second="56" data-third="113"><a href="javascript:void(0)">机经下载</a></li>
                  </ul>
                   <!--TOEFL-->
                   <ul>
-                    <li><a href="javascript:void(0)" data-first="3" data-second="58" data-third="67">答疑</a></li>
-                    <li><a href="javascript:void(0)" data-first="3" data-second="58" data-third="68">备考经验</a></li>
-                    <li><a href="javascript:void(0)" data-first="3" data-second="58" data-third="69">资料下载</a></li>
-                    <li><a href="javascript:void(0)" data-first="3" data-second="58" data-third="115">资料下载</a></li>
+                    <li class="active" data-first="3" data-second="58" data-third="67"><a href="javascript:void(0)" >答疑</a></li>
+                    <li data-first="3" data-second="58" data-third="68"><a href="javascript:void(0)">备考经验</a></li>
+                    <li data-first="3" data-second="58" data-third="69"><a href="javascript:void(0)">资料下载</a></li>
+                    <li data-first="3" data-second="58" data-third="115"><a href="javascript:void(0)">资料下载</a></li>
                   </ul>
                   <!--IELTS-->
                   <ul>
-                    <li><a href="javascript:void(0)" data-first="3" data-second="59" data-third="70">答疑</a></li>
-                    <li><a href="javascript:void(0)" data-first="3" data-second="59" data-third="71">备考经验</a></li>
-                    <li><a href="javascript:void(0)" data-first="3" data-second="59" data-third="72">资料下载</a></li>
-                    <li><a href="javascript:void(0)" data-first="3" data-second="59" data-third="116">资料下载</a></li>
+                    <li class="active" data-first="3" data-second="59" data-third="70"><a href="javascript:void(0)">答疑</a></li>
+                    <li data-first="3" data-second="59" data-third="71"><a href="javascript:void(0)">备考经验</a></li>
+                    <li data-first="3" data-second="59" data-third="72"><a href="javascript:void(0)">资料下载</a></li>
+                    <li data-first="3" data-second="59" data-third="116"><a href="javascript:void(0)">资料下载</a></li>
                   </ul>
                   <!--GRE-->
                   <ul>
-                    <li><a href="javascript:void(0)" data-first="3" data-second="57" data-third="64">答疑</a></li>
-                    <li><a href="javascript:void(0)" data-first="3" data-second="57" data-third="65">备考经验</a></li>
-                    <li><a href="javascript:void(0)" data-first="3" data-second="57" data-third="66">资料下载</a></li>
-                    <li><a href="javascript:void(0)" data-first="3" data-second="57" data-third="114">资料下载</a></li>
+                    <li class="active" data-first="3" data-second="57" data-third="64"><a href="javascript:void(0)">答疑</a></li>
+                    <li data-first="3" data-second="57" data-third="65"><a href="javascript:void(0)">备考经验</a></li>
+                    <li data-first="3" data-second="57" data-third="66"><a href="javascript:void(0)">资料下载</a></li>
+                    <li data-first="3" data-second="57" data-third="114"><a href="javascript:void(0)">资料下载</a></li>
                   </ul>
                   <!--SAT-->
                   <ul>
-                    <li><a href="javascript:void(0)" data-first="3" data-second="60" data-third="64">答疑</a></li>
-                    <li><a href="javascript:void(0)" data-first="3" data-second="60" data-third="65">备考经验</a></li>
-                    <li><a href="javascript:void(0)" data-first="3" data-second="60" data-third="66">资料下载</a></li>
-                    <li><a href="javascript:void(0)" data-first="3" data-second="60" data-third="117">资料下载</a></li>
+                    <li class="active" data-first="3" data-second="60" data-third="64"><a href="javascript:void(0)">答疑</a></li>
+                    <li data-first="3" data-second="60" data-third="65"><a href="javascript:void(0)">备考经验</a></li>
+                    <li data-first="3" data-second="60" data-third="66"><a href="javascript:void(0)">资料下载</a></li>
+                    <li data-first="3" data-second="60" data-third="117"><a href="javascript:void(0)">资料下载</a></li>
                   </ul>
                 </div>
               </div>
             </ul>
             <!--职业-->
             <ul class="clearfix get-list">
-              <li><a href="javascript:void(0)" data-first="4" data-second="76">金融</a></li>
-              <li><a href="javascript:void(0)" data-first="4" data-second="77">大商科</a></li>
-              <li><a href="javascript:void(0)" data-first="4" data-second="78">会计</a></li>
-              <li><a href="javascript:void(0)" data-first="4" data-second="79">理工科</a></li>
-              <li><a href="javascript:void(0)" data-first="4" data-second="80">文科艺术类</a></li>
+              <li data-first="4" data-second="76"><a href="javascript:void(0)">金融</a></li>
+              <li data-first="4" data-second="77"><a href="javascript:void(0)">大商科</a></li>
+              <li data-first="4" data-second="78"><a href="javascript:void(0)">会计</a></li>
+              <li data-first="4" data-second="79"><a href="javascript:void(0)">理工科</a></li>
+              <li data-first="4" data-second="80"><a href="javascript:void(0)">文科艺术类</a></li>
             </ul>
             <!--生活-->
             <ul class="clearfix get-list">
-              <li><a href="javascript:void(0)" data-first="5" data-second="81">美国</a></li>
-              <li><a href="javascript:void(0)" data-first="5" data-second="82">英国</a></li>
-              <li><a href="javascript:void(0)" data-first="5" data-second="83">澳洲</a></li>
-              <li><a href="javascript:void(0)" data-first="5" data-second="84">加拿大</a></li>
-              <li><a href="javascript:void(0)" data-first="5" data-second="85">香港</a></li>
-              <li><a href="javascript:void(0)" data-first="5" data-second="86">新加坡</a></li>
-              <li><a href="javascript:void(0)" data-first="5" data-second="87">法国</a></li>
-              <li><a href="javascript:void(0)" data-first="5" data-second="88">其他</a></li>
+              <li data-first="5" data-second="80"><a href="javascript:void(0)">美国</a></li>
+              <li data-first="5" data-second="81"><a href="javascript:void(0)">英国</a></li>
+              <li data-first="5" data-second="82"><a href="javascript:void(0)">澳洲</a></li>
+              <li data-first="5" data-second="83"><a href="javascript:void(0)">加拿大</a></li>
+              <li data-first="5" data-second="84"><a href="javascript:void(0)">香港</a></li>
+              <li data-first="5" data-second="85"><a href="javascript:void(0)">新加坡</a></li>
+              <li data-first="5" data-second="86"><a href="javascript:void(0)">法国</a></li>
+              <li data-first="5" data-second="87"><a href="javascript:void(0)">其他</a></li>
             </ul>
           </div>
         </div>

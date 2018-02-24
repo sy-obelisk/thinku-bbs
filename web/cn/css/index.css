@@ -385,18 +385,19 @@
 .posts .box-tab>.bd ul>li i{
   color: red;
 }
-.posts .box-tab>.bd ul>li a.on{
+.posts .box-tab>.bd ul>li.active a,
+.posts .box-tab>.bd ul>li.on a{
   color: #7d1f88;
 }
 .posts .box-tab>.bd ul>li a:hover {
   text-decoration: underline;
 }
-.posts .box-tab>.bd>ul>div .hd li.on {
+.posts .box-tab>.bd>ul>div .inHd li.on {
   color: #7d1f88;
   text-decoration: underline;
   font-weight: 600;
 }
-.posts .box-tab>.bd>ul>div .hd li:hover {
+.posts .box-tab>.bd>ul>div .inHd li:hover {
   cursor: default;
   color: #7d1f88;
 }
