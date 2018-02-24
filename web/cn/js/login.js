@@ -65,18 +65,9 @@ var _login = {
     $.post('/cn/api/message-login',{registerStr:phone,code:code},function(res){
       console.log(res);
       if(res.code == 0){
-        if(res.type == 0){
-          alert('首次登录你的雷哥网密码为：'+re.password);
-        }
-        if(res.check == 0){
-          $('.loginMessage').html(re.success_content);
-          setTimeout(function(){
-            location.href=re.url;
-          },1500);
-        }else{
-          $(".reg-success").show();
-          $(".shop-login").hide();
-        }
+        setTimeout(function(){
+          location.href=res.url;
+        },1500);
       }else{
         alert(res.message);
       }

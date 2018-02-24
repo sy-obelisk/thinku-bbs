@@ -30,7 +30,11 @@ var _new = {
       alert('请输入帖子内容!')
       return false;
     }
-    var category = $('#clsSecond').val()+','+$('#clsThird').val();
+    if ($('#clsThird').val() == '三级分类') {
+      var category = $('#clsFirst').val()+','+$('#clsSecond').val();
+    } else {
+      var category = $('#clsFirst').val()+','+$('#clsSecond').val()+','+$('#clsThird').val();
+    }
     $.ajax({
       type: 'post',
       url : "/cn/api/new-article",
