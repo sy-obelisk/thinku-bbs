@@ -203,11 +203,12 @@ body{
 .nav>.search>ul>li:hover a {
   text-decoration: underline;
 }
-.nav>.search>form {
+.nav>.search>div {
   position: relative;
-  margin-left: 30px;
+  display: inline-block;
+  margin: 10px 0 0 30px;
 }
-.nav>.search>form>input {
+.nav>.search>div>input {
   width: 260px;
   height: 25px;
   outline: none;
@@ -219,16 +220,17 @@ body{
   font-size: 16px;
   color: #777;
 }
-.nav>.search>form span {
+.nav>.search>div span {
   position: absolute;
   font-size: 16px;
   color: #7d1f88;
-  top: 0;
+  top: 10px;
   right: 10px;
 }
 /*
   路径导航
 */
+.bread-crumb li,
 .bread-crumb li a {
   font-size: 14px;
   color: #363636;

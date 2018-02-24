@@ -12,16 +12,21 @@ var _index = {
     // 点击全部一级导航点击
     $('.article-all').click(function () {
       _this.allArticle(this);
+      $('.all-article li').eq(0).addClass('active').siblings().removeClass('active');
     });
     // 其他一级导航点击
     $('.article-other').click(function () {
       _this.getList(this);
+      $('.get-list>li').eq(0).addClass('on').siblings().removeClass('on');
+      $('.get-list .inHd li').eq(0).addClass('on').siblings().removeClass('on');
+      $('.get-list .inBd:eq(0)>ul').eq(0).css('display','block').children('li').eq(0).addClass('active').siblings().removeClass('active').parent().siblings().css('display','none');
+      $('.get-list .inBd:eq(1)>ul').eq(0).css('display','block').children('li').eq(0).addClass('active').siblings().removeClass('active').parent().siblings().css('display','none');
     });
-    // 点击全部/精华二级导航
-    $('.box-tab .all-article a').click(function () {
+    // 全部/精华二级导航点击
+    $('.box-tab .all-article li').click(function () {
       _this.allArticle(this);
     });
-    // 点击二三级导航（除全部/精华）
+    // 职业、生活二级导航点击
     $('.box-tab>.bd .get-list>li').click(function () {
       _this.getList(this);
     });
@@ -37,14 +42,16 @@ var _index = {
       var obj = $('.abroad-wrap .inBd>ul').eq(i).children().eq(0);
       _this.getList(obj);
     });
-
+    // 留学、考试三级导航点击
+    $('.box-tab>.bd .get-list .inBd li').click(function () {
+      _this.getList(this);
+    });
   },
   getList : function (obj) {
     var first  = $(obj).data('first'),
         second = $(obj).data('second'),
         third  = $(obj).data('third'),
         _this = this;
-    console.log($(obj).parents().hasClass('get-list'));
     $(obj).addClass('active').siblings().removeClass('active');
     third = third == undefined ? '' : third;
     _this.ajaxEvent(first,second,third,1);
@@ -53,7 +60,7 @@ var _index = {
   allArticle : function(obj){
     var cate = $(obj).data('cate'),
         _this = this;
-    // $(obj).addClass('on').siblings().removeClass('on');
+    $(obj).addClass('active').siblings().removeClass('active');
     _this.ajaxArticle(cate,1);
   },
   ajaxEvent : function (first,second,third,p) {
@@ -72,7 +79,7 @@ var _index = {
         $('.box-post-list').html("加载中...");
       },
       success: function (res) {
-        console.log(res);
+        // console.log(res);
         tp = res.page.pagecount;
         if (!res.page.count){
           // res.data = 0;
@@ -192,9 +199,9 @@ $(function () {
     jQuery(".hotpublic .public").slide({ mainCell:".box ul",effect:"leftLoop", autoPlay:false, delayTime:400});
 
 //    考试
-    jQuery(".exam-wrap").slide({trigger:"click",effect:"left",titCell:".inHd li",mainCell:".inBd"});
+    jQuery(".exam-wrap").slide({trigger:"click",titCell:".inHd li",mainCell:".inBd"});
 //    留学
-    jQuery(".abroad-wrap").slide({trigger:"click",effect:"left",titCell:".inHd li",mainCell:".inBd"});
+    jQuery(".abroad-wrap").slide({trigger:"click",titCell:".inHd li",mainCell:".inBd"});
 //  帖子导航
     jQuery(".box-tab").slide({trigger:"click"});
 

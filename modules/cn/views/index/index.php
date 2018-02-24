@@ -134,13 +134,13 @@
         </ul>
         <ul class="clearfix hot-list">
           <li class="hot-item">
-            <a href="">
+            <a href="http://www.thinkwithu.com/USA.html" target="_blank">
               <div></div>
               <p>美国留学</p>
             </a>
           </li>
           <li class="hot-item">
-            <a href="">
+            <a href="http://www.thinkwithu.com/UK.html" target="_blank">
               <div></div>
               <p>英国留学</p>
             </a>
@@ -260,8 +260,8 @@
           <div class="bd">
             <!--全部-->
             <ul class="clearfix all-article">
-              <li><a href="javascript:void(0)" data-cate="all">全部<i class="iconfont icon-hot"></a></i></li>
-              <li><a href="javascript:void(0)" data-cate="goodArticle">精华</a></li>
+              <li class="active" data-cate="all"><a href="javascript:void(0)">全部<i class="iconfont icon-hot"></a></i></li>
+              <li data-cate="goodArticle"><a href="javascript:void(0)">精华</a></li>
             </ul>
             <!--留学-->
             <ul class="clearfix get-list">
@@ -391,7 +391,7 @@
             </ul>
             <!--职业-->
             <ul class="clearfix get-list">
-              <li data-first="4" data-second="76"><a href="javascript:void(0)">金融</a></li>
+              <li class="active" data-first="4" data-second="76"><a href="javascript:void(0)">金融</a></li>
               <li data-first="4" data-second="77"><a href="javascript:void(0)">大商科</a></li>
               <li data-first="4" data-second="78"><a href="javascript:void(0)">会计</a></li>
               <li data-first="4" data-second="79"><a href="javascript:void(0)">理工科</a></li>
@@ -399,7 +399,7 @@
             </ul>
             <!--生活-->
             <ul class="clearfix get-list">
-              <li data-first="5" data-second="80"><a href="javascript:void(0)">美国</a></li>
+              <li class="active" data-first="5" data-second="80"><a href="javascript:void(0)">美国</a></li>
               <li data-first="5" data-second="81"><a href="javascript:void(0)">英国</a></li>
               <li data-first="5" data-second="82"><a href="javascript:void(0)">澳洲</a></li>
               <li data-first="5" data-second="83"><a href="javascript:void(0)">加拿大</a></li>

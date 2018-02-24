@@ -7,9 +7,18 @@ var _common = {
     this.bind();
   },
   bind : function () {
+    var _this = this;
     $('.login-change').click(function () {
       $(this).parent().css('display','none').siblings('.userMessage').show();
     });
+    // 搜索
+    $('.search form>span').click(function () {
+      _this.search();
+    });
+    $('.search-hot a').click(function () {
+      $('.search-text').val($(this).html());
+      _this.search();
+    })
   },
   // 设置cookie
   setCookie : function (name,value) {
@@ -34,6 +43,17 @@ var _common = {
     var cval = this.getCookie(name);
     if(cval != null)
       document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+  },
+  // 搜索
+  search : function () {
+    var k = $('.search-text').val();
+    console.log(k);
+    location.href = "/search.html?keyword="+encodeURIComponent(k);
+  },
+  enterSearch : function (e) {
+    if (e.keyCode == 13) {
+      this.search();
+    }
   }
 };
 

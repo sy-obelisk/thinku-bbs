@@ -1,0 +1,55 @@
+.list-box {
+  width: 770px;
+  float: left;
+}
+.list-box .list-item {
+  min-height: 90px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+.list-box .list-item .img {
+  float: left;
+  width: 80px;
+  height: 80px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background-color: #ccc;
+}
+.list-box .list-item .right {
+  overflow: hidden;
+  margin-left: 90px;
+}
+.list-box .list-item .right h3>a {
+  font-size: 16px;
+  font-weight: 400;
+}
+.list-box .list-item .right h3:hover a {
+  color: #7d1f88;
+}
+.list-box .list-item .right .info-list {
+  padding: 10px 0;
+  /* border-bottom: 1px dashed #ccc; */
+}
+.list-box .list-item .info-list>div {
+  font-size: 14px;
+  color: #777;
+}
+.list-box .list-item .info-list .first-div {
+  float: left;
+}
+.list-box .list-item .info-list .last-div {
+  float: right;
+}
+.list-box .list-item .info-list .last-div>p {
+  display: inline-block;
+  color: #777;
+}
+.list-box .list-item .abstract {
+  line-height: 26px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 14px;
+}

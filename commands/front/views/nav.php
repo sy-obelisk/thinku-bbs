@@ -29,17 +29,17 @@
         <img src="/cn/images/index01.png" alt="">
     </div>
     <div class="search clearfix">
-        <ul>
+        <ul class="search-hot">
             <li><span class="iconfont icon-hot"></span>热搜:</li>
             <li><a href="javascript:void(0)">美国留学</a></li>
             <li><a href="javascript:void(0)">大学排名</a></li>
             <li><a href="javascript:void(0)">专业解读</a></li>
         </ul>
-        <form>
-            <input type="text" placeholder="search">
-      <span>
-          <i class="fa fa-search"></i>
-        </span>
-        </form>
+        <div>
+            <input class="search-text" type="text" placeholder="search" onkeypress="_common.enterSearch(event)">
+          <span>
+            <i class="fa fa-search"></i>
+          </span>
+        </div>
     </div>
 </nav>

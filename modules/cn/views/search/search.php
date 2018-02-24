@@ -1,23 +1,24 @@
 
-  <link rel="stylesheet" href="/cn/css/index.css">
-
+<link rel="stylesheet" href="/cn/css/search.css">
 <!--内容区-->
-<div class="home p-container">
-  <section class="posts p-posts clearfix">
-    <div class="box">
-      <div class="box-cnt">
+<div class="list-wrap p-container">
+  <ul class="bread-crumb">
+    <li><a href="">首页</a><span>&gt;</span>搜索的内容</li>
+  </ul>
+  <section class="content p-posts clearfix">
+    <div class="list-box">
+      <div class="list-cnt">
         <ul>
-          <li class="item">
+          <li class="list-item">
             <div class="img">
               <img src="" alt="">
             </div>
             <div class="right">
-              <h3><a href="">12.30换库后CR逻辑鸡精—Zora<i class="iconfont icon-hot"></a></i></h3>
+              <h3><a href="">12.30换库后CR逻辑鸡精—Zora</a></h3>
               <div class="info-list clearfix">
                 <div class="first-div"><span>小托君</span> <span>发布于2017-12-22</span></div>
                 <div class="last-div">
-                  <p><span>Nicholas </span><span>最后回复于2018-01-12</span></p>
-                  <p><span>查看：778  </span>|<span>回复：66</span></p></div>
+                  <p><span>查看：778 </span>|<span> 回复：66</span></p></div>
               </div>
               <div class="abstract">
                 各位在一线备战托福的朋友们，主讲老师Zora，课程视频和课件在此下载学习；斩获更多托福
@@ -25,17 +26,16 @@
               </div>
             </div>
           </li>
-          <li class="item">
+          <li class="list-item">
             <div class="img">
               <img src="" alt="">
             </div>
             <div class="right">
-              <h3><a href="">12.30换库后CR逻辑鸡精—Zora<i class="iconfont icon-hot"></a></i></h3>
+              <h3><a href="">12.30换库后CR逻辑鸡精—Zora</a></h3>
               <div class="info-list clearfix">
                 <div class="first-div"><span>小托君</span> <span>发布于2017-12-22</span></div>
                 <div class="last-div">
-                  <p><span>Nicholas </span><span>最后回复于2018-01-12</span></p>
-                  <p><span>查看：778  </span>|<span>回复：66</span></p></div>
+                  <p><span>查看：778 </span>|<span> 回复：66</span></p></div>
               </div>
               <div class="abstract">
                 各位在一线备战托福的朋友们，主讲老师Zora，课程视频和课件在此下载学习；斩获更多托福
@@ -56,15 +56,13 @@
     <?php RightWidget::end();?>
   </section>
 </div>
-
 <script>
   $(function () {
+    $('.search-text').val("<?php echo Yii::$app->request->get('keyword', '');?>");
     //  侧边栏我要规划
     jQuery(".project").slide({});
-//  侧边栏热帖排行榜
+    //  侧边栏热帖排行榜
     jQuery(".ranking").slide({});
-
-//    分页
     $.jqPaginator('#pagination1', {
       totalPages: 20,
       visiblePages: 7,
