@@ -526,6 +526,12 @@ class ApiController extends Controller
     public function actionNewArticle()
     {
         if ($_POST) {
+            $user=Yii::$app->session->get('userId');
+            if(!$user){
+                $data['code'] = 2;
+                $data['message'] = '未登录';
+                die(json_encode($data));
+            }
             $model = new content();
             $contentData['name'] = Yii::$app->request->post('name');// 标题
             $contentData['abstract'] = '';// 摘要
@@ -815,9 +821,9 @@ class ApiController extends Controller
         $cate= Yii::$app->request->post('cate', 'all');
         $page= Yii::$app->request->post('page', 1);
         $model=new Content();
-        $first='2,3,4,5';
+        $first='2,3,4,5,14';
         if($cate=='all'){
-            $data=$model->getList($first);
+            $data=$model->getList($first,'','',15,$page);
         }else{
             $data=$model->getList($first,'','',15,$page,'goodArticle=1 and ');
         }

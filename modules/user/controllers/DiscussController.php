@@ -32,7 +32,6 @@ class DiscussController extends AppControl
         $endTime = Yii::$app->request->get('endTime', '');
         $id = Yii::$app->request->get('id', '');
         $userId = Yii::$app->request->get('userId', '');
-        $type = Yii::$app->request->get('type', '');
         $where = "1=1";
         if ($beginTime) {
             $where .= " AND DATEDIFF(d.createTime,'$beginTime')>0";
@@ -45,9 +44,6 @@ class DiscussController extends AppControl
         }
         if ($userId) {
             $where .= " AND d.userId = $userId";
-        }
-        if ($type) {
-            $where .= " AND d.type = $type";
         }
         $discussData = $model->getAllDiscuss($where, 20, $page);
         $page = Method::getPagedRows(['count' => $discussData['count'], 'pageSize' => 20, 'rows' => 'models']);
@@ -110,7 +106,7 @@ class DiscussController extends AppControl
             $id = Yii::$app->request->post('id');
             $content = Yii::$app->request->post('content');
             $url = Yii::$app->request->post('url');
-            UserDiscuss::updateAll(['discussContent' => $content], "id = $id");
+            UserDiscuss::updateAll(['comment' => $content], "id = $id");
             $this->redirect($url);
         } else {
             $id = Yii::$app->request->get('id');

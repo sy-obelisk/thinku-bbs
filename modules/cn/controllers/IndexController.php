@@ -19,7 +19,7 @@ class IndexController extends Controller
     public function actionIndex()
     {
         $model=new Content();
-        $first='2,3,4,5';
+        $first='2,3,4,5,14';
         $data=$model->getList($first);
         $page=$data['page'];
         $data=$data['list'];

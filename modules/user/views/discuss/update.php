@@ -15,7 +15,7 @@
             <div class="control-group">
                 <label for="area" class="control-label">评论内容：</label>
                 <div class="controls">
-                    <textarea name="content" id="area"  value="" /><?php echo $data->discussContent?></textarea>
+                    <textarea name="content" id="area"  value="" /><?php echo $data->comment?></textarea>
                 </div>
             </div>
 

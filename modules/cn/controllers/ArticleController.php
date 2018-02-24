@@ -7,7 +7,6 @@
  */
 namespace app\modules\cn\controllers;
 
-use app\modules\content\models\Category;
 use yii;
 use yii\web\Controller;
 use app\modules\cn\models\Content;
@@ -28,11 +27,11 @@ class ArticleController extends Controller
         $data =  $model->getClass(['fields' => 'listeningFile','where' =>"c.id=$id"])[0];
         $discussModel=new UserDiscuss();
         $discuss = $discussModel->getContentDiscuss($id);//评论
-//        echo '<pre>';
-//        var_dump($discuss);die;
+        $nav= Yii::$app->db->createCommand("SELECT c.name from {{%category_content}} cc left join {{%category}} c on cc.catId = c.id where cc.contentId = $id limit 5" )->queryAll();
+//        var_dump($nav);die;
         $viewCount = $data['viewCount'];
         Content::updateAll(['viewCount' => ($viewCount+1)],"id=$id");
-        return $this->render('details',['data'=>$data,'discuss'=>$discuss]);
+        return $this->render('details',['data'=>$data,'discuss'=>$discuss,'nav'=>$nav]);
     }
 
     public function actionNew()

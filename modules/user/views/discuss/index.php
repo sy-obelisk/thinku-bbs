@@ -34,18 +34,6 @@
                 </td>
             </tr>
             <tr>
-<!--                <td>-->
-<!--                    讨论类型：-->
-<!--                </td>-->
-<!--                <td>-->
-<!--                    <select name="type">-->
-<!--                        <option value="" --><?php //echo isset($_GET['type'])&&$_GET['type']==""?"selected":''?><!-->全部</option>-->
-<!--                        <option value="1" --><?php //echo isset($_GET['type'])&&$_GET['type']==1?"selected":''?><!-->解析</option>-->
-<!--                        <option value="2" --><?php //echo isset($_GET['type'])&&$_GET['type']==2?"selected":''?><!-->评论</option>-->
-<!--                    </select>-->
-<!--                </td>-->
-            </tr>
-            <tr>
                 <td>
                     <button class="btn btn-primary" type="submit">提交</button>
                 </td>
