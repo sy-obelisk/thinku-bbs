@@ -834,6 +834,4 @@ class ApiController extends Controller
         $data=$data['list'];
         die(json_encode(['code'=>0,'data'=>$data,'page'=>$page]));
     }
-
-
 }

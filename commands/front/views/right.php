@@ -32,27 +32,27 @@
     <div class="abroad">
         <div class="title"></div>
         <ul>
-            <li><a href="">美国</a></li>
-            <li><a href="">英国</a></li>
-            <li><a href="">澳洲</a></li>
-            <li><a href="">加拿大</a></li>
-            <li><a href="">香港</a></li>
-            <li><a href="">新加坡</a></li>
-            <li><a href="">法国</a></li>
-            <li><a href="">其他</a></li>
+            <li><a href="http://www.thinkwithu.com/USA.html">美国</a></li>
+            <li><a href="http://www.thinkwithu.com/UK.html">英国</a></li>
+            <li><a href="http://www.thinkwithu.com/AUS.html">澳洲</a></li>
+            <li><a href="http://www.thinkwithu.com/COUNTRY.html">加拿大</a></li>
+            <li><a href="http://www.thinkwithu.com/HK.html">香港</a></li>
+            <li><a href="http://www.thinkwithu.com/COUNTRY.html">新加坡</a></li>
+            <li><a href="http://www.thinkwithu.com/COUNTRY.html">法国</a></li>
+            <li><a href="http://www.thinkwithu.com/COUNTRY.html">其他</a></li>
         </ul>
     </div>
     <!--我要考试-->
     <div class="test">
         <div class="title"></div>
         <ul>
-            <li><a href="">GMAT</a></li>
-            <li><a href="">GRE</a></li>
-            <li><a href="">托福</a></li>
-            <li><a href="">雅思</a></li>
-            <li><a href="">SAT</a></li>
-            <li><a href="">ACT</a></li>
-            <li><a href="">AP</a></li>
+            <li><a href="http://www.gmatonline.cn/index.html">GMAT</a></li>
+            <li><a href="http://www.greonline.cn/">GRE</a></li>
+            <li><a href="http://www.toeflonline.cn/">托福</a></li>
+            <li><a href="http://ielts.viplgw.cn/">雅思</a></li>
+            <li><a href="http://www.thinkusat.com/">SAT</a></li>
+            <li><a href="http://www.thinkusat.com/act.html">ACT</a></li>
+            <li><a href="http://www.thinkwithu.com/">AP</a></li>
         </ul>
     </div>
     <!--我要规划-->
