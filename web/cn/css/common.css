@@ -371,6 +371,7 @@ body{
   line-height: 85px;
   font-size: 24px;
   color: #fff;
+  cursor: pointer;
 }
 .p-posts .aside .sign-in .icon i {
   padding-right: 10px;

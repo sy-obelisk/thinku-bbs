@@ -18,6 +18,10 @@ var _common = {
     $('.search-hot a').click(function () {
       $('.search-text').val($(this).html());
       _this.search();
+    });
+    // 签到
+    $('.sign-in .icon').click(function () {
+      _this.checkIn();
     })
   },
   // 设置cookie
@@ -54,6 +58,12 @@ var _common = {
     if (e.keyCode == 13) {
       this.search();
     }
+  },
+  // 签到
+  checkIn : function () {
+    $.post('/cn/api/sign-in',function (res) {
+      console.log(res);
+    },'json')
   }
 };
 

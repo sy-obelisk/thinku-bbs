@@ -54,7 +54,7 @@
     //  侧边栏热帖排行榜
     jQuery(".ranking").slide({});
     $.jqPaginator('#pagination1', {
-      totalPages: 20,
+      totalPages: 2,
       visiblePages: 7,
       currentPage: 1,
       onPageChange: function (num, type) {
