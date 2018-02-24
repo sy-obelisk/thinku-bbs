@@ -56,7 +56,7 @@ class NewsController extends AppControl
     }
 
     /**
-     * 添加资源
+     * 添加消息
      * @return string
      * @Obelisk
      */
@@ -100,7 +100,7 @@ class NewsController extends AppControl
 
 
     /**
-     * 删除用户
+     * 删除消息
      * @return string
      * @Obelisk
      */
@@ -108,93 +108,7 @@ class NewsController extends AppControl
     {
         $id = Yii::$app->request->get('id');
         $url = $_GET['url'];
-        User::findOne($id)->delete();
+        News::findOne($id)->delete();
         $this->redirect($url);
-    }
-
-    /**
-     * 修改用户信息
-     * @return string
-     * @Obelisk
-     */
-    public function actionUpdate()
-    {
-        if ($_POST) {
-            $user = Yii::$app->request->post('user');
-            $id = Yii::$app->request->post('id');
-            foreach ($user as $k => $v) {
-                if ($k != 'image' && $v != '') {
-                    $sign = User::find()->where("$k='$v' AND id!=$id")->one();
-                    if ($sign) {
-                        die('<script>alert("' . $k . '已被使用");history.go(-1);</script>');
-                    }
-                }
-            }
-            $sign = User::find()->where("phone='{$user['phone']}' AND id=$id")->one();
-            if (!$sign) {
-                $status = uc_user_checkphone($user['phone']);
-                if ($status == -7) {
-                    die('<script>alert("该手机已被绑定");history.go(-1);</script>');
-                }
-            }
-            $sign = User::find()->where("email='{$user['email']}' AND id=$id")->one();
-            if (!$sign) {
-                $sign = uc_user_checkemail($user['email']);
-                if ($sign == -6) {
-                    die('<script>alert("该邮箱已被绑定");history.go(-1);</script>');
-                }
-            }
-            $sign = User::findOne($id);
-            $userPass = Yii::$app->request->post('userPass');
-            $remark = Yii::$app->request->post('remark');
-            $user['remark'] = $remark;
-            if ($sign->userPass != $userPass) {
-                $user['userPass'] = md5($userPass);
-            }
-            uc_user_edit($sign->userName, '', $user['userPass'], $user['email'], $user['phone'], 1);
-            $sign = User::updateAll($user, "id=$id");
-            if ($sign) {
-                $this->redirect('/user/user/index');
-            } else {
-                die('<script>alert("保存失败，请重试");history.go(-1);</script>');
-            }
-        } else {
-            $id = Yii::$app->request->get('id');
-            $data = User::findOne($id);
-            return $this->render('update', ['data' => $data, 'id' => $id]);
-        }
-    }
-
-    /**
-     * 积分详情
-     * @Obelisk
-     */
-    public function actionIntegral()
-    {
-        $id = Yii::$app->request->get('id');
-        $user = User::findOne($id);
-        $integral = uc_user_integral($user->userName);
-        return $this->render('integral', ['integral' => $integral, 'id' => $id]);
-    }
-
-    /**
-     * 积分详情
-     * @Obelisk
-     */
-    public function actionIntegralEdit()
-    {
-        if ($_POST) {
-            $userName = Yii::$app->request->post('userName');
-            $url = Yii::$app->request->post('url');
-            $number = Yii::$app->request->post('number');
-            $type = Yii::$app->request->post('type');
-            uc_user_edit_integral($userName, '管理员直接调整', $type, $number);
-            $this->redirect($url);
-        } else {
-            $id = Yii::$app->request->get('id');
-            $url = Yii::$app->request->get('url');
-            $user = User::findOne($id);
-            return $this->render('integralEdit', ['userName' => $user->userName, 'url' => $url]);
-        }
     }
 }
