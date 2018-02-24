@@ -40,6 +40,7 @@ class RightWidget extends Widget
     public function isSignIn()
     {
         $userId = Yii::$app->session->get('userId','');
+        $userId = 1;
         $this->isSign= Yii::$app->db->createCommand("SELECT id from {{%dailytask}} where userId=$userId and time=$this->time" )->queryOne();
     }
 }
