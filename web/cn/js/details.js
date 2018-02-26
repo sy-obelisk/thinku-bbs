@@ -4,6 +4,7 @@
 var _details = {
   init : function () {
     this.bind();
+    console.log(location.href())
   },
   bind : function () {
     var _this = this;
@@ -19,6 +20,9 @@ var _details = {
     $('#replyBtn').click(function () {
       _this.replyEvent();
     });
+    $('.collect li').eq(0).click(function () {
+      _this.collect();
+    })
   },
   // 回复评论
   revertEvent : function (obj) {
@@ -85,6 +89,9 @@ var _details = {
         }
       },'json');
     }
+  },
+  collect : function () {
+
   }
 };
 $(function () {

@@ -64,6 +64,7 @@ var _common = {
     $.post('/cn/api/sign-in',function (res) {
       console.log(res);
       if (res.code == 0) {
+        $('.sign-in .icon').unbind();
         alert(res.message);
         var num = $('.sign-in .num p').eq(1).html();
         $('.sign-in .num p').eq(2).html('已签到');
