@@ -3,11 +3,14 @@
  */
 var _details = {
   pData : {
-   id : $('.article').data('id')
+    id : $('.article').data('id'),
+    imgSrc : $('.header-person>div img').attr('src'),
+    name : $('.header-person>div p').html()
   },
   init : function () {
     this.bind();
-    console.log(location.href)
+    console.log(location.href);
+    console.log(this.pData);
   },
   bind : function () {
     var _this = this;
@@ -123,7 +126,7 @@ var _details = {
       if (res.code == 0) {
         alert(res.message);
       } else {
-        alert(res.message)
+        alert(res.message);
       }
     },'json')
   },
