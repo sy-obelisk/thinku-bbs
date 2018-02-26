@@ -49,6 +49,7 @@ var _details = {
     // 支持
     $('.reply-time>div p').eq(1).click(function () {
       _this.support(this);
+      // console.log($(this).parent().parent().parent().data('id'));
     });
     // 反对
     $('.reply-time>div p').eq(2).click(function () {
@@ -175,19 +176,23 @@ var _details = {
     $('.accuse').show();
   },
   // 支持
-  support : function () {
+  support : function (obj) {
     $.post('/cn/api/like',{
-
+      id : $(obj).parent().parent().parent().data('id'),
+      type : 2,
+      status : 1
     },function (res) {
-
+      console.log(res);
     },'json')
   },
   // 反对
-  oppose : function () {
+  oppose : function (obj) {
     $.post('/cn/api/like',{
-
+      id : $(obj).parent().parent().parent().data('id'),
+      type : 2,
+      status : 2
     },function (res) {
-
+      console.log(res);
     },'json')
   }
 };
