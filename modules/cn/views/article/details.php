@@ -41,8 +41,8 @@
         <div class="collect">
           <ul>
             <li>收藏</li>
-            <li>顶</li>
-            <li>踩</li>
+            <li>顶<span>10</span></li>
+            <li>踩<span>23</span></li>
           </ul>
         </div>
         <!--回复区-->

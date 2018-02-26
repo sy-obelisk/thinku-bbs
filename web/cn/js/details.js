@@ -2,9 +2,12 @@
  * Created by daicunya on 2018/2/6.
  */
 var _details = {
+  pData : {
+   id : $('.article').data('id')
+  },
   init : function () {
     this.bind();
-    console.log(location.href())
+    console.log(location.href)
   },
   bind : function () {
     var _this = this;
@@ -20,9 +23,18 @@ var _details = {
     $('#replyBtn').click(function () {
       _this.replyEvent();
     });
+    // 收藏
     $('.collect li').eq(0).click(function () {
-      _this.collect();
-    })
+      _this.collect(this);
+    });
+    // 顶一下
+    $('.collect li').eq(1).click(function () {
+      _this.up(this);
+    });
+    // 踩
+    $('.collect li').eq(2).click(function () {
+      _this.down(this);
+    });
   },
   // 回复评论
   revertEvent : function (obj) {
@@ -41,12 +53,13 @@ var _details = {
   },
   // 发表评论
   replyEvent : function () {
-    var replyCnt = $('.reply-input textarea').val();
+    var replyCnt = $('.reply-input textarea').val(),
+        _this = this;
     if (!replyCnt) {
       alert('请输入评论内容!');
     } else {
       $.post('/cn/api/discuss',{
-        id: '23',
+        id: _this.pData.id,
         pid: 0,
         comment: replyCnt
       },function (res) {
@@ -90,7 +103,21 @@ var _details = {
       },'json');
     }
   },
-  collect : function () {
+  collect : function (obj) {
+    $.post('/cn/api/collection',{id:this.pData.id},function (res) {
+      console.log(res);
+      if (res.code == 0){
+        alert(res.message);
+        $(obj).html('已收藏').unbind();
+      }
+    },'json')
+  },
+  // 顶
+  up : function (obj) {
+    $.post('/cn/api/')
+  },
+  // 踩
+  down : function (obj) {
 
   }
 };
