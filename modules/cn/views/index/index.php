@@ -108,25 +108,25 @@
         <h5 class="p-title">热门板块</h5>
         <ul class="clearfix hot-list">
           <li class="hot-item">
-            <a href="">
+            <a href="http://www.thinkwithu.com/evaluation.html">
               <div></div>
               <p>留学评估</p>
             </a>
           </li>
           <li class="hot-item">
-            <a href="">
+            <a href="http://www.thinkwithu.com/practices.html">
               <div></div>
               <p>背景提升</p>
             </a>
           </li>
           <li class="hot-item">
-            <a href="">
+            <a href="http://www.thinkwithu.com/question.html">
               <div></div>
               <p>问答广场</p>
             </a>
           </li>
           <li class="hot-item">
-            <a href="">
+            <a href="http://www.thinkwithu.com/schools.html">
               <div></div>
               <p>院校排名</p>
             </a>
@@ -146,13 +146,13 @@
             </a>
           </li>
           <li class="hot-item">
-            <a href="">
+            <a href="http://www.thinkwithu.com/list/178,125.html">
               <div></div>
               <p>研究报告</p>
             </a>
           </li>
           <li class="hot-item">
-            <a href="">
+            <a href="http://www.thinkwithu.com/case.html">
               <div></div>
               <p>名校案例</p>
             </a>
