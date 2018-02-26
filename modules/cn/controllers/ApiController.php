@@ -398,14 +398,15 @@ class ApiController extends Controller
         if ($re) {
             $user = new User();
             $user->integral($userId, 2, '论坛签到',1);
-            $re['code'] = 0;
-            $re['message'] = '签到成功';
-            die(json_encode($re));
+            $res['code'] = 0;
+            $res['message'] = '签到成功';
+            die(json_encode($res));
         } else {
-            $re['code'] = 1;
-            $re['message'] = '失败';
-            die(json_encode($re));
+            $res['code'] = 1;
+            $res['message'] = '失败';
+            die(json_encode($res));
         }
+
     }
 
     /**
