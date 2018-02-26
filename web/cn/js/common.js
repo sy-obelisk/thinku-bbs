@@ -63,6 +63,14 @@ var _common = {
   checkIn : function () {
     $.post('/cn/api/sign-in',function (res) {
       console.log(res);
+      if (res.code == 0) {
+        alert(res.message);
+        var num = $('.sign-in .num p').eq(1).html();
+        $('.sign-in .num p').eq(2).html('已签到');
+        $('.sign-in .num p').eq(1).html(Number(num)+Number(1));
+      }else {
+        alert(res.message);
+      }
     },'json')
   }
 };
