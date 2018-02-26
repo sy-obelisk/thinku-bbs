@@ -373,15 +373,17 @@ class ApiController extends Controller
     public function actionSignIn()
     {
         $userId = Yii::$app->session->get('userId');
+//        $userId =1;
         if (!$userId) {
             $data['code'] = 2;
             $data['message'] = '未登录';
         }
         $time = date("Y-m-d");
         $daily = new DailyTask();
-        $task = $daily->todayTask(" where userId=" . $userId . " and time=" . $time);// 查看数据是否存在
+        $task = $daily->todayTask(" where userId=" . $userId . " and time=" ." '$time'");// 查看数据是否存在
+//        var_dump($daily->todayTask(" where userId=" . $userId . " and time=" ." '$time'"));die;
         if ($task) {
-            $signIn = $daily->todayTask(" where userId=" . $userId . " and time=" . $time . " and signIn=1");// 查看数据是否存在
+            $signIn = $daily->todayTask(" where userId=" . $userId . " and time= '$time' and signIn=1");// 查看数据是否存在
             if ($signIn) {
                 $data['code'] = 1;
                 $data['message'] = '今日已经签到，不能重复签到';
