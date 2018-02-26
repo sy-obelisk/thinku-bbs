@@ -381,7 +381,6 @@ class ApiController extends Controller
         $time = date("Y-m-d");
         $daily = new DailyTask();
         $task = $daily->todayTask(" where userId=" . $userId . " and time=" ." '$time'");// 查看数据是否存在
-//        var_dump($daily->todayTask(" where userId=" . $userId . " and time=" ." '$time'"));die;
         if ($task) {
             $signIn = $daily->todayTask(" where userId=" . $userId . " and time= '$time' and signIn=1");// 查看数据是否存在
             if ($signIn) {
@@ -481,6 +480,7 @@ class ApiController extends Controller
     public function actionLike()
     {
         $userId = Yii::$app->session->get('userId');
+        $userId = 1;
         $post['contentId'] = Yii::$app->request->post('id');// 帖子内容的id,评论的id
         $post['type'] = Yii::$app->request->post('type');// 1为文章，2为评论
         $post['status'] = Yii::$app->request->post('status');// 1赞，2或者踩

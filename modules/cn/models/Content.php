@@ -73,7 +73,7 @@ class Content extends ActiveRecord
         if ($status == 1) {
             $re = Content::updateAll(['liked' => $data['liked'] + 1], "id=" . $id);
             if ($re) {
-                Yii::$app->db->createCommand()->insert("{{%user_like}}", ['contentId'=>$id,'type'=>1,'status'=>1,'creatTime'=>time(),'userId'=>$userId])->execute();
+                Yii::$app->db->createCommand()->insert("{{%user_like}}", ['contentId'=>$id,'type'=>1,'status'=>1,'createTime'=>time(),'userId'=>$userId])->execute();
                 $user = new User();
                 $user->integral($userId, 1, '点赞获取积分',1);
                 $res['code'] = 0;

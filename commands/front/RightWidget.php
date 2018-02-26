@@ -34,14 +34,14 @@ class RightWidget extends Widget
     public function number()
     {
         $this->time=date('Y-m-d',time());
-        $this->number= count(Yii::$app->db->createCommand("SELECT id from {{%dailytask}} where time=$this->time" )->queryAll());
+        $this->number= count(Yii::$app->db->createCommand("SELECT id from {{%dailytask}} where time='$this->time' and signIn=1" )->queryAll());
     }
 
     public function isSignIn()
     {
         $userId = Yii::$app->session->get('userId','');
         $userId = 1;
-        $this->isSign= Yii::$app->db->createCommand("SELECT id from {{%dailytask}} where userId=$userId and time=$this->time" )->queryOne();
+        $this->isSign= Yii::$app->db->createCommand("SELECT id from {{%dailytask}} where userId=$userId and time='$this->time' and signIn=1" )->queryOne();
     }
 }
 
