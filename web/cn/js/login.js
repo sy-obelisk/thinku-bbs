@@ -39,13 +39,8 @@ var _login = {
           _common.setCookie('readSign',0);
           _common.delCookie('readPass');
         }
-        if(res.check == 1){
-          setTimeout(function(){
-            location.href=re.url;
-          },1500);
-        }else{
-          $(".reg-success").show();
-          $(".shop-login").hide();
+        if(res.code == 0){
+          location.href=res.url;
         }
       }else{
         alert(res.message);

@@ -22,6 +22,10 @@ var _common = {
     // 签到
     $('.sign-in .icon').click(function () {
       _this.checkIn();
+    }),
+    // 退出登录
+    $('.header-person>ul li').eq(1).click(function () {
+      _this.loginOut();
     })
   },
   // 设置cookie
@@ -72,6 +76,13 @@ var _common = {
       }else {
         alert(res.message);
       }
+    },'json')
+  },
+  // 退出
+  loginOut : function () {
+    $.post('/cn/api/login-out',function (res) {
+      console.log(res);
+      location.reload();
     },'json')
   }
 };
