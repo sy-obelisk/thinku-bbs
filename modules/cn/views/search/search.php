@@ -3,7 +3,7 @@
 <!--内容区-->
 <div class="list-wrap p-container">
   <ul class="bread-crumb">
-    <li><a href="">首页</a><span>&gt;</span>搜索的内容</li>
+    <li><a href="/index.html">首页</a><span>&gt;</span>搜索的内容</li>
   </ul>
   <section class="content p-posts clearfix">
     <div class="list-box">
@@ -35,9 +35,12 @@
           <?php } ?>
         </ul>
         <!---分页-->
-        <div class="page-wrap">
-          <ul class="pagination" id="pagination1"><?php echo $page;?></ul>
-
+<!--        <div class="page-wrap">-->
+<!--          <ul class="pagination" id="pagination1">--><?php //echo $page;?><!--</ul>-->
+<!---->
+<!--        </div>-->
+        <div>
+          <?php echo $page;?>
         </div>
       </div>
     </div>

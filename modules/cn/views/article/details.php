@@ -40,18 +40,22 @@
         <!--收藏-->
         <div class="collect">
           <ul>
+            <?php if($data['isCollect']){?>
+            <li>已收藏</li>
+            <?php }else{?>
             <li>收藏</li>
+            <?php }?>
             <li>顶<span><?php echo $data['liked']?></span></li>
             <li>踩<span><?php echo $data['hate']?></span></li>
           </ul>
         </div>
         <!--回复区-->
-        <div class="reply" data-id="">
+        <div class="reply">
           <!--用户回复列表-->
           <div class="reply-list">
             <ul>
               <?php foreach ($discuss['data'] as $v){?>
-              <li class="reply-item">
+              <li class="reply-item" data-id=" ">
                 <div class="reply-wrap clearfix">
                   <!--头像-->
                   <div class="reply-img">
@@ -97,8 +101,11 @@
             </ul>
           </div>
           <!---分页-->
-          <div class="page-wrap">
-            <ul class="pagination" id="pagination1"></ul>
+<!--          <div class="page-wrap">-->
+<!--            <ul class="pagination" id="pagination1"></ul>-->
+<!--          </div>-->
+          <div>
+            <?php echo $page;?>
           </div>
           <!---回复输入-->
           <div class="reply-input">
@@ -111,6 +118,7 @@
     <!--举报框-->
     <div class="accuse">
       <div class="box">
+        <span>X</span>
         <p>我要举报:</p>
         <textarea></textarea>
         <button id="accuseBtn">提交</button>

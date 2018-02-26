@@ -38,6 +38,14 @@ var _details = {
     $('.collect li').eq(2).click(function () {
       _this.down(this);
     });
+    // 举报
+    $('.reply-time>div p').eq(0).click(function () {
+      _this.accuse(this);
+    });
+    // 关闭举报框
+    $('.accuse .box>span').click(function () {
+      $('.accuse').hide();
+    });
     // 支持
     $('.reply-time>div p').eq(1).click(function () {
       _this.support(this);
@@ -161,6 +169,10 @@ var _details = {
         alert(res.message)
       }
     },'json')
+  },
+  // 举报
+  accuse : function (obj) {
+    $('.accuse').show();
   },
   // 支持
   support : function () {
