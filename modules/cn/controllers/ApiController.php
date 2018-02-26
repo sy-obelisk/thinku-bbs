@@ -499,7 +499,6 @@ class ApiController extends Controller
             $data['message'] = '不能重复评价';
             die(json_encode($data));
         }
-        Yii::$app->db->createCommand()->insert("{{%user_like}}", $post)->execute();
         if ($post['type'] == 1) {
             $content = new Content();
             $re = $content->like($userId,$post['contentId'], $post['status']);

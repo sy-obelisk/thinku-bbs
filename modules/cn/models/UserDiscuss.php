@@ -19,11 +19,11 @@ class UserDiscuss extends ActiveRecord
      */
     public function like($userId,$id, $status)
     {
-        $data = Yii::$app->db->createCommand("select id,liked,hate from {{%content}} where id=$id")->queryOne();
+        $data = Yii::$app->db->createCommand("select id,liked,hate from {{%user_discuss}} where id=$id")->queryOne();
         if ($status == 1) {
             $re = UserDiscuss::updateAll(['liked' => $data['liked'] + 1], "id=" . $id);
             if ($re) {
-                Yii::$app->db->createCommand()->insert("{{%user_like}}", ['contentId'=>$id,'type'=>2,'status'=>1,'creatTime'=>time(),'userId'=>$userId])->execute();
+                Yii::$app->db->createCommand()->insert("{{%user_like}}", ['contentId'=>$id,'type'=>2,'status'=>1,'createTime'=>time(),'userId'=>$userId])->execute();
                 $user = new User();
                 $user->integral($userId,1, '点赞获取积分',1);
                 $res['code'] = 0;
@@ -35,7 +35,7 @@ class UserDiscuss extends ActiveRecord
         } else {
             $re = UserDiscuss::updateAll(['hate' => $data['hate'] + 1], "id=" . $id);
             if ($re) {
-                Yii::$app->db->createCommand()->insert("{{%user_like}}", ['contentId'=>$id,'type'=>2,'status'=>2,'creatTime'=>time(),'userId'=>$userId])->execute();
+                Yii::$app->db->createCommand()->insert("{{%user_like}}", ['contentId'=>$id,'type'=>2,'status'=>2,'createTime'=>time(),'userId'=>$userId])->execute();
                 $res['code'] = 0;
                 $res['message'] = '操作成功';
             } else {
