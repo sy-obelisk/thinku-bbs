@@ -46,7 +46,7 @@
           </ul>
         </div>
         <!--回复区-->
-        <div class="reply">
+        <div class="reply" data-id="">
           <!--用户回复列表-->
           <div class="reply-list">
             <ul>
@@ -107,6 +107,10 @@
           </div>
         </div>
       </div>
+    </div>
+    <!--举报框-->
+    <div class="accuse">
+
     </div>
     <!--侧边栏-->
     <?php use app\commands\front\RightWidget;?>
