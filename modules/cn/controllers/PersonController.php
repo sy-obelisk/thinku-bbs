@@ -10,6 +10,7 @@ namespace app\modules\cn\controllers;
 use app\modules\cn\models\Collect;
 use yii;
 use yii\web\Controller;
+use app\libs\Pager;
 use app\modules\cn\models\Content;
 
 class PersonController extends Controller
@@ -89,8 +90,10 @@ class PersonController extends Controller
             echo "<script>alert('未登录')</script>";
             die;
         }
-        $arr = Yii::$app->db->createCommand("select news,sendId,n.createTime,status,u.nickname,u.userName from {{%news}} n left join {{%user}} u on n.sendId=u.id where userId=$userId order by status asc,n.id DESC limit $offset,$pageSize")->queryAll();
-        return $this->render('information', $arr);
+        $arr = Yii::$app->db->createCommand("select news,sendId,n.createTime,status,u.nickname,u.userName,u.image from {{%news}} n left join {{%user}} u on n.sendId=u.id where userId=$userId order by n.id DESC limit $offset,$pageSize")->queryAll();
+        $count= count(Yii::$app->db->createCommand("select n.id from {{%news}} n left join {{%user}} u on n.sendId=u.id where userId=$userId order by n.id DESC ")->queryAll());
+        $page=$this->actionPage($count,'/info/',$page,$pageSize);
+        return $this->render('information', ['arr'=>$arr,'page'=>$page]);
     }
 
     // 留言板
@@ -150,6 +153,17 @@ class PersonController extends Controller
         $data = Yii::$app->db->createCommand("select integral From {{%user}} where id=$userId ")->queryOne();
         $data['details'] = Yii::$app->db->createCommand("select id,score,message,createTime,type From {{%integral_details}} where userId=$userId order by id desc limit 10")->queryAll();
         return $this->render('score', $data);
+    }
+
+    public function actionPage($count,$u,$page=1,$pageSize=15){
+        if ($count != false) {
+            $pager = new Pager($count, $page, $pageSize);
+            $url = "http://" . $_SERVER['HTTP_HOST'] . "$u" ;
+            $page = $pager->GetPager($url);
+        } else {
+            $page = '';
+        }
+        return $page;
     }
 
 }

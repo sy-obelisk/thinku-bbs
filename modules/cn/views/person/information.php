@@ -19,26 +19,19 @@
     <div class="info-box bd">
       <!--全部消息-->
       <ul class="info-list">
+        <?php foreach($arr as $v){?>
         <li>
           <div class="img">
-            <img src="" alt="">
+            <img src="<?php echo $v['image']?>" alt="">
           </div>
           <div class="text">
-            系统消息系统消息系统消息系统消息系统消息系统消息系统消息系统消息系统消息系统消息
+           <?php echo $v['news']?>
           </div>
-          <p class="time">2018-01-22</p>
+          <p class="time"><?php echo date('Y-m-d H:i:s',$v['createTime'])?></p>
         </li>
-        <li>
-          <div class="img">
-            <img src="" alt="">
-          </div>
-          <div class="text">
-            系统消息系统消息系统消息系统消息系统消息系统消息系统消息系统消息系统消息系统消息
-          </div>
-          <p class="time">2018-01-22</p>
-        </li>
-        <div class="page-wrap">
-          <ul class="pagination" id="pagination1"></ul>
+        <?php }?>
+        <div>
+          <?php echo $page?>
         </div>
       </ul>
       <!--未读消息-->
