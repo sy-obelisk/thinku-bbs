@@ -15,18 +15,20 @@ class SearchController extends Controller
 {
     public $layout = 'cn.php';
     public $enableCsrfValidation = false;
+
     public function actionIndex()
     {
         $keyword = Yii::$app->request->get('keyword', '');
         $integral = Yii::$app->session->get('integral', '');
         $page = (int)Yii::$app->request->get('page', 1);
-        if($integral<10){
-            echo '<script>alert("您的等级太低，努力升级吧，少年！")</script>';die;
+        if ($integral < 10) {
+            echo '<script>alert("您的等级太低，努力升级吧，少年！")</script>';
+            die;
         }
-        $keyword  =addslashes($keyword);
-        $keyword  =strip_tags($keyword);
-        $pageSize=15;
-        $offset=$pageSize*($page-1);
+        $keyword = addslashes($keyword);
+        $keyword = strip_tags($keyword);
+        $pageSize = 15;
+        $offset = $pageSize * ($page - 1);
         $data = Yii::$app->db->createCommand("select c.id,c.name,c.abstract,c.viewCount,c.createTime,u.userName,u.nickname,u.image,(SELECT CONCAT_WS(' ',ce.value,ed.value) From {{%content_extend}} ce left JOIN {{%extend_data}} ed ON ed.extendId=ce.id WHERE ce.contentId=c.id AND ce.code='99b3cc02b18ec45447bd9fd59f1cd655')  as listeningFile from {{%content}} c LEFT JOIN {{%user}} u ON u.id=c.userId where name like '%$keyword%' order by id desc limit $offset,$pageSize")->queryAll();
         $count = count(Yii::$app->db->createCommand("select c.id from {{%content}} c LEFT JOIN {{%user}} u ON u.id=c.userId where name like '%$keyword%' order by id desc ")->queryAll());
         foreach ($data as $k => $v) {
@@ -36,16 +38,13 @@ class SearchController extends Controller
             $data[$k]['count'] = count(Yii::$app->db->createCommand("select id from {{%user_discuss}}  where contentId=" . $v['id'] . " and pid=0")->queryAll());
 
         }
-//        $p['count'] = $count;
-//        $p['pagecount'] = ceil($count / $pageSize);
-//        $p['page'] = $page;
-//        $pageModel = new Pager($count,$page,$pageSize);
-//        $pageStr = $pageModel->GetPagerContent();
-
-        $pager=new Pager($count,$page,$pageSize);
-        $url="http://".$_SERVER['HTTP_HOST']."/search.html?keyword=".$keyword."&page=";
-        $page=$pager->GetPager($url);
-//        var_dump($page);die;
-        return $this->render('search',['data'=>$data,'page'=>$page]);
+        if ($count != false) {
+            $pager = new Pager($count, $page, $pageSize);
+            $url = "http://" . $_SERVER['HTTP_HOST'] . "/search.html?keyword=" . $keyword . "&page=";
+            $page = $pager->GetPager($url);
+        } else {
+            $page = '';
+        }
+        return $this->render('search', ['data' => $data, 'page' => $page]);
     }
 }

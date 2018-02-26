@@ -40,13 +40,17 @@
         <!--收藏-->
         <div class="collect">
           <ul>
+            <?php if($data['isCollect']){?>
+            <li>已收藏</li>
+            <?php }else{?>
             <li>收藏</li>
+            <?php }?>
             <li>顶<span><?php echo $data['liked']?></span></li>
             <li>踩<span><?php echo $data['hate']?></span></li>
           </ul>
         </div>
         <!--回复区-->
-        <div class="reply" data-id="">
+        <div class="reply" data-id=" ">
           <!--用户回复列表-->
           <div class="reply-list">
             <ul>
