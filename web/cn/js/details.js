@@ -114,11 +114,23 @@ var _details = {
   },
   // 顶
   up : function (obj) {
-    $.post('/cn/api/')
+    $.post('/cn/api/like',{
+      id:this.pData.id,
+      type: 1,
+      status: 1
+    },function (res) {
+      console.log(res);
+    },'json')
   },
   // 踩
   down : function (obj) {
-
+    $.post('/cn/api/like',{
+      id:this.pData.id,
+      type: 1,
+      status: 2
+    },function (res) {
+      console.log(res);
+    },'json')
   }
 };
 $(function () {

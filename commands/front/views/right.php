@@ -67,16 +67,33 @@
                 </ul>
             </div>
             <div class="bd">
-                <ul>
-                    <li><a href=""><span style="background-color: #e92b3b">1</span>MBA精英计划美前30英G5</a></li>
-                    <li><a href=""><span style="background-color: #e98a52">2</span>MBA精英计划美前30英G5</a></li>
-                    <li><a href=""><span style="background-color: #22ada2">3</span>MBA精英计划美前30英G5</a></li>
-                    <li><a href=""><span>4</span>MBA精英计划美前30英G5</a></li>
-                    <li><a href=""><span>4</span>MBA精英计划美前30英G5</a></li>
-                    <li><a href=""><span>4</span>MBA精英计划美前30英G5</a></li>
-                    <li><a href=""><span>4</span>MBA精英计划美前30英G5</a></li>
-                    <li><a href=""><span>4</span>MBA精英计划美前30英G5</a></li>
-                </ul>
+              <ul>
+                <li><a href=""><span style="background-color: #e92b3b">1</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span style="background-color: #e98a52">2</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span style="background-color: #22ada2">3</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span>4</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span>4</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span>4</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span>4</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span>4</span>MBA精英计划美前30英G5</a></li>
+              </ul>
+              <ul>
+                <li><a href=""><span style="background-color: #e92b3b">1</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span style="background-color: #e98a52">2</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span style="background-color: #22ada2">3</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span>4</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span>4</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span>4</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span>4</span>MBA精英计划美前30英G5</a></li>
+              </ul>
+              <ul>
+                <li><a href=""><span style="background-color: #e92b3b">1</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span style="background-color: #e98a52">2</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span style="background-color: #22ada2">3</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span>4</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span>4</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span>4</span>MBA精英计划美前30英G5</a></li>
+              </ul>
             </div>
         </div>
     </div>
