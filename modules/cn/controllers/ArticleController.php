@@ -9,6 +9,7 @@ namespace app\modules\cn\controllers;
 
 use yii;
 use yii\web\Controller;
+use app\libs\Pager;
 use app\modules\cn\models\Content;
 use app\modules\cn\models\UserDiscuss;
 use app\modules\content\models\ExtendData;
@@ -23,6 +24,7 @@ class ArticleController extends Controller
     public function actionDetails()
     {
         $id = Yii::$app->request->get('id');// 帖子内容的id,评论的id
+        $page = Yii::$app->request->get('page');//页码
         $model = new Content();
         $data =  $model->getClass(['fields' => 'listeningFile','where' =>"c.id=$id"])[0];
         $discussModel=new UserDiscuss();
@@ -31,7 +33,10 @@ class ArticleController extends Controller
 //        var_dump($nav);die;
         $viewCount = $data['viewCount'];
         Content::updateAll(['viewCount' => ($viewCount+1)],"id=$id");
-        return $this->render('details',['data'=>$data,'discuss'=>$discuss,'nav'=>$nav]);
+        $pager=new Pager($discuss['count'],$discuss['page'],10);
+        $url="http://".$_SERVER['HTTP_HOST'] ."/details/".$id;
+        $page=$pager->GetPager($url);
+        return $this->render('details',['data'=>$data,'discuss'=>$discuss,'nav'=>$nav,'page'=>$page]);
     }
 
     public function actionNew()

@@ -97,8 +97,11 @@
             </ul>
           </div>
           <!---分页-->
-          <div class="page-wrap">
-            <ul class="pagination" id="pagination1"></ul>
+<!--          <div class="page-wrap">-->
+<!--            <ul class="pagination" id="pagination1"></ul>-->
+<!--          </div>-->
+          <div>
+            <?php echo $page;?>
           </div>
           <!---回复输入-->
           <div class="reply-input">

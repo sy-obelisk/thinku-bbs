@@ -35,9 +35,12 @@
           <?php } ?>
         </ul>
         <!---分页-->
-        <div class="page-wrap">
-          <ul class="pagination" id="pagination1"><?php echo $page;?></ul>
-
+<!--        <div class="page-wrap">-->
+<!--          <ul class="pagination" id="pagination1">--><?php //echo $page;?><!--</ul>-->
+<!---->
+<!--        </div>-->
+        <div>
+          <?php echo $page;?>
         </div>
       </div>
     </div>

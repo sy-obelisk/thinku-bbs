@@ -19,7 +19,7 @@ class SearchController extends Controller
     {
         $keyword = Yii::$app->request->get('keyword', '');
         $integral = Yii::$app->session->get('integral', '');
-        $page = Yii::$app->request->get('page', 1);
+        $page = (int)Yii::$app->request->get('page', 1);
         if($integral<10){
             echo '<script>alert("您的等级太低，努力升级吧，少年！")</script>';die;
         }
@@ -39,8 +39,13 @@ class SearchController extends Controller
 //        $p['count'] = $count;
 //        $p['pagecount'] = ceil($count / $pageSize);
 //        $p['page'] = $page;
-        $pageModel = new Pager($count,$page,$pageSize);
-        $pageStr = $pageModel->GetPagerContent();
-        return $this->render('search',['data'=>$data,'page'=>$pageStr]);
+//        $pageModel = new Pager($count,$page,$pageSize);
+//        $pageStr = $pageModel->GetPagerContent();
+
+        $pager=new Pager($count,$page,$pageSize);
+        $url="http://".$_SERVER['HTTP_HOST']."/search.html?keyword=".$keyword."&page=";
+        $page=$pager->GetPager($url);
+//        var_dump($page);die;
+        return $this->render('search',['data'=>$data,'page'=>$page]);
     }
 }
