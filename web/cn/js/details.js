@@ -38,6 +38,14 @@ var _details = {
     $('.collect li').eq(2).click(function () {
       _this.down(this);
     });
+    // 支持
+    $('.reply-time>div p').eq(1).click(function () {
+      _this.support(this);
+    });
+    // 反对
+    $('.reply-time>div p').eq(2).click(function () {
+      _this.oppose(this);
+    });
   },
   // 回复评论
   revertEvent : function (obj) {
@@ -67,16 +75,18 @@ var _details = {
         comment: replyCnt
       },function (res) {
         console.log(res);
+        var date = new Date(),
+            time = date.getFullYear()+'-'+Number(date.getMonth()+1)+'-'+date.getDate()
         if (res.code == 0) {
           var lis = "<li class='reply-item'>";
           lis+= "<div class='reply-wrap clearfix'>"+
             "<div class='reply-img'>"+
             "<div>"+
             "<img src='' alt=''></div>"+
-            "<p>这是名字</p>"+
+            "<p>"+_this.pData.name+"</p>"+
             "</div>"+
             "<div class='reply-cnt'>"+
-            "<p>这是发表的评论内容</p>"+
+            "<p>"+$('.reply-input textarea').val()+"</p>"+
             "<div class='revert'>"+
             "<div class='show-wrap'>"+
             "<span>回复</span>"+
@@ -93,15 +103,18 @@ var _details = {
             "</div>"+
             "</div>"+
             "<div class='reply-time clearfix'>"+
-            "<p>发表于：2018-01-12</p>"+
+            "<p>发表于："+time+"</p>"+
             "<div>"+
             "<p>举报</p>"+
-            "<p>支持<span>100</span></p>"+
-            "<p>反对<span>20</span></p>"+
+            "<p>支持<span>0</span></p>"+
+            "<p>反对<span>0</span></p>"+
             "</div>"+
             "</div>"+
             "</li>";
-          $('.reply-list>ul').append(lis);
+          $('.reply-list>ul').prepend(lis);
+          $('.reply-input textarea').val('');
+          var height = $('.reply').offset().top;
+          $(window).scrollTop(height-50);
         }
       },'json');
     }
@@ -124,6 +137,9 @@ var _details = {
     },function (res) {
       console.log(res);
       if (res.code == 0) {
+        var upNum = $('.collect li').eq(1).children('span').html();
+        console.log(upNum);
+        $('.collect li').eq(1).children('span').html(Number(upNum+1));
         alert(res.message);
       } else {
         alert(res.message);
@@ -139,10 +155,27 @@ var _details = {
     },function (res) {
       console.log(res);
       if (res.code == 0) {
+        var upNum = $('.collect li').eq(2).children('span').html();
         alert(res.message);
       } else {
         alert(res.message)
       }
+    },'json')
+  },
+  // 支持
+  support : function () {
+    $.post('/cn/api/like',{
+
+    },function (res) {
+
+    },'json')
+  },
+  // 反对
+  oppose : function () {
+    $.post('/cn/api/like',{
+
+    },function (res) {
+
     },'json')
   }
 };
