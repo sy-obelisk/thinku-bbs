@@ -465,8 +465,4 @@
     </section>
   </div>
 </body>
-<script src="https://use.fontawesome.com/0e249ab73d.js"></script>
-<script src="/cn/js/jquery.SuperSlide.2.1.js"></script>
-<script src="/cn/js/jqPaginator.min.js"></script>
-<script src="/cn/js/common.js"></script>
 <script src="/cn/js/index.js"></script>
