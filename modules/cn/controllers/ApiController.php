@@ -464,11 +464,11 @@ class ApiController extends Controller
             $user = new User();
             $user->integral($userId, 3, '评论获取积分',1);
             $res['code'] = 0;
-            $res['message'] = '点赞成功，积分+3';
+            $res['message'] = '发表成功，积分+3';
             die(json_encode($res));
         } else {
             $res['code'] = 1;
-            $res['message'] = '点赞失败，请重试';
+            $res['message'] = '发表失败，请重试';
             die(json_encode($res));
         }
 

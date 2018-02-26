@@ -41,8 +41,8 @@
         <div class="collect">
           <ul>
             <li>收藏</li>
-            <li>顶<span>10</span></li>
-            <li>踩<span>23</span></li>
+            <li>顶<span><?php echo $data['liked']?></span></li>
+            <li>踩<span><?php echo $data['hate']?></span></li>
           </ul>
         </div>
         <!--回复区-->
