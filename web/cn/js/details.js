@@ -120,6 +120,11 @@ var _details = {
       status: 1
     },function (res) {
       console.log(res);
+      if (res.code == 0) {
+        alert(res.message);
+      } else {
+        alert(res.message)
+      }
     },'json')
   },
   // 踩
@@ -130,6 +135,11 @@ var _details = {
       status: 2
     },function (res) {
       console.log(res);
+      if (res.code == 0) {
+        alert(res.message);
+      } else {
+        alert(res.message)
+      }
     },'json')
   }
 };
