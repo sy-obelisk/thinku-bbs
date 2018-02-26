@@ -85,7 +85,7 @@ class Content extends ActiveRecord
         } else {
             $re = Content::updateAll(['hate' => $data['hate'] + 1], "id=" . $id);
             if ($re) {
-                Yii::$app->db->createCommand()->insert("{{%user_like}}", ['contentId'=>$id,'type'=>1,'status'=>2,'creatTime'=>time(),'userId'=>$userId])->execute();
+                Yii::$app->db->createCommand()->insert("{{%user_like}}", ['contentId'=>$id,'type'=>1,'status'=>2,'createTime'=>time(),'userId'=>$userId])->execute();
                 $res['code'] = 0;
                 $res['message'] = '操作成功';
             } else {
