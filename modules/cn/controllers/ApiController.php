@@ -454,6 +454,7 @@ class ApiController extends Controller
         $data['contentId'] = Yii::$app->request->post('id');// 帖子内容的id
         $data['pid'] = Yii::$app->request->post('pid');// 用户评论的id，直接评论文章的话为0
         $data['comment'] = Yii::$app->request->post('comment'); // 评论内容
+        $data['createTime'] = date('Y-m-d H:i:s',time()); // 评论内容
         if (!$userId) {
             $data['code'] = 2;
             $data['message'] = '未登录';
@@ -464,6 +465,7 @@ class ApiController extends Controller
             $user = new User();
             $user->integral($userId, 3, '评论获取积分',1);
             $res['code'] = 0;
+            $res['id'] = Yii::$app->db->createCommand("select id From {{%user_discuss}} where userId=$userId and contentId=".$data['contentId'])->queryOne();
             $res['message'] = '发表成功，积分+3';
             die(json_encode($res));
         } else {

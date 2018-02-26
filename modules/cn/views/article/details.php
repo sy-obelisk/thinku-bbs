@@ -55,7 +55,7 @@
           <div class="reply-list">
             <ul>
               <?php foreach ($discuss['data'] as $v){?>
-              <li class="reply-item" data-id="<?php $v['id']?>">
+              <li class="reply-item" data-id="<?php echo $v['id']?>">
                 <div class="reply-wrap clearfix">
                   <!--头像-->
                   <div class="reply-img">
