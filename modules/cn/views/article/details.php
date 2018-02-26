@@ -110,7 +110,11 @@
     </div>
     <!--举报框-->
     <div class="accuse">
-
+      <div class="box">
+        <p>我要举报:</p>
+        <textarea></textarea>
+        <button id="accuseBtn">提交</button>
+      </div>
     </div>
     <!--侧边栏-->
     <?php use app\commands\front\RightWidget;?>
