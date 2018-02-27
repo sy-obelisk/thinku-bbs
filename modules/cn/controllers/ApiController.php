@@ -737,7 +737,7 @@ class ApiController extends Controller
         $model = new Login();
         $session = Yii::$app->session;
         $userId = $session->get('userId');
-        $userName = Yii::$app->request->post('userName', '');
+        $name = Yii::$app->request->post('name', '');
         $bathday = Yii::$app->request->post('bathday', '');
         $email = Yii::$app->request->post('email', '');
         $phone = Yii::$app->request->post('phone', '');
@@ -774,6 +774,7 @@ class ApiController extends Controller
             $extend['education'] = $education;
             $extend['userId'] = $userId;
             $extend['label'] = $label;
+            $extend['name'] = $name;
             $re = Yii::$app->db->createCommand()->insert("{{%user_extend}}", $extend)->execute();
         }
         $res['code'] = 0;
