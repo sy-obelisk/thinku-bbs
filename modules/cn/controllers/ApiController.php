@@ -115,7 +115,7 @@ class ApiController extends Controller
         $type = Yii::$app->request->post('type');
         $userName = Yii::$app->request->post('userName', '');
         if ($userName == '') {
-            $userName = 'LX' . time().rand(10,99);
+            $userName = 'LX' . time() . rand(10, 99);
         }
         $checkTime = $login->checkTime();
         if ($checkTime) {
@@ -194,7 +194,7 @@ class ApiController extends Controller
                     $loginsdata['image'] = '';
                 }
                 $res['code'] = 0;
-                $res['url'] = (Yii::$app->session->get('url'))?Yii::$app->session->get('url'):'/index.html';
+                $res['url'] = (Yii::$app->session->get('url')) ? Yii::$app->session->get('url') : '/index.html';
                 unset($_SESSION['url']);
                 $res['message'] = '登录成功';
             } else {
@@ -230,7 +230,7 @@ class ApiController extends Controller
                         $login->phone = $registerStr;
                         $login->userPass = '';
                         $login->createTime = time();
-                        $login->userName = 'LX' . time().rand(10,99);
+                        $login->userName = 'LX' . time() . rand(10, 99);
                         $re = $login->save();
                         if ($re) {
                             $model = new News();
@@ -255,7 +255,7 @@ class ApiController extends Controller
                         $loginsdata['image'] = '';
                     }
                     $res['code'] = 0;
-                    $res['url'] = (Yii::$app->session->get('url'))?Yii::$app->session->get('url'):'/index.html';
+                    $res['url'] = (Yii::$app->session->get('url')) ? Yii::$app->session->get('url') : '/index.html';
                     $res['message'] = '登录成功';
                     die(json_encode($res));
                 } else {
@@ -295,9 +295,9 @@ class ApiController extends Controller
         $pageSize = Yii::$app->request->post('pageSize', 15);
         $model = new Content();
         $data = $model->getList($first, $second, $third, $pageSize, $page);
-        $page=$data['page'];
-        $data=$data['list'];
-        die(json_encode(['data'=>$data,'page'=>$page, 'code' => 0]));
+        $page = $data['page'];
+        $data = $data['list'];
+        die(json_encode(['data' => $data, 'page' => $page, 'code' => 0]));
     }
 
     /**
@@ -380,7 +380,7 @@ class ApiController extends Controller
         }
         $time = date("Y-m-d");
         $daily = new DailyTask();
-        $task = $daily->todayTask(" where userId=" . $userId . " and time=" ." '$time'");// 查看数据是否存在
+        $task = $daily->todayTask(" where userId=" . $userId . " and time=" . " '$time'");// 查看数据是否存在
         if ($task) {
             $signIn = $daily->todayTask(" where userId=" . $userId . " and time= '$time' and signIn=1");// 查看数据是否存在
             if ($signIn) {
@@ -398,7 +398,7 @@ class ApiController extends Controller
         }
         if ($re) {
             $user = new User();
-            $user->integral($userId, 2, '论坛签到',1);
+            $user->integral($userId, 2, '论坛签到', 1);
             $res['code'] = 0;
             $res['message'] = '签到成功';
             die(json_encode($res));
@@ -432,7 +432,7 @@ class ApiController extends Controller
         $re = $collect->Collection($id);
         if ($re) {
             $user = new User();
-            $user->integral($userId, 1, '收藏文章',1);
+            $user->integral($userId, 1, '收藏文章', 1);
             $data['code'] = 0;
             $data['message'] = '收藏成功';
             die(json_encode($data));
@@ -454,7 +454,7 @@ class ApiController extends Controller
         $data['contentId'] = Yii::$app->request->post('id');// 帖子内容的id
         $data['pid'] = Yii::$app->request->post('pid');// 用户评论的id，直接评论文章的话为0
         $data['comment'] = Yii::$app->request->post('comment'); // 评论内容
-        $data['createTime'] = date('Y-m-d H:i:s',time()); // 评论内容
+        $data['createTime'] = date('Y-m-d H:i:s', time()); // 评论内容
         if (!$userId) {
             $data['code'] = 2;
             $data['message'] = '未登录';
@@ -463,9 +463,9 @@ class ApiController extends Controller
         $re = Yii::$app->db->createCommand()->insert("{{%user_discuss}}", $data)->execute();
         if ($re) {
             $user = new User();
-            $user->integral($userId, 3, '评论获取积分',1);
+            $user->integral($userId, 3, '评论获取积分', 1);
             $res['code'] = 0;
-            $res['id'] = Yii::$app->db->createCommand("select id From {{%user_discuss}} where userId=$userId and contentId=".$data['contentId'])->queryOne();
+            $res['id'] = Yii::$app->db->createCommand("select id From {{%user_discuss}} where userId=$userId and contentId=" . $data['contentId'])->queryOne();
             $res['message'] = '发表成功，积分+3';
             die(json_encode($res));
         } else {
@@ -501,10 +501,10 @@ class ApiController extends Controller
         }
         if ($post['type'] == 1) {
             $content = new Content();
-            $re = $content->like($userId,$post['contentId'], $post['status']);
+            $re = $content->like($userId, $post['contentId'], $post['status']);
         } else {
             $u = new UserDiscuss();
-            $re = $u->like($userId,$post['contentId'], $post['status']);
+            $re = $u->like($userId, $post['contentId'], $post['status']);
         }
         die(json_encode($re));
     }
@@ -532,9 +532,9 @@ class ApiController extends Controller
     public function actionNewArticle()
     {
         if ($_POST) {
-            $user=Yii::$app->session->get('userId');
-            $user=1;
-            if(!$user){
+            $user = Yii::$app->session->get('userId');
+            $user = 1;
+            if (!$user) {
                 $data['code'] = 2;
                 $data['message'] = '未登录';
                 die(json_encode($data));
@@ -657,20 +657,31 @@ class ApiController extends Controller
     {
         $login = new Login();
         $registerStr = Yii::$app->request->post('registerStr');
+        $userId = Yii::$app->session->get('userId', '');
         $pass = Yii::$app->request->post('pass');
         $new = Yii::$app->request->post('newPass');
         $code = Yii::$app->request->post('code');
         $checkTime = $login->checkTime();
+        if (!$userId) {
+            $res['code'] = 2;
+            $res['message'] = '未登录';
+            die(json_encode($res));
+        }
+        if ($pass!=$new) {
+            $res['code'] = 3;
+            $res['message'] = '两次密码不一样';
+            die(json_encode($res));
+        }
         if ($checkTime) {
             $checkCode = $login->checkCode($registerStr, $code);
             if ($checkCode) {
-                $user = $login->find()->where("(phone='$registerStr' or email='$registerStr') and userPass='" . md5(md5($pass) . 'LXLT') . "''")->one();
-                if (!$user) {
-                    $res['code'] = 2;
-                    $res['message'] = '用户名或密码不正确';
-                    die(json_encode($res));
-                }
-                $re = $login->updateAll(['userPass' => md5(md5($new) . 'LXLT')], "id='" . $user['id'] . "'");
+//                $user = $login->find()->where("(phone='$registerStr' or email='$registerStr') and userPass='" . md5(md5($pass) . 'LXLT') . "'")->one();
+//                if (!$user) {
+//                    $res['code'] = 2;
+//                    $res['message'] = '用户名或密码不正确';
+//                    die(json_encode($res));
+//                }
+                $re = $login->updateAll(['userPass' => md5(md5($new) . 'LXLT')], "id='" . $userId . "'");
                 if ($re) {
                     $res['code'] = 0;
                     $res['message'] = '密码修改成功';
@@ -843,17 +854,17 @@ class ApiController extends Controller
      * */
     public function actionAllArticle()
     {
-        $cate= Yii::$app->request->post('cate', 'all');
-        $page= Yii::$app->request->post('page', 1);
-        $model=new Content();
-        $first='2,3,4,5,14';
-        if($cate=='all'){
-            $data=$model->getList($first,'','',15,$page);
-        }else{
-            $data=$model->getList($first,'','',15,$page,'goodArticle=1 and ');
+        $cate = Yii::$app->request->post('cate', 'all');
+        $page = Yii::$app->request->post('page', 1);
+        $model = new Content();
+        $first = '2,3,4,5,14';
+        if ($cate == 'all') {
+            $data = $model->getList($first, '', '', 15, $page);
+        } else {
+            $data = $model->getList($first, '', '', 15, $page, 'goodArticle=1 and ');
         }
-        $page=$data['page'];
-        $data=$data['list'];
-        die(json_encode(['code'=>0,'data'=>$data,'page'=>$page]));
+        $page = $data['page'];
+        $data = $data['list'];
+        die(json_encode(['code' => 0, 'data' => $data, 'page' => $page]));
     }
 }
