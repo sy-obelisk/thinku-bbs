@@ -138,14 +138,14 @@
 
       if (name || birth || email || phone || nickname || school || edu || place) {
         $.post('/cn/api/change-user-info',{
-          userName: name,
-          bathday: birth,
-          email : email,
-          phone : phone,
-          nickName : nickname,
-          school : school,
-          education : edu,
-          label : place
+          userName: name, // 真实名字
+          bathday: birth, // 生日
+          email : email, // 邮箱
+          phone : phone, // 手机
+          nickName : nickname, // 昵称
+          school : school, // 选校
+          education : edu, // 学历
+          name : place // 住址
         },function (res) {
           console.log(res);
           if (res.code == 0){
