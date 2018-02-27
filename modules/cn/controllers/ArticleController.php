@@ -40,7 +40,7 @@ class ArticleController extends Controller
         $viewCount = $data['viewCount'];
         Content::updateAll(['viewCount' => ($viewCount + 1)], "id=$id");
         if ($discuss['count'] != false) {
-            $pager = new Pager($discuss['count'], $page, 10);
+            $pager = new Pager($discuss['count'], $page, 6);
             $url = "http://" . $_SERVER['HTTP_HOST'] . "/details/" . $id . '/';
             $page = $pager->GetPager($url);
         } else {

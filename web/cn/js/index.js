@@ -17,8 +17,9 @@ var _index = {
     // 其他一级导航点击
     $('.article-other').click(function () {
       _this.getList(this);
-      $('.get-list>li').eq(0).addClass('on').siblings().removeClass('on');
-      $('.get-list .inHd li').eq(0).addClass('on').siblings().removeClass('on');
+      $('.get-list .first-li').addClass('active').siblings().removeClass('active');
+      $('.get-list .inHd:eq(0) li').eq(0).addClass('on').siblings().removeClass('on');
+      $('.get-list .inHd:eq(1) li').eq(0).addClass('on').siblings().removeClass('on');
       $('.get-list .inBd:eq(0)>ul').eq(0).css('display','block').children('li').eq(0).addClass('active').siblings().removeClass('active').parent().siblings().css('display','none');
       $('.get-list .inBd:eq(1)>ul').eq(0).css('display','block').children('li').eq(0).addClass('active').siblings().removeClass('active').parent().siblings().css('display','none');
     });
@@ -39,7 +40,7 @@ var _index = {
     // 考试二级导航点击
     $('.exam-wrap .inHd li').click(function () {
       var i = $(this).index();
-      var obj = $('.abroad-wrap .inBd>ul').eq(i).children().eq(0);
+      var obj = $('.exam-wrap .inBd>ul').eq(i).children().eq(0);
       _this.getList(obj);
     });
     // 留学、考试三级导航点击
@@ -186,7 +187,6 @@ var _index = {
 };
 $(function () {
   _index.init();
-  $(function () {
 //  banner图
     jQuery(".bnr-banner").slide({ mainCell:".box ul",effect:"leftLoop", autoPlay:false, delayTime:400});
 //  文章资讯
@@ -210,6 +210,4 @@ $(function () {
     jQuery(".project").slide({});
 //  侧边栏热帖排行榜
     jQuery(".ranking").slide({});
-
-  })
 })

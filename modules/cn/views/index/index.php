@@ -391,7 +391,7 @@
             </ul>
             <!--职业-->
             <ul class="clearfix get-list">
-              <li class="active" data-first="4" data-second="76"><a href="javascript:void(0)">金融</a></li>
+              <li class="first-li active" data-first="4" data-second="76"><a href="javascript:void(0)">金融</a></li>
               <li data-first="4" data-second="77"><a href="javascript:void(0)">大商科</a></li>
               <li data-first="4" data-second="78"><a href="javascript:void(0)">会计</a></li>
               <li data-first="4" data-second="79"><a href="javascript:void(0)">理工科</a></li>
@@ -399,14 +399,14 @@
             </ul>
             <!--生活-->
             <ul class="clearfix get-list">
-              <li class="active" data-first="5" data-second="80"><a href="javascript:void(0)">美国</a></li>
-              <li data-first="5" data-second="81"><a href="javascript:void(0)">英国</a></li>
-              <li data-first="5" data-second="82"><a href="javascript:void(0)">澳洲</a></li>
-              <li data-first="5" data-second="83"><a href="javascript:void(0)">加拿大</a></li>
-              <li data-first="5" data-second="84"><a href="javascript:void(0)">香港</a></li>
-              <li data-first="5" data-second="85"><a href="javascript:void(0)">新加坡</a></li>
-              <li data-first="5" data-second="86"><a href="javascript:void(0)">法国</a></li>
-              <li data-first="5" data-second="87"><a href="javascript:void(0)">其他</a></li>
+              <li class="first-li active" data-first="5" data-second="81"><a href="javascript:void(0)">美国</a></li>
+              <li data-first="5" data-second="82"><a href="javascript:void(0)">英国</a></li>
+              <li data-first="5" data-second="83"><a href="javascript:void(0)">澳洲</a></li>
+              <li data-first="5" data-second="84"><a href="javascript:void(0)">加拿大</a></li>
+              <li data-first="5" data-second="85"><a href="javascript:void(0)">香港</a></li>
+              <li data-first="5" data-second="86"><a href="javascript:void(0)">新加坡</a></li>
+              <li data-first="5" data-second="87"><a href="javascript:void(0)">法国</a></li>
+              <li data-first="5" data-second="88"><a href="javascript:void(0)">其他</a></li>
             </ul>
           </div>
         </div>
