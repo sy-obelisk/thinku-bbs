@@ -20,30 +20,30 @@
     </div>
     <div class="single-box bd">
       <!--个人资料-->
-      <ul class="data">
+      <ul class="data person-data">
         <li >
-          <label for="">用&nbsp;户&nbsp;名：</label><span>修改</span><input class="nickname" type="text" placeholder="设置自己的昵称吧">
+          <label for="">昵&nbsp;&nbsp;&nbsp; 称：</label><span>nicknick</span><a class="change-data" href="javascript:void(0)">修改</a><input class="nickname" type="text" placeholder="设置自己的昵称吧">
         </li>
         <li>
-          <label for="">昵&nbsp;&nbsp;&nbsp; 称：</label><input type="text">
+          <label for="">真实姓名：</label><span></span><a class="change-data" href="javascript:void(0)">修改</a><input class="name" type="text">
         </li>
         <li>
-          <label for="">生&nbsp;&nbsp;&nbsp; 日：</label><input class="birth" type="text" placeholder="请选择日期" id="birthDate">
+          <label for="">生&nbsp;&nbsp;&nbsp; 日：</label><span>1900-12-12</span><a class="change-data" href="javascript:void(0)">修改</a><input class="birth" type="text" placeholder="请选择日期" id="birthDate">
         </li>
         <li>
-          <label for="">现&nbsp;居&nbsp;地：</label><input class="place" type="text">
+          <label for="">现&nbsp;居&nbsp;地：</label><span></span><a class="change-data" href="javascript:void(0)">修改</a><input class="place" type="text">
         </li>
         <li>
-          <label for="">联系电话：</label><input type="text" class="phone" placeholder="电话">
+          <label for="">联系电话：</label><span></span><a class="change-data" href="javascript:void(0)">修改</a><input type="text" class="phone" placeholder="电话">
         </li>
         <li>
-          <label for="">email&nbsp;&nbsp; ：</label><input type="text" class="email" placeholder="邮箱">
+          <label for="">email&nbsp;&nbsp; ：</label><span></span><a class="change-data" href="javascript:void(0)">修改</a><input type="text" class="p-email" placeholder="邮箱">
         </li>
         <li>
-          <label for="">毕业院校：</label><input  class="school" type="text">
+          <label for="">毕业院校：</label><span></span><a class="change-data" href="javascript:void(0)">修改</a><input  class="school" type="text">
         </li>
         <li>
-          <label for="">学&nbsp;&nbsp;&nbsp; 历：</label><input class="education" type="text">
+          <label for="">学&nbsp;&nbsp;&nbsp; 历：</label><span></span><a class="change-data" href="javascript:void(0)">修改</a><input class="education" type="text">
         </li>
         <input type="button" id="dataBtn" value="保存">
       </ul>
@@ -76,19 +76,19 @@
       <!-- 修改密码-->
       <ul class="pass">
         <li>
-          <label for="">新&nbsp;密&nbsp;码：</label><input type="text">
+          <label for="">新&nbsp;密&nbsp;码：</label><input class="new-pass" type="password">
         </li>
         <li>
-          <label for="">密码确认：</label><input type="text">
+          <label for="">密码确认：</label><input class="pass-again" type="password">
         </li>
         <li>
-          <label for="">email&nbsp;：</label><input type="text">
+          <label for="">email&nbsp;：</label><input class="email" type="text">
         </li>
         <li>
-          <label for="">手机号码：</label><input type="text">
+          <label for="">手机号码：</label><input class="phones" type="text">
         </li>
         <li>
-          <label for="">验&nbsp;证码&nbsp;：</label><input type="text">
+          <label for="">验&nbsp;证码&nbsp;：</label><input class="veri-code" type="text"><input type="button" id="getCode" value="获取验证码">
         </li>
         <input type="button" value="提交" id="passBtn">
       </ul>
@@ -113,12 +113,16 @@
     laydate.render({
       elem: '#birthDate' //指定元素
     });
+
+    $('.change-data').click(function () {
+      $(this).siblings('input').toggle();
+    });
     
     //  修改个人资料
     $('#dataBtn').click(function () {
       var name = $('.name').val(),
           birth = $('.birth').val(),
-          email = $('.email').val(),
+          email = $('.p-email').val(),
           phone = $('.phone').val(),
           nickname = $('.nickname').val(),
           school = $('.school').val(),
@@ -145,6 +149,61 @@
       } else {
         alert('请填写资料再提交');
       }
+    });
+
+    // 修改密码
+    $('#getCode').click(function () {
+      var eData = $('.email').val(),
+          pData = $('.phones').val();
+      if (!eData && !pData) {
+        alert('请输入手机号或邮箱');
+      } else if (pData) {
+        clickDX(this,60,1);
+      } else if (eData) {
+        clickDX(this,120,2);
+      }
+    });
+    $('#passBtn').click(function () {
+      var pass = $('.new-pass').val(),
+          passAgain = $('.pass-again').val(),
+          eData = $('.email').val(),
+          pData = $('.phones').val(),
+          code = $('.veri-code').val();
+      console.log(pass,passAgain,eData,pData,code);
+      if (!pass){
+        alert('请输入密码');
+        return false;
+      }
+      if(!passAgain){
+        alert('请输入确认密码');
+        return false;
+      }
+      if(pass != passAgain){
+        alert('两次输入密码不一致');
+        return false;
+      }
+      if(!eData && !pData){
+        alert('请输入手机或邮箱');
+        return false;
+      }
+      if(!code){
+        alert('请输入验证码');
+        return false;
+      }
+
+      if (pData){
+        var registerStr = pData;
+      } else if(eData){
+        var registerStr = eData;
+      }
+      $.post('/cn/api/change-pass',{
+        registerStr: registerStr,
+        pass: pass,
+        newPass: passAgain,
+        code: code
+      },function (res) {
+        console.log(res);
+      },'json')
     })
   });
  

@@ -1,4 +1,3 @@
-
 .single-tab>ul {
   border-bottom: 1px solid #e2e2e2;
   font-size: 0;
@@ -23,10 +22,22 @@
   border-bottom: 2px solid #7d1f88;
   color: #7d1f88;
 }
+.single-box .person-data>li input {
+  display: none;
+}
+.single-box .person-data>li a {
+  margin: 0 20px;
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  background-color: #7d1f88;
+  color: #fff;
+}
 /*个人资料+修改密码*/
 .single-box .data>li,
 .single-box .pass>li {
   line-height: 50px;
+  font-size: 14px;
 }
 .single-box .data>li>label,
 .single-box .pass>li>label {
@@ -56,7 +67,20 @@
   color: #fff;
   font-size: 14px;
 }
-/*积分*/
+.single-box .pass>li:last-of-type input[type='text'] {
+  width: 150px;
+}
+.single-box .pass>li:last-of-type input[type='button'] {
+  outline: none;
+  border: 1px solid #7d1f88;
+  width: 90px;
+  height: 100%;
+  padding: 5px 0;
+  border-radius: 3px;
+  background-color: #7d1f88;
+  color: #fff;
+}
+  /*积分*/
 .single-box .score {
   margin-top: 25px;
 }
