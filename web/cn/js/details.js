@@ -39,7 +39,7 @@ var _details = {
       _this.down(this);
     });
     // 举报
-    $('.reply-time>div p').eq(0).click(function () {
+    $('.reply-list').on('click','#accuseBtn',function () {
       _this.accuse(this);
     });
     // 关闭举报框
@@ -47,28 +47,39 @@ var _details = {
       $('.accuse').hide();
     });
     // 支持
-    $('.reply-time>div p').eq(1).click(function () {
+    $('.reply-list').on('click','#support',function () {
       _this.support(this);
-      // console.log($(this).parent().parent().parent().data('id'));
     });
     // 反对
-    $('.reply-time>div p').eq(2).click(function () {
+    $('.reply-list').on('click','#oppose',function () {
       _this.oppose(this);
     });
   },
   // 回复评论
   revertEvent : function (obj) {
-    var revertCnt = $(obj).siblings('textarea').val();
+    var revertCnt = $(obj).siblings('textarea').val(),
+        _this = this;
     if (!revertCnt) {
       alert('内容不能为空!');
     } else {
-      $('.revert-input textarea').val('');
-      var lis = "<li>";
-      lis+= "<span class='revert-name'>凤凰火:</span>"+
-            "<em class='revert-text'>这是回复的内容</em>"+
-            "<div class='revert-time'>2018-1-23</div>"+
+      $.post('/cn/api/discuss',{
+        id: _this.pData.id,
+        pid: $(obj).parent().parent().parent().parent().parent().parent().data('id'),
+        comment: revertCnt
+      },function (res) {
+        console.log(res);
+        var date = new Date(),
+          time = date.getFullYear()+'-'+Number(date.getMonth()+1)+'-'+date.getDate()
+        if (res.code == 0) {
+          $('.revert-input textarea').val('');
+          var lis = "<li>";
+          lis+= "<span class='revert-name'>"+_this.pData.name+":</span>"+
+            "<em class='revert-text'>"+revertCnt+"</em>"+
+            "<div class='revert-time'>"+time+"</div>"+
             "</li>";
-      $(obj).parent().siblings('.revert-list').append(lis);
+          $(obj).parent().siblings('.revert-list').append(lis);
+        }
+      },'json');
     }
   },
   // 发表评论
@@ -87,11 +98,11 @@ var _details = {
         var date = new Date(),
             time = date.getFullYear()+'-'+Number(date.getMonth()+1)+'-'+date.getDate()
         if (res.code == 0) {
-          var lis = "<li class='reply-item'>";
+          var lis = "<li class='reply-item' data-id='"+res.id.id+"'>";
           lis+= "<div class='reply-wrap clearfix'>"+
             "<div class='reply-img'>"+
             "<div>"+
-            "<img src='' alt=''></div>"+
+            "<img src='"+_this.pData.imgSrc+"' alt='头像'></div>"+
             "<p>"+_this.pData.name+"</p>"+
             "</div>"+
             "<div class='reply-cnt'>"+
@@ -114,9 +125,9 @@ var _details = {
             "<div class='reply-time clearfix'>"+
             "<p>发表于："+time+"</p>"+
             "<div>"+
-            "<p>举报</p>"+
-            "<p>支持<span>0</span></p>"+
-            "<p>反对<span>0</span></p>"+
+            "<p id='accuseBtn'>举报</p>"+
+            "<p id='support'>支持<span>0</span></p>"+
+            "<p id='oppose'>反对<span>0</span></p>"+
             "</div>"+
             "</div>"+
             "</li>";
@@ -177,22 +188,36 @@ var _details = {
   },
   // 支持
   support : function (obj) {
+    var num = $(obj).children().html();
     $.post('/cn/api/like',{
       id : $(obj).parent().parent().parent().data('id'),
       type : 2,
       status : 1
     },function (res) {
       console.log(res);
+      if (res.code == 0){
+        alert(res.message);
+        $(obj).children().html(Number(num+1));
+      } else {
+        alert(res.message)
+      }
     },'json')
   },
   // 反对
   oppose : function (obj) {
+    var num = $(obj).children().html();
     $.post('/cn/api/like',{
       id : $(obj).parent().parent().parent().data('id'),
       type : 2,
       status : 2
     },function (res) {
       console.log(res);
+      if (res.code == 0){
+        alert(res.message);
+        $(obj).children().html(Number(num+1));
+      } else {
+        alert(res.message);
+      }
     },'json')
   }
 };

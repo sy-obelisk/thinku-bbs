@@ -56,7 +56,7 @@ body{
 */
 .p-container {
   width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 30px;
 }
 /*
  header头部

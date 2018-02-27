@@ -91,9 +91,9 @@
                 <div class="reply-time clearfix">
                   <p>发表于：<?php echo substr($v['createTime'],0,10)?></p>
                   <div>
-                    <p>举报</p>
-                    <p>支持<span><?php echo $v['liked']?></span></p>
-                    <p>反对<span><?php echo $v['hate']?></span></p>
+                    <p id="accuseBtn">举报</p>
+                    <p id="support">支持<span><?php echo $v['liked']?></span></p>
+                    <p id="oppose">反对<span><?php echo $v['hate']?></span></p>
                   </div>
                 </div>
               </li>
@@ -104,12 +104,12 @@
 <!--          <div class="page-wrap">-->
 <!--            <ul class="pagination" id="pagination1"></ul>-->
 <!--          </div>-->
-          <div>
+<!--          <div>-->
             <?php echo $page;?>
-          </div>
+<!--          </div>-->
           <!---回复输入-->
           <div class="reply-input">
-            <textarea></textarea>
+            <textarea placeholder="来评论一下吧"></textarea>
             <button id="replyBtn">发表</button>
           </div>
         </div>

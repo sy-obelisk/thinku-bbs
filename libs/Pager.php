@@ -148,9 +148,9 @@ class Pager
 
     public function GetPager($url)
     {
-        $str = '<div class="s-page" aria-label="Page navigation">';
+        $str = '<div class="s-page page-wrap" aria-label="Page navigation">';
         $str .= '<ul class="pagination">';
-        $str .= "<li><a  href='".$url."1.html'>&lt;&lt;</a> </li>";
+        $str .= "<li><a  href='".$url."1.html'>首页</a> </li>";
         if ($this->pageIndex == '1' || $this->pageIndex < 1) {
             $str .= "<li><a href='".$url."1.html' aria-label='Previous'>";
         } else {
@@ -213,7 +213,7 @@ class Pager
 //
         }
         $str .= "<span>&gt;</span></a></li>";
-        $str .= "<li><a href='$url" . ($this->totalPagesCount) . ".html'>&gt;&gt;</a></li>";
+        $str .= "<li><a href='$url" . ($this->totalPagesCount) . ".html'>末页</a></li>";
         $str .= "</div>";
         return $str;
     }
