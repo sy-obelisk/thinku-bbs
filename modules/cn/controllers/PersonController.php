@@ -34,6 +34,7 @@ class PersonController extends Controller
         $integral['count'] = count(Yii::$app->db->createCommand("select id From {{%integral_details}} where userId=$userId")->queryAll());
         $page=$this->actionPage($integral['count'],'/person/',$page,$pageSize);
         $integral['integral'] = Yii::$app->db->createCommand("select integral From {{%user}} where id=$userId")->queryOne()['integral'];
+//        var_dump($data);die;
         return $this->render('index', ['data'=>$data,'integral'=>$integral,'page'=>$page]);
     }
 
