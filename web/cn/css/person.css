@@ -23,7 +23,7 @@
   color: #7d1f88;
 }
 .single-box .person-data>li input {
-  display: none;
+  /*display: none;*/
 }
 .single-box .person-data>li a {
   margin: 0 20px;
