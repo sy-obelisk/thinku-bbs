@@ -659,22 +659,40 @@ class ApiController extends Controller
         $registerStr = Yii::$app->request->post('registerStr');
         $pass = Yii::$app->request->post('pass');
         $new = Yii::$app->request->post('newPass');
-        $user = $login->find()->where("(phone='$registerStr' or email='$registerStr') and userPass='" . md5(md5($pass) . 'LXLT') . "''")->one();
-        if (!$user) {
-            $res['code'] = 2;
-            $res['message'] = '用户名或密码不正确';
-            die(json_encode($res));
-        }
-        $re = $login->updateAll(['userPass' => md5(md5($new) . 'LXLT')], "id='" . $user['id'] . "'");
-        if ($re) {
-            $res['code'] = 0;
-            $res['message'] = '密码修改成功';
-            die(json_encode($res));
+        $code = Yii::$app->request->post('code');
+        $checkTime = $login->checkTime();
+        if ($checkTime) {
+            $checkCode = $login->checkCode($registerStr, $code);
+            if ($checkCode) {
+                $user = $login->find()->where("(phone='$registerStr' or email='$registerStr') and userPass='" . md5(md5($pass) . 'LXLT') . "''")->one();
+                if (!$user) {
+                    $res['code'] = 2;
+                    $res['message'] = '用户名或密码不正确';
+                    die(json_encode($res));
+                }
+                $re = $login->updateAll(['userPass' => md5(md5($new) . 'LXLT')], "id='" . $user['id'] . "'");
+                if ($re) {
+                    $res['code'] = 0;
+                    $res['message'] = '密码修改成功';
+                    die(json_encode($res));
+                } else {
+                    $res['code'] = 1;
+                    $res['message'] = '密码修改失败，请重试';
+                    die(json_encode($res));
+                }
+            } else {
+                $res['code'] = 1;
+                $res['message'] = '验证码错误';
+                $res['type'] = '1';
+                die(json_encode($res));
+            }
         } else {
             $res['code'] = 1;
-            $res['message'] = '密码修改失败，请重试';
+            $res['message'] = '验证码过期';
+            $res['type'] = '1';
             die(json_encode($res));
         }
+
     }
 
     /**

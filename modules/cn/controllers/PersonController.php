@@ -101,6 +101,7 @@ class PersonController extends Controller
     public function actionLeave()
     {
         $userId = Yii::$app->request->get('userId');
+        $page = Yii::$app->request->get('page',1);
         $userId = 1;
         if (!$userId) {
             $data['code'] = 2;
@@ -119,9 +120,11 @@ class PersonController extends Controller
         $offset = $pageSize * ($page - 1);
         $str = rtrim($str, ',');
         $sql = "select c.id,comment,ud.createTime,c.name,u.nickname,u.userName From {{%user_discuss}} ud left join {{%content}} c on ud.contentId=c.id left join {{%user}} u on ud.userId=u.id where c.id in ($str) order by ud.id desc";
-        $data['count'] = Yii::$app->db->createCommand("$sql")->queryAll();
-        $data['data'] = Yii::$app->db->createCommand("$sql limit $offset")->queryAll();
-        return $this->render('leave', $data);
+        $data['count'] = count(Yii::$app->db->createCommand("$sql")->queryAll());
+        $data['data'] = Yii::$app->db->createCommand("$sql limit $offset,$pageSize")->queryAll();
+        $page=$this->actionPage($data['count'],'/message-board/',$page,$pageSize);
+//        var_dump($data['data']);die;
+        return $this->render('leave', ['page'=>$page,'data'=>$data]);
     }
 
     public function actionShare()
