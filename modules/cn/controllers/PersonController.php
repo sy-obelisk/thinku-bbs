@@ -29,7 +29,7 @@ class PersonController extends Controller
             echo "<script>alert('未登录')</script>";
             die;
         }
-        $data = Yii::$app->db->createCommand("select u.userName,u.nickname,u.phone,u.email,ue.bathday,ue.address,ue.education,ue.school,ue.id as eid From {{%user}} u left join {{%user_extend}} ue on u.id=ue.userId where u.id=$userId ")->queryOne();
+        $data = Yii::$app->db->createCommand("select u.userName,u.nickname,u.phone,u.email,ue.bathday,ue.address,ue.education,ue.school,ue.id as eid,ue.name From {{%user}} u left join {{%user_extend}} ue on u.id=ue.userId where u.id=$userId ")->queryOne();
         $integral['details'] = Yii::$app->db->createCommand("select id,score,message,createTime,type From {{%integral_details}} where userId=$userId order by id desc limit $offset,$pageSize")->queryAll();
         $integral['count'] = count(Yii::$app->db->createCommand("select id From {{%integral_details}} where userId=$userId")->queryAll());
         $page=$this->actionPage($integral['count'],'/person/',$page,$pageSize);
