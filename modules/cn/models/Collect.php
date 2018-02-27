@@ -54,7 +54,8 @@ class Collect extends ActiveRecord
         $offset = $pageSize * ($page - 1);
 //        $data['data']= Yii::$app->db->createCommand("SELECT c.name,c.id,u.nickname,c.id,u.userName from {{%user_collection}} uc left join {{%content}} c on uc.userId=c.userId left join {{%user}} u on uc.userId=u.id where uc.userId=$userId limit $offset,$pageSize")->queryAll();
         $data['data']= Yii::$app->db->createCommand("select c.id,c.name,c.abstract,c.viewCount,c.createTime,u.userName,u.nickname,u.image,(SELECT CONCAT_WS(' ',ce.value,ed.value) From {{%content_extend}} ce left JOIN {{%extend_data}} ed ON ed.extendId=ce.id WHERE ce.contentId=c.id AND ce.code='99b3cc02b18ec45447bd9fd59f1cd655')  as listeningFile from  {{%user_collection}} uc left join {{%content}} c on uc.contentId=c.id LEFT JOIN {{%user}} u ON u.id=c.userId WHERE uc.userId=$userId order by c.id DESC limit $offset,$pageSize")->queryAll();
-        $data['count']=count(Yii::$app->db->createCommand("SELECT c.name,c.id,u.nickname,c.id,u.userName from {{%user_collection}} uc left join {{%content}} c on uc.userId=c.userId left join {{%user}} u on uc.userId=u.id where uc.userId=$userId")->queryAll());
+//        var_dump($data['data']);die;
+        $data['count']=count(Yii::$app->db->createCommand("select c.id from  {{%user_collection}} uc left join {{%content}} c on uc.contentId=c.id LEFT JOIN {{%user}} u ON u.id=c.userId WHERE uc.userId=$userId order by c.id DESC ")->queryAll());
         $data['page']=$page;
         $data['pageCount']=ceil($data['count']/$pageSize);
         return $data;
