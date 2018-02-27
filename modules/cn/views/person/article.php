@@ -23,7 +23,7 @@
           <img src="<?php $v['image']?>" alt="">
         </div>
         <div class="article-info">
-          <h3><a href=""><?php echo $v['name']?></a></h3>
+          <h3><a href="/details/<?php echo $v['id']?>.html"><?php echo $v['name']?></a></h3>
           <div>
             <p>发表于<span><?php echo $v['createTime']?></span></p>
             <p><span>查看：<?php echo $v['viewCount']?></span>|<span>回复：<?php echo $v['count']?></span></p>
@@ -33,8 +33,11 @@
       </li>
       <?php }?>
       <!---分页-->
-      <div class="page-wrap">
-        <ul class="pagination" id="pagination1"></ul>
+<!--      <div class="page-wrap">-->
+<!--        <ul class="pagination" id="pagination1"></ul>-->
+<!--      </div>-->
+      <div>
+        <?php echo $page;?>
       </div>
     </ul>
   </section>

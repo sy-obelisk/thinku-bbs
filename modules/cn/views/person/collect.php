@@ -10,13 +10,13 @@
   <section class="person-cnt person-box">
     <div class="box">
       <ul class="collect-list person-list">
-        <?php foreach($data as $v){?>
+        <?php foreach($data['data'] as $v){?>
         <li class="item">
           <div class="collect-img">
             <img src="<?php $v['image']?>" alt="">
           </div>
           <div class="collect-right">
-            <h3><a href=""><?php echo $v['name']?></a></h3>
+            <h3><a href="/details/<?php echo $v['id']?>.html"><?php echo $v['name']?></a></h3>
             <div class="info-list clearfix">
               <div class="first-div"><span><?php echo $v['nickname']?$v['nickname']:$v['userName']?></span> <span>发布于2017-01-12</span></div>
 <!--              <div class="last-div clearfix">-->
@@ -30,8 +30,11 @@
         </li>
         <?php }?>
         <!---分页-->
-        <div class="page-wrap">
-          <ul class="pagination" id="pagination1"></ul>
+<!--        <div class="page-wrap">-->
+<!--          <ul class="pagination" id="pagination1"></ul>-->
+<!--        </div>-->
+        <div>
+          <?php echo $page;?>
         </div>
       </ul>
     </div>

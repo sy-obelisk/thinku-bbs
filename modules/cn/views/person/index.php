@@ -60,8 +60,11 @@
         </li>
         <?php }?>
         <!---分页-->
-        <div class="page-wrap">
-          <ul class="pagination" id="pagination1"></ul>
+<!--        <div class="page-wrap">-->
+<!--          <ul class="pagination" id="pagination1"></ul>-->
+<!--        </div>-->
+        <div>
+          <?php echo $page;?>
         </div>
       </ul>
       <!--用户权限-->

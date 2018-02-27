@@ -32,10 +32,9 @@ class PersonController extends Controller
         $data = Yii::$app->db->createCommand("select u.userName,u.nickname,u.phone,u.email,ue.bathday,ue.address,ue.education,ue.school,ue.id as eid From {{%user}} u left join {{%user_extend}} ue on u.id=ue.userId where u.id=$userId ")->queryOne();
         $integral['details'] = Yii::$app->db->createCommand("select id,score,message,createTime,type From {{%integral_details}} where userId=$userId order by id desc limit $offset,$pageSize")->queryAll();
         $integral['count'] = count(Yii::$app->db->createCommand("select id From {{%integral_details}} where userId=$userId")->queryAll());
-        $integral['page'] = $page;
-        $integral['countpage'] =ceil($integral['count']/$pageSize) ;
+        $page=$this->actionPage($integral['count'],'/person/',$page,$pageSize);
         $integral['integral'] = Yii::$app->db->createCommand("select integral From {{%user}} where id=$userId")->queryOne()['integral'];
-        return $this->render('index', ['data'=>$data,'integral'=>$integral]);
+        return $this->render('index', ['data'=>$data,'integral'=>$integral,'page'=>$page]);
     }
 
     // 我的收藏
@@ -51,7 +50,8 @@ class PersonController extends Controller
         }
         $collect = new Collect();
         $data = $collect->CollectionList($page, $pageSize);
-        return $this->render('collect', $data);
+        $page=$this->actionPage($data['count'],'/collection/',$page,$pageSize);
+        return $this->render('collect',['data'=>$data,'page'=>$page]);
     }
 
     //我的文章
@@ -74,7 +74,8 @@ class PersonController extends Controller
         foreach ($data['data'] as $k => $v) {
             $data['data'][$k]['count'] = count(Yii::$app->db->createCommand("select id from {{%user_discuss}}  where contentId=" . $v['id'] . " and pid=0")->queryAll());
         }
-        return $this->render('article', ['data'=>$data]);
+        $page=$this->actionPage($data['count'],'/article/',$page,$pageSize);
+        return $this->render('article', ['data'=>$data,'page'=>$page]);
 
     }
 
@@ -155,7 +156,7 @@ class PersonController extends Controller
         return $this->render('score', $data);
     }
 
-    public function actionPage($count,$u,$page=1,$pageSize=15){
+    public function actionPage($count,$u,$page,$pageSize=15){
         if ($count != false) {
             $pager = new Pager($count, $page, $pageSize);
             $url = "http://" . $_SERVER['HTTP_HOST'] . "$u" ;
