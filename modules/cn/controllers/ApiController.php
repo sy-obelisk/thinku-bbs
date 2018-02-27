@@ -751,12 +751,6 @@ class ApiController extends Controller
         }
         if ($phone) {
             $userInfo['phone'] = $phone;
-        }
-        if ($email) {
-            $userInfo['email'] = $email;
-        }
-
-        if ($phone) {
             $signPhone = Login::find()->where("id=$userId AND phone='$phone'")->one();
             if (!$signPhone) {
                 $phone = Login::find()->where(" phone='$phone'")->one();
@@ -765,17 +759,35 @@ class ApiController extends Controller
                 }
             }
         }
-        $model->updateAll($userInfo, "id=$userId");
+        if ($email) {
+            $userInfo['email'] = $email;
+            $signPhone = Login::find()->where("id=$userId AND phone='$phone'")->one();
+            if (!$signPhone) {
+                $phone = Login::find()->where(" phone='$phone'")->one();
+                if ($phone) {
+                    die(json_encode(['code' => 1, 'message' => '该手机已被其他用户绑定']));
+                }
+            }
+        }
+        if(($phone!=false)||($email!=false)||($nickname!=false)){
+            $model->updateAll($userInfo, "id=$userId");
+        }
         $userData = $model->findOne($userId);
         Yii::$app->session->set('userData', $userData);
-        if ($bathday || $school || $education) {
-            $extend['bathday'] = $bathday;
-            $extend['school'] = $school;
-            $extend['education'] = $education;
+        if ($bathday || $school || $education || $label || $name) {
+            ($bathday!=false)?($extend['bathday'] = $bathday):'';
+            ($school!=false)?($extend['school'] = $school):'';
+            ($education!=false)?($extend['education'] = $bathday):'';
+            ($label!=false)?($extend['label'] = $label):'';
+            ($name!=false)?($extend['name'] = $name):'';
             $extend['userId'] = $userId;
-            $extend['label'] = $label;
-            $extend['name'] = $name;
-            $re = Yii::$app->db->createCommand()->insert("{{%user_extend}}", $extend)->execute();
+            $ue= UserExtend::find()->where("userId=$userId ")->one();
+            if($ue){
+                $userextend=new UserExtend();
+                $userextend->updateAll($extend, "userId=$userId");
+            }else{
+                $re = Yii::$app->db->createCommand()->insert("{{%user_extend}}", $extend)->execute();
+            }
         }
         $res['code'] = 0;
         $res['message'] = '保存成功';

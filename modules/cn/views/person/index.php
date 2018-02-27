@@ -33,7 +33,7 @@
           <?php }?>
         </li>
         <li>
-          <label for="">生&nbsp;&nbsp;&nbsp; 日：</label><?php if($data['bathday']){?><span><?php echo $data['bathday']?></span><a class="change-data" data-id="birth" href="javascript:void(0)">修改</a><?php }else{?><input class="birth" type="text" placeholder="请选择日期" id="birthDate"><?php }?>
+          <label for="">生&nbsp;&nbsp;&nbsp; 日：</label><?php if($data['bathday']){?><span><?php echo substr($data['bathday'],0,10)?></span><a class="change-data" data-id="birth" href="javascript:void(0)">修改</a><?php }else{?><input class="birth" type="text" placeholder="请选择日期" id="birthDate"><?php }?>
         </li>
         </li>
         <li>
@@ -49,7 +49,7 @@
           <label for="">毕业院校：</label><?php if($data['school']){?><span><?php echo $data['school']?></span><a class="change-data" data-id="school" href="javascript:void(0)">修改</a><?php }else{?><input  class="school" type="text"><?php }?>
         </li>
         <li>
-          <label for="">学&nbsp;&nbsp;&nbsp; 历：</label><?php if($data['education']){?><span><?php echo $data['education']?></span><a class="change-data" data-id="education" href="javascript:void(0)">修改</a><input class="education" type="text"><?php }?>
+          <label for="">学&nbsp;&nbsp;&nbsp; 历：</label><?php if($data['education']){?><span><?php echo $data['education']?></span><a class="change-data" data-id="education" href="javascript:void(0)">修改</a><?php }else{?><input class="education" type="text"><?php }?>
         </li>
         <input type="button" id="dataBtn" value="保存">
       </ul>
