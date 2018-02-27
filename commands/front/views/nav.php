@@ -22,7 +22,7 @@
     </div>
 </header>
 <nav class="nav p-container clearfix">
-    <a href="" class="home-icon">
+    <a href="/index.html" class="home-icon">
         <img src="/cn/images/logo.png" alt="">
     </a>
     <div class="title">

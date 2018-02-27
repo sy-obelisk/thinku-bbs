@@ -25,7 +25,7 @@
           <label for="">用&nbsp;户&nbsp;名：</label><input type="text">
         </li>
         <li>
-          <label for="">真实姓名：</label><input type="text">
+          <label for="">昵&nbsp;&nbsp;&nbsp; 称：</label><input type="text">
         </li>
         <li>
           <label for="">生&nbsp;&nbsp;&nbsp; 日：</label><input type="text" placeholder="请选择日期" id="birthDate">

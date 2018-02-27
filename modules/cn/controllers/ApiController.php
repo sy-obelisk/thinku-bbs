@@ -692,10 +692,10 @@ class ApiController extends Controller
             $userData['image'] = $image;
             $session->set('userData', $user);
             $res['code'] = 0;
-            $res['message'] = '更换成功';
+            $res['message'] = '上传成功';
         } else {
             $res['code'] = 1;
-            $res['message'] = '更换失败，请重试';
+            $res['message'] = '上传失败，请重试';
         }
         die(json_encode($res));
     }
