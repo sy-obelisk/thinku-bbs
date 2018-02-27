@@ -774,13 +774,13 @@ class ApiController extends Controller
         }
         $userData = $model->findOne($userId);
         Yii::$app->session->set('userData', $userData);
-        if ($bathday || $school || $education) {
-            $extend['bathday'] = $bathday;
-            $extend['school'] = $school;
-            $extend['education'] = $education;
+        if ($bathday || $school || $education || $label || $name) {
+            ($bathday!=false)?($extend['bathday'] = $bathday):'';
+            ($school!=false)?($extend['school'] = $school):'';
+            ($education!=false)?($extend['education'] = $bathday):'';
+            ($label!=false)?($extend['label'] = $label):'';
+            ($name!=false)?($extend['name'] = $name):'';
             $extend['userId'] = $userId;
-            $extend['label'] = $label;
-            $extend['name'] = $name;
             $ue= UserExtend::find()->where("userId=$userId ")->one();
             if($ue){
                 $userextend=new UserExtend();
