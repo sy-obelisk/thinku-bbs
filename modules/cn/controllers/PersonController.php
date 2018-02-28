@@ -22,7 +22,7 @@ class PersonController extends Controller
     {
         $userId = Yii::$app->session->get('userId', '');
         $page = Yii::$app->request->get('page', 1);
-        $pageSize = 15;
+        $pageSize = 10;
         $offset = $pageSize*($page-1);
 //        $userId = 1;
         if (!$userId) {

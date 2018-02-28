@@ -588,13 +588,19 @@ class ApiController extends Controller
      */
     public function actionIntegral()
     {
-        $userId = Yii::$app->request->get('userId');
+        $userId = Yii::$app->session->get('userId');
+        $page = Yii::$app->request->get('page', 1);
         if (!$userId) {
             $data['code'] = 2;
             $data['message'] = '未登录';
             die(json_encode($data));
         }
-        $data['details'] = Yii::$app->db->createCommand("select id,score,message,createTime From {{%integral_details}} where userId=$userId order by id desc limit 10")->queryAll();
+        $pageSize=10;
+        $offset=$pageSize*($page-1);
+        $data['details'] = Yii::$app->db->createCommand("select id,score,message,createTime From {{%integral_details}} where userId=$userId order by id desc limit $offset,$pageSize")->queryAll();
+        $p['count'] = count(Yii::$app->db->createCommand("select id From {{%integral_details}} where userId=$userId order by id desc ")->queryAll());
+        $p['page']=$page;
+        $p['pagecount'] = ceil($page['count'] / $pageSize);
         $data['integral'] = Yii::$app->db->createCommand("select integral From {{%user}} where id=$userId order by id desc limit 1")->queryOne()['integral'];
         die(json_encode($data));
     }
@@ -667,7 +673,7 @@ class ApiController extends Controller
             $res['message'] = '未登录';
             die(json_encode($res));
         }
-        if ($pass!=$new) {
+        if ($pass != $new) {
             $res['code'] = 3;
             $res['message'] = '两次密码不一样';
             die(json_encode($res));
@@ -737,14 +743,14 @@ class ApiController extends Controller
         $model = new Login();
         $session = Yii::$app->session;
         $userId = $session->get('userId');
-        $name = Yii::$app->request->post('name', '');
-        $bathday = Yii::$app->request->post('bathday', '');
-        $email = Yii::$app->request->post('email', '');
-        $phone = Yii::$app->request->post('phone', '');
-        $nickname = Yii::$app->request->post('nickName', '');
-        $school = Yii::$app->request->post('school');
-        $education = Yii::$app->request->post('education');
-        $label = Yii::$app->request->post('label', '');
+        $name = Yii::$app->request->post('name', '');//真实姓名
+        $bathday = Yii::$app->request->post('bathday', '');//生日
+        $email = Yii::$app->request->post('email', '');//邮箱
+        $phone = Yii::$app->request->post('phone', '');//电话
+        $nickname = Yii::$app->request->post('nickName', '');//昵称
+        $school = Yii::$app->request->post('school');//毕业学校
+        $education = Yii::$app->request->post('education');//学历
+        $address = Yii::$app->request->post('address', '');//地址
         $userInfo = [];
         if ($nickname) {
             $userInfo['nickname'] = $nickname;
@@ -769,23 +775,24 @@ class ApiController extends Controller
                 }
             }
         }
-        if(($phone!=false)||($email!=false)||($nickname!=false)){
+        if (($phone != false) || ($email != false) || ($nickname != false)) {
             $model->updateAll($userInfo, "id=$userId");
         }
         $userData = $model->findOne($userId);
         Yii::$app->session->set('userData', $userData);
-        if ($bathday || $school || $education || $label || $name) {
-            ($bathday!=false)?($extend['bathday'] = $bathday):'';
-            ($school!=false)?($extend['school'] = $school):'';
-            ($education!=false)?($extend['education'] = $bathday):'';
-            ($label!=false)?($extend['label'] = $label):'';
-            ($name!=false)?($extend['name'] = $name):'';
+        if ($bathday || $school || $education || $address || $name) {
+            ($bathday != false) ? ($extend['bathday'] = $bathday) : '';
+            ($school != false) ? ($extend['school'] = $school) : '';
+            ($education != false) ? ($extend['education'] = $bathday) : '';
+//            ($label != false) ? ($extend['label'] = $label) : '';
+            ($name != false) ? ($extend['name'] = $name) : '';
+            ($address != false) ? ($extend['address'] = $address) : '';
             $extend['userId'] = $userId;
-            $ue= UserExtend::find()->where("userId=$userId ")->one();
-            if($ue){
-                $userextend=new UserExtend();
+            $ue = UserExtend::find()->where("userId=$userId ")->one();
+            if ($ue) {
+                $userextend = new UserExtend();
                 $userextend->updateAll($extend, "userId=$userId");
-            }else{
+            } else {
                 $re = Yii::$app->db->createCommand()->insert("{{%user_extend}}", $extend)->execute();
             }
         }
@@ -866,6 +873,25 @@ class ApiController extends Controller
      * 全部/精华
      * */
     public function actionAllArticle()
+    {
+        $cate = Yii::$app->request->post('cate', 'all');
+        $page = Yii::$app->request->post('page', 1);
+        $model = new Content();
+        $first = '2,3,4,5,14';
+        if ($cate == 'all') {
+            $data = $model->getList($first, '', '', 15, $page);
+        } else {
+            $data = $model->getList($first, '', '', 15, $page, 'goodArticle=1 and ');
+        }
+        $page = $data['page'];
+        $data = $data['list'];
+        die(json_encode(['code' => 0, 'data' => $data, 'page' => $page]));
+    }
+
+    /*
+     * 积分详情
+     * */
+    public function actionNews()
     {
         $cate = Yii::$app->request->post('cate', 'all');
         $page = Yii::$app->request->post('page', 1);
