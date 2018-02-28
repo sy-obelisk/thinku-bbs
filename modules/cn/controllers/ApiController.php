@@ -600,9 +600,9 @@ class ApiController extends Controller
         $data['details'] = Yii::$app->db->createCommand("select id,score,message,createTime From {{%integral_details}} where userId=$userId order by id desc limit $offset,$pageSize")->queryAll();
         $p['count'] = count(Yii::$app->db->createCommand("select id From {{%integral_details}} where userId=$userId order by id desc ")->queryAll());
         $p['page'] = $page;
-        $p['pagecount'] = ceil($page['count'] / $pageSize);
+        $p['pagecount'] = ceil($p['count'] / $pageSize);
         $data['integral'] = Yii::$app->db->createCommand("select integral From {{%user}} where id=$userId order by id desc limit 1")->queryOne()['integral'];
-        die(json_encode($data));
+        die(json_encode(['data'=>$data,'page'=>$p]));
     }
 
     /**
