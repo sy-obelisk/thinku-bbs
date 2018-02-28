@@ -595,11 +595,11 @@ class ApiController extends Controller
             $data['message'] = '未登录';
             die(json_encode($data));
         }
-        $pageSize=10;
-        $offset=$pageSize*($page-1);
+        $pageSize = 10;
+        $offset = $pageSize * ($page - 1);
         $data['details'] = Yii::$app->db->createCommand("select id,score,message,createTime From {{%integral_details}} where userId=$userId order by id desc limit $offset,$pageSize")->queryAll();
         $p['count'] = count(Yii::$app->db->createCommand("select id From {{%integral_details}} where userId=$userId order by id desc ")->queryAll());
-        $p['page']=$page;
+        $p['page'] = $page;
         $p['pagecount'] = ceil($page['count'] / $pageSize);
         $data['integral'] = Yii::$app->db->createCommand("select integral From {{%user}} where id=$userId order by id desc limit 1")->queryOne()['integral'];
         die(json_encode($data));
@@ -889,21 +889,31 @@ class ApiController extends Controller
     }
 
     /*
-     * 积分详情
+     * 消息
      * */
     public function actionNews()
     {
-        $cate = Yii::$app->request->post('cate', 'all');
+        $userId = Yii::$app->session->get('userId', '');
+        $userId = 1;
+        $status = Yii::$app->request->post('status', '0');//全部不传值，未读传0，已读传1
         $page = Yii::$app->request->post('page', 1);
-        $model = new Content();
-        $first = '2,3,4,5,14';
-        if ($cate == 'all') {
-            $data = $model->getList($first, '', '', 15, $page);
-        } else {
-            $data = $model->getList($first, '', '', 15, $page, 'goodArticle=1 and ');
+        if (!$userId) {
+            $res['code'] = 2;
+            $res['message'] = '未登录';
+            die(json_encode($res));
         }
-        $page = $data['page'];
-        $data = $data['list'];
-        die(json_encode(['code' => 0, 'data' => $data, 'page' => $page]));
+        if ($status==='') {
+            $where = "where userId=$userId";
+        } else {
+            $where = "where userId=$userId and status=$status";
+        }
+        $pageSize = 15;
+        $offset = $pageSize * ($page - 1);
+        $data = Yii::$app->db->createCommand("select news,sendId,n.createTime,status,u.nickname,u.userName,u.image from {{%news}} n left join {{%user}} u on n.sendId=u.id $where order by n.id DESC limit $offset,$pageSize")->queryAll();
+        $count = count(Yii::$app->db->createCommand("select n.id from {{%news}} n left join {{%user}} u on n.sendId=u.id $where order by n.id DESC ")->queryAll());
+        $p['count'] = $count;
+        $p['page'] = $page;
+        $p['countpage'] = ceil($count / $page);
+        die(json_encode(['code' => 0, 'data' => $data, 'page' => $p]));
     }
 }
