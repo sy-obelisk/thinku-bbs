@@ -373,7 +373,6 @@ class ApiController extends Controller
     public function actionSignIn()
     {
         $userId = Yii::$app->session->get('userId');
-//        $userId =1;
         if (!$userId) {
             $data['code'] = 2;
             $data['message'] = '未登录';
@@ -482,7 +481,6 @@ class ApiController extends Controller
     public function actionLike()
     {
         $userId = Yii::$app->session->get('userId');
-        $userId = 1;
         $post['contentId'] = Yii::$app->request->post('id');// 帖子内容的id,评论的id
         $post['type'] = Yii::$app->request->post('type');// 1为文章，2为评论
         $post['status'] = Yii::$app->request->post('status');// 1赞，2或者踩
@@ -533,7 +531,6 @@ class ApiController extends Controller
     {
         if ($_POST) {
             $user = Yii::$app->session->get('userId');
-            $user = 1;
             if (!$user) {
                 $data['code'] = 2;
                 $data['message'] = '未登录';
@@ -894,7 +891,6 @@ class ApiController extends Controller
     public function actionNews()
     {
         $userId = Yii::$app->session->get('userId', '');
-        $userId = 1;
         $status = Yii::$app->request->post('status', '0');//全部不传值，未读传0，已读传1
         $page = Yii::$app->request->post('page', 1);
         if (!$userId) {
@@ -924,7 +920,6 @@ class ApiController extends Controller
     {
         if ($_POST) {
             $user = Yii::$app->session->get('userId');
-            $user = 1;
             if (!$user) {
                 $data['code'] = 2;
                 $data['message'] = '未登录';

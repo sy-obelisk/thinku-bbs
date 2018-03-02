@@ -24,7 +24,6 @@ class PersonController extends Controller
         $page = Yii::$app->request->get('page', 1);
         $pageSize = 10;
         $offset = $pageSize*($page-1);
-//        $userId = 1;
         if (!$userId) {
             echo "<script>alert('未登录')</script>";
             die;
@@ -42,7 +41,6 @@ class PersonController extends Controller
     public function actionCollect()
     {
         $userId = Yii::$app->session->get('userId', '');
-        $userId = 1;
         $page = Yii::$app->request->get('page', 1);
         $pageSize = 15;
         if (!$userId) {
@@ -59,7 +57,6 @@ class PersonController extends Controller
     public function actionArticle()
     {
         $userId = Yii::$app->session->get('userId', '');
-        $userId = 1;
         $page = Yii::$app->request->get('page', 1);
         $pageSize = 15;
         if (!$userId) {
@@ -84,7 +81,6 @@ class PersonController extends Controller
     public function actionInfo()
     {
         $userId = Yii::$app->session->get('userId', '');
-        $userId = 1;
         $page = Yii::$app->request->get('page', 1);
         $pageSize = 15;
         $offset = $pageSize * ($page - 1);
@@ -103,7 +99,6 @@ class PersonController extends Controller
     {
         $userId = Yii::$app->request->get('userId');
         $page = Yii::$app->request->get('page',1);
-        $userId = 1;
         if (!$userId) {
             $data['code'] = 2;
             $data['message'] = '未登录';
@@ -136,7 +131,6 @@ class PersonController extends Controller
     public function actionHead()
     {
         $userId = Yii::$app->request->get('userId');
-        $userId = 1;
         if (!$userId) {
             $data['code'] = 2;
             $data['message'] = '未登录';
@@ -149,7 +143,6 @@ class PersonController extends Controller
     public function actionIntegral()
     {
         $userId = Yii::$app->request->get('userId');
-        $userId = 1;
         if (!$userId) {
             $data['code'] = 2;
             $data['message'] = '未登录';
