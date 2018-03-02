@@ -602,7 +602,7 @@ class ApiController extends Controller
         $p['page'] = $page;
         $p['pagecount'] = ceil($p['count'] / $pageSize);
         $data['integral'] = Yii::$app->db->createCommand("select integral From {{%user}} where id=$userId order by id desc limit 1")->queryOne()['integral'];
-        die(json_encode(['data'=>$data,'page'=>$p]));
+        die(json_encode(['data' => $data, 'page' => $p]));
     }
 
     /**
@@ -902,7 +902,7 @@ class ApiController extends Controller
             $res['message'] = '未登录';
             die(json_encode($res));
         }
-        if ($status==='') {
+        if ($status === '') {
             $where = "where userId=$userId";
         } else {
             $where = "where userId=$userId and status=$status";
@@ -915,5 +915,95 @@ class ApiController extends Controller
         $p['page'] = $page;
         $p['countpage'] = ceil($count / $page);
         die(json_encode(['code' => 0, 'data' => $data, 'page' => $p]));
+    }
+
+    /**
+     * 我要提问
+     */
+    public function actionQuestion()
+    {
+        if ($_POST) {
+            $user = Yii::$app->session->get('userId');
+            $user = 1;
+            if (!$user) {
+                $data['code'] = 2;
+                $data['message'] = '未登录';
+                die(json_encode($data));
+            }
+            $model = new content();
+            $contentData['name'] = Yii::$app->request->post('name');// 标题
+            $contentData['abstract'] = '';// 摘要
+            $contentData['pid'] = Yii::$app->request->post('pid', 0);// 父id，一般为0
+            $contentData['catId'] = Yii::$app->request->post('catId');// 主id
+            $extendValue[0] = Yii::$app->request->post('article');// 文章
+//            $category = explode(",", Yii::$app->request->post('category'));//这个是副分类格式'45,54'
+//            $category = explode(",",'2,6,16');//这个是副分类
+            $addtime = date("Y-m-d H:i:s");
+            $model->createTime = $addtime;
+            $model->userId = Yii::$app->session->get('userId');
+            $model->userId = 1;
+            $model->name = $contentData['name'];
+            $model->abstract = $contentData['abstract'];
+            $model->pid = $contentData['pid'];
+            $model->image = '';
+            $model->catId = $contentData['catId'];
+            $model->viewCount = 0;
+            $re = $model->save();
+            Content::updateAll(['sort' => $model->primaryKey], "id=$model->primaryKey");
+            //将分类的内容属性，转移到内容本身的扩展属性中
+            $contentExtend = new ContentExtend();
+            $contentExtend->shiftExtend($model->primaryKey, $contentData['catId'], $extendValue, $contentData['pid']);
+            //将分类的内容的副分类存储
+//            $categoryContent = new CategoryContent();
+//            $categoryContent->secondClass($model->primaryKey, $category);
+            if ($re = 1) {
+                $key = $model->primaryKey;
+                $data['code'] = 0;
+                $data['message'] = '发表成功';
+                $data['id'] = $model->primaryKey;
+                die(json_encode($data));
+            } else {
+                $data['code'] = 1;
+                $data['message'] = '发表失败，请重试';
+                die(json_encode($data));
+            }
+        } else {
+            $data['code'] = 1;
+            $data['message'] = '请求错误';
+            die(json_encode($data));
+        }
+    }
+
+    /**
+     * 设置为最佳答案
+    */
+    public function actionModel()
+    {
+        $userId = Yii::$app->session->get('userId', '');
+        $content = Yii::$app->request->post('id', '');
+        $disId = Yii::$app->request->post('disId', '');
+        if (!$userId) {
+            $res['code'] = 2;
+            $res['message'] = '未登录';
+            die(json_encode($res));
+        }
+        $uid = Yii::$app->db->createCommand("select userId from {{%content}} where id=$content")->queryOne()['userId'];
+        if($uid!=$userId){
+            $res['code'] = 3;
+            $res['message'] = '您没有权限';
+            die(json_encode($res));
+        }
+        $userDis = new UserDiscuss();
+        $arr['model']=1;
+        $re=$userDis->updateAll($arr, "id=$disId");
+        if($re){
+            $res['code'] = 0;
+            $res['message'] = '设置成功';
+            die(json_encode($res));
+        }else{
+            $res['code'] = 1;
+            $res['message'] = '设置失败，请重试！';
+            die(json_encode($res));
+        }
     }
 }

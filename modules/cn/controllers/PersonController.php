@@ -67,7 +67,7 @@ class PersonController extends Controller
             die;
         }
         $offset = $pageSize * ($page - 1);
-        $sql = "select id,name,abstract,viewCount,createTime,image,(SELECT CONCAT_WS(' ',ce.value,ed.value) From {{%content_extend}} ce left JOIN {{%extend_data}} ed ON ed.extendId=ce.id WHERE ce.contentId=c.id AND ce.code='99b3cc02b18ec45447bd9fd59f1cd655')  as listeningFile from {{%content}} c where userId=$userId order by id DESC,sort ASC";
+        $sql = "select id,name,abstract,viewCount,createTime,image,(SELECT CONCAT_WS(' ',ce.value,ed.value) From {{%content_extend}} ce left JOIN {{%extend_data}} ed ON ed.extendId=ce.id WHERE ce.contentId=c.id AND ce.code='99b3cc02b18ec45447bd9fd59f1cd655')  as listeningFile from {{%content}} c where userId=$userId and catId!=119 order by id DESC,sort ASC";
         $data['count'] = count(Yii::$app->db->createCommand($sql)->queryAll());
         $data['data'] = Yii::$app->db->createCommand($sql . " limit $offset,$pageSize")->queryAll();
         $data['page'] = $page;
@@ -170,5 +170,27 @@ class PersonController extends Controller
         }
         return $page;
     }
+
+    public function actionQuestion()
+    {
+        $userId = Yii::$app->session->get('userId', '');
+        $page = Yii::$app->request->get('page', 1);
+        $pageSize = 15;
+        if (!$userId) {
+            echo "<script>alert('未登录')</script>";
+            die;
+        }
+        $model=new Content();
+        $list= $model->getClass(['count'=>1,'fields' => 'description','category' =>119,'pageSize' => $pageSize,'page'=>$page]);
+        $data['count'] =$list['count'];
+        unset($list['count']);
+        foreach ($list as $k => $v) {
+            $data['data'][$k]['count'] = count(Yii::$app->db->createCommand("select id from {{%user_discuss}}  where contentId=" . $v['id'] . " and pid=0 order by model desc,liked desc limit 1")->queryOne());
+        }
+        $page=$this->actionPage($data['count'],'/question/',$page,$pageSize);
+        return $this->render('question', ['data'=>$data,'page'=>$page]);
+
+    }
+
 
 }
