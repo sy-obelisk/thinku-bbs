@@ -120,8 +120,15 @@
       <div class="box">
         <span>X</span>
         <p>我要举报:</p>
-        <textarea></textarea>
-        <button id="accuseBtn">提交</button>
+        <textarea class="accuse-cnt"></textarea>
+        <ul class="type-list clearfix">
+          <li><label for="acc1">垃圾营销</label><input type="radio" name="typeItem" id="acc1" value="1"></li>
+          <li><label for="acc2">淫秽色情</label><input type="radio" name="typeItem" id="acc2" value="2"></li>
+          <li><label for="acc3">有害信息</label><input type="radio" name="typeItem" id="acc3" value="3"></li>
+          <li><label for="acc4">人身攻击</label><input type="radio" name="typeItem" id="acc4" value="4"></li>
+          <li><label for="acc5">违法信息</label><input type="radio" name="typeItem" id="acc5" value="5"></li>
+        </ul>
+        <button id="subAccuse">提交</button>
       </div>
     </div>
     <!--侧边栏-->

@@ -38,9 +38,9 @@ var _details = {
     $('.collect li').eq(2).click(function () {
       _this.down(this);
     });
-    // 举报
+    // 评论举报
     $('.reply-list').on('click','#accuseBtn',function () {
-      _this.accuse(this);
+      _this.accuse(this,2);
     });
     // 关闭举报框
     $('.accuse .box>span').click(function () {
@@ -135,6 +135,8 @@ var _details = {
           $('.reply-input textarea').val('');
           var height = $('.reply').offset().top;
           $(window).scrollTop(height-50);
+        } else if(res.code == 2){
+          alert('请登录后再评论');
         }
       },'json');
     }
@@ -183,8 +185,42 @@ var _details = {
     },'json')
   },
   // 举报
-  accuse : function (obj) {
+  accuse : function (obj,num) {
     $('.accuse').show();
+    if (num == 1){
+      var val = $('.article').data('id');
+    } else {
+      var val = $(obj).parent().parent().parent().data('id');
+    }
+    $('#subAccuse').click(function () {
+      console.log('aaa');
+      var cnt = $('.accuse-cnt').val();
+      var type = $('input:radio[name="typeItem"]:checked').val();
+      if (!cnt) {
+        alert('请输入举报内容');
+        return false;
+      }
+      if(!type) {
+        alert('请选择举报类型');
+        return false;
+      }
+      $.post('/cn/api/report',{
+        contentId: val,
+        description: cnt,
+        reportType: type,
+        cate: num
+      },function (res) {
+        console.log(res);
+        if (res.code == 0){
+          alert('提交成功');
+          $('.accuse').hide();
+        }
+      },'json')
+    })
+  },
+  // 提交举报内容
+  subAccuse: function (val,num) {
+
   },
   // 支持
   support : function (obj) {
