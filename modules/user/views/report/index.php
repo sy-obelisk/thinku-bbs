@@ -74,7 +74,7 @@
                 ?>
                 <tr>
                     <td><?php echo $v['id']?></td>
-                    <td><?php echo $v['cate']=1?'内容':'评论'?></td>
+                    <td><?php echo $v['cate']==1?'内容':'评论'?></td>
                     <td><span><?php echo $v['contentId']?></span></td>
                     <td><span><?php echo $v['userId']?></span></td>
                     <td><span><?php echo Yii::$app->params['report'][$v['reportType']]?></span></td>

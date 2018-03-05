@@ -349,7 +349,7 @@ class ApiController extends Controller
         $reData['description'] = htmlspecialchars($reData['description']);
         $reData['createTime'] = time();
         $reData['status'] = 0;// 0表示未处理，1表示属实，2表示不属实
-        $reData['createTime'] = date('Y-m-d H:i:s',time());// 0表示未处理，1表示属实，2表示不属实
+        $reData['createTime'] = date('Y-m-d H:i:s', time());// 0表示未处理，1表示属实，2表示不属实
         $session = Yii::$app->session;
         $reData['userId'] = $session->get('userId');
         if (!$reData['userId']) {
@@ -600,7 +600,7 @@ class ApiController extends Controller
         $p['page'] = $page;
         $p['pagecount'] = ceil($p['count'] / $pageSize);
         $data['integral'] = Yii::$app->db->createCommand("select integral From {{%user}} where id=$userId order by id desc limit 1")->queryOne()['integral'];
-      die(json_encode(['data'=>$data,'page'=>$p]));
+        die(json_encode(['data' => $data, 'page' => $p]));
     }
 
     /**
@@ -972,7 +972,7 @@ class ApiController extends Controller
 
     /**
      * 设置为最佳答案
-    */
+     */
     public function actionModel()
     {
         $userId = Yii::$app->session->get('userId', '');
@@ -984,21 +984,41 @@ class ApiController extends Controller
             die(json_encode($res));
         }
         $uid = Yii::$app->db->createCommand("select userId from {{%content}} where id=$content")->queryOne()['userId'];
-        if($uid!=$userId){
+        if ($uid != $userId) {
             $res['code'] = 3;
             $res['message'] = '您没有权限';
             die(json_encode($res));
         }
         $userDis = new UserDiscuss();
-        $arr['model']=1;
-        $re=$userDis->updateAll($arr, "id=$disId");
-        if($re){
+        $arr['model'] = 1;
+        $re = $userDis->updateAll($arr, "id=$disId");
+        if ($re) {
             $res['code'] = 0;
             $res['message'] = '设置成功';
             die(json_encode($res));
-        }else{
+        } else {
             $res['code'] = 1;
             $res['message'] = '设置失败，请重试！';
+            die(json_encode($res));
+        }
+    }
+
+    /**
+     * 我要提问的查找
+     */
+    public function actionSearchQuestion()
+    {
+        $keyword = Yii::$app->request->post('keyword', '');
+        $keyword = 111;
+        if ($keyword) {
+            $keyword = addslashes($keyword);
+            $keyword = strip_tags($keyword);
+            $data = Yii::$app->db->createCommand("select c.id,c.name,c.abstract,c.viewCount,c.createTime,u.userName,u.nickname,u.image,(SELECT CONCAT_WS(' ',ce.value,ed.value) From {{%content_extend}} ce left JOIN {{%extend_data}} ed ON ed.extendId=ce.id WHERE ce.contentId=c.id AND ce.code='99b3cc02b18ec45447bd9fd59f1cd655')  as listeningFile from {{%content}} c LEFT JOIN {{%user}} u ON u.id=c.userId where name like '%$keyword%' and c.catId=119 order by liked desc,id desc limit 15")->queryAll();
+            $code = 0;
+            die(json_encode(['data'=>$data,'code'=>$code]));
+        }else{
+            $res['code'] = 1;
+            $res['message'] = '请求错误';
             die(json_encode($res));
         }
     }
