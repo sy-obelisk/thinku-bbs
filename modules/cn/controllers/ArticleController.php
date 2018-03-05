@@ -53,6 +53,4 @@ class ArticleController extends Controller
     {
         return $this->render('new');
     }
-
-
 }

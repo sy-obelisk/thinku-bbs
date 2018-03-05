@@ -26,6 +26,14 @@ var _common = {
     // 退出登录
     $('.header-person>ul li').eq(1).click(function () {
       _this.loginOut();
+    }),
+    // 提问
+    $('.aside-question').click(function () {
+        $('.ask').show();
+    }),
+  //  关闭提问
+    $('.ask-close').click(function () {
+      $('.ask').hide();
     })
   },
   // 设置cookie

@@ -38,6 +38,10 @@ var _details = {
     $('.collect li').eq(2).click(function () {
       _this.down(this);
     });
+    // 文章举报
+    $('#artAccuse').click(function () {
+      _this.accuse(this,1);
+    });
     // 评论举报
     $('.reply-list').on('click','#accuseBtn',function () {
       _this.accuse(this,2);
@@ -217,10 +221,6 @@ var _details = {
         }
       },'json')
     })
-  },
-  // 提交举报内容
-  subAccuse: function (val,num) {
-
   },
   // 支持
   support : function (obj) {

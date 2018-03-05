@@ -47,6 +47,7 @@
             <?php }?>
             <li>顶<span><?php echo $data['liked']?></span></li>
             <li>踩<span><?php echo $data['hate']?></span></li>
+            <li id="artAccuse">举报</li>
           </ul>
         </div>
         <!--回复区-->

@@ -25,5 +25,9 @@ class IndexController extends Controller
         $data=$data['list'];
         return $this->render('index',['data'=>$data,'page'=>$page]);
     }
+  public function actionQuestion()
+  {
+    return $this->render('question');
+  }
 
 }
