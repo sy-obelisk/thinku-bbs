@@ -930,7 +930,7 @@ class ApiController extends Controller
             $contentData['name'] = Yii::$app->request->post('name');// 标题
             $contentData['abstract'] = '';// 摘要
             $contentData['pid'] = Yii::$app->request->post('pid', 0);// 父id，一般为0
-            $contentData['catId'] = Yii::$app->request->post('catId');// 主id
+            $contentData['catId'] = Yii::$app->request->post('catId',119);// 主id
             $extendValue[0] = Yii::$app->request->post('article');// 文章
 //            $category = explode(",", Yii::$app->request->post('category'));//这个是副分类格式'45,54'
 //            $category = explode(",",'2,6,16');//这个是副分类

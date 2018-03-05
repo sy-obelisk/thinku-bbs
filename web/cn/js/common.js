@@ -40,7 +40,7 @@ var _common = {
       $('.ask-p').hide().siblings('.ask-sub').show();
     }),
     // 提问搜索
-    $('.ask-input').keydown(function () {
+    $('.ask-input').keyup(function () {
       _this.askInput(this);
     }),
       // 提交提问
@@ -112,8 +112,19 @@ var _common = {
       keyword: val
     },function (res) {
       console.log(res);
+      if (res.code == 0 && res.data){
+        $('.ask-list').html('');
+        var lis = '<p>你想问的是不是：</p>';
+        for (var i=0,data=res.data;i<data.length;i++){
+          lis+='<li class="ask-item">'+
+              '<a href="/details/'+data[i].id+'.html"><p>'+data[i].name+'</p><span>1个人回答</span></a>'+
+              '</li>';
+        }
+        $('.ask-list').html(lis);
+      }
     },'json')
   },
+  // 提交提问
   submitQue : function (obj) {
     var cnt = $(obj).siblings('.new-question').val(),
         explain = $(obj).siblings('.ques-explain').val();
@@ -126,6 +137,10 @@ var _common = {
       article: explain
     },function (res) {
       console.log(res);
+      if (res.code == 0){
+        alert(res.message);
+        location.href = '/details/'+res.id+'.html';
+      }
     },'json')
   }
 };

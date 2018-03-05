@@ -694,7 +694,7 @@ body{
   font-size: 14px;
 }
 .ask-search .ask-list {
-  display: none;
+  /*display: none;*/
   padding: 10px;
   border: 1px solid #575757;
   border-top: 0;
@@ -714,6 +714,7 @@ body{
 }
 .ask-search .ask-item>a p {
   display: inline-block;
+  margin-right: 5px;
 }
 .ask-search .ask-item>a span {
   font-size: 12px;
