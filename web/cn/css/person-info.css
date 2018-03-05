@@ -22,28 +22,28 @@
 .info-box {
   margin-top: 20px;
 }
-.info-box>.info-list>li {
+.info-box> info-list>li {
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
 }
-.info-box>.info-list>li .img {
+.info-box .info-list>li .img {
   float: left;
   width: 80px;
   height: 80px;
   background-color: #fff;
   overflow: hidden;
 }
-.info-box>.info-list>li .img>img {
+.info-box .info-list>li .img>img {
   width: 100%;
   height: 100%;
 }
-.info-box>.info-list>li .text {
+.info-box .info-list>li .text {
   overflow: hidden;
   min-height: 80px;
   margin-left: 90px;
   font-size: 14px;
 }
-.info-box>.info-list>li .time {
+.info-box .info-list>li .time {
   text-align: right;
   font-size: 14px;
 }

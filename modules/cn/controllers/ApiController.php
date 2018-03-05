@@ -602,7 +602,7 @@ class ApiController extends Controller
         $p['page'] = $page;
         $p['pagecount'] = ceil($p['count'] / $pageSize);
         $data['integral'] = Yii::$app->db->createCommand("select integral From {{%user}} where id=$userId order by id desc limit 1")->queryOne()['integral'];
-        die(json_encode(['data' => $data, 'page' => $p]));
+      die(json_encode(['data'=>$data,'page'=>$p]));
     }
 
     /**
