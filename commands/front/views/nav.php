@@ -31,9 +31,9 @@
     <div class="search clearfix">
         <ul class="search-hot">
             <li><span class="iconfont icon-hot"></span>热搜:</li>
-            <li><a href="http://www.thinkwithu.com/USA.html">美国留学</a></li>
-            <li><a href="http://www.thinkwithu.com/word-details/2182/125.html">大学排名</a></li>
-            <li><a href="http://www.thinkwithu.com/word-details/2291/125.html">专业解读</a></li>
+            <li><a href="javascript:void(0)">美国留学</a></li>
+            <li><a href="javascript:void(0)">大学排名</a></li>
+            <li><a href="javascript:void(0)">专业解读</a></li>
         </ul>
         <div>
             <input class="search-text" type="text" placeholder="search" onkeypress="_common.enterSearch(event)">
