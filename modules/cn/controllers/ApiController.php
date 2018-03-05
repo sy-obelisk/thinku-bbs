@@ -349,6 +349,7 @@ class ApiController extends Controller
         $reData['description'] = htmlspecialchars($reData['description']);
         $reData['createTime'] = time();
         $reData['status'] = 0;// 0表示未处理，1表示属实，2表示不属实
+        $reData['createTime'] = date('Y-m-d H:i:s',time());// 0表示未处理，1表示属实，2表示不属实
         $session = Yii::$app->session;
         $reData['userId'] = $session->get('userId');
         if (!$reData['userId']) {
