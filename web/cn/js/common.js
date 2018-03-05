@@ -33,7 +33,19 @@ var _common = {
     }),
   //  关闭提问
     $('.ask-close').click(function () {
-      $('.ask').hide();
+      $('.ask').hide().children('.ask-p').hide().siblings('.ask-search').show();
+    }),
+    //  提问切换到发布新问题
+    $('.ask-ck-new').click(function () {
+      $('.ask-p').hide().siblings('.ask-sub').show();
+    }),
+    // 提问搜索
+    $('.ask-input').keydown(function () {
+      _this.askInput(this);
+    }),
+      // 提交提问
+    $('.submit-que').click(function () {
+      _this.submitQue(this);
     })
   },
   // 设置cookie
@@ -91,6 +103,29 @@ var _common = {
     $.post('/cn/api/login-out',function (res) {
       console.log(res);
       location.reload();
+    },'json')
+  },
+  // 问题搜索
+  askInput : function (obj) {
+    var val= $(obj).val();
+    $.post('/cn/api/search-question',{
+      keyword: val
+    },function (res) {
+      console.log(res);
+    },'json')
+  },
+  submitQue : function (obj) {
+    var cnt = $(obj).siblings('.new-question').val(),
+        explain = $(obj).siblings('.ques-explain').val();
+    if (!cnt) {
+      alert('请输入要提问的问题');
+      return false;
+    }
+    $.post('/cn/api/question',{
+      name: cnt,
+      article: explain
+    },function (res) {
+      console.log(res);
     },'json')
   }
 };

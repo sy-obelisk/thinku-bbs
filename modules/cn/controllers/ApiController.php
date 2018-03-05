@@ -1009,7 +1009,7 @@ class ApiController extends Controller
     public function actionSearchQuestion()
     {
         $keyword = Yii::$app->request->post('keyword', '');
-        $keyword = 111;
+//        $keyword = 111;
         if ($keyword) {
             $keyword = addslashes($keyword);
             $keyword = strip_tags($keyword);
