@@ -1014,9 +1014,12 @@ class ApiController extends Controller
             $keyword = addslashes($keyword);
             $keyword = strip_tags($keyword);
             $data = Yii::$app->db->createCommand("select c.id,c.name,c.abstract,c.viewCount,c.createTime,u.userName,u.nickname,u.image,(SELECT CONCAT_WS(' ',ce.value,ed.value) From {{%content_extend}} ce left JOIN {{%extend_data}} ed ON ed.extendId=ce.id WHERE ce.contentId=c.id AND ce.code='99b3cc02b18ec45447bd9fd59f1cd655')  as listeningFile from {{%content}} c LEFT JOIN {{%user}} u ON u.id=c.userId where name like '%$keyword%' and c.catId=119 order by liked desc,id desc limit 15")->queryAll();
+            foreach ($data as $k=>$v) {
+                $data[$k]['count'] = count(Yii::$app->db->createCommand("select id from {{%user_discuss}} where contentId=".$v['id'])->queryAll());
+            }
             $code = 0;
-            die(json_encode(['data'=>$data,'code'=>$code]));
-        }else{
+            die(json_encode(['data' => $data, 'code' => $code]));
+        } else {
             $res['code'] = 1;
             $res['message'] = '请求错误';
             die(json_encode($res));
