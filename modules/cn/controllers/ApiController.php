@@ -933,7 +933,7 @@ class ApiController extends Controller
             $contentData['catId'] = Yii::$app->request->post('catId', 119);// 主id
             $extendValue[0] = Yii::$app->request->post('article');// 文章
             $extendValue[1] = Yii::$app->request->post('integral', 0);// 积分
-//            $category = explode(",", Yii::$app->request->post('category'));//这个是副分类格式'45,54'
+            $category = explode(",",  $contentData['catId']);//这个是副分类格式'45,54'
 //            $category = explode(",",'2,6,16');//这个是副分类
             $addtime = date("Y-m-d H:i:s");
             $model->createTime = $addtime;
@@ -951,8 +951,8 @@ class ApiController extends Controller
             $contentExtend = new ContentExtend();
             $contentExtend->shiftExtend($model->primaryKey, $contentData['catId'], $extendValue, $contentData['pid']);
             //将分类的内容的副分类存储
-//            $categoryContent = new CategoryContent();
-//            $categoryContent->secondClass($model->primaryKey, $category);
+            $categoryContent = new CategoryContent();
+            $categoryContent->secondClass($model->primaryKey, $category);
             if ($re = 1) {
                 $key = $model->primaryKey;
                 $data['code'] = 0;
