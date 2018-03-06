@@ -1046,7 +1046,7 @@ class ApiController extends Controller
                 }
             }
             $p['count'] = count($question);
-            $p['pageCount'] = ceil($page['count'] / $pageSize);
+            $p['pageCount'] = ceil($p['count'] / $pageSize);
             $p['page'] = 1;
             $data = array_slice($question, $pageSize * ($page - 1), 15);
         } else {
@@ -1067,6 +1067,7 @@ class ApiController extends Controller
             $data[$k]['userName']=($u['nickname']?$u['nickname']:$u['userName']);
             $data[$k]['userImage']=$u['image'];
             $data[$k]['replyCount']=$count;
+            $data[$k]['comment']=Yii::$app->db->createCommand("select comment from {{%user_discuss}} where contentId=".$v['id'] ." order by model desc,liked desc limit 1")->queryOne()['comment'];
         }
         die(json_encode(['data'=>$data,'page'=>$p]));
     }
