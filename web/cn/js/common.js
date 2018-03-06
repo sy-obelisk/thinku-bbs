@@ -38,6 +38,7 @@ var _common = {
     //  提问切换到发布新问题
     $('.ask-ck-new').click(function () {
       $('.ask-p').hide().siblings('.ask-sub').show();
+      $('.new-question').val($('.ask-input').val());
     }),
     // 提问搜索
     $('.ask-input').keyup(function () {
@@ -108,21 +109,35 @@ var _common = {
   // 问题搜索
   askInput : function (obj) {
     var val= $(obj).val();
-    $.post('/cn/api/search-question',{
-      keyword: val
-    },function (res) {
-      console.log(res);
-      if (res.code == 0 && res.data){
-        $('.ask-list').html('');
-        var lis = '<p>你想问的是不是：</p>';
-        for (var i=0,data=res.data;i<data.length;i++){
-          lis+='<li class="ask-item">'+
-              '<a href="/details/'+data[i].id+'.html"><p>'+data[i].name+'</p><span>1个人回答</span></a>'+
-              '</li>';
+    $.ajax({
+      url: '/cn/api/search-question',
+      type: 'post',
+      data: {
+        keyword: val
+      },
+      dataType: 'json',
+      success:function (res) {
+        console.log(res);
+        if (res.code == 0) {
+          if (JSON.stringify(res.data) != '[]'){
+            var lis = '<p>你想问的是不是：</p>';
+            for (var i = 0, data = res.data; i < data.length; i++) {
+              lis += '<li class="ask-item">' +
+                     '<a href="/details/' + data[i].id + '.html"><p>' + data[i].name + '</p><span>1个人回答</span></a>' +
+                     '</li>';
+            }
+            $('.ask-list').show().html(lis);
+          }else {
+            var lis = '<p>没有您搜索的问题，请提一个新问题</p>';
+            $('.ask-list').show().html(lis);
+          }
+          $('.ask-ck-new').show();
         }
-        $('.ask-list').html(lis);
+      },
+      complete: function () {
+
       }
-    },'json')
+    })
   },
   // 提交提问
   submitQue : function (obj) {

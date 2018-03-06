@@ -120,7 +120,7 @@
             </a>
           </li>
           <li class="hot-item">
-            <a href="http://www.thinkwithu.com/question.html">
+            <a href="/question.html">
               <div></div>
               <p>问答广场</p>
             </a>
@@ -464,5 +464,4 @@
       <?php RightWidget::end();?>
     </section>
   </div>
-</body>
 <script src="/cn/js/index.js"></script>

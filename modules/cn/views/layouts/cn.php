@@ -36,14 +36,17 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
 <!--    让360双核浏览器用webkit内核渲染页面-->
     <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="/cn/css/common.css">
+    <link rel="stylesheet" href="/cn/css/iconfont/iconfont.css">
+    <link rel="stylesheet" href="https://www.iteblog.com/wp-content/monokai_sublime.min.css"/>
+
     <script src="/cn/js/jquery-2.1.1.min.js"></script>
     <script src="https://use.fontawesome.com/0e249ab73d.js"></script>
     <script src="/cn/js/jquery.SuperSlide.2.1.js"></script>
     <script src="/cn/js/jqPaginator.min.js"></script>
+<!--    <script src="https://www.iteblog.com/wp-content/highlight.min.js"></script>-->
+<!--    <script>hljs.initHighlightingOnLoad();</script>-->
     <script src="/cn/js/common.js"></script>
-
-    <link rel="stylesheet" href="/cn/css/common.css">
-    <link rel="stylesheet" href="/cn/css/iconfont/iconfont.css">
 </head>
 <body>
 <!--导航-->

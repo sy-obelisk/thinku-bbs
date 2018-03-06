@@ -53,12 +53,12 @@
       <p>提问前请先搜索</p>
       <input type="search" class="ask-input" placeholder="请输入问题"></input>
       <ul class="ask-list">
-        <p>你想问的是不是：</p>
+<!--        <p>你想问的是不是：</p>-->
 <!--        <li class="ask-item">-->
 <!--          <a href=""><p>GMAT报名流程？</p><span>1个人回答</span></a>-->
 <!--        </li>-->
       </ul>
-      <button class="ask-ck-new">新问题</button>
+      <button class="ask-ck-new">不是，提新问题</button>
     </div>
   </div>
   <!--提交新提问-->

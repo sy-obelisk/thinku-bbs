@@ -694,7 +694,7 @@ body{
   font-size: 14px;
 }
 .ask-search .ask-list {
-  /*display: none;*/
+  display: none;
   padding: 10px;
   border: 1px solid #575757;
   border-top: 0;
@@ -723,7 +723,9 @@ body{
 .ask-search .ask-item>a:hover p{
   color: #7d1f88;
 }
-
+.ask-wrap .ask-ck-new {
+  display: none;
+}
 /*提交新问题*/
 .ask .ask-sub {
   /*display: block;*/
