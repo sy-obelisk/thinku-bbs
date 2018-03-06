@@ -930,8 +930,9 @@ class ApiController extends Controller
             $contentData['name'] = Yii::$app->request->post('name');// 标题
             $contentData['abstract'] = '';// 摘要
             $contentData['pid'] = Yii::$app->request->post('pid', 0);// 父id，一般为0
-            $contentData['catId'] = Yii::$app->request->post('catId',119);// 主id
+            $contentData['catId'] = Yii::$app->request->post('catId', 119);// 主id
             $extendValue[0] = Yii::$app->request->post('article');// 文章
+            $extendValue[1] = Yii::$app->request->post('integral', 0);// 积分
 //            $category = explode(",", Yii::$app->request->post('category'));//这个是副分类格式'45,54'
 //            $category = explode(",",'2,6,16');//这个是副分类
             $addtime = date("Y-m-d H:i:s");
@@ -1014,8 +1015,8 @@ class ApiController extends Controller
             $keyword = addslashes($keyword);
             $keyword = strip_tags($keyword);
             $data = Yii::$app->db->createCommand("select c.id,c.name,c.abstract,c.viewCount,c.createTime,u.userName,u.nickname,u.image,(SELECT CONCAT_WS(' ',ce.value,ed.value) From {{%content_extend}} ce left JOIN {{%extend_data}} ed ON ed.extendId=ce.id WHERE ce.contentId=c.id AND ce.code='99b3cc02b18ec45447bd9fd59f1cd655')  as listeningFile from {{%content}} c LEFT JOIN {{%user}} u ON u.id=c.userId where name like '%$keyword%' and c.catId=119 order by liked desc,id desc limit 15")->queryAll();
-            foreach ($data as $k=>$v) {
-                $data[$k]['count'] = count(Yii::$app->db->createCommand("select id from {{%user_discuss}} where contentId=".$v['id'])->queryAll());
+            foreach ($data as $k => $v) {
+                $data[$k]['count'] = count(Yii::$app->db->createCommand("select id from {{%user_discuss}} where contentId=" . $v['id'])->queryAll());
             }
             $code = 0;
             die(json_encode(['data' => $data, 'code' => $code]));
@@ -1024,5 +1025,49 @@ class ApiController extends Controller
             $res['message'] = '请求错误';
             die(json_encode($res));
         }
+    }
+
+    /**
+     * 问答广场
+     */
+    public function actionQuestionSquare()
+    {
+        $cate = Yii::$app->request->post('cate', 'recommend');// recommend、new、question
+        $page = Yii::$app->request->post('page', 1);
+        $model = new Content();
+        $pageSize = 15;
+        if ($cate =='question') {
+            $data = $model->getClass(['fields' => 'listeningFile', 'category' => 119, 'order' => ' c.id desc', 'limit' => 200]);
+            $question = array();
+            foreach ($data as $k => $v) {
+                $re = UserDiscuss::find()->select('id')->distinct()->where("contentId= " . $v['id'])->limit(1)->one();
+                if ($re == false) {
+                    $question[] = $data[$k];
+                }
+            }
+            $p['count'] = count($question);
+            $p['pageCount'] = ceil($page['count'] / $pageSize);
+            $p['page'] = 1;
+            $data = array_slice($question, $pageSize * ($page - 1), 15);
+        } else {
+            if ($cate = 'recommend') {
+                $data = $model->getClass(['count' => 1, 'fields' => 'listeningFile', 'category' => 119, 'order' => ' viewCount desc', 'pageSize' => $pageSize, 'page' => $page]);
+            } elseif ($cate = 'new') {
+                $data = $model->getClass(['count' => 1, 'fields' => 'listeningFile', 'category' => 119, 'order' => ' c.id desc', 'pageSize' => $pageSize, 'page' => $page]);
+            }
+
+            $p['count'] = $data['count'];
+            $p['pageCount'] = ceil($p['count'] / $pageSize);
+            $p['page'] = $page;
+            unset($data['count']);
+        }
+        foreach($data as $k=>$v){
+            $u = Yii::$app->db->createCommand("select userName,nickname,image from {{%user}} where id=".$v['userId'])->queryOne();
+            $count=count(Yii::$app->db->createCommand("select id from {{%user_discuss}} where contentId=".$v['id'])->queryAll());
+            $data[$k]['userName']=($u['nickname']?$u['nickname']:$u['userName']);
+            $data[$k]['userImage']=$u['image'];
+            $data[$k]['replyCount']=$count;
+        }
+        die(json_encode(['data'=>$data,'page'=>$p]));
     }
 }
