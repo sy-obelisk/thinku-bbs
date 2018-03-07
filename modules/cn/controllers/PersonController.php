@@ -130,7 +130,7 @@ class PersonController extends Controller
 
     public function actionHead()
     {
-        $userId = Yii::$app->request->get('userId');
+        $userId = Yii::$app->session->get('userId');
         if (!$userId) {
             $data['code'] = 2;
             $data['message'] = '未登录';
