@@ -97,7 +97,7 @@ class PersonController extends Controller
     // 留言板
     public function actionLeave()
     {
-        $userId = Yii::$app->request->get('userId');
+        $userId = Yii::$app->session->get('userId');
         $page = Yii::$app->request->get('page',1);
         if (!$userId) {
             $data['code'] = 2;
