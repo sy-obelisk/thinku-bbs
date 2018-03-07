@@ -5,6 +5,9 @@ $(function () {
   _new.init();
 });
 
+var ue = UE.getEditor('myEditor',{
+  initialFrameHeight: 320
+});
 var _new = {
   init : function () {
     this.bind();
@@ -15,6 +18,7 @@ var _new = {
     $('.put-in').click(function () {
       _this.publishEvent();
     })
+
   },
   // 检查分类是否有填写,发表
   publishEvent : function () {

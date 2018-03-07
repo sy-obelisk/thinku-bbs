@@ -42,7 +42,7 @@
 }
 .sub-btn {
   margin: 15px;
-  text-align: right;
+  /*text-align: right;*/
 }
 .sub-btn button {
   outline: none;
@@ -51,9 +51,13 @@
   -moz-border-radius: 3px;
   border-radius: 3px;
   color: #fff;
-}
-.sub-btn button.put-in {
   background-color: #7d1f88;
+}
+.sub-btn .up-data {
+  float: left;
+}
+.sub-btn .put-in {
+  float: right;
 }
 .sub-btn button.save-draft {
   background-color: #e7e7e7;
