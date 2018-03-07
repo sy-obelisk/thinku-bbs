@@ -543,6 +543,9 @@ class ApiController extends Controller
             $contentData['pid'] = Yii::$app->request->post('pid', 0);// 父id，一般为0
             $contentData['catId'] = Yii::$app->request->post('catId');// 主id
             $extendValue[0] = Yii::$app->request->post('article');// 文章
+            if($contentData['catId']==14){
+                $extendValue[1] = Yii::$app->request->post('url');// 附件位置
+            }
             $category = explode(",", Yii::$app->request->post('category'));//这个是副分类格式'45,54'
 //            $category = explode(",",'2,6,16');//这个是副分类
             $addtime = date("Y-m-d H:i:s");
@@ -1075,5 +1078,41 @@ class ApiController extends Controller
             $data[$k]['comment']=Yii::$app->db->createCommand("select comment from {{%user_discuss}} where contentId=".$v['id'] ." order by model desc,liked desc limit 1")->queryOne()['comment'];
         }
         die(json_encode(['data'=>$data,'page'=>$p]));
+    }
+
+    /**
+     * 上传文件
+     */
+    public function actionFileUpload()
+    {
+        $token = Yii::$app->request->post('token');
+        $session = Yii::$app->session;
+        $authenticity_token = $session->get('authenticity_token');
+        if ($token == $authenticity_token) {
+            $file = $_FILES['upload_file'];
+            $upload = new \UploadFile();
+//            $upload->int_max_size = 20145728;
+            $upload->int_max_size = 2097152;
+            $upload->arr_allow_exts = array('pdf', 'txt', 'doc','docx');
+            $upload->str_save_path ='/files/user/upload/'.date('Yd').'/';
+            //Aaron ： 处理html5上传情况
+            if (Yii::$app->request->post('client') == 'html5') {
+                $file['name'] = Yii::$app->request->post('filename');
+            }
+            $arr_rs = $upload->upload($file);
+            if ($arr_rs['int_code'] == 1) {
+                $filePath = '/' . Yii::$app->params['upSpoken'] . $arr_rs['arr_data']['arr_data'][0]['savename'];
+                $res['code'] = 1;
+                $res['file'] = $filePath;
+                $res['message'] = '上传成功';
+            } else {
+                $res['code'] = 0;
+                $res['message'] = '上传失败，请重试';
+            }
+        } else {
+            $res['code'] = 0;
+            $res['message'] = '上传失败，令牌错误';
+        }
+        die(json_encode($res));
     }
 }
