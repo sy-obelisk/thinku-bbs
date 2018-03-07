@@ -11,25 +11,31 @@
   <section class="person-cnt person-box">
     <div class="box">
       <ul class="quest-list person-list">
+          <?php foreach($list as $k=>$v){?>
         <li class="item">
           <div class="head">
-            <img src="" alt="">
+            <img src="<?php echo $data[$k]['image']?>" alt="">
           </div>
           <div class="cnt">
-            <h5><span class="logo">Q</span><a href="">问题</a></h5>
+            <h5><span class="logo">Q</span><a href="/details/<?php echo $v['id']?>.html"><?php echo $v['name']?></a></h5>
             <div class="answer">
               <span class="logo">A</span>
-              <div>答案</div>
+              <div><?php echo $data[$k]['comment']?></div>
             <div class="info clearfix">
-              <p><span>bfja</span>发起了提问</p>
-              <p><span>2人回复</span>|<span>3次浏览</span></p>
+              <p><span><?php echo $data[$k]['userName']?></span>发起了提问</p>
+              <p><span><?php echo $data[$k]['count']?>人回复</span>|<span><?php echo $v['viewCount']?>次浏览</span></p>
               </div>
             </div>
         </li>
+          <?php }?>
         <!---分页-->
-        <div class="page-wrap">
-          <ul class="pagination" id="pagination1"></ul>
-        </div>
+          <div>
+              <?php echo $page;?>
+          </div>
+
+<!--        <div class="page-wrap">-->
+<!--          <ul class="pagination" id="pagination1"></ul>-->
+<!--        </div>-->
       </ul>
     </div>
   </section>

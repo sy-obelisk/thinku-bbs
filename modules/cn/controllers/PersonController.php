@@ -178,10 +178,17 @@ class PersonController extends Controller
         $data['count'] =$list['count'];
         unset($list['count']);
         foreach ($list as $k => $v) {
-            $data['data'][$k]['count'] = count(Yii::$app->db->createCommand("select id from {{%user_discuss}}  where contentId=" . $v['id'] . " and pid=0 order by model desc,liked desc limit 1")->queryOne());
+            $data[$k]['count'] = count(Yii::$app->db->createCommand("select id from {{%user_discuss}}  where contentId=" . $v['id'] . " and pid=0 order by model desc,liked desc ")->queryAll());
+
+            $u = Yii::$app->db->createCommand("select userName,nickname,image from {{%user}}  where id=" . $v['userId'] )->queryOne();
+            $data[$k]['comment'] = Yii::$app->db->createCommand("select comment from {{%user_discuss}}  where contentId=" . $v['id'] . " and pid=0 order by model desc,liked desc limit 1")->queryOne()['comment'];
+            $data[$k]['userName']=$u['nickname']?$u['nickname']:$u['userName'];
+            $data[$k]['image']=$u['image'];
         }
         $page=$this->actionPage($data['count'],'/question/',$page,$pageSize);
-        return $this->render('question', ['data'=>$data,'page'=>$page]);
+//        echo '<pre>';
+//        var_dump($data);die;
+        return $this->render('question', ['data'=>$data,'page'=>$page,'list'=>$list]);
 
     }
 

@@ -13,7 +13,7 @@
                     <p><?php echo $user['nickname']?$user['nickname']:$user['userName']?></p>
                 </div>
                 <ul>
-                    <li><a href="/person/1.html">个人中心</a></li>
+                    <li><a href="/person.html">个人中心</a></li>
                     <li><a href="">退出</a></li>
                 </ul>
             </div>
