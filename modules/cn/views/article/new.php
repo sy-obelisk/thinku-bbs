@@ -29,11 +29,7 @@
   <!--上传的文件-->
   <div class="upload_file clearfix">
     <div class="fl relative">
-      <ul class="upload_file_wrap">
-        <li>
-
-        </li>
-      </ul>
+      <ul class="upload_file_wrap"></ul>
     </div>
   </div>
 </div>

@@ -63,3 +63,26 @@
   background-color: #e7e7e7;
   color: #777;
 }
+/*上传文件编辑区*/
+.upload_file {
+  border-top: 1px solid #e5e5e5;
+  padding: 15px 0 30px;
+  overflow: hidden;
+}
+.upload_file_wrap {
+  padding-top: 20px;
+}
+.upload_file_wrap li {
+  height: 50px;
+  font-size: 16px;
+  width: 670px;
+  overflow: hidden;
+  line-height: 50px;
+}
+.file_name {
+  padding: 0 5px;
+}
+.remove_btn {
+  cursor: pointer;
+  margin: 0 15px 0 5px;
+}

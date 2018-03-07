@@ -58,7 +58,7 @@ var _new = {
         console.log(res);
         if (res.code == 0) {
           alert(res.message);
-          location.href = '/details/'+res.id+'.html';
+          // location.href = '/details/'+res.id+'.html';
         }
       }
     })
