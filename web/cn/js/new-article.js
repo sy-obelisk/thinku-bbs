@@ -34,6 +34,10 @@ var _new = {
       alert('请输入帖子内容!')
       return false;
     }
+    var datumTitle = new Array();
+    $('.datumTitle').each(function(){
+      datumTitle.push($(this).val());
+    })
     if ($('#clsThird').val() == '三级分类') {
       var category = $('#clsFirst').val()+','+$('#clsSecond').val();
     } else {
@@ -46,7 +50,8 @@ var _new = {
         name: $('.new-title input').val(), // 标题
         catId: $('#clsFirst').val(), // 主 id
         article: ue.getContent(), // 帖子内容
-        category: category // 子分类id
+        category: category, // 子分类id
+        url: datumTitle // 附件
       },
       dataType : 'json',
       success : function (res) {
