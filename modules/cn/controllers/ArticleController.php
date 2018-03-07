@@ -34,7 +34,7 @@ class ArticleController extends Controller
             $data['isCollect'] = false;
         }
         $discussModel = new UserDiscuss();
-        $discuss = $discussModel->getContentDiscuss($id);//评论
+        $discuss = $discussModel->getContentDiscuss($id,$page,6);//评论
         $nav = Yii::$app->db->createCommand("SELECT c.name from {{%category_content}} cc left join {{%category}} c on cc.catId = c.id where cc.contentId = $id limit 5")->queryAll();
 //        var_dump($nav);die;
         $viewCount = $data['viewCount'];
