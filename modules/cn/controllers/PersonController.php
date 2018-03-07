@@ -122,12 +122,12 @@ class PersonController extends Controller
 //        var_dump($data['data']);die;
         return $this->render('leave', ['page'=>$page,'data'=>$data]);
     }
-
+    // 分享
     public function actionShare()
     {
         return $this->render('share');
     }
-
+    // 头像
     public function actionHead()
     {
         $userId = Yii::$app->session->get('userId');
