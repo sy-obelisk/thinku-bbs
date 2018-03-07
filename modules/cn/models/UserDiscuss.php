@@ -65,7 +65,7 @@ class UserDiscuss extends ActiveRecord
     public function getContentDiscuss($contentId, $page = 1, $pageSize = 10)
     {
         $limit = "limit " . ($page - 1) * $pageSize . ",$pageSize";
-        $data = \Yii::$app->db->createCommand("SELECT u.image,u.nickname,u.userName,d.* from {{%user_discuss}} d left join {{%user}} u on d.userId = u.id where d.pid=0 AND d.status=1 AND d.contentId = $contentId order by d.id DESC " . $limit)->queryAll();
+        $data = \Yii::$app->db->createCommand("SELECT u.image,u.nickname,u.userName,d.* from {{%user_discuss}} d left join {{%user}} u on d.userId = u.id where d.pid=0 AND d.status=1 AND d.contentId = $contentId order by d.model desc,d.id DESC " . $limit)->queryAll();
         $count = count(\Yii::$app->db->createCommand("SELECT d.id from {{%user_discuss}} d left join {{%user}} u on d.userId = u.id where d.pid=0 AND d.status=1 AND d.contentId = $contentId order by d.id DESC ")->queryAll());
         foreach ($data as $k => $v) {
             if (!$v['nickname']) {
