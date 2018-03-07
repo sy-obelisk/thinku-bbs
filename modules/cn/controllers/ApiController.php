@@ -977,8 +977,8 @@ class ApiController extends Controller
     public function actionModel()
     {
         $userId = Yii::$app->session->get('userId', '');
-        $content = Yii::$app->request->post('id', '');
-        $disId = Yii::$app->request->post('disId', '');
+        $content = Yii::$app->request->post('id', '');// 内容id
+        $disId = Yii::$app->request->post('disId', '');// 评论id
         if (!$userId) {
             $res['code'] = 2;
             $res['message'] = '未登录';

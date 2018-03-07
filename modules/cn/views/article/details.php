@@ -63,7 +63,8 @@
                     <div>
                       <img src="<?php echo $v['image']?>" alt="">
                     </div>
-                    <p><?php echo $v['nickname']==false?$v['userName']:$v['nickname']?></p>
+                    <p class="reply-name"><?php echo $v['nickname']==false?$v['userName']:$v['nickname']?></p>
+                    <p class="best-btn">设为最佳答案</p>
                   </div>
                   <div class="reply-cnt">
                     <p><?php echo $v['comment']?></p>
@@ -97,6 +98,7 @@
                     <p id="oppose">反对<span><?php echo $v['hate']?></span></p>
                   </div>
                 </div>
+                <div class="best-ans">最佳答案</div>
               </li>
               <?php }?>
             </ul>

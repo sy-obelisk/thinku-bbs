@@ -120,7 +120,7 @@
             </a>
           </li>
           <li class="hot-item">
-            <a href="/question.html">
+            <a href="/square.html">
               <div></div>
               <p>问答广场</p>
             </a>

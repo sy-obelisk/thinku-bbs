@@ -33,22 +33,7 @@
               <?php echo $page;?>
           </div>
 
-<!--        <div class="page-wrap">-->
-<!--          <ul class="pagination" id="pagination1"></ul>-->
-<!--        </div>-->
       </ul>
     </div>
   </section>
 </div>
-<script>
-  //  全部消息分页
-  $.jqPaginator('#pagination1', {
-    totalPages: 20,
-    visiblePages: 7,
-    currentPage: 1,
-    onPageChange: function (num, type) {
-      console.log(num,type);
-      // $('#p1').text(type + '：' + num);
-    }
-  });
-</script>

@@ -89,6 +89,7 @@
   border-top: 1px dashed #d8d8d8;
 }
 .de-wrap .reply-list {
+  position: relative;
   margin-top: 20px;
 }
 .reply-list .reply-item {
@@ -111,10 +112,44 @@
 .reply-list .reply-wrap .reply-img>div>img {
   width: 100%;
 }
-.reply-list .reply-wrap .reply-img>p {
+.reply-list .reply-wrap .reply-img>.reply-name {
   line-height: 30px;
   text-align: center;
   font-size: 14px;
+}
+.reply-list .reply-wrap .best-btn {
+  margin-top: 10px;
+  padding: 5px 0;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 14px;
+  background-color: #ccc;
+  color: #fff;
+  cursor: pointer;
+}
+.reply-list .reply-wrap .best-btn:hover {
+  background-color: #9a9a9a;
+}
+.reply-list .reply-wrap .best-btn.active {
+  background-color: #7d1f88;
+}
+.reply-list .best-ans {
+  /*display: none;*/
+  position: absolute;
+  top: 10px;
+  left: -5px;
+  -webkit-transform: rotate(-30deg);
+  -moz-transform: rotate(-30deg);
+  -ms-transform: rotate(-30deg);
+  -o-transform: rotate(-30deg);
+  transform: rotate(-30deg);
+  width: 60px;
+  height: 20px;
+  line-height:20px;
+  text-align: center;
+  font-size: 12px;
+  background-color: #7d1f88;
+  color: #fff;
 }
 /*回复内容*/
 .reply-list .reply-wrap .reply-cnt {

@@ -58,6 +58,10 @@ var _details = {
     $('.reply-list').on('click','#oppose',function () {
       _this.oppose(this);
     });
+    // 设为最佳答案
+    $('.reply-list').on('click','.best-btn',function () {
+      _this.bestAns(this);
+    })
   },
   // 回复评论
   revertEvent : function (obj) {
@@ -107,7 +111,8 @@ var _details = {
             "<div class='reply-img'>"+
             "<div>"+
             "<img src='"+_this.pData.imgSrc+"' alt='头像'></div>"+
-            "<p>"+_this.pData.name+"</p>"+
+            "<p class='reply-name'>"+_this.pData.name+"</p>"+
+            "<p class='best-btn'>设为最佳答案</p>"+
             "</div>"+
             "<div class='reply-cnt'>"+
             "<p>"+$('.reply-input textarea').val()+"</p>"+
@@ -129,6 +134,7 @@ var _details = {
             "<div class='reply-time clearfix'>"+
             "<p>发表于："+time+"</p>"+
             "<div>"+
+            "<div class='best-ans'>最佳答案</div>"+
             "<p id='accuseBtn'>举报</p>"+
             "<p id='support'>支持<span>0</span></p>"+
             "<p id='oppose'>反对<span>0</span></p>"+
@@ -254,6 +260,23 @@ var _details = {
       } else {
         alert(res.message);
       }
+    },'json')
+  },
+  // 设为最佳答案
+  bestAns : function (obj) {
+    var dis = $(obj).parent().parent().parent().data('id'),
+        id = $('.article').data('id');
+    $.post('/cn/api/model',{
+      id: id,
+      disId: dis
+    },function (res) {
+      console.log(res);
+      if (res.code == 0){
+        $(obj).parent().parent().siblings('.best-ans').show();
+        $('.best-btn').hide();
+        location.reload();
+      }
+      alert(res.message);
     },'json')
   }
 };
