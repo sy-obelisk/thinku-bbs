@@ -89,10 +89,10 @@
   border-top: 1px dashed #d8d8d8;
 }
 .de-wrap .reply-list {
-  position: relative;
   margin-top: 20px;
 }
 .reply-list .reply-item {
+  position: relative;
   margin-bottom: 15px;
   background-color: #fafafa;
 }
@@ -134,7 +134,7 @@
   background-color: #7d1f88;
 }
 .reply-list .best-ans {
-  /*display: none;*/
+  display: none;
   position: absolute;
   top: 10px;
   left: -5px;

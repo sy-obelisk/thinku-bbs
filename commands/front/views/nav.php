@@ -70,7 +70,8 @@
       <input class="new-question" type="text">
       <p>问题说明（可选）：</p>
       <textarea class="ques-explain"></textarea>
-      <button class="submit-que">发布</button>
+      <div class="reward"><p>我要悬赏(可选)：</p><input class="reward-input" type="text">积分</div>
+      <button class="que-cancel">取消</button><button class="submit-que">发布</button>
     </div>
   </div>
 </div>

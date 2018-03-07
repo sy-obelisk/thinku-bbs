@@ -672,6 +672,7 @@ body{
   height: 40px;
   line-height: 40px;
   margin: 20px auto 0;
+  border-radius: 10px;
   background-color: #7d1f88;
   color: #fff;
   font-size: 14px;
@@ -690,7 +691,7 @@ body{
   width: 100%;
   height: 40px;
   padding: 5px 10px;
-  border: 1px solid #575757;
+  border: 1px solid #ccc;
   font-size: 14px;
 }
 .ask-search .ask-list {
@@ -739,7 +740,8 @@ body{
   outline: none;
   width: 95%;
   padding: 5px 10px;
-  border: 1px solid #575757;
+  border: 1px solid #ccc;
+
   font-size: 14px;
 }
 .ask-sub .ask-wrap .ques-explain {
@@ -747,6 +749,29 @@ body{
   width: 95%;
   height: 50px;
   padding: 5px 10px;
-  border: 1px solid #575757;
+  border-color:#ccc;
   font-size: 14px;
+}
+.ask-sub .reward {
+  text-align: left;
+  font-size: 14px;
+}
+.ask-sub .reward>p {
+  display: inline-block;
+}
+.ask-sub .reward>input {
+  margin: 0 3px;
+  width: 50px;
+  padding: 3px 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+.ask-sub .ask-wrap>button {
+  width: 120px;
+  height: 32px;
+  line-height: 32px;
+}
+.ask-sub .ask-wrap .que-cancel {
+  margin-right: 10px;
+  background-color: #ccc;
 }

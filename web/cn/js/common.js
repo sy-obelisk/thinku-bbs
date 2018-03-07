@@ -47,7 +47,10 @@ var _common = {
       // 提交提问
     $('.submit-que').click(function () {
       _this.submitQue(this);
-    })
+    }),
+      $('.que-cancel').click(function () {
+        $('.ask-p').hide().siblings('.ask-search').show().parent().hide();
+      })
   },
   // 设置cookie
   setCookie : function (name,value) {
@@ -141,15 +144,17 @@ var _common = {
   },
   // 提交提问
   submitQue : function (obj) {
-    var cnt = $(obj).siblings('.new-question').val(),
-        explain = $(obj).siblings('.ques-explain').val();
+    var cnt = $('.new-question').val(),
+        explain = $('.ques-explain').val(),
+        score = $('.reward-input').val();
     if (!cnt) {
       alert('请输入要提问的问题');
       return false;
     }
     $.post('/cn/api/question',{
       name: cnt,
-      article: explain
+      article: explain,
+      integral: score
     },function (res) {
       console.log(res);
       if (res.code == 0){
