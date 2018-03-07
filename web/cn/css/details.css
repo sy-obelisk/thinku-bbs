@@ -134,7 +134,7 @@
   background-color: #7d1f88;
 }
 .reply-list .best-ans {
-  display: none;
+  /*display: none;*/
   position: absolute;
   top: 10px;
   left: -5px;
