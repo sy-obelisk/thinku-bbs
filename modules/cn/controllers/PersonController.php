@@ -174,7 +174,7 @@ class PersonController extends Controller
             die;
         }
         $model=new Content();
-        $list= $model->getClass(['count'=>1,'fields' => 'description','category' =>119,'pageSize' => $pageSize,'page'=>$page]);
+        $list= $model->getClass(['count'=>1,'fields' => 'description','category' =>119,'order'=>'id desc','pageSize' => $pageSize,'page'=>$page]);
         $data['count'] =$list['count'];
         unset($list['count']);
         foreach ($list as $k => $v) {

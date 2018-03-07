@@ -548,7 +548,6 @@ class ApiController extends Controller
             $addtime = date("Y-m-d H:i:s");
             $model->createTime = $addtime;
             $model->userId = Yii::$app->session->get('userId');
-            $model->userId = 1;
             $model->name = $contentData['name'];
             $model->abstract = $contentData['abstract'];
             $model->pid = $contentData['pid'];
@@ -938,7 +937,6 @@ class ApiController extends Controller
             $addtime = date("Y-m-d H:i:s");
             $model->createTime = $addtime;
             $model->userId = Yii::$app->session->get('userId');
-            $model->userId = 1;
             $model->name = $contentData['name'];
             $model->abstract = $contentData['abstract'];
             $model->pid = $contentData['pid'];
@@ -988,6 +986,12 @@ class ApiController extends Controller
         if ($uid != $userId) {
             $res['code'] = 3;
             $res['message'] = '您没有权限';
+            die(json_encode($res));
+        }
+        $id=UserDiscuss::find()->select('id')->where("contentId=$content and model=1")->one();
+        if ($id ) {
+            $res['code'] = 1;
+            $res['message'] = '已经有最佳答案，不能重复设置';
             die(json_encode($res));
         }
         $userDis = new UserDiscuss();
