@@ -9,8 +9,6 @@ var _details = {
   },
   init : function () {
     this.bind();
-    console.log(location.href);
-    console.log(this.pData);
   },
   bind : function () {
     var _this = this;
@@ -111,9 +109,11 @@ var _details = {
             "<div class='reply-img'>"+
             "<div>"+
             "<img src='"+_this.pData.imgSrc+"' alt='头像'></div>"+
-            "<p class='reply-name'>"+_this.pData.name+"</p>"+
-            "<p class='best-btn'>设为最佳答案</p>"+
-            "</div>"+
+            "<p class='reply-name'>"+_this.pData.name+"</p>";
+          if (!$('.best-ans')[0]){
+            lis+="<p class='best-btn'>设为最佳答案</p>";
+          }
+          lis+="</div>"+
             "<div class='reply-cnt'>"+
             "<p>"+$('.reply-input textarea').val()+"</p>"+
             "<div class='revert'>"+
@@ -134,7 +134,6 @@ var _details = {
             "<div class='reply-time clearfix'>"+
             "<p>发表于："+time+"</p>"+
             "<div>"+
-            "<div class='best-ans'>最佳答案</div>"+
             "<p id='accuseBtn'>举报</p>"+
             "<p id='support'>支持<span>0</span></p>"+
             "<p id='oppose'>反对<span>0</span></p>"+
@@ -272,7 +271,7 @@ var _details = {
     },function (res) {
       console.log(res);
       if (res.code == 0){
-        $(obj).parent().parent().siblings('.best-ans').show();
+        $(obj).parent().parent().parent().append('<div class="best-ans">最佳答案</div>');
         $('.best-btn').hide();
         location.reload();
       }
