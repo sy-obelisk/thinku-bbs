@@ -52,6 +52,49 @@
   margin-top: 60px;
   text-align: center;
 }
+/*下载*/
+.hide-wrap {
+  overflow: hidden;
+  padding: 10px;
+  border: 1px dashed #FF9A9A;
+  margin: 8px 0;
+  zoom: 1;
+}
+.hide-box {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #444;
+}
+.hide-box>i {
+  padding: 0 3px;
+  color: #FF9A9A;
+}
+.show-box {
+  /*display: none;*/
+}
+.down-list>li {
+  margin: 5px 0;
+}
+.down-list>li>img {
+  vertical-align: middle;
+}
+.down-list>li>a{
+  display: inline-block;
+  vertical-align: middle;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 14px;
+  color: #369;
+  text-decoration: underline;
+}
+.down-list>li>a:hover {
+  color: #FF9A9A;
+}
+.down-list>li>em {
+  color: #999;
+  font-size: 14px;
+}
 /*分享*/
 .share {
   margin: 30px 0;

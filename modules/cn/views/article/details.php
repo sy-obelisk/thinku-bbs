@@ -33,9 +33,22 @@
             foreach($url as $v){
               echo '<p><a href="'.$v.'">'.substr($v,strrpos($v,'/')+1).'</a></p>';
             }
-//            var_dump($url);die;
           }?>
-          <button id="downBtn">下载文件</button>
+          <!--下载附件-->
+          <div class="hide-wrap">
+            <!--隐藏-->
+            <div class="hide-box"><i class="fa fa-lock"></i>抱歉，您的等级还不够，暂时无法下载。多发帖，评论来提高等级吧！</div>
+            <!--显示-->
+            <div class="show-box">
+              <ul class="down-list">
+                <li>
+                  <img src="/cn/images/rar.gif" alt="">
+                  <a href="/download?file=/files/attach/file/20170620/1497951168389655.ppt&amp;fileName=3.19 45分钟攻克GMAT长难句.ppt">3.19 45分钟攻克GMAT长难句.ppt</a>
+                  <em>(下载次数：43)</em>
+                </li>
+              </ul>
+            </div>
+          </div>
           <div class="bottom">本主题有申友留学推荐于2018-01-10 16:30 分类</div>
         </div>
         <!--分享-->

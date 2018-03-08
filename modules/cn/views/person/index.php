@@ -14,8 +14,8 @@
       <ul>
         <li class="on"><span>个人资料</span></li>
         <li><span>积分</span></li>
-        <li><span>用户安全</span></li>
-        <li><span>密码安全</span></li>
+        <li><span>等级权限</span></li>
+        <li><span>修改密码</span></li>
       </ul>
     </div>
     <div class="single-box bd">
