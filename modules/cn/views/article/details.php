@@ -28,6 +28,13 @@
         </div>
         <div class="cnt">
          <?php echo $data['listeningFile']?>
+          <?php if($data['url']!=false){
+              $url=unserialize($data['url']);
+            foreach($url as $v){
+              echo '<p><a href="'.$v.'">'.substr($v,strrpos($v,'/')+1).'</a></p>';
+            }
+//            var_dump($url);die;
+          }?>
           <div class="bottom">本主题有申友留学推荐于2018-01-10 16:30 分类</div>
         </div>
         <!--分享-->

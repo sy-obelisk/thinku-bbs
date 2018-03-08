@@ -305,22 +305,21 @@ class ApiController extends Controller
      */
     public function actionDownload()
     {
-
         //根据内容的id，查找文件的地址
         // 再判断下载
-
         $integral = Yii::$app->session->get('integral', '');
         if ($integral < 10) {
             echo '<script>alert("您的等级太低，努力升级吧，少年！")</script>';
             die;
         }
-        $id = Yii::$app->request->get('id', '');
+        $id = Yii::$app->request->post('id', '');
+        $num = Yii::$app->request->post('num', '');
         $model = new Content();
         $data = $model->getClass(['fields' => 'url', 'where' => "c.id=$id"]);
-        $f = 'http://bbs.com' . $data[0]['url'];
-        $n = strrpos($f, '/') + 1;
-        $fileName = substr($f, $n);
-        $file = fopen($f, "r");
+        $url='http://'.$_SERVER['HTTP_HOST'].unserialize($data[0]['url'])[$num-1];
+        $n = strrpos($url, '/') + 1;
+        $fileName = substr($url, $n);
+        $file = fopen($url, "r");
         if (!$file) {
             echo "文件找不到";
         } else {
@@ -544,7 +543,8 @@ class ApiController extends Controller
             $contentData['catId'] = Yii::$app->request->post('catId');// 主id
             $extendValue[0] = Yii::$app->request->post('article');// 文章
             if($contentData['catId']==14){
-                $extendValue[1] = Yii::$app->request->post('url');// 附件位置
+//                $extendValue[1] = Yii::$app->request->post('url');// 附件位置
+                $extendValue[1] = serialize(Yii::$app->request->post('url'));// 附件位置
             }
             $category = explode(",", Yii::$app->request->post('category'));//这个是副分类格式'45,54'
 //            $category = explode(",",'2,6,16');//这个是副分类

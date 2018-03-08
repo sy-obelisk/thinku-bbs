@@ -27,7 +27,7 @@ class ArticleController extends Controller
         $page = Yii::$app->request->get('page', 1);//页码
         $userId = Yii::$app->session->get('userId', '');//页码
         $model = new Content();
-        $data = $model->getClass(['fields' => 'listeningFile', 'where' => "c.id=$id"])[0];
+        $data = $model->getClass(['fields' => 'listeningFile,url', 'where' => "c.id=$id"])[0];
         if ($userId) {
             $data['isCollect'] = Yii::$app->db->createCommand("SELECT id from {{%user_collection}}  where contentId = $id and userId= $userId")->queryOne();
         } else {
