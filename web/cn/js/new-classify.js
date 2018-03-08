@@ -4,8 +4,8 @@ function Dsy(){
 	this.Inums = {};
 }
 Dsy.prototype.add = function(id,iArray,iNum){
-	this.Items[id] = iArray;
-	this.Inums[id] = iNum;
+	this.Items[id] = iArray; // option名称
+	this.Inums[id] = iNum; // value值
 }
 Dsy.prototype.Exists = function(id){
 	if(typeof(this.Items[id]) == "undefined") return false;
@@ -18,6 +18,11 @@ function change(v){
 		str+=("_"+(document.getElementById(s[i]).selectedIndex-1));
 	};
 	var ss=document.getElementById(s[v]);
+	if(str.indexOf('0_4') >= 0){
+		$('#upBtn').show();
+	} else {
+    $('#upBtn').hide();
+	}
 	with(ss){
 		length = 0;
 		options[0]=new Option(opt0[v],opt0[v]);

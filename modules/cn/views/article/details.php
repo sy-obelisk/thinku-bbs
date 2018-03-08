@@ -35,6 +35,7 @@
             }
 //            var_dump($url);die;
           }?>
+          <button id="downBtn">下载文件</button>
           <div class="bottom">本主题有申友留学推荐于2018-01-10 16:30 分类</div>
         </div>
         <!--分享-->

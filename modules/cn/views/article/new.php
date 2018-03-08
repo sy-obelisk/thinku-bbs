@@ -59,6 +59,7 @@
      */
     o_ueditorupload.addListener('afterUpfile', function (t, arg)
     {
+//      console.log(arg);
       var str = '';
       for(var i=0;i<arg.length;i++){
         str +='<li>';
@@ -76,7 +77,7 @@
     $(_this).closest('li').remove();
   }
   $(function () {
-    // 上传文件
+    // 上传文件面板显示
     $('#upBtn').click(function () {
       var myFiles = o_ueditorupload.getDialog("attachment");
       myFiles.open();

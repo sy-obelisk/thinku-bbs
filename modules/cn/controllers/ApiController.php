@@ -308,10 +308,10 @@ class ApiController extends Controller
         //根据内容的id，查找文件的地址
         // 再判断下载
         $integral = Yii::$app->session->get('integral', '');
-        if ($integral < 10) {
-            echo '<script>alert("您的等级太低，努力升级吧，少年！")</script>';
-            die;
-        }
+//        if ($integral < 10) {
+//            echo '<script>alert("您的等级太低，努力升级吧，少年！")</script>';
+//            die;
+//        }
         $id = Yii::$app->request->post('id', '');
         $num = Yii::$app->request->post('num', '');
         $model = new Content();
@@ -333,7 +333,6 @@ class ApiController extends Controller
             }
             fclose($file);
         }
-
     }
 
     /**

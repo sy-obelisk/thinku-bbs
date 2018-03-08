@@ -55,6 +55,7 @@
 }
 .sub-btn .up-data {
   float: left;
+  display: none;
 }
 .sub-btn .put-in {
   float: right;

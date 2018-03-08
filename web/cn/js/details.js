@@ -59,6 +59,15 @@ var _details = {
     // 设为最佳答案
     $('.reply-list').on('click','.best-btn',function () {
       _this.bestAns(this);
+    });
+    // 下载附件
+    $('#downBtn').click(function () {
+      $.post('/cn/api/download',{
+        id: $('.article').data('id'),
+        num: 1
+      },function (res) {
+        console.log(res);
+      },'json')
     })
   },
   // 回复评论
