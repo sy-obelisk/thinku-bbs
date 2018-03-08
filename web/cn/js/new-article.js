@@ -34,9 +34,9 @@ var _new = {
       alert('请输入帖子内容!')
       return false;
     }
-    var datumTitle = new Array();
-    $('.datumTitle').each(function(){
-      datumTitle.push($(this).val());
+    var dataUrl = new Array();
+    $('.datum').each(function(){
+      dataUrl.push($(this).val());
     })
     if ($('#clsThird').val() == '三级分类') {
       var category = $('#clsFirst').val()+','+$('#clsSecond').val();
@@ -51,7 +51,7 @@ var _new = {
         catId: $('#clsFirst').val(), // 主 id
         article: ue.getContent(), // 帖子内容
         category: category, // 子分类id
-        url: datumTitle // 附件
+        url: dataUrl // 附件
       },
       dataType : 'json',
       success : function (res) {
