@@ -198,7 +198,7 @@
     <section class="download">
       <div class="down-title clearfix">
         <h5 class="p-title">资料下载专区</h5>
-        <a href="">more</a>
+<!--        <a href="">more</a>-->
       </div>
       <div class="down-cnt clearfix">
         <ul>

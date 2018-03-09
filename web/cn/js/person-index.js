@@ -10,7 +10,6 @@ var _person = {
     var _this = this;
     $('.change-data').click(function () {
       var className = $(this).data('id');
-      console.log(className);
       $(this).unbind().parent().append("<input class='"+className+"' type='text'>");
     });
     //  修改个人资料
@@ -143,7 +142,6 @@ var _person = {
         $(window).scrollTop(134);
       },
       complete: function () {
-        console.log(tp);
         $.jqPaginator('.pagination', {
           totalPages: tp,
           visiblePages: 6,

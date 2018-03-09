@@ -80,10 +80,9 @@ var _index = {
         $('.box-post-list').html("加载中...");
       },
       success: function (res) {
-        // console.log(res);
+        console.log(res);
         tp = res.page.pagecount;
         if (!res.page.count){
-          // res.data = 0;
           tp = 1;
         }
         if (res.code == 0) {
@@ -91,7 +90,7 @@ var _index = {
           for(var i=0,data=res.data;i<data.length;i++) {
             ulItem+="<li class='item'>"+
               "<div class='img'>"+
-              "<img src='' alt='头像'>"+
+              "<img src='"+data[i].image+"' alt='头像'>"+
               "</div>"+
               "<div class='right'>"+
               "<h3><a href='/details/"+data[i].id+".html'>"+data[i].name+"<i class='iconfont icon-hot'></a></i></h3>"+
@@ -107,6 +106,10 @@ var _index = {
           }
           ulItem+= "</ul>";
           $('.box-post-list').html(ulItem);
+          if (p>1){
+            $('html').scrollTop($('.posts').offset().top);
+          }
+          console.log($('.posts').offset().top);
         }
       },
       complete: function () {
@@ -138,7 +141,7 @@ var _index = {
         $('.box-post-list').html("加载中...");
       },
       success: function (res) {
-        console.log(res);
+        // console.log(res);
         tp = res.page.pagecount;
         if (!res.page.count){
           tp = 1;
@@ -148,7 +151,7 @@ var _index = {
           for(var i=0,data=res.data;i<data.length;i++) {
             ulItem+="<li class='item'>"+
               "<div class='img'>"+
-              "<img src='' alt='头像'>"+
+              "<img src='"+data[i].image+"' alt='头像'>"+
               "</div>"+
               "<div class='right'>";
             if (i <= 3 && p == 1){
@@ -168,6 +171,10 @@ var _index = {
           }
           ulItem+= "</ul>";
           $('.box-post-list').html(ulItem);
+          if (p>1){
+            $('html').scrollTop($('.posts').offset().top);
+          }
+          console.log($('.posts').offset().top);
         }
       },
       complete: function () {
