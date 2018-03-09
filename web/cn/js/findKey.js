@@ -21,22 +21,22 @@ var _findKey = {
       var phone = $('.find-phone').val(),
           code  = $('.find-phone-code').val(),
           pass  = $('.find-phone-pass').val()
-      if(phone == ""){
+      if(!phone){
         alert("请输入您的电话!");
         return false;
       }
-      if(code == ""){
+      if(!code){
         alert("请输入电话验证码");
         return false;
       }
-      if(pass == ""){
+      if(!pass){
         alert("请输入您的新密码");
         return false;
       }
       $.post('/cn/api/find-pass',{type:1,registerStr:phone,code:code,pass:pass},function(res){
         if(res.code == 0){
           alert(res.message);
-          location.href='/cn/index';
+          location.href = './login.html';
         }else{
           alert(res.message);
         }
@@ -47,22 +47,22 @@ var _findKey = {
     var email     = $('.find-email').val(),
         emailCode = $('.email-code').val(),
         emailPass = $('.email-pass').val();
-    if(email == ""){
+    if(!email){
       alert("请输入您的邮箱!");
       return false;
     }
-    if(emailCode == ""){
+    if(!emailCode){
       alert("请输入邮箱验证码");
       return false;
     }
-    if(emailPass == ""){
+    if(!emailPass){
       alert("请输入您的新密码");
       return false;
     }
     $.post('/cn/api/find-pass',{type:2,registerStr:email,code:emailCode,pass:emailPass},function(res){
       if(res.code == 0){
         alert(res.message);
-        location.href='/cn/index';
+        location.href = './login.html';
       }else{
         alert(res.message);
       }

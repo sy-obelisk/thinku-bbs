@@ -3,7 +3,24 @@
  */
 var _login = {
   init : function () {
+    this.onload();
     this.bind();
+  },
+  onload: function(){
+    var oUser = $('.userName'),
+        oPswd = $('.userPass'),
+        oRemember = $('#autoRem');
+    if (_common.getCookie('loginSign')) {
+      oUser.val(_common.getCookie('user'));
+      oPswd.val(_common.getCookie('pswd'));
+      oRemember.attr('checked',true);
+    }
+    // oRemember.change(function () {
+    //   if (!this.checked){
+    //     _common.delCookie('user');
+    //     _common.delCookie('pswd');
+    //   }
+    // });
   },
   bind : function () {
     var _this = this;
@@ -20,45 +37,42 @@ var _login = {
     var userPass   = $('.userPass').val(),
         userName   = $('.userName').val(),
         verifyCode = $('.loginCode').val();
-    if(verifyCode == ""){
+    if(!verifyCode){
       return false;
     }
-    if(userName == ""){
+    if(!userName){
       return false;
     }
-    if(userPass == ""){
+    if(!userPass){
       return false;
     }
     $.post('/cn/api/login-in',{verifyCode:verifyCode,userPass:userPass,userName:userName},function(res){
       if(res.code == 0){
-        _common.setCookie('readName',userName);
-        if($('#auto').is(':checked')) {
-          _common.setCookie('readSign',1);
-          _common.setCookie('readPass',userPass);
+        _common.setCookie('user',userName,7);
+        if($('#autoRem').is(':checked')) {
+          _common.setCookie('loginSign',1,7);
+          _common.setCookie('pswd',userPass,7);
         }else{
-          _common.setCookie('readSign',0);
-          _common.delCookie('readPass');
+          _common.setCookie('loginSign',0);
+          _common.delCookie('pswd');
         }
-        if(res.code == 0){
-          location.href=res.url;
-        }
+        location.href=res.url;
       }else{
         alert(res.message);
       }
-    },'json')
+    },'json');
   },
   // 手机动态登录
   phoneLogin : function () {
     var phone = $('.phones').val(),
         code  = $('.phone-code').val();
-    if(phone == ""){
+    if(!phone){
       return false;
     }
-    if(code == ""){
+    if(!code){
       return false;
     }
     $.post('/cn/api/message-login',{registerStr:phone,code:code},function(res){
-      console.log(res);
       if(res.code == 0){
         setTimeout(function(){
           location.href=res.url;

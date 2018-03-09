@@ -28,7 +28,7 @@
         <ul>
           <li>
             <div class="leftIcon">
-              <span></span>
+              <span class="iconfont icon-phone"></span>
             </div>
             <div class="rightInput">
               <input class="phones" type="text" placeholder="手机号：13/14/15/17/18"  datatype="m" errormsg="手机号格式不正确!" onkeypress="javascript:_register.enterPhone(event);"/>
@@ -36,7 +36,7 @@
           </li>
           <li>
             <div class="leftIcon">
-              <span></span>
+              <span class="iconfont icon-login_password"></span>
             </div>
             <div class="rightInput">
               <input class="phonePass" type="password" placeholder="密码长度6位以上，数字+字母" datatype="*6-16" errormsg="密码范围在6~16位之间！" value="" onkeypress="javascript:_register.enterPhone(event);"/>
@@ -64,7 +64,7 @@
         <ul>
           <li>
             <div class="leftIcon">
-              <span></span>
+              <span class="iconfont icon-email"></span>
             </div>
             <div class="rightInput">
               <input class="email" type="text" placeholder="邮箱：xxxx@xx.xx"  datatype="e" errormsg="邮箱格式不正确!" value="" onkeypress="javascript:_register.enterEmail(event);"/>
@@ -72,7 +72,7 @@
           </li>
           <li>
             <div class="leftIcon">
-              <span></span>
+              <span class="iconfont icon-login_password"></span>
             </div>
             <div class="rightInput">
               <input class="emailPass" type="password" placeholder="密码长度6位以上，数字+字母" datatype="*6-16" errormsg="密码范围在6~16位之间！" value="" onkeypress="javascript:_register.enterEmail(event);"/>

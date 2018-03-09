@@ -53,11 +53,10 @@ var _common = {
       })
   },
   // 设置cookie
-  setCookie : function (name,value) {
-    var Days = 30,
-        exp  = new Date();
-    exp.setTime(exp.getTime() + Days*24*60*60*1000);
-    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+  setCookie : function (name,value,day) {
+    var date = new Date();
+    date.setDate(date.getDate() + day);
+    document.cookie = name + "="+ escape(value) + ";expires=" + date;
   },
   // 获取cookie
   getCookie : function (name) {
@@ -70,11 +69,9 @@ var _common = {
   },
   // 删除cookie
   delCookie : function (name) {
-    var exp = new Date();
-    exp.setTime(exp.getTime() - 1);
     var cval = this.getCookie(name);
     if(cval != null)
-      document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+      this.setCookie(name,null,-1);
   },
   // 搜索
   search : function () {

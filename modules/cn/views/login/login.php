@@ -27,7 +27,7 @@
         <ul>
           <li>
             <div class="leftIcon">
-              <span></span>
+              <span class="iconfont icon-login_user"></span>
             </div>
             <div class="rightInput">
               <input class="userName" type="text" placeholder="邮箱/已验证手机"  datatype="*" errormsg="用户名不能为空!" value="" onkeypress="javascript:_login.enterLogin(event);"/>
@@ -35,7 +35,7 @@
           </li>
           <li>
             <div class="leftIcon">
-              <span></span>
+              <span class="iconfont icon-login_password"></span>
             </div>
             <div class="rightInput">
               <input class="userPass" type="password" placeholder="密码" datatype="*6-16" errormsg="密码范围在6~16位之间！" value="" onkeypress="javascript:_login.enterLogin(event);"/>
@@ -53,8 +53,8 @@
         <div style="clear: both"></div>
       </div>
       <div class="autoLogin clearfix">
-        <input type="checkbox" id="auto" />
-        <label for="auto">记住密码</label>
+        <input type="checkbox" id="autoRem" />
+        <label for="autoRem">记住密码</label>
         <a href="findKey.html">忘记密码?</a>
       </div>
       <div class="loginBtn">
@@ -67,7 +67,7 @@
         <ul>
           <li>
             <div class="leftIcon">
-              <span></span>
+              <span class="iconfont icon-phone"></span>
             </div>
             <div class="rightInput">
               <input  class="phones" type="text" placeholder="手机号"  datatype="m" errormsg="手机号格式不正确(不能小于11位)!" onkeypress="javascript:_login.enterPhone(event);"/>
