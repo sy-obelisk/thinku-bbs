@@ -23,13 +23,13 @@ var _register = {
         code      = $('.phoneCode').val(),
         phonePass = $('.phonePass').val();
     console.log(phone,code,phonePass);
-    if(phone == ""){
+    if(!phone){
       return false;
     }
-    if(code == ""){
+    if(!code){
       return false;
     }
-    if(phonePass == ""){
+    if(!phonePass){
       return false;
     }
     $.post('/cn/api/register',{type:1,registerStr:phone,code:code,pass:phonePass},function(res){
@@ -37,8 +37,6 @@ var _register = {
       if(res.code == 0){
         alert(res.message);
         location.href = './login.html';
-        // $(".reg-success").show();
-        // $(".shop-login").hide();
       }else{
         alert(res.message);
       }
@@ -49,20 +47,20 @@ var _register = {
     var email = $('.email').val();
     var code = $('.emailCode').val();
     var emailPass = $('.emailPass').val();
-    if(email == ""){
+    if(!email){
       return false;
     }
-    if(code == ""){
+    if(!code){
       return false;
     }
-    if(emailPass == ""){
+    if(!emailPass){
       return false;
     }
     $.post('/cn/api/register',{type:2,registerStr:email,code:code,pass:emailPass},function(res){
       console.log(res);
       if(res.code == 0){
-        // $(".reg-success").show();
-        // $(".shop-login").hide();
+        alert(res.message);
+        location.href = './login.html';
       }else{
         alert(res.message);
       }

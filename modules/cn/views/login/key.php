@@ -28,7 +28,7 @@
         <ul>
           <li>
             <div class="leftIcon">
-              <span></span>
+              <span class="iconfont icon-phone"></span>
             </div>
             <div class="rightInput">
               <input class="find-phone phones" type="text" placeholder="手机号"  datatype="m" errormsg="请输入有效的手机号"/>
@@ -36,7 +36,7 @@
           </li>
           <li>
             <div class="leftIcon">
-              <span></span>
+              <span class="iconfont icon-login_password"></span>
             </div>
             <div class="rightInput">
               <input class="find-phone-pass" type="password" placeholder="新密码" datatype="*6-16" errormsg="密码范围在6~16位之间！"/>
@@ -64,7 +64,7 @@
         <ul>
           <li>
             <div class="leftIcon">
-              <span></span>
+              <span class="iconfont icon-email"></span>
             </div>
             <div class="rightInput">
               <input class="find-email email" type="text" placeholder="邮箱"  datatype="e" errormsg="邮箱格式错误" />
@@ -72,7 +72,7 @@
           </li>
           <li>
             <div class="leftIcon">
-              <span></span>
+              <span class="iconfont icon-login_password"></span>
             </div>
             <div class="rightInput">
               <input class="email-pass" type="password" placeholder="新密码" datatype="*6-16" errormsg="密码范围在6~16位之间！"/>
