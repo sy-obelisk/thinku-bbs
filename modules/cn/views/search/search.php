@@ -35,10 +35,6 @@
           <?php } ?>
         </ul>
         <!---分页-->
-<!--        <div class="page-wrap">-->
-<!--          <ul class="pagination" id="pagination1">--><?php //echo $page;?><!--</ul>-->
-<!---->
-<!--        </div>-->
         <div>
           <?php echo $page;?>
         </div>
@@ -57,15 +53,6 @@
     jQuery(".project").slide({});
     //  侧边栏热帖排行榜
     jQuery(".ranking").slide({});
-    $.jqPaginator('#pagination1', {
-      totalPages: 2,
-      visiblePages: 7,
-      currentPage: 1,
-      onPageChange: function (num, type) {
-        console.log(num,type);
-        // $('#p1').text(type + '：' + num);
-      }
-    });
   })
 
 </script>

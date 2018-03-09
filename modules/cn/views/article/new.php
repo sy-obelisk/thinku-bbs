@@ -6,7 +6,7 @@
 <div class="new-wrap p-container">
 <!--路径导航-->
   <ul class="bread-crumb">
-    <li><a href="">首页</a><span>&gt;</span><a href="">发帖</a></li>
+    <li><a href="/index.html">首页</a><span>&gt;</span><a href="">发帖</a></li>
   </ul>
   <div class="new-classify">
     <select name="clsFirst" id="clsFirst"></select>
