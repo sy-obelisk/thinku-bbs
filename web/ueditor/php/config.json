@@ -61,7 +61,8 @@
   "fileFieldName": "upfile", /* 提交的文件表单名称 */
   "filePathFormat": "/files/attach/file/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
   "fileUrlPrefix": "", /* 文件访问路径前缀 */
-  "fileMaxSize": 51200000, /* 上传大小限制，单位B，默认50MB */
+  /* "fileMaxSize": 51200000, 上传大小限制，单位B，默认50MB */
+  "fileMaxSize": 8182000, /* 上传大小限制，单位B，默认8MB */
   "fileAllowFiles": [
     ".png", ".jpg", ".jpeg", ".gif", ".bmp",
     ".flv", ".swf", ".mkv", ".avi", ".rm", ".rmvb", ".mpeg", ".mpg",

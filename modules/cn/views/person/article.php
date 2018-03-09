@@ -10,7 +10,7 @@
   <!--内容区-->
   <section class="person-cnt article-cnt">
     <div class="post-msg">
-      <a href="">发帖</a>
+      <a href="/new-article.html">发帖</a>
     </div>
     <div class="article-tab">
       <p>我的帖子</p>
