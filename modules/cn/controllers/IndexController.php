@@ -24,7 +24,11 @@ class IndexController extends Controller
         $data = $model->getList($first);
         $page = $data['page'];
         $data = $data['list'];
-        return $this->render('index', ['data' => $data, 'page' => $page]);
+        $offer=  json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/offer"),true);
+        $score=  json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/score"),true);
+
+//        var_dump($score);die;
+        return $this->render('index', ['data' => $data, 'page' => $page,'offer'=>$offer,'score'=>$score]);
     }
 
     public function actionQuestion()
