@@ -35,6 +35,7 @@
 //            }
 //          }?>
           <!--下载附件-->
+
           <div class="hide-wrap">
             <!--隐藏-->
             <?php $integral= Yii::$app->session->get('integral','');
@@ -43,22 +44,21 @@
             <div class="hide-box"><i class="fa fa-lock"></i>抱歉，您的等级还不够，暂时无法下载。多发帖，评论来提高等级吧！</div>
             <?php }else{?>
             <!--显示-->
-            <div class="show-box">
               <?php if($data['url']!=false){?>
-              <ul class="down-list">
-                <?php if($data['url']!=false){
-                $url=unserialize($data['url']);
-                foreach($url as $v){?>
-                <li>
-                  <img src="/cn/images/rar.gif" alt="">
-                  <a href="<?php echo $v?>"><?php echo substr($v,strrpos($v,'/')+1)?></a>
-<!--                  <em></em>-->
-                </li>
-                <?php }?>
-              </ul>
-              <?php }?>
-            </div>
-            <?php }}?>
+              <div class="show-box">
+                <ul class="down-list">
+                  <?php
+                  $url=unserialize($data['url']);
+                  foreach($url as $v){?>
+                    <li>
+                      <img src="/cn/images/rar.gif" alt="">
+                      <a href="<?php echo $v?>"><?php echo substr($v,strrpos($v,'/')+1)?></a>
+                      <!--                  <em></em>-->
+                    </li>
+                  <?php }?>
+                </ul>
+              </div>
+            <?php }else { }}?>
           </div>
           <div class="bottom">本主题有申友留学推荐于2018-01-10 16:30 分类</div>
         </div>
