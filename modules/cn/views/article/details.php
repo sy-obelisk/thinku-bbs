@@ -28,14 +28,8 @@
         </div>
         <div class="cnt">
          <?php echo $data['listeningFile'];?>
-<!--          --><?php //if($data['url']!=false){
-//              $url=unserialize($data['url']);
-//            foreach($url as $v){
-//              echo '<p><a href="'.$v.'">'.substr($v,strrpos($v,'/')+1).'</a></p>';
-//            }
-//          }?>
           <!--下载附件-->
-
+          <?php if($data['url']!=false){?>
           <div class="hide-wrap">
             <!--隐藏-->
             <?php $integral= Yii::$app->session->get('integral','');
@@ -44,7 +38,6 @@
             <div class="hide-box"><i class="fa fa-lock"></i>抱歉，您的等级还不够，暂时无法下载。多发帖，评论来提高等级吧！</div>
             <?php }else{?>
             <!--显示-->
-              <?php if($data['url']!=false){?>
               <div class="show-box">
                 <ul class="down-list">
                   <?php
@@ -58,9 +51,10 @@
                   <?php }?>
                 </ul>
               </div>
-            <?php }else { }}?>
+            <?php }?>
           </div>
-          <div class="bottom">本主题有申友留学推荐于2018-01-10 16:30 分类</div>
+          <?php }?>
+<!--          <div class="bottom">本主题有申友留学推荐于2018-01-10 16:30 分类</div>-->
         </div>
         <!--分享-->
         <div class="share">
@@ -140,12 +134,7 @@
             </ul>
           </div>
           <!---分页-->
-<!--          <div class="page-wrap">-->
-<!--            <ul class="pagination" id="pagination1"></ul>-->
-<!--          </div>-->
-<!--          <div>-->
             <?php echo $page;?>
-<!--          </div>-->
           <!---回复输入-->
           <div class="reply-input">
             <textarea placeholder="来评论一下吧"></textarea>
