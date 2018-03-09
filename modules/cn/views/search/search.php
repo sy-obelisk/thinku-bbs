@@ -12,7 +12,7 @@
           <?php foreach ($data as $v) { ?>
             <li class="list-item">
               <div class="img">
-                <img src="" alt="">
+                <img src="<?php echo $v['image']?>" alt="">
               </div>
               <div class="right">
                 <h3><a href="/details/<?php echo $v['id'] ?>.html"><?php $keyword = Yii::$app->request->get('keyword', '');echo (str_replace($keyword,"<span style='color:red;'>".$keyword.'</span>',strip_tags($v['name'])));?></a></h3>

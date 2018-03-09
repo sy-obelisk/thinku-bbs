@@ -28,30 +28,29 @@ class Content extends ActiveRecord
         $model = new Content();
         if($third){
             $cate="$first,$second,$third";
-            $list= $model->getClass(['count'=>1,'fields' => 'listeningFile','category' =>$cate,'pageSize' => $pageSize,'page'=>$page]);
+            $list= $model->getClass(['count'=>1,'fields' => 'listeningFile','category' =>$cate,'order'=>'c.id desc','pageSize' => $pageSize,'page'=>$page]);
             $count=$list['count'];
             unset($list['count']);
         }else{
             if($second){
                 $cate="$first,$second";
-                $list= $model->getClass(['count'=>1,'fields' => 'listeningFile','category' =>$cate,'pageSize' => $pageSize,'page'=>$page]);
+                $list= $model->getClass(['count'=>1,'fields' => 'listeningFile','category' =>$cate,'order'=>'c.id desc','pageSize' => $pageSize,'page'=>$page]);
                 $count=$list['count'];
                 unset($list['count']);
             }else{
                 $where = $where . "c.catId in ('$first')";
-                $sql = "select c.id,c.name,c.abstract,c.viewCount,c.createTime,u.userName,u.nickname,u.image,(SELECT CONCAT_WS(' ',ce.value,ed.value) From {{%content_extend}} ce left JOIN {{%extend_data}} ed ON ed.extendId=ce.id WHERE ce.contentId=c.id AND ce.code='99b3cc02b18ec45447bd9fd59f1cd655')  as listeningFile from {{%content}} c LEFT JOIN {{%user}} u ON u.id=c.userId WHERE $where order by c.id DESC,c.sort ASC";
+                $sql = "select c.id,c.name,c.abstract,c.viewCount,c.createTime,c.userId,u.userName,u.nickname,u.image,(SELECT CONCAT_WS(' ',ce.value,ed.value) From {{%content_extend}} ce left JOIN {{%extend_data}} ed ON ed.extendId=ce.id WHERE ce.contentId=c.id AND ce.code='99b3cc02b18ec45447bd9fd59f1cd655')  as listeningFile from {{%content}} c LEFT JOIN {{%user}} u ON u.id=c.userId WHERE $where order by c.id DESC,c.sort ASC";
                 $count = count(Yii::$app->db->createCommand($sql)->queryAll());
                 $limit = " limit " . ($page - 1) * $pageSize . ",$pageSize";
                 $sql .= " $limit";
                 $list = Yii::$app->db->createCommand($sql)->queryAll();
             }
         }
-//        var_dump($where );die;
-
-//var_dump($data);die;
-//
         foreach ($list as $k => $v) {
             $arr = Yii::$app->db->createCommand("select userName,nickname,ud.createTime from {{%user_discuss}} ud left join {{%user}} u on u.id=ud.userId where ud.contentId=" . $v['id'] . " and ud.pid=0 order by ud.id desc limit 1")->queryOne();
+            $user = Yii::$app->db->createCommand("select userName,nickname,image from  {{%user}} where id=" . $v['userId'] . " limit 1")->queryOne();
+            $list[$k]['userName']= $user['nickname'] == false ? $user['userName'] : $user['nickname'];
+            $list[$k]['image']= $user['image'] ;
             $list[$k]['last']['name'] = $arr['nickname'] == false ? $arr['userName'] : $arr['nickname'];
             $list[$k]['last']['time'] = substr($arr['createTime'], 0, 10);
             $list[$k]['count'] = count(Yii::$app->db->createCommand("select id from {{%user_discuss}}  where contentId=" . $v['id'] . " and pid=0")->queryAll());
