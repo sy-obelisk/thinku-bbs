@@ -300,40 +300,46 @@ class ApiController extends Controller
         die(json_encode(['data' => $data, 'page' => $page, 'code' => 0]));
     }
 
-    /**
-     * 下载文件
-     */
-    public function actionDownload()
-    {
-        //根据内容的id，查找文件的地址
-        // 再判断下载
-        $integral = Yii::$app->session->get('integral', '');
-//        if ($integral < 10) {
-//            echo '<script>alert("您的等级太低，努力升级吧，少年！")</script>';
-//            die;
+//    /**
+//     * 下载文件
+//     */
+//    public function actionDownload()
+//    {
+//        //根据内容的id，查找文件的地址
+//        // 再判断下载
+//        $userId = Yii::$app->session->get('userId', '');
+//        if (!$userId) {
+//            $data['code'] = 2;
+//            $data['message'] = '未登录';
+//            die(json_encode($data));
 //        }
-        $id = Yii::$app->request->post('id', '');
-        $num = Yii::$app->request->post('num', '');
-        $model = new Content();
-        $data = $model->getClass(['fields' => 'url', 'where' => "c.id=$id"]);
-        $url='http://'.$_SERVER['HTTP_HOST'].unserialize($data[0]['url'])[$num-1];
-        $n = strrpos($url, '/') + 1;
-        $fileName = substr($url, $n);
-        $file = fopen($url, "r");
-        if (!$file) {
-            echo "文件找不到";
-        } else {
-            header("Content-type:application/octet-stream");    //输入文件类型
-            header("Accept-Ranges:bytes");
-            Header("Content-Disposition: attachment; filename=" . $fileName);
-            ob_clean();
-            flush();
-            while (!feof($file)) {
-                echo fread($file, 50000);
-            }
-            fclose($file);
-        }
-    }
+//        $integral = Yii::$app->session->get('integral', '');
+////        if ($integral < 10) {
+////            echo '<script>alert("您的等级太低，努力升级吧，少年！")</script>';
+////            die;
+////        }
+//        $id = Yii::$app->request->post('id', '');
+//        $num = Yii::$app->request->post('num', '');
+//        $model = new Content();
+//        $data = $model->getClass(['fields' => 'url', 'where' => "c.id=$id"]);
+//        $url='http://'.$_SERVER['HTTP_HOST'].unserialize($data[0]['url'])[$num-1];
+//        $n = strrpos($url, '/') + 1;
+//        $fileName = substr($url, $n);
+//        $file = fopen($url, "r");
+//        if (!$file) {
+//            echo "文件找不到";
+//        } else {
+//            header("Content-type:application/octet-stream");    //输入文件类型
+//            header("Accept-Ranges:bytes");
+//            Header("Content-Disposition: attachment; filename=" . $fileName);
+//            ob_clean();
+//            flush();
+//            while (!feof($file)) {
+//                echo fread($file, 50000);
+//            }
+//            fclose($file);
+//        }
+//    }
 
     /**
      * 举报，已验证

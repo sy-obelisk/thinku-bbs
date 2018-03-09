@@ -85,9 +85,11 @@
         <h5 class="p-title">报OFFER</h5>
         <div class="bd">
           <ul>
-            <li><a href="">【哈弗大学】恭喜上海朱同学斩获哈弗商学院MBA</a></li>
-            <li><a href="">【哈弗大学】恭喜上海朱同学斩获哈弗商学院MBA</a></li>
-            <li><a href="">【哈弗大学】恭喜上海朱同学斩获哈弗商学院MBA</a></li>
+            <?php foreach($offer as $v){?>
+            <li><a href="http://www.thinkwithu.com/word-details/<?php echo $v['id']?>/104.html" target="_blank">【<?php echo $v['abroadSchool']?>】<?php echo $v['title']?></a></li>
+            <?php }?>
+<!--            <li><a href="">【哈弗大学】恭喜上海朱同学斩获哈弗商学院MBA</a></li>-->
+<!--            <li><a href="">【哈弗大学】恭喜上海朱同学斩获哈弗商学院MBA</a></li>-->
           </ul>
         </div>
       </div>
@@ -95,9 +97,11 @@
         <h5 class="p-title">报高分</h5>
         <div class="bd">
           <ul>
-            <li><a href="">【哈弗大学】恭喜上海朱同学斩获哈弗商学院MBA</a></li>
-            <li><a href="">【哈弗大学】恭喜上海朱同学斩获哈弗商学院MBA</a></li>
-            <li><a href="">【哈弗大学】恭喜上海朱同学斩获哈弗商学院MBA</a></li>
+            <?php foreach($score as $v){?>
+            <li><a href="http://www.thinkwithu.com/picture-details/<?php echo $v['id']?>/104.html" target="_blank">【<?php echo $v['name']?>】<?php echo $v['title']?></a></li>
+            <?php }?>
+<!--            <li><a href="">【哈弗大学】恭喜上海朱同学斩获哈弗商学院MBA</a></li>-->
+<!--            <li><a href="">【哈弗大学】恭喜上海朱同学斩获哈弗商学院MBA</a></li>-->
           </ul>
         </div>
       </div>

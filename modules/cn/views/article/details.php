@@ -12,7 +12,7 @@
 <!--        <li><a href="/">首页</a><span>&gt;</span><a href="">留学</a><span>&gt;</span><a href="">美国</a><span>&gt;</span><a href="">签证</a></li>-->
       </ul>
       <!--帖子内容-->
-      <div class="article" data-id="<?php echo $data['id']?>">
+      <div class="article" data-id="<?php echo $data['id'];?>">
         <div class="title">
           <div class="img">
             <img src="" alt="">
@@ -27,27 +27,38 @@
           </div>
         </div>
         <div class="cnt">
-         <?php echo $data['listeningFile']?>
-          <?php if($data['url']!=false){
-              $url=unserialize($data['url']);
-            foreach($url as $v){
-              echo '<p><a href="'.$v.'">'.substr($v,strrpos($v,'/')+1).'</a></p>';
-            }
-          }?>
+         <?php echo $data['listeningFile'];?>
+<!--          --><?php //if($data['url']!=false){
+//              $url=unserialize($data['url']);
+//            foreach($url as $v){
+//              echo '<p><a href="'.$v.'">'.substr($v,strrpos($v,'/')+1).'</a></p>';
+//            }
+//          }?>
           <!--下载附件-->
           <div class="hide-wrap">
             <!--隐藏-->
+            <?php $integral= Yii::$app->session->get('integral','');
+            if($integral<10){
+            ?>
             <div class="hide-box"><i class="fa fa-lock"></i>抱歉，您的等级还不够，暂时无法下载。多发帖，评论来提高等级吧！</div>
+            <?php }else{?>
             <!--显示-->
             <div class="show-box">
+              <?php if($data['url']!=false){?>
               <ul class="down-list">
+                <?php if($data['url']!=false){
+                $url=unserialize($data['url']);
+                foreach($url as $v){?>
                 <li>
                   <img src="/cn/images/rar.gif" alt="">
-                  <a href="/download?file=/files/attach/file/20170620/1497951168389655.ppt&amp;fileName=3.19 45分钟攻克GMAT长难句.ppt">3.19 45分钟攻克GMAT长难句.ppt</a>
-                  <em>(下载次数：43)</em>
+                  <a href="<?php echo $v?>"><?php echo substr($v,strrpos($v,'/')+1)?></a>
+<!--                  <em></em>-->
                 </li>
+                <?php }?>
               </ul>
+              <?php }?>
             </div>
+            <?php }}?>
           </div>
           <div class="bottom">本主题有申友留学推荐于2018-01-10 16:30 分类</div>
         </div>
