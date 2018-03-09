@@ -13,7 +13,7 @@
     <div class="head-now">
       <p>当前我的头像</p>
       <div class="preview-box">
-        <img src="" alt="">
+        <img src="<?php echo $data['image']?>" alt="">
       </div>
     </div>
     <div class="head-up">

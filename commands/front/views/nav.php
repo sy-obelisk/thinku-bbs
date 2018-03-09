@@ -9,7 +9,7 @@
             <?php } else{?>
             <div class="header-person">
                 <div>
-                    <img src="/cn/images/head.png" alt="">
+                    <img src="<?php echo $user['image']?>" alt="">
                     <p><?php echo $user['nickname']?$user['nickname']:$user['userName']?></p>
                 </div>
                 <ul>

@@ -1,7 +1,7 @@
 <aside class="person-aside">
     <div class="aside-head">
         <div>
-            <img src="" alt="">
+            <img src="<?php echo $user['image']?>" alt="">
         </div>
         <p>用户名</p>
         <p><span class="iconfont icon-jifen"></span>积分：<?php echo $integral?></p>

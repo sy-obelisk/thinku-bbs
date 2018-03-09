@@ -137,7 +137,7 @@ class PersonController extends Controller
             die(json_encode($data));
         }
         $data = Yii::$app->db->createCommand("select image From {{%user}} where id=$userId ")->queryOne();
-        return $this->render('head', $data);
+        return $this->render('head', ['data'=>$data]);
     }
 
     public function actionIntegral()
