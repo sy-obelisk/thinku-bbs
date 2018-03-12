@@ -71,10 +71,15 @@
   float: left;
   width: 80px;
   height: 80px;
+  overflow: hidden;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
   background-color: #ccc;
+}
+.person-box .person-list>.item .collect-img img{
+  width: 100%;
+  height: 100%;
 }
 .person-box .person-list .collect-right {
   overflow: hidden;

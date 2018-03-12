@@ -34,7 +34,12 @@
   float: left;
   width: 80px;
   height: 80px;
+  overflow: hidden;
   background-color: #fff;
+}
+.article-list>li .article-img img {
+  width: 100%;
+  height: 100%;
 }
 .article-list>li .article-info {
   float: left;
