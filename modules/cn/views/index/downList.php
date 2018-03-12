@@ -3,7 +3,7 @@
 <!--内容区-->
 <div class="list-wrap p-container">
   <ul class="bread-crumb">
-    <li><a href="/index.html">首页</a><span>&gt;</span>搜索的内容</li>
+    <li><a href="/index.html">首页</a><span>&gt;</span>资料下载</li>
   </ul>
   <section class="content p-posts clearfix">
     <div class="list-box">
@@ -18,7 +18,7 @@
                 <h3><a href="/details/<?php echo $v['id'] ?>.html"><?php $keyword = Yii::$app->request->get('keyword', '');echo (str_replace($keyword,"<span style='color:red;'>".$keyword.'</span>',strip_tags($v['name'])));?></a></h3>
                 <div class="info-list clearfix">
                   <div class="first-div">
-                    <span><?php echo $v['nickname'] ? $v['nickname'] : $v['userName'] ?></span>
+                    <span><?php echo $v['userName'] ?></span>
                     <span>发布于<?php echo substr($v['createTime'], 0, 10) ?></span>
                   </div>
                   <div class="last-div">

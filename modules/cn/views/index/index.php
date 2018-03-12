@@ -189,34 +189,34 @@
       <div class="down-cnt clearfix">
         <ul>
           <h5><span>留学资料下载</span></h5>
-          <li><a href="">院校排名</a></li>
-          <li><a href="">专业解读</a></li>
-          <li><a href="">选校方案</a></li>
-          <li><a href="">精品留学课件+视频</a></li>
+          <li><a href="/down/91,94/1.html">院校排名</a></li>
+          <li><a href="/down/91,95/1.html">专业解读</a></li>
+          <li><a href="/down/91,96/1.html">选校方案</a></li>
+          <li><a href="/down/91,97/1.html">精品留学课件+视频</a></li>
         </ul>
         <ul>
           <h5><span>托福雅思资料下载</span></h5>
-          <li><a href="">听力资料下载</a></li>
-          <li><a href="">口语资料下载</a></li>
-          <li><a href="">阅读资料下载</a></li>
-          <li><a href="">写作资料下载</a></li>
-          <li><a href="">TPO资料下载</a></li>
-          <li><a href="">托福雅思资料下载</a></li>
+          <li><a href="/down/90,98/1.html">听力资料下载</a></li>
+          <li><a href="/down/90,99/1.html">口语资料下载</a></li>
+          <li><a href="/down/90,100/1.html">阅读资料下载</a></li>
+          <li><a href="/down/90,101/1.html">写作资料下载</a></li>
+          <li><a href="/down/90,102/1.html">TPO资料下载</a></li>
+<!--          <li><a href="">托福雅思资料下载</a></li>-->
         </ul>
         <ul>
           <h5><span>GMAT资料下载</span></h5>
-          <li><a href="">SC资料下载</a></li>
-          <li><a href="">CR资料下载</a></li>
-          <li><a href="">RC资料下载</a></li>
-          <li><a href="">作为/IR资料下载</a></li>
-          <li><a href="">GMAT资料下载</a></li>
+          <li><a href="/down/89,103/1.html">SC资料下载</a></li>
+          <li><a href="/down/89,104/1.html">CR资料下载</a></li>
+          <li><a href="/down/89,105/1.html">RC资料下载</a></li>
+          <li><a href="/down/89,106/1.html">作为/IR资料下载</a></li>
+<!--          <li><a href="">GMAT资料下载</a></li>-->
         </ul>
         <ul>
           <h5><span>SAT资料下载</span></h5>
-          <li><a href="">阅读资料下载</a></li>
-          <li><a href="">文法资料下载</a></li>
-          <li><a href="">数学资料下载</a></li>
-          <li><a href="">SAT资料下载</a></li>
+          <li><a href="/down/92,107/1.html">阅读资料下载</a></li>
+          <li><a href="/down/92,108/1.html">文法资料下载</a></li>
+          <li><a href="/down/92,109/1.html">数学资料下载</a></li>
+<!--          <li><a href="">SAT资料下载</a></li>-->
         </ul>
       </div>
     </section>
