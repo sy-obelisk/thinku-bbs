@@ -36,28 +36,14 @@
         </div>
         <div class="bd">
           <ul>
-            <li><a href="">【TOEFL】托福TPO10阅读名师精评版名师精评（3）</a></li>
-            <li><a href="">【TOEFL】托福TPO10阅读名师精评版名师精评（3）</a></li>
-            <li><a href="">【TOEFL】托福TPO10阅读名师精评版名师精评（3）</a></li>
-            <li><a href="">【TOEFL】托福TPO10阅读名师精评版名师精评（3）</a></li>
-            <li><a href="">【TOEFL】托福TPO10阅读名师精评版名师精评（3）</a></li>
-            <li><a href="">【TOEFL】托福TPO10阅读名师精评版名师精评（3）</a></li>
-            <li><a href="">【TOEFL】托福TPO10阅读名师精评版名师精评（3）</a></li>
-            <li><a href="">【TOEFL】托福TPO10阅读名师精评版名师精评（3）</a></li>
-            <li><a href="">【TOEFL】托福TPO10阅读名师精评版名师精评（3）</a></li>
-            <li><a href="">【TOEFL】托福TPO10阅读名师精评版名师精评（3）</a></li>
-            <li><a href="">【TOEFL】托福TPO10阅读名师精评版名师精评（3）</a></li>
-            <li><a href="">【TOEFL】托福TPO10阅读名师精评版名师精评（3）</a></li>
-            <li><a href="">【TOEFL】托福TPO10阅读名师精评版名师 精评（3）</a></li>
+            <?php foreach($report as $v){?>
+            <li><a href="http://www.thinkwithu.com/word-details/<?php echo $v['id']?>/178,125.html"><?php echo $v['title']?></a></li>
+            <?php }?>
           </ul>
           <ul>
-            <li><a href="">托福110分【核心词汇】精选（超全）【雷哥托福】</a></li>
-            <li><a href="">托福110分【核心词汇】精选（超全）【雷哥托福】</a></li>
-            <li><a href="">托福110分【核心词汇】精选（超全）【雷哥托福】</a></li>
-            <li><a href="">托福110分【核心词汇】精选（超全）【雷哥托福】</a></li>
-            <li><a href="">托福110分【核心词汇】精选（超全）【雷哥托福】</a></li>
-            <li><a href="">托福110分【核心词汇】精选（超全）【雷哥托福】</a></li>
-            <li><a href="">托福110分【核心词汇】精选（超全）【雷哥托福】</a></li>
+            <?php foreach($info as $v){?>
+            <li><a href="http://www.thinkwithu.com/word-details/<?php echo $v['id']?>/88,118.html"><?php echo $v['title']?></a></li>
+            <?php }?>
           </ul>
           <ul>
             <li><a href="">托福24套写作TPO解析【雷哥托福】托福24套写作TPO解析【雷哥托福】托福24套写作TPO解析【雷哥托福】</a></li>

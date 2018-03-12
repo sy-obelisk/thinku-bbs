@@ -24,11 +24,15 @@ class IndexController extends Controller
         $data = $model->getList($first);
         $page = $data['page'];
         $data = $data['list'];
-        $offer=  json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/offer"),true);
-        $score=  json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/score"),true);
+//        $offer=  json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/offer"),true);
+        $offer=  json_decode(file_get_contents("http://www.shenyou.com/cn/api/offer"),true);
+//        $score=  json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/score"),true);
+        $score=  json_decode(file_get_contents("http://www.shenyou.com/cn/api/score"),true);
+        $report=  json_decode(file_get_contents("http://www.shenyou.com/cn/api/score?category='178,125'"),true);
+        $info=  json_decode(file_get_contents("http://www.shenyou.com/cn/api/score?category='88,118'"),true);
 
-//        var_dump($score);die;
-        return $this->render('index', ['data' => $data, 'page' => $page,'offer'=>$offer,'score'=>$score]);
+//        var_dump($report);die;
+        return $this->render('index', ['data' => $data, 'page' => $page,'offer'=>$offer,'score'=>$score,'report'=>$report,'info'=>$info]);
     }
 
     public function actionQuestion()
