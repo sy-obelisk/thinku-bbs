@@ -68,5 +68,24 @@ class IndexController extends Controller
         }
         return $this->render('question', ['recommend' => $recommend, 'new' => $new, 'question' => $question,'p1'=>$p1,'p2'=>$p2,'p3'=>$p3]);
     }
+  //     下载列表页
+    public function actionDown()
+    {
+      $model = new Content();
+      $first = '2,3,4,5,14';
+      $data = $model->getList($first);
+      $page = $data['page'];
+      $data = $data['list'];
+  //        $offer=  json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/offer"),true);
+  //        $offer=  json_decode(file_get_contents("http://www.shenyou.com/cn/api/offer"),true);
+  ////        $score=  json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/score"),true);
+  //        $score=  json_decode(file_get_contents("http://www.shenyou.com/cn/api/score"),true);
+  //        $report=  json_decode(file_get_contents("http://www.shenyou.com/cn/api/score?category='178,125'"),true);
+  //        $info=  json_decode(file_get_contents("http://www.shenyou.com/cn/api/score?category='88,118'"),true);
+
+  //        var_dump($report);die;
+      return $this->render('index', ['data' => $data, 'page' => $page]);
+  //        return $this->render('index', ['data' => $data, 'page' => $page,'offer'=>$offer,'score'=>$score,'report'=>$report,'info'=>$info]);
+    }
 
 }
