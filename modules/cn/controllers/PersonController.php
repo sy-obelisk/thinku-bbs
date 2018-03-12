@@ -72,8 +72,9 @@ class PersonController extends Controller
         foreach ($data['data'] as $k => $v) {
             $data['data'][$k]['count'] = count(Yii::$app->db->createCommand("select id from {{%user_discuss}}  where contentId=" . $v['id'] . " and pid=0")->queryAll());
         }
+       $pic= Yii::$app->db->createCommand("select image from {{%user}} where id=$userId")->queryOne()['image'];
         $page=$this->actionPage($data['count'],'/article/',$page,$pageSize);
-        return $this->render('article', ['data'=>$data,'page'=>$page]);
+        return $this->render('article', ['data'=>$data,'page'=>$page,'pic'=>$pic]);
 
     }
 
@@ -88,10 +89,11 @@ class PersonController extends Controller
             echo "<script>alert('未登录')</script>";
             die;
         }
-        $arr = Yii::$app->db->createCommand("select news,sendId,n.createTime,status,u.nickname,u.userName,u.image from {{%news}} n left join {{%user}} u on n.sendId=u.id where userId=$userId order by n.id DESC limit $offset,$pageSize")->queryAll();
+        $all= Yii::$app->db->createCommand("select news,sendId,n.createTime,status,u.nickname,u.userName,u.image from {{%news}} n left join {{%user}} u on n.sendId=u.id where userId=$userId order by n.id DESC ")->queryAll();
+        $new = Yii::$app->db->createCommand("select news,sendId,n.createTime,status,u.nickname,u.userName,u.image from {{%news}} n left join {{%user}} u on n.sendId=u.id where userId=$userId and status=0 order by n.id DESC ")->queryAll();
         $count= count(Yii::$app->db->createCommand("select n.id from {{%news}} n left join {{%user}} u on n.sendId=u.id where userId=$userId order by n.id DESC ")->queryAll());
         $page=$this->actionPage($count,'/info/',$page,$pageSize);
-        return $this->render('information', ['arr'=>$arr,'page'=>$page]);
+        return $this->render('information', ['arr'=>$all,'page'=>$page,'new'=>$new]);
     }
 
     // 留言板
@@ -115,7 +117,7 @@ class PersonController extends Controller
         $pageSize = 15;
         $offset = $pageSize * ($page - 1);
         $str = rtrim($str, ',');
-        $sql = "select c.id,comment,ud.createTime,c.name,u.nickname,u.userName From {{%user_discuss}} ud left join {{%content}} c on ud.contentId=c.id left join {{%user}} u on ud.userId=u.id where c.id in ($str) order by ud.id desc";
+        $sql = "select c.id,comment,ud.createTime,c.name,u.nickname,u.userName,u.image From {{%user_discuss}} ud left join {{%content}} c on ud.contentId=c.id left join {{%user}} u on ud.userId=u.id where c.id in ($str) order by ud.id desc";
         $data['count'] = count(Yii::$app->db->createCommand("$sql")->queryAll());
         $data['data'] = Yii::$app->db->createCommand("$sql limit $offset,$pageSize")->queryAll();
         $page=$this->actionPage($data['count'],'/message-board/',$page,$pageSize);

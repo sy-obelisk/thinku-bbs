@@ -20,7 +20,7 @@
       <?php foreach($data['data'] as $v){?>
       <li class="clearfix">
         <div class="article-img">
-          <img src="<?php $v['image']?>" alt="">
+          <img src="<?php echo $pic?>" alt="">
         </div>
         <div class="article-info">
           <h3><a href="/details/<?php echo $v['id']?>.html"><?php echo $v['name']?></a></h3>
