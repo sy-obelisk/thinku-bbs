@@ -33,9 +33,13 @@ var _question = {
         var lis = '';
         for(var i=0,data = res.data;i<data.length;i++){
           lis+= '<li>'+
-            '<div class="head">'+
-            '<img src="'+data[i].image+'" alt="">'+
-            '</div>'+
+            '<div class="head">';
+          if (data[i].image){
+            lis+='<img src="'+data[i].image+'" alt="">';
+          }else {
+            lis+='<img src="/cn/images/head.png" alt="">';
+          }
+          lis+='</div>'+
             '<div class="cnt">'+
             '<h5><span class="logo">Q</span><a href="/details/'+data[i].id+'.html">'+data[i].name+'</a></h5>'+
             '<div class="answer">'+

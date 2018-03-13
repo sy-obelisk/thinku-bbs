@@ -89,9 +89,13 @@ var _index = {
           var ulItem = "<ul>";
           for(var i=0,data=res.data;i<data.length;i++) {
             ulItem+="<li class='item'>"+
-              "<div class='img'>"+
-              "<img src='"+data[i].image+"' alt='头像'>"+
-              "</div>"+
+              "<div class='img'>";
+              if (data[i].image){
+                ulItem+="<img src='"+data[i].image+"' alt='头像'>";
+              }else {
+                ulItem+="<img src='/cn/images/head.png' alt='头像'>";
+              }
+            ulItem+="</div>"+
               "<div class='right'>"+
               "<h3><a href='/details/"+data[i].id+".html'>"+data[i].name+"<i class='iconfont icon-hot'></a></i></h3>"+
               "<div class='info-list clearfix'>"+
@@ -149,9 +153,13 @@ var _index = {
           var ulItem = "<ul>";
           for(var i=0,data=res.data;i<data.length;i++) {
             ulItem+="<li class='item'>"+
-              "<div class='img'>"+
-              "<img src='"+data[i].image+"' alt='头像'>"+
-              "</div>"+
+              "<div class='img'>";
+            if (data[i].image){
+              ulItem+="<img src='"+data[i].image+"' alt='头像'>";
+            }else {
+              ulItem+="<img src='/cn/images/head.png' alt='头像'>";
+            }
+            ulItem+="</div>"+
               "<div class='right'>";
             if (i <= 3 && p == 1){
               ulItem+="<h3><a href='/details/"+data[i].id+".html'>"+data[i].name+"<i class='iconfont icon-hot'></i></a></h3>";
