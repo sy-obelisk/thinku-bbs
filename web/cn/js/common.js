@@ -102,8 +102,7 @@ var _common = {
   // 退出
   loginOut : function () {
     $.post('/cn/api/login-out',function (res) {
-      console.log(res);
-      location.reload();
+      location.href = '/index.html';
     },'json')
   },
   // 问题搜索
