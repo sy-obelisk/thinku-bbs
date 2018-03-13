@@ -5,21 +5,13 @@
       <div class="bnr-banner">
         <div class="box">
           <ul>
+            <?php foreach($banner as $v){?>
             <li>
-              <a href="">
-                <img src="/cn/images/index02.png" alt="">
+              <a href="<?php echo $url?>">
+                <img src="<?php echo $v['image']?>" alt="">
               </a>
             </li>
-            <li>
-              <a href="">
-                <img src="/cn/images/index02.png" alt="">
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <img src="/cn/images/index02.png" alt="">
-              </a>
-            </li>
+            <?php }?>
           </ul>
         </div>
         <div class="prev">&lt;</div>
@@ -30,38 +22,35 @@
           <ul>
             <li>报告</li>
             <li>资讯</li>
-            <li>故事</li>
-            <li>头条</li>
+<!--            <li>故事</li>-->
+            <li>问答</li>
           </ul>
         </div>
         <div class="bd">
           <ul>
-<!--            --><?php //foreach($report as $v){?>
-<!--            <li><a href="http://www.thinkwithu.com/word-details/--><?php //echo $v['id']?><!--/178,125.html">--><?php //echo $v['title']?><!--</a></li>-->
-<!--            --><?php //}?>
+            <?php foreach($report['contentData'] as $v){?>
+            <li><a href="http://www.thinkwithu.com/word-details/<?php echo $v['id']?>/178,125.html"><?php echo $v['title']?></a></li>
+            <?php }?>
           </ul>
           <ul>
-<!--            --><?php //foreach($info as $v){?>
-<!--            <li><a href="http://www.thinkwithu.com/word-details/--><?php //echo $v['id']?><!--/88,118.html">--><?php //echo $v['title']?><!--</a></li>-->
-<!--            --><?php //}?>
+            <?php foreach($info['contentData'] as $v){?>
+            <li><a href="http://www.thinkwithu.com/word-details/<?php echo $v['id']?>/88,118.html"><?php echo $v['title']?></a></li>
+            <?php }?>
           </ul>
           <ul>
-            <li><a href="">托福24套写作TPO解析【雷哥托福】托福24套写作TPO解析【雷哥托福】托福24套写作TPO解析【雷哥托福】</a></li>
-            <li><a href="">托福24套写作TPO解析【雷哥托福】</a></li>
-            <li><a href="">托福24套写作TPO解析【雷哥托福】</a></li>
-            <li><a href="">托福24套写作TPO解析【雷哥托福】</a></li>
-            <li><a href="">托福24套写作TPO解析【雷哥托福】</a></li>
-            <li><a href="">托福24套写作TPO解析【雷哥托福】</a></li>
+            <?php foreach($question['data'] as $v){?>
+              <li><a href="http://www.thinkwithu.com/word-details/<?php echo $v['id']?>/121.html"><?php echo $v['title']?></a></li>
+            <?php }?>
           </ul>
-          <ul>
-            <li><a href="">托福写作连接词怎么用？【雷哥托福】</a></li>
-            <li><a href="">托福写作连接词怎么用？【雷哥托福】</a></li>
-            <li><a href="">托福写作连接词怎么用？【雷哥托福】</a></li>
-            <li><a href="">托福写作连接词怎么用？【雷哥托福】</a></li>
-            <li><a href="">托福写作连接词怎么用？【雷哥托福】</a></li>
-            <li><a href="">托福写作连接词怎么用？【雷哥托福】</a></li>
-            <li><a href="">托福写作连接词怎么用？【雷哥托福】</a></li>
-          </ul>
+<!--          <ul>-->
+<!--            <li><a href="">托福写作连接词怎么用？【雷哥托福】</a></li>-->
+<!--            <li><a href="">托福写作连接词怎么用？【雷哥托福】</a></li>-->
+<!--            <li><a href="">托福写作连接词怎么用？【雷哥托福】</a></li>-->
+<!--            <li><a href="">托福写作连接词怎么用？【雷哥托福】</a></li>-->
+<!--            <li><a href="">托福写作连接词怎么用？【雷哥托福】</a></li>-->
+<!--            <li><a href="">托福写作连接词怎么用？【雷哥托福】</a></li>-->
+<!--            <li><a href="">托福写作连接词怎么用？【雷哥托福】</a></li>-->
+<!--          </ul>-->
         </div>
       </div>
     </section>
@@ -71,11 +60,9 @@
         <h5 class="p-title">报OFFER</h5>
         <div class="bd">
           <ul>
-<!--            --><?php //foreach($offer as $v){?>
-<!--            <li><a href="http://www.thinkwithu.com/word-details/--><?php //echo $v['id']?><!--/104.html" target="_blank">【--><?php //echo $v['abroadSchool']?><!--】--><?php //echo $v['title']?><!--</a></li>-->
-<!--            --><?php //}?>
-<!--            <li><a href="">【哈弗大学】恭喜上海朱同学斩获哈弗商学院MBA</a></li>-->
-<!--            <li><a href="">【哈弗大学】恭喜上海朱同学斩获哈弗商学院MBA</a></li>-->
+            <?php foreach($offer as $v){?>
+            <li><a href="http://www.thinkwithu.com/word-details/<?php echo $v['id']?>/104.html" target="_blank">【<?php echo $v['abroadSchool']?>】<?php echo $v['title']?></a></li>
+            <?php }?>
           </ul>
         </div>
       </div>
@@ -83,11 +70,9 @@
         <h5 class="p-title">报高分</h5>
         <div class="bd">
           <ul>
-<!--            --><?php //foreach($score as $v){?>
-<!--            <li><a href="http://www.thinkwithu.com/picture-details/--><?php //echo $v['id']?><!--/104.html" target="_blank">【--><?php //echo $v['name']?><!--】--><?php //echo $v['title']?><!--</a></li>-->
-<!--            --><?php //}?>
-<!--            <li><a href="">【哈弗大学】恭喜上海朱同学斩获哈弗商学院MBA</a></li>-->
-<!--            <li><a href="">【哈弗大学】恭喜上海朱同学斩获哈弗商学院MBA</a></li>-->
+            <?php foreach($score as $v){?>
+            <li><a href="http://www.thinkwithu.com/picture-details/<?php echo $v['id']?>/104.html" target="_blank">【<?php echo $v['name']?>】<?php echo $v['title']?></a></li>
+            <?php }?>
           </ul>
         </div>
       </div>
@@ -153,27 +138,15 @@
         <h5 class="p-title">出国留学热门公开课</h5>
         <div class="box">
           <ul>
+            <?php foreach($class['data'] as $v){?>
             <li>
-              <img src="/cn/images/index02.png" alt="">
+              <img src="http://www.thinkwithu.com<?php echo $v['image']?>" alt="">
               <div>
-                <p><a href="">查看详情</a></p>
+                <p><a href="http://www.thinkwithu.com/public-class/<?php echo $v['id']?>.html">查看详情</a></p>
                 <p><a href="">立即报名</a></p>
               </div>
             </li>
-            <li>
-              <img src="/cn/images/index02.png" alt="">
-              <div>
-                <p><a href="">查看详情</a></p>
-                <p><a href="">立即报名</a></p>
-              </div>
-            </li>
-            <li>
-              <img src="/cn/images/index02.png" alt="">
-              <div>
-                <p><a href="">查看详情</a></p>
-                <p><a href="">立即报名</a></p>
-              </div>
-            </li>
+            <?php }?>
           </ul>
         </div>
         <div class="prev">&lt;</div>
@@ -201,7 +174,6 @@
           <li><a href="/down/90,100/1.html">阅读资料下载</a></li>
           <li><a href="/down/90,101/1.html">写作资料下载</a></li>
           <li><a href="/down/90,102/1.html">TPO资料下载</a></li>
-<!--          <li><a href="">托福雅思资料下载</a></li>-->
         </ul>
         <ul>
           <h5><span>GMAT资料下载</span></h5>
@@ -209,14 +181,12 @@
           <li><a href="/down/89,104/1.html">CR资料下载</a></li>
           <li><a href="/down/89,105/1.html">RC资料下载</a></li>
           <li><a href="/down/89,106/1.html">作为/IR资料下载</a></li>
-<!--          <li><a href="">GMAT资料下载</a></li>-->
         </ul>
         <ul>
           <h5><span>SAT资料下载</span></h5>
           <li><a href="/down/92,107/1.html">阅读资料下载</a></li>
           <li><a href="/down/92,108/1.html">文法资料下载</a></li>
           <li><a href="/down/92,109/1.html">数学资料下载</a></li>
-<!--          <li><a href="">SAT资料下载</a></li>-->
         </ul>
       </div>
     </section>

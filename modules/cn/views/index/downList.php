@@ -3,7 +3,7 @@
 <!--内容区-->
 <div class="list-wrap p-container">
   <ul class="bread-crumb">
-    <li><a href="/index.html">首页</a><span>&gt;</span>资料下载</li>
+    <li><a href="/index.html">首页</a><?php foreach($nav as $v){ echo '<span>&gt;</span>'.$v;}?></li>
   </ul>
   <section class="content p-posts clearfix">
     <div class="list-box">

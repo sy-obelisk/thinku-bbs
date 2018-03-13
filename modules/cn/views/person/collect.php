@@ -13,7 +13,7 @@
         <?php foreach($data['data'] as $v){?>
         <li class="item">
           <div class="collect-img">
-            <img src="<?php echo $v['image']?>" alt="">
+            <img src="<?php echo $v['image']!=false?$v['image']:'/cn/images/head.png'?>" alt="">
           </div>
           <div class="collect-right">
             <h3><a href="/details/<?php echo $v['id']?>.html"><?php echo $v['name']?></a></h3>

@@ -14,7 +14,7 @@
           <?php foreach($list as $k=>$v){?>
         <li class="item">
           <div class="head">
-            <img src="<?php echo $data[$k]['image']?>" alt="">
+            <img src="<?php echo $data[$k]['image']!=false?$data[$k]['image']:'/cn/images/head.png'?>" alt="">
           </div>
           <div class="cnt">
             <h5><span class="logo">Q</span><a href="/details/<?php echo $v['id']?>.html"><?php echo $v['name']?></a></h5>

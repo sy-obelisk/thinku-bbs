@@ -9,7 +9,7 @@
             <?php } else{?>
             <div class="header-person">
                 <div>
-                    <img src="<?php echo $user['image']?>" alt="">
+                    <img src="<?php echo $user['image']!=false?$user['image']:'/cn/images/head.png'?>" alt="">
                     <p><?php echo $user['nickname']?$user['nickname']:$user['userName']?></p>
                 </div>
                 <ul>
@@ -51,7 +51,7 @@
     <span class="ask-close">X</span>
     <div class="ask-wrap">
       <p>提问前请先搜索</p>
-      <input type="search" class="ask-input" placeholder="请输入问题"></input>
+      <input type="search" class="ask-input" placeholder="请输入问题"/>
       <ul class="ask-list">
 <!--        <p>你想问的是不是：</p>-->
 <!--        <li class="ask-item">-->

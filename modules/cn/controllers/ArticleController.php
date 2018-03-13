@@ -36,7 +36,6 @@ class ArticleController extends Controller
         $discussModel = new UserDiscuss();
         $discuss = $discussModel->getContentDiscuss($id,$page,6);//评论
         $nav = Yii::$app->db->createCommand("SELECT c.name from {{%category_content}} cc left join {{%category}} c on cc.catId = c.id where cc.contentId = $id limit 5")->queryAll();
-//        var_dump($nav);die;
         $viewCount = $data['viewCount'];
         Content::updateAll(['viewCount' => ($viewCount + 1)], "id=$id");
         if ($discuss['count'] != false) {

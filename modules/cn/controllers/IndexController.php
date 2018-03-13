@@ -25,16 +25,15 @@ class IndexController extends Controller
         $data = $model->getList($first);
         $page = $data['page'];
         $data = $data['list'];
-//        $offer=  json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/offer"),true);
-//        $offer=  json_decode(file_get_contents("http://www.shenyou.com/cn/api/offer"),true);
-////        $score=  json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/score"),true);
-//        $score=  json_decode(file_get_contents("http://www.shenyou.com/cn/api/score"),true);
-//        $report=  json_decode(file_get_contents("http://www.shenyou.com/cn/api/score?category='178,125'"),true);
-//        $info=  json_decode(file_get_contents("http://www.shenyou.com/cn/api/score?category='88,118'"),true);
-
-//        var_dump($report);die;
-        return $this->render('index', ['data' => $data, 'page' => $page]);
-//        return $this->render('index', ['data' => $data, 'page' => $page,'offer'=>$offer,'score'=>$score,'report'=>$report,'info'=>$info]);
+        $offer = json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/offer"), true);
+        $score = json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/score"), true);
+        $report = json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/list?category='178'"), true);
+        $info = json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/list?category='88'"), true);
+        $question = json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/question"), true);
+        $banner = $model->getClass(['fields' => 'url', 'category' => '118,120', 'order' => ' c.id desc', 'limit' => 10]);
+        $class = json_decode(file_get_contents("http://www.shenyou.com/cn/api/public-class"), true);
+//echo'<pre>';var_dump($class);die;
+        return $this->render('index', ['data' => $data, 'page' => $page, 'offer' => $offer, 'score' => $score, 'report' => $report, 'info' => $info, 'question' => $question, 'banner' => $banner,'class'=>$class]);
     }
 
     public function actionQuestion()
@@ -74,17 +73,18 @@ class IndexController extends Controller
     public function actionDown()
     {
         $model = new Content();
-        $id=Yii::$app->request->get('cate','');
-        $page=Yii::$app->request->get('page',1);
-        $pageSize=15;
-        $data = $model->getClass(['count'=>1,'fields' => 'listeningFile,url', 'category' => "$id", 'order' => ' c.id desc', 'page' => $page,'pageSize'=>$pageSize]);
-        $count=$data['count'];unset($data['count']);
+        $id = Yii::$app->request->get('cate', '');
+        $page = Yii::$app->request->get('page', 1);
+        $pageSize = 15;
+        $data = $model->getClass(['count' => 1, 'fields' => 'listeningFile,url', 'category' => "$id", 'order' => ' c.id desc', 'page' => $page, 'pageSize' => $pageSize]);
+        $count = $data['count'];
+        unset($data['count']);
 
         foreach ($data as $k => $v) {
             $arr = Yii::$app->db->createCommand("select userName,nickname,ud.createTime from {{%user_discuss}} ud left join {{%user}} u on u.id=ud.userId where ud.contentId=" . $v['id'] . " and ud.pid=0 order by ud.id desc limit 1")->queryOne();
             $user = Yii::$app->db->createCommand("select userName,nickname,image from  {{%user}} where id=" . $v['userId'] . " limit 1")->queryOne();
-            $data[$k]['userName']= $user['nickname'] == false ? $user['userName'] : $user['nickname'];
-            $data[$k]['image']= $user['image'] ;
+            $data[$k]['userName'] = $user['nickname'] == false ? $user['userName'] : $user['nickname'];
+            $data[$k]['image'] = $user['image'];
             $data[$k]['last']['name'] = $arr['nickname'] == false ? $arr['userName'] : $arr['nickname'];
             $data[$k]['last']['time'] = substr($arr['createTime'], 0, 10);
             $data[$k]['count'] = count(Yii::$app->db->createCommand("select id from {{%user_discuss}}  where contentId=" . $v['id'] . " and pid=0")->queryAll());
@@ -92,10 +92,14 @@ class IndexController extends Controller
         }
 
         $pager = new Pager($count, $page, $pageSize);
-        $u ='/down/'.$id.'/';
-        $url = "http://" . $_SERVER['HTTP_HOST'] . "$u" ;
+        $u = '/down/' . $id . '/';
+        $url = "http://" . $_SERVER['HTTP_HOST'] . "$u";
         $p = $pager->GetPager($url);
-        return $this->render('downList', ['data' => $data, 'page' => $p]);
+        $nav = array();
+        foreach (explode(',', $id) as $k => $v) {
+            $nav[$k] = Yii::$app->db->createCommand("SELECT name from  {{%category}} where id=$v order by createTime asc limit 1")->queryOne()['name'];
+        }
+        return $this->render('downList', ['data' => $data, 'page' => $p, 'nav' => $nav]);
     }
 
 }

@@ -1085,39 +1085,39 @@ class ApiController extends Controller
         die(json_encode(['data'=>$data,'page'=>$p]));
     }
 
-//    /**
-//     * 上传文件
-//     */
-//    public function actionFileUpload()
-//    {
-//        $token = Yii::$app->request->post('token');
-//        $session = Yii::$app->session;
-//        $authenticity_token = $session->get('authenticity_token');
-//        if ($token == $authenticity_token) {
-//            $file = $_FILES['upload_file'];
-//            $upload = new \UploadFile();
-////            $upload->int_max_size = 20145728;
-//            $upload->int_max_size = 2097152;
-//            $upload->arr_allow_exts = array('pdf', 'txt', 'doc','docx');
-//            $upload->str_save_path ='/files/user/upload/'.date('Yd').'/';
-//            //Aaron ： 处理html5上传情况
-//            if (Yii::$app->request->post('client') == 'html5') {
-//                $file['name'] = Yii::$app->request->post('filename');
-//            }
-//            $arr_rs = $upload->upload($file);
-//            if ($arr_rs['int_code'] == 1) {
-//                $filePath = '/' . Yii::$app->params['upSpoken'] . $arr_rs['arr_data']['arr_data'][0]['savename'];
-//                $res['code'] = 1;
-//                $res['file'] = $filePath;
-//                $res['message'] = '上传成功';
-//            } else {
-//                $res['code'] = 0;
-//                $res['message'] = '上传失败，请重试';
-//            }
-//        } else {
-//            $res['code'] = 0;
-//            $res['message'] = '上传失败，令牌错误';
-//        }
-//        die(json_encode($res));
-//    }
+    /**
+     * 上传文件
+     */
+    public function actionFileUpload()
+    {
+        $token = Yii::$app->request->post('token');
+        $session = Yii::$app->session;
+        $authenticity_token = $session->get('authenticity_token');
+        if ($token == $authenticity_token) {
+            $file = $_FILES['upload_file'];
+            $upload = new \UploadFile();
+//            $upload->int_max_size = 20145728;
+            $upload->int_max_size = 2097152;
+            $upload->arr_allow_exts = array('pdf', 'txt', 'doc','docx');
+            $upload->str_save_path ='/files/user/upload/'.date('Yd').'/';
+            //Aaron ： 处理html5上传情况
+            if (Yii::$app->request->post('client') == 'html5') {
+                $file['name'] = Yii::$app->request->post('filename');
+            }
+            $arr_rs = $upload->upload($file);
+            if ($arr_rs['int_code'] == 1) {
+                $filePath = '/' . Yii::$app->params['upSpoken'] . $arr_rs['arr_data']['arr_data'][0]['savename'];
+                $res['code'] = 1;
+                $res['file'] = $filePath;
+                $res['message'] = '上传成功';
+            } else {
+                $res['code'] = 0;
+                $res['message'] = '上传失败，请重试';
+            }
+        } else {
+            $res['code'] = 0;
+            $res['message'] = '上传失败，令牌错误';
+        }
+        die(json_encode($res));
+    }
 }

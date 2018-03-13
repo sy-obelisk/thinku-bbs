@@ -35,7 +35,7 @@
         <?php foreach($new as $v){?>
           <li>
 <!--            <div class="img">-->
-<!--              <img src="--><?php //echo $v['image']?><!--" alt="">-->
+<!--              <img src="--><?php //echo $v['image']?$v['image']:'/cn/images/head.png'?><!--" alt="">-->
 <!--            </div>-->
             <div class="text">
               <?php echo $v['news']?>
