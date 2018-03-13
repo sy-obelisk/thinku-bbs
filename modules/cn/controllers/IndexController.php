@@ -31,9 +31,9 @@ class IndexController extends Controller
         $info = json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/list?category='88'"), true);
         $question = json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/question"), true);
         $banner = $model->getClass(['fields' => 'url', 'category' => '118,120', 'order' => ' c.id desc', 'limit' => 10]);
-        $class = json_decode(file_get_contents("http://www.shenyou.com/cn/api/public-class"), true);
-//echo'<pre>';var_dump($class);die;
-        return $this->render('index', ['data' => $data, 'page' => $page, 'offer' => $offer, 'score' => $score, 'report' => $report, 'info' => $info, 'question' => $question, 'banner' => $banner,'class'=>$class]);
+//        $class = json_decode(file_get_contents("http://www.shenyou.com/cn/api/public-class"), true);
+        return $this->render('index', ['data' => $data, 'page' => $page, 'offer' => $offer, 'score' => $score, 'report' => $report, 'info' => $info, 'question' => $question, 'banner' => $banner]);
+//        return $this->render('index', ['data' => $data, 'page' => $page, 'offer' => $offer, 'score' => $score, 'report' => $report, 'info' => $info, 'question' => $question, 'banner' => $banner,'class'=>$class]);
     }
 
     public function actionQuestion()
@@ -90,11 +90,14 @@ class IndexController extends Controller
             $data[$k]['count'] = count(Yii::$app->db->createCommand("select id from {{%user_discuss}}  where contentId=" . $v['id'] . " and pid=0")->queryAll());
 
         }
-
-        $pager = new Pager($count, $page, $pageSize);
-        $u = '/down/' . $id . '/';
-        $url = "http://" . $_SERVER['HTTP_HOST'] . "$u";
-        $p = $pager->GetPager($url);
+        if($count!=false){
+            $pager = new Pager($count, $page, $pageSize);
+            $u = '/down/' . $id . '/';
+            $url = "http://" . $_SERVER['HTTP_HOST'] . "$u";
+            $p = $pager->GetPager($url);
+        }else{
+            $p='';
+        }
         $nav = array();
         foreach (explode(',', $id) as $k => $v) {
             $nav[$k] = Yii::$app->db->createCommand("SELECT name from  {{%category}} where id=$v order by createTime asc limit 1")->queryOne()['name'];

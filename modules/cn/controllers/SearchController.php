@@ -21,10 +21,6 @@ class SearchController extends Controller
         $keyword = Yii::$app->request->get('keyword', '');
         $integral = Yii::$app->session->get('integral', '');
         $page = (int)Yii::$app->request->get('page', 1);
-        if ($integral < 10) {
-            echo '<script>alert("您的等级太低，努力升级吧，少年！")</script>';
-            die;
-        }
         $keyword = addslashes($keyword);
         $keyword = strip_tags($keyword);
         $pageSize = 15;

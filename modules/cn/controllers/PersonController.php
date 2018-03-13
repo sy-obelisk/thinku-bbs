@@ -113,14 +113,19 @@ class PersonController extends Controller
                 $str .= $val . ',';
             }
         }
-        $page = Yii::$app->request->get('page', 1);
-        $pageSize = 15;
-        $offset = $pageSize * ($page - 1);
-        $str = rtrim($str, ',');
-        $sql = "select c.id,comment,ud.createTime,c.name,u.nickname,u.userName,u.image From {{%user_discuss}} ud left join {{%content}} c on ud.contentId=c.id left join {{%user}} u on ud.userId=u.id where c.id in ($str) order by ud.id desc";
-        $data['count'] = count(Yii::$app->db->createCommand("$sql")->queryAll());
-        $data['data'] = Yii::$app->db->createCommand("$sql limit $offset,$pageSize")->queryAll();
-        $page=$this->actionPage($data['count'],'/message-board/',$page,$pageSize);
+        if($arr!=false){
+            $pageSize = 15;
+            $offset = $pageSize * ($page - 1);
+            $str = rtrim($str, ',');
+            $sql = "select c.id,comment,ud.createTime,c.name,u.nickname,u.userName,u.image From {{%user_discuss}} ud left join {{%content}} c on ud.contentId=c.id left join {{%user}} u on ud.userId=u.id where c.id in ($str) order by ud.id desc";
+            $data['count'] = count(Yii::$app->db->createCommand("$sql")->queryAll());
+            $data['data'] = Yii::$app->db->createCommand("$sql limit $offset,$pageSize")->queryAll();
+            $page=$this->actionPage($data['count'],'/message-board/',$page,$pageSize);
+        }else{
+            $page='';
+            $data['data']=array();
+        }
+
 //        var_dump($data['data']);die;
         return $this->render('leave', ['page'=>$page,'data'=>$data]);
     }

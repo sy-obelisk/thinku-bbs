@@ -29,17 +29,17 @@
         <div class="bd">
           <ul>
             <?php foreach($report['contentData'] as $v){?>
-            <li><a href="http://www.thinkwithu.com/word-details/<?php echo $v['id']?>/178,125.html"><?php echo $v['title']?></a></li>
+            <li><a href="http://www.thinkwithu.com/word-details/<?php echo $v['id']?>/178,125.html" target="_blank"><?php echo $v['title']?></a></li>
             <?php }?>
           </ul>
           <ul>
             <?php foreach($info['contentData'] as $v){?>
-            <li><a href="http://www.thinkwithu.com/word-details/<?php echo $v['id']?>/88,118.html"><?php echo $v['title']?></a></li>
+            <li><a href="http://www.thinkwithu.com/word-details/<?php echo $v['id']?>/88,118.html" target="_blank"><?php echo $v['title']?></a></li>
             <?php }?>
           </ul>
           <ul>
             <?php foreach($question['data'] as $v){?>
-              <li><a href="http://www.thinkwithu.com/word-details/<?php echo $v['id']?>/121.html"><?php echo $v['title']?></a></li>
+              <li><a href="http://www.thinkwithu.com/word-details/<?php echo $v['id']?>/121.html" target="_blank"><?php echo $v['title']?></a></li>
             <?php }?>
           </ul>
 <!--          <ul>-->
@@ -83,13 +83,13 @@
         <h5 class="p-title">热门板块</h5>
         <ul class="clearfix hot-list">
           <li class="hot-item">
-            <a href="http://www.thinkwithu.com/evaluation.html">
+            <a href="http://www.thinkwithu.com/evaluation.html" target="_blank">
               <div></div>
               <p>留学评估</p>
             </a>
           </li>
           <li class="hot-item">
-            <a href="http://www.thinkwithu.com/practices.html">
+            <a href="http://www.thinkwithu.com/practices.html" target="_blank">
               <div></div>
               <p>背景提升</p>
             </a>
@@ -101,7 +101,7 @@
             </a>
           </li>
           <li class="hot-item">
-            <a href="http://www.thinkwithu.com/schools.html">
+            <a href="http://www.thinkwithu.com/schools.html" target="_blank">
               <div></div>
               <p>院校排名</p>
             </a>
@@ -121,13 +121,13 @@
             </a>
           </li>
           <li class="hot-item">
-            <a href="http://www.thinkwithu.com/list/178,125.html">
+            <a href="http://www.thinkwithu.com/list/178,125.html" target="_blank">
               <div></div>
               <p>研究报告</p>
             </a>
           </li>
           <li class="hot-item">
-            <a href="http://www.thinkwithu.com/case.html">
+            <a href="http://www.thinkwithu.com/case.html" target="_blank">
               <div></div>
               <p>名校案例</p>
             </a>
@@ -138,15 +138,15 @@
         <h5 class="p-title">出国留学热门公开课</h5>
         <div class="box">
           <ul>
-            <?php foreach($class['data'] as $v){?>
-            <li>
-              <img src="http://www.thinkwithu.com<?php echo $v['image']?>" alt="">
-              <div>
-                <p><a href="http://www.thinkwithu.com/public-class/<?php echo $v['id']?>.html">查看详情</a></p>
-                <p><a href="">立即报名</a></p>
-              </div>
-            </li>
-            <?php }?>
+<!--            --><?php //foreach($class['data'] as $v){?>
+<!--            <li>-->
+<!--              <img src="http://www.thinkwithu.com--><?php //echo $v['image']?><!--" alt="">-->
+<!--              <div>-->
+<!--                <p><a href="http://www.thinkwithu.com/public-class/--><?php //echo $v['id']?><!--.html">查看详情</a></p>-->
+<!--                <p><a href="">立即报名</a></p>-->
+<!--              </div>-->
+<!--            </li>-->
+<!--            --><?php //}?>
           </ul>
         </div>
         <div class="prev">&lt;</div>

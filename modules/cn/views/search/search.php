@@ -9,6 +9,7 @@
     <div class="list-box">
       <div class="list-cnt">
         <ul>
+          <?php if($data==false){ echo '暂未搜索到数据，换一个关键词试试！';}else{?>
           <?php foreach ($data as $v) { ?>
             <li class="list-item">
               <div class="img">
@@ -32,7 +33,7 @@
                 </div>
               </div>
             </li>
-          <?php } ?>
+          <?php } }?>
         </ul>
         <!---分页-->
         <div>
