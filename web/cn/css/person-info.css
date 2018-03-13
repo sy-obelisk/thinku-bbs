@@ -11,6 +11,9 @@
   font-size: 14px;
   cursor: default;
 }
+.info-tab>ul>li:last-of-type {
+  border: 0;
+}
 .info-tab>ul>li span {
   display: inline-block;
   cursor: default;
@@ -22,9 +25,9 @@
 .info-box {
   margin-top: 20px;
 }
-.info-box> info-list>li {
+.info-box>.info-list>li {
   padding: 10px 0;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px dashed #ccc;
 }
 .info-box .info-list>li .img {
   float: left;
@@ -39,8 +42,9 @@
 }
 .info-box .info-list>li .text {
   overflow: hidden;
-  min-height: 80px;
-  margin-left: 90px;
+  min-height: 40px;
+  line-height: 22px;
+  /*margin-left: 90px;*/
   font-size: 14px;
 }
 .info-box .info-list>li .time {

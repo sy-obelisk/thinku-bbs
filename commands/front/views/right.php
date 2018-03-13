@@ -132,6 +132,13 @@
                             <li><a href="/details/<?php echo $v['id']?>.html"><span><?php echo $k+1?></span><?php echo $v['name']?></a></li>
                         <?php }}?>
                 </ul>
+              <ul>
+                <li><a href=""><span style="background-color: #e92b3b">1</span>12.30换库后CR逻辑鸡精（第8题） 12.30换库后CR逻...</a></li>
+                <li><a href=""><span style="background-color: #e98a52">2</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span style="background-color: #22ada2">3</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span>4</span>MBA精英计划美前30英G5</a></li>
+                <li><a href=""><span>5</span>MBA精英计划美前30英G5</a></li>
+              </ul>
             </div>
         </div>
     </div>
