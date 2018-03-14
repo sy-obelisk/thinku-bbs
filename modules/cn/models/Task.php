@@ -5,7 +5,7 @@ use yii;
 use yii\db\ActiveRecord;
 
 
-class DailyTask extends ActiveRecord
+class Task extends ActiveRecord
 {
     public $cateData;
 

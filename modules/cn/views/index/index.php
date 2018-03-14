@@ -7,7 +7,7 @@
           <ul>
             <?php foreach($banner as $v){?>
             <li>
-              <a href="<?php echo $url?>">
+              <a href="<?php echo $v['url']?>">
                 <img src="<?php echo $v['image']?>" alt="">
               </a>
             </li>
