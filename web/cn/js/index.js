@@ -181,7 +181,6 @@ var _index = {
           if (p>1){
             $('html').scrollTop($('.posts').offset().top);
           }
-          console.log($('.posts').offset().top);
         }
       },
       complete: function () {

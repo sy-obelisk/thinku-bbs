@@ -9,14 +9,13 @@
           echo "<span>&gt;</span>".$v['name'];
         }?>
         </li>
-<!--        <li><a href="/">首页</a><span>&gt;</span><a href="">留学</a><span>&gt;</span><a href="">美国</a><span>&gt;</span><a href="">签证</a></li>-->
       </ul>
       <!--帖子内容-->
       <div class="article" data-id="<?php echo $data['id'];?>">
         <div class="title">
-          <div class="img">
-            <img src="" alt="">
-          </div>
+<!--          <div class="img">-->
+<!--            <img src="" alt="">-->
+<!--          </div>-->
           <div class="font">
             <h2>【标题】<?php echo $data['name']?></h2>
             <ul>

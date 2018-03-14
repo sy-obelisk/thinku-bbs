@@ -119,7 +119,7 @@ var _details = {
             "<div>"+
             "<img src='"+_this.pData.imgSrc+"' alt='头像'></div>"+
             "<p class='reply-name'>"+_this.pData.name+"</p>";
-          if (!$('.best-ans')[0]){
+          if (!$('.best-ans')[0] && res.question){
             lis+="<p class='best-btn'>设为最佳答案</p>";
           }
           lis+="</div>"+

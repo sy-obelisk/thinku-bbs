@@ -19,7 +19,7 @@
 }
 .list-box .list-item .img>img {
   width: 100%;
-  height: 1005;
+  height: 100%;
 }
 .list-box .list-item .right {
   overflow: hidden;

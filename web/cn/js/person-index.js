@@ -71,8 +71,8 @@ var _person = {
         passAgain = $('.pass-again').val(),
         eData = $('.email').val(),
         pData = $('.phones').val(),
-        code = $('.veri-code').val();
-    console.log(pass,passAgain,eData,pData,code);
+        code = $('.veri-code').val(),
+        registerStr = '';
     if (!pass){
       alert('请输入密码');
       return false;
@@ -95,9 +95,9 @@ var _person = {
     }
 
     if (pData){
-      var registerStr = pData;
+      registerStr = pData;
     } else if(eData){
-      var registerStr = eData;
+      registerStr = eData;
     }
     $.post('/cn/api/change-pass',{
       registerStr: registerStr,
@@ -105,7 +105,8 @@ var _person = {
       newPass: passAgain,
       code: code
     },function (res) {
-      console.log(res);
+      alert(res.message);
+      location.reload();
     },'json')
   },
   // 获取积分列表
