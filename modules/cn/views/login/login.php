@@ -10,7 +10,7 @@
 </head>
 <body>
 <nav class="login-nav clearfix">
-  <a href="" class="home-icon">
+  <a href="/index.html" class="home-icon">
     <img src="/cn/images/logo.png" alt="">
   </a>
   <div>
@@ -92,10 +92,6 @@
     </div>
   </div>
 </div>
-<!--底部-->
-<?php use app\commands\front\FootWidget;?>
-<?php FootWidget::begin();?>
-<?php FootWidget::end();?>
 </body>
 <script src="https://use.fontawesome.com/0e249ab73d.js"></script>
 <script src="/cn/js/Validform_v5.3.2_min.js"></script>

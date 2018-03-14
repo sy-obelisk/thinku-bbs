@@ -82,9 +82,8 @@ var _details = {
         pid: $(obj).parent().parent().parent().parent().parent().parent().data('id'),
         comment: revertCnt
       },function (res) {
-        console.log(res);
         var date = new Date(),
-          time = date.getFullYear()+'-'+Number(date.getMonth()+1)+'-'+date.getDate()
+            time = date.getFullYear()+'-'+Number(date.getMonth()+1)+'-'+date.getDate()
         if (res.code == 0) {
           $('.revert-input textarea').val('');
           var lis = "<li>";
@@ -109,7 +108,6 @@ var _details = {
         pid: 0,
         comment: replyCnt
       },function (res) {
-        console.log(res);
         var date = new Date(),
             time = date.getFullYear()+'-'+Number(date.getMonth()+1)+'-'+date.getDate()
         if (res.code == 0) {
@@ -175,10 +173,8 @@ var _details = {
       type: 1,
       status: 1
     },function (res) {
-      console.log(res);
       if (res.code == 0) {
         var upNum = $('.collect li').eq(1).children('span').html();
-        console.log(upNum);
         $('.collect li').eq(1).children('span').html(Number(upNum+1));
         alert(res.message);
       } else {
@@ -193,7 +189,6 @@ var _details = {
       type: 1,
       status: 2
     },function (res) {
-      console.log(res);
       if (res.code == 0) {
         var upNum = $('.collect li').eq(2).children('span').html();
         alert(res.message);
@@ -228,7 +223,6 @@ var _details = {
         reportType: type,
         cate: num
       },function (res) {
-        console.log(res);
         if (res.code == 0){
           alert('提交成功');
           $('.accuse').hide();
@@ -244,7 +238,6 @@ var _details = {
       type : 2,
       status : 1
     },function (res) {
-      console.log(res);
       if (res.code == 0){
         alert(res.message);
         $(obj).children().html(Number(num+1));
@@ -261,7 +254,6 @@ var _details = {
       type : 2,
       status : 2
     },function (res) {
-      console.log(res);
       if (res.code == 0){
         alert(res.message);
         $(obj).children().html(Number(num+1));
@@ -278,7 +270,6 @@ var _details = {
       id: id,
       disId: dis
     },function (res) {
-      console.log(res);
       if (res.code == 0){
         $(obj).parent().parent().parent().append('<div class="best-ans">最佳答案</div>');
         $('.best-btn').hide();
@@ -290,14 +281,5 @@ var _details = {
 };
 $(function () {
   _details.init();
-//  分页
-  $.jqPaginator('#pagination1', {
-    totalPages: 20,
-    visiblePages: 7,
-    currentPage: 1,
-    onPageChange: function (num, type) {
-      console.log(num,type);
-      // $('#p1').text(type + '：' + num);
-    }
-  });
+
 })
