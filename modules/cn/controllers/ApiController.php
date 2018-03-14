@@ -18,7 +18,7 @@ use app\modules\cn\models\Login;
 use app\modules\cn\models\Content;
 use app\modules\cn\models\Collect;
 use app\modules\cn\models\Category;
-use app\modules\cn\models\DailyTask;
+use app\modules\cn\models\Task;
 use app\modules\cn\models\UserExtend;
 use app\modules\cn\models\UserDiscuss;
 use app\modules\content\models\ExtendData;
@@ -383,7 +383,7 @@ class ApiController extends Controller
             $data['message'] = '未登录';
         }
         $time = date("Y-m-d");
-        $daily = new DailyTask();
+        $daily = new Task();
         $task = $daily->todayTask(" where userId=" . $userId . " and time=" . " '$time'");// 查看数据是否存在
         if ($task) {
             $signIn = $daily->todayTask(" where userId=" . $userId . " and time= '$time' and signIn=1");// 查看数据是否存在
@@ -392,7 +392,7 @@ class ApiController extends Controller
                 $data['message'] = '今日已经签到，不能重复签到';
                 die(json_encode($data));
             } else {
-                $re = DailyTask::updateAll(['signIn' => 1], "id=" . $signIn['id']);
+                $re = Task::updateAll(['signIn' => 1], "id=" . $signIn['id']);
             }
         } else {
             $data['time'] = date("Y-m-d");
@@ -470,6 +470,7 @@ class ApiController extends Controller
             $user->integral($userId, 3, '评论获取积分', 1);
             $res['code'] = 0;
             $res['id'] = Yii::$app->db->createCommand("select id From {{%user_discuss}} where userId=$userId and contentId=" . $data['contentId'])->queryOne();
+            $res['question'] = Yii::$app->db->createCommand("select catId From {{%content}} where id=" . $data['contentId'])->queryOne()['catId']==119?true:false;
             $res['message'] = '发表成功，积分+3';
             die(json_encode($res));
         } else {
@@ -772,11 +773,11 @@ class ApiController extends Controller
         }
         if ($email) {
             $userInfo['email'] = $email;
-            $signPhone = Login::find()->where("id=$userId AND phone='$phone'")->one();
-            if (!$signPhone) {
-                $phone = Login::find()->where(" phone='$phone'")->one();
+            $signEmail = Login::find()->where("id=$userId AND email='$email'")->one();
+            if (!$signEmail) {
+                $phone = Login::find()->where(" email='$email'")->one();
                 if ($phone) {
-                    die(json_encode(['code' => 1, 'message' => '该手机已被其他用户绑定']));
+                    die(json_encode(['code' => 1, 'message' => '该邮箱已被其他用户绑定']));
                 }
             }
         }
