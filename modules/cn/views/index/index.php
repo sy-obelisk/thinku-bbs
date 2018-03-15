@@ -138,15 +138,15 @@
         <h5 class="p-title">出国留学热门公开课</h5>
         <div class="box">
           <ul>
-<!--            --><?php //foreach($class['data'] as $v){?>
-<!--            <li>-->
-<!--              <img src="http://www.thinkwithu.com--><?php //echo $v['image']?><!--" alt="">-->
-<!--              <div>-->
-<!--                <p><a href="http://www.thinkwithu.com/public-class/--><?php //echo $v['id']?><!--.html">查看详情</a></p>-->
-<!--                <p><a href="">立即报名</a></p>-->
-<!--              </div>-->
-<!--            </li>-->
-<!--            --><?php //}?>
+            <?php foreach($class['data'] as $v){?>
+            <li>
+              <img src="http://www.thinkwithu.com<?php echo $v['image']?>" alt="">
+              <div>
+                <p><a href="http://www.thinkwithu.com/public-class/<?php echo $v['id']?>.html">查看详情</a></p>
+                <p><a href="">立即报名</a></p>
+              </div>
+            </li>
+            <?php }?>
           </ul>
         </div>
         <div class="prev">&lt;</div>
