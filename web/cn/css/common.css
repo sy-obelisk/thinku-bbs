@@ -279,7 +279,7 @@ body{
 */
 .footer {
   width: 100%;
-  height: 270px;
+  height: 230px;
   padding-top: 30px;
   background: url("/cn/images/foot-bg.png");
 }
@@ -329,19 +329,19 @@ body{
 }
 .footer-code>div {
   width: 300px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .footer-code>div>img {
   width: 100%;
 }
 .footer-code>ul>li {
   float: left;
-  width: 130px;
-  height: 130px;
+  width: 100px;
+  height: 100px;
   overflow: hidden;
 }
 .footer-code>ul>li:first-of-type {
-  margin-right: 17px;
+  margin-right: 60px;
 }
 .footer-code>ul>li>img {
   width: 100%;
