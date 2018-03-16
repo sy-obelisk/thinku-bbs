@@ -86,7 +86,7 @@
   text-decoration: underline;
 }
 .bnr-info>.bd>ul>li {
-  line-height: 30px;
+  line-height: 31px;
   overflow: hidden;
   white-space: nowrap;
   -ms-text-overflow: ellipsis;
