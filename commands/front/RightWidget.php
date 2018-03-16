@@ -54,8 +54,8 @@ class RightWidget extends Widget
     public function Hot()
     {
         $model = new Content();
-        $this->dayHot = $model->getClass(['fields' => 'listeningFile', 'where' => "c.createTime>'" . date('Y-m-d', time())."'", 'order' => ' viewCount desc', 'pageSize' => 15]);
-        $this->weekHot = $model->getClass(['fields' => 'listeningFile', 'where' => "c.createTime>'" . date('Y-m-d', mktime(0, 0, 0, date('m'), date('d') - date('w') + 1, date('Y')))."'", 'order' => ' viewCount desc', 'pageSize' => 15]);
+        $this->dayHot = $model->getClass(['fields' => 'listeningFile', 'where' => "c.createTime>'" . date('Y-m-d', time())."' and catId!=118", 'order' => ' viewCount desc', 'pageSize' => 15]);
+        $this->weekHot = $model->getClass(['fields' => 'listeningFile', 'where' => "c.createTime>'" . date('Y-m-d', mktime(0, 0, 0, date('m'), date('d') - date('w') + 1, date('Y')))."' and catId!=118", 'order' => ' viewCount desc', 'pageSize' => 15]);
 
     }
 }
