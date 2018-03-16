@@ -1,5 +1,22 @@
 <header class="header">
     <div class="p-container clearfix">
+        <div class="think-nav fl">
+          <ul>
+            <li><a href="http://www.thinkwithu.com/study-aboard/assistance.html" target="_blank">留学服务</a></li>
+            <li><a href="http://www.thinkwithu.com/gmatsheet.html" target="_blank">GMAT课程</a></li>
+            <li><a href="http://www.thinkwithu.com/satsheet.html" target="_blank">SAT课程</a></li>
+            <li><a href="http://www.thinkwithu.com/toefl/assistance.html" target="_blank">托福课程</a></li>
+            <li><a href="http://www.thinkwithu.com/ieltssheet.html" target="_blank">雅思课程</a></li>
+            <li><a href="http://www.thinkwithu.com/public-class.html" target="_blank">申友讲堂</a></li>
+            <li><a href="http://www.gmatonline.cn/index.html" target="_blank">申友在线</a></li>
+            <li><a href="http://www.thinkwithu.com/teachers.html" target="_blank">名师云集</a></li>
+            <li><a href="http://www.thinkwithu.com/case.html" target="_blank">成功案例</a></li>
+            <li><a href="http://www.thinkwithu.com/schools.html" target="_blank">院校库</a></li>
+            <li>|</li>
+            <li>400-600-1123</li>
+            <li><a href="http://p.qiao.baidu.com/im/index?siteid=6058744&ucid=3827656&cp=&cr=&cw=" target="_blank">在线咨询</a></li>
+          </ul>
+        </div>
         <div class="wrap fr">
             <?php if($userId==false){?>
             <ul class="header-login">
