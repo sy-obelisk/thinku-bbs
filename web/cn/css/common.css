@@ -279,12 +279,13 @@ body{
 */
 .footer {
   width: 100%;
-  height: 230px;
+  /*height: 230px;*/
   padding-top: 30px;
   background: url("/cn/images/foot-bg.png");
 }
 .footer>.p-container {
   width: 900px;
+  padding-bottom: 20px;
   margin-bottom: 0;
 }
 .footer-nav {
@@ -347,10 +348,18 @@ body{
   width: 100%;
   height: 100%;
 }
+.foot-text {
+  width: 100%;
+  text-align: center;
+  /*background: #eee;*/
+  background-color: #fff;
+  font-size: 12px;
+  padding: 5px 0;
+}
 
-/*
-  侧边栏
-*/
+  /*
+    侧边栏
+  */
 .p-posts .aside {
   width: 390px;
   margin-left: 810px;
