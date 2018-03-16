@@ -381,6 +381,7 @@ class ApiController extends Controller
         if (!$userId) {
             $data['code'] = 2;
             $data['message'] = '未登录';
+            die(json_encode($data));
         }
         $time = date("Y-m-d");
         $daily = new Task();
