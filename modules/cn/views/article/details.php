@@ -83,7 +83,7 @@
                   <!--头像-->
                   <div class="reply-img">
                     <div>
-                      <img src="<?php echo $v['image']?>" alt="">
+                      <img src="<?php echo $v['image']==false?'/cn/images/head.png':$v['image']?>" alt="">
                     </div>
                     <p class="reply-name"><?php echo $v['nickname']==false?$v['userName']:$v['nickname']?></p>
                     <?php if($v['model']==false and $data['catId']==119){?>
