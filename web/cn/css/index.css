@@ -29,8 +29,13 @@
   height: 400px;
   overflow: hidden;
 }
-.bnr-banner .box a {
-  display: block;
+/*.bnr-banner .box a {*/
+  /*display: block;*/
+/*}*/
+.bnr-banner .box li {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
 }
 .bnr-banner .box img {
   width: 100%;
