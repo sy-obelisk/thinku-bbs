@@ -69,12 +69,12 @@ class ApiController extends Controller
         $mail->setHtmlBody('
             <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
             <div style="width: 900px;margin: 0 auto;margin-bottom: 10px">
-                 <img src="http://test.toeflonline.cn/cn/images/TF_logo.png" alt="logo">
+                 <img src="http://www.thinkwithu.com/cn/Hirsi/images/sy-logo.png" alt="logo">
             </div>
             <div style="width: 850px;border: 1px #dcdcdc solid;margin: 0 auto;overflow: hidden">
                  <p style="font-weight: bold;font-size: 18px;margin-left: 20px;color: #34388e;font-family: 微软雅黑;">亲爱的用户 ：</p>
                 <span style="margin-left: 20px;font-family: 微软雅黑;">
-            你好！你正在通过邮箱免费注册名校留学论坛，网址<a href="http://www.thinkwithu.com">www.thinkwithu.com</a>。你的验证码为：【<span style="color:#ff913e;">' . $emailCode . '</span>】。（有效期为：此邮件发出后48小时）
+            您好！您正在通过邮箱免费注册名校留学论坛，网址<a href="http://bbs.thinkwithu.com">http://bbs.thinkwithu.com</a>。您的验证码为：【<span style="color:#ff913e;">' . $emailCode . '</span>】。（有效期为：此邮件发出后48小时）
                 </span>
                 </br>
                 <p style="margin-left: 20px;font-family: 微软雅黑;">
@@ -85,7 +85,7 @@ class ApiController extends Controller
 想要快速获取留学资讯，请添加好友，详细了解留学上的细节~
                 </p>
             <div style="width: 100%;background: #e8e8e8;padding:5px 20px;font-size:12px;box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;margin-top: 30px;color: #808080;font-family: 微软雅黑;">
-            温馨提示：请你注意保护你的邮箱，避免邮件被他人盗用哟！
+            温馨提示：请您注意保护您的邮箱，避免邮件被他人盗用哟！
             </div>
             </div>
             <div style="font-size: 12px;width: 800px;margin: 0 auto;text-align: right;color: #808080;">
@@ -137,7 +137,7 @@ class ApiController extends Controller
                 $re = $login->save();
                 if ($re) {
                     $model = new News();
-                    $model->news = '终于等到你，欢迎成为留学论坛的一员';
+                    $model->news = '终于等到您，欢迎成为留学论坛的一员';
                     $model->userId = $login->primaryKey;
                     $model->status = 1;
                     $model->type = 1;
@@ -234,7 +234,7 @@ class ApiController extends Controller
                         $re = $login->save();
                         if ($re) {
                             $model = new News();
-                            $model->news = '终于等到你，欢迎成为留学论坛的一员';
+                            $model->news = '终于等到您，欢迎成为留学论坛的一员';
                             $model->userId = $login->primaryKey;
                             $model->status = 1;
                             $model->type = 1;

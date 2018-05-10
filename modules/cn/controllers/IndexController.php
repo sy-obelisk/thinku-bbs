@@ -32,7 +32,6 @@ class IndexController extends Controller
         $question = json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/question"), true);
         $banner = $model->getClass(['fields' => 'url', 'category' => '118,120', 'order' => ' c.id desc', 'limit' => 10]);
         $class = json_decode(file_get_contents("http://www.thinkwithu.com/cn/api/public-class"), true);
-//        return $this->render('index', ['data' => $data, 'page' => $page, 'offer' => $offer, 'score' => $score, 'report' => $report, 'info' => $info, 'question' => $question, 'banner' => $banner]);
         return $this->render('index', ['data' => $data, 'page' => $page, 'offer' => $offer, 'score' => $score, 'report' => $report, 'info' => $info, 'question' => $question, 'banner' => $banner,'class'=>$class]);
     }
 

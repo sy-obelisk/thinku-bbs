@@ -28,7 +28,7 @@
         <div class="bd">
           <ul>
             <?php foreach($report['contentData'] as $v){?>
-            <li><a href="http://www.thinkwithu.com/word-details/<?php echo $v['id']?>/178,125.html" target="_blank"><?php echo $v['title']?></a></li>
+            <li><a href="http://www.thinkwithu.com/word-details/<?php echo $v['id']?>/178,121.html" target="_blank"><?php echo $v['title']?></a></li>
             <?php }?>
           </ul>
           <ul>

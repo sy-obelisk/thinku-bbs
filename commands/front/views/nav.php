@@ -40,7 +40,7 @@
 </header>
 <nav class="nav p-container clearfix">
     <a href="/index.html" class="home-icon">
-        <img src="/cn/images/logo.png" alt="">
+        <img src="/cn/images/sy-lg.png" alt="">
     </a>
     <div class="title">
         <img src="/cn/images/index01.png" alt="">
