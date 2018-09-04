@@ -538,6 +538,7 @@ class ApiController extends Controller
     {
         if ($_POST) {
             $user = Yii::$app->session->get('userId');
+//            $user = 7321;
             if (!$user) {
                 $data['code'] = 2;
                 $data['message'] = '未登录';
@@ -558,6 +559,7 @@ class ApiController extends Controller
             $addtime = date("Y-m-d H:i:s");
             $model->createTime = $addtime;
             $model->userId = Yii::$app->session->get('userId');
+//            $model->userId = 7321;
             $model->name = $contentData['name'];
             $model->abstract = $contentData['abstract'];
             $model->pid = $contentData['pid'];

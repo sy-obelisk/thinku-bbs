@@ -88,6 +88,10 @@ var _index = {
         if (res.code == 0) {
           var ulItem = "<ul>";
           for(var i=0,data=res.data;i<data.length;i++) {
+              var _data = data[i].listeningFile.substr(0,1550);
+              // var data_ = _data.replace(/<img.*\/>/ig, "");
+              var data_ = _data.replace(/<\/?.+?>/g,"");
+
             ulItem+="<li class='item'>"+
               "<div class='img'>";
               if (data[i].image){
@@ -104,7 +108,7 @@ var _index = {
               // "<p><span>"+data[i].last.name+" </span><span>最后回复于"+data[i].last.time+" </span></p>"+
               "<p><span>查看："+data[i].viewCount+"  </span>|<span>回复："+data[i].count+"</span></p></div>"+
               "</div>"+
-              "<div class='abstract'>"+data[i].listeningFile+"</div>"+
+              "<div class='abstract'>"+data_+"</div>"+
               "</div>"+
               "</li>";
           }
@@ -152,7 +156,10 @@ var _index = {
         if (res.code == 0) {
           var ulItem = "<ul>";
           for(var i=0,data=res.data;i<data.length;i++) {
-            ulItem+="<li class='item'>"+
+            var _data = data[i].listeningFile.substr(0,1550);
+            // var data_ = _data.replace(/<img.*\/>/ig, "");
+              var data_ = _data.replace(/<\/?.+?>/g,"");
+              ulItem+="<li class='item'>"+
               "<div class='img'>";
             if (data[i].image){
               ulItem+="<img src='"+data[i].image+"' alt='头像'>";
@@ -172,7 +179,7 @@ var _index = {
               // "<p><span>"+data[i].last.name+" </span><span>最后回复于"+data[i].last.time+" </span></p>"+
               "<p><span>查看："+data[i].viewCount+"  </span>|<span>回复："+data[i].count+"</span></p></div>"+
               "</div>"+
-              "<div class='abstract'>"+data[i].listeningFile+"</div>"+
+              "<div class='abstract'>"+data_+"</div>"+
               "</div>"+
               "</li>";
           }
