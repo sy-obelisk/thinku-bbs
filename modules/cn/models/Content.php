@@ -50,7 +50,7 @@ class Content extends ActiveRecord
             $arr = Yii::$app->db->createCommand("select userName,nickname,ud.createTime from {{%user_discuss}} ud left join {{%user}} u on u.id=ud.userId where ud.contentId=" . $v['id'] . " and ud.pid=0 order by ud.id desc limit 1")->queryOne();
             $user = Yii::$app->db->createCommand("select userName,nickname,image from  {{%user}} where id=" . $v['userId'] . " limit 1")->queryOne();
             $list[$k]['userName']= $user['nickname'] == false ? $user['userName'] : $user['nickname'];
-            $list[$k]['image']= $user['image'] ;
+            $list[$k]['pic']= $user['image'] ;
             $list[$k]['last']['name'] = $arr['nickname'] == false ? $arr['userName'] : $arr['nickname'];
             $list[$k]['last']['time'] = substr($arr['createTime'], 0, 10);
             $list[$k]['count'] = count(Yii::$app->db->createCommand("select id from {{%user_discuss}}  where contentId=" . $v['id'] . " and pid=0")->queryAll());
